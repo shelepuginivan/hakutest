@@ -10,8 +10,11 @@ func NewRouter() *gin.Engine {
 	router.LoadHTMLGlob("web/templates/*")
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
+
 	test := new(controllers.TestController)
+
 	router.GET("/:test", test.GetTest)
+	router.POST("/:test", test.SubmitTest)
 
 	return router
 }

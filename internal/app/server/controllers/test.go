@@ -36,3 +36,25 @@ func (t TestController) GetTest(c *gin.Context) {
 		},
 	})
 }
+
+func (t TestController) SubmitTest(c *gin.Context) {
+	err := c.Request.ParseForm()
+
+	if err != nil {
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"detail": "failed to parse form"})
+	}
+
+	results, err := parser.GetTestResults(c.Param("test"), c.Request.PostForm)
+
+	if err != nil {
+		if os.IsNotExist(err) {
+			c.JSON(http.StatusNotFound, gin.H{"detail": "test file does not exist"})
+		} else {
+			c.JSON(http.StatusBadRequest, gin.H{"detail": "failed to parse test file"})
+		}
+
+		return
+	}
+
+	c.JSON(http.StatusOK, results)
+}
