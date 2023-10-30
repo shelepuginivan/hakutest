@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"html/template"
 	"net/http"
 	"os"
 
@@ -24,5 +25,11 @@ func (t TestController) GetTest(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, test)
+	c.HTML(http.StatusOK, "test.tmpl", gin.H{
+		"Title": test.Title,
+		"Tasks": test.Tasks,
+		"url": func(s string) template.URL {
+			return template.URL(s)
+		},
+	})
 }
