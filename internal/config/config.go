@@ -36,5 +36,13 @@ func Init() Config {
 		return defaultConfig
 	}
 
+	if config.TestsDirectory == "" {
+		config.TestsDirectory = testsDirectory
+	}
+
+	if config.Port == "" {
+		config.Port = port
+	}
+
 	return config
 }
