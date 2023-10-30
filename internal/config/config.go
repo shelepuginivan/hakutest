@@ -12,8 +12,18 @@ type Config struct {
 	TestsDirectory string `yaml:"tests_directory"`
 }
 
+func getConfigPath() string {
+	configDir, err := os.UserConfigDir()
+
+	if err != nil {
+		return "config.yaml"
+	}
+
+	return path.Join(configDir, "hakutest", "config.yaml")
+}
+
 func Init() Config {
-	configPath := "config.yaml"
+	configPath := getConfigPath()
 	config := Config{}
 	port := "8080"
 	testsDirectory := "user_test"
