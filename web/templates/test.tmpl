@@ -1,68 +1,90 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <link rel="stylesheet" href="static/test.css">
+    </head>
     <body>
-        <h1>{{ .Title }}</h1>
-        <form method="POST">
-            <div>
-                <label for="student">Your name</label>
-                <input id="student" type="text" name="student" required>
-            </div>
-            {{ range $task_index, $task := .Tasks }}
-                {{ with $task }}
-                    <section>
-                        <p>{{ .Text }}</p>
-                        <div>
-                            {{ if eq .Attachment.Type "image" }}
-                                <img src="{{ call $.url .Attachment.Src }}">
-                            {{ else if eq .Attachment.Type "video" }}
-                                <video controls src="{{ call $.url  .Attachment.Src }}"></video>
-                            {{ else if eq .Attachment.Type "audio" }}
-                                <audio controls src="{{ call $.url  .Attachment.Src }}"></audio>
-                            {{ end }}
-                        </div>
-                        <div>
-                            {{ if eq .Type "single" }}
-                                {{ range $option_index, $option := .Options }}
-                                    {{ $input_id := (printf "task-%d-%d" $task_index $option_index) }}
-                                    <div>
+        <header class="header">
+            <h1>{{ .Title }}</h1>
+        </header>
+        <main class="main">
+            <form method="POST" class="form">
+                <section class="task">
+                    <div class="input-open-wrapper">
+                        <label for="student">Your name:</label>
+                        <input
+                            id="student"
+                            class="input-text"
+                            type="text"
+                            name="student"
+                            required
+                        >
+                    <div>
+                </section>
+                {{ range $task_index, $task := .Tasks }}
+                    {{ with $task }}
+                        <section class="task">
+                            <p>{{ .Text }}</p>
+                            <div>
+                                {{ if eq .Attachment.Type "image" }}
+                                    <img src="{{ call $.url .Attachment.Src }}">
+                                {{ else if eq .Attachment.Type "video" }}
+                                    <video controls src="{{ call $.url  .Attachment.Src }}"></video>
+                                {{ else if eq .Attachment.Type "audio" }}
+                                    <audio controls src="{{ call $.url  .Attachment.Src }}"></audio>
+                                {{ end }}
+                            </div>
+                            <div>
+                                {{ if eq .Type "single" }}
+                                    {{ range $option_index, $option := .Options }}
+                                        {{ $input_id := (printf "task-%d-%d" $task_index $option_index) }}
+                                        <div>
+                                            <input
+                                                id="{{ $input_id }}"
+                                                class="input-radio"
+                                                type="radio"
+                                                name="{{ $task_index }}"
+                                                value="{{ call $.incr $option_index }}"
+                                            >
+                                            <label for="{{ $input_id }}">
+                                                {{ $option }}
+                                            </label>
+                                        </div>
+                                    {{ end }}
+                                {{ else if eq .Type "multiple" }}
+                                    {{ range $option_index, $option := .Options }}
+                                        {{ $input_id := (printf "task-%d-%d" $task_index $option_index) }}
+                                        <div>
+                                            <input
+                                                id="{{ $input_id }}"
+                                                class="input-checkbox"
+                                                type="checkbox"
+                                                name="{{ $task_index }}"
+                                                value="{{ call $.incr $option_index }}"
+                                            >
+                                            <label for="{{ $input_id }}">
+                                                {{ $option }}
+                                            </label>
+                                        </div>
+                                    {{ end }}
+                                {{ else if eq .Type "open" }}
+                                    {{ $input_id := (printf "task-%d" $task_index) }}
+                                    <div class="input-open-wrapper">
+                                        <label for="{{ $input_id }}">Answer:</label>
                                         <input
-                                            type="radio"
-                                            name="{{ $task_index }}"
-                                            value="{{ call $.incr $option_index }}"
                                             id="{{ $input_id }}"
+                                            class="input-text"
+                                            type="text"
+                                            name="{{ $task_index }}"
                                         >
-                                        <label for="{{ $input_id }}">
-                                            {{ $option }}
-                                        </label>
                                     </div>
                                 {{ end }}
-                            {{ else if eq .Type "multiple" }}
-                                {{ range $option_index, $option := .Options }}
-                                    {{ $input_id := (printf "task-%d-%d" $task_index $option_index) }}
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            name="{{ $task_index }}"
-                                            value="{{ call $.incr $option_index }}"
-                                            id="{{ $input_id }}"
-                                        >
-                                        <label for="{{ $input_id }}">
-                                            {{ $option }}
-                                        </label>
-                                    </div>
-                                {{ end }}
-                            {{ else if eq .Type "open" }}
-                                {{ $input_id := (printf "task-%d" $task_index) }}
-                                <div>
-                                    <label for="{{ $input_id }}">Ответ</label>
-                                    <input id="{{ $input_id }}" type="text" name="{{ $task_index }}">
-                                </div>
-                            {{ end }}
-                        </div>
-                    </section>
+                            </div>
+                        </section>
+                    {{ end }}
                 {{ end }}
-            {{ end }}
-            <button type="submit">Submit</button>
-        </form>
+                <button class="button" type="submit">Submit</button>
+            </form>
+        </main>
     </body>
 </html>
