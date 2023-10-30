@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/shelepuginivan/hakutest/app/server"
+	"github.com/shelepuginivan/hakutest/internal/app/server"
 	"github.com/spf13/cobra"
 )
 
