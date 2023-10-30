@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/shelepuginivan/hakutest/app/server"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use: "hakutest",
-	Run: func(cmd *cobra.Command, args []string) {},
+	Use:  "hakutest",
+	RunE: server.Init,
 }
 
 func Execute() {
