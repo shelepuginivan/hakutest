@@ -7,22 +7,31 @@ import (
 )
 
 type Config struct {
-	Port string
+	Port           string `yaml:"port"`
+	TestsDirectory string `yaml:"tests_directory"`
 }
 
 func Init() Config {
 	configPath := "config.yaml"
-	configFile, err := os.ReadFile(configPath)
 	config := Config{}
+	port := "8080"
+	testDirectory, err := os.UserCacheDir()
 
 	if err != nil {
-		return Config{Port: "8080"}
+		testDirectory = "user_tests"
+	}
+
+	defaultConfig := Config{Port: port, TestsDirectory: testDirectory}
+	configFile, err := os.ReadFile(configPath)
+
+	if err != nil {
+		return defaultConfig
 	}
 
 	err = yaml.Unmarshal(configFile, &config)
 
 	if err != nil {
-		return Config{Port: "8080"}
+		return defaultConfig
 	}
 
 	return config
