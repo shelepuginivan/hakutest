@@ -8,6 +8,7 @@ import (
 func NewRouter() *gin.Engine {
 	router := gin.New()
 	router.LoadHTMLGlob("web/templates/*")
+	router.Static("/static", "web/static")
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 
