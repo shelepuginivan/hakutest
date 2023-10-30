@@ -3,6 +3,10 @@
     <body>
         <h1>{{ .Title }}</h1>
         <form method="POST">
+            <div>
+                <label for="student">Your name</label>
+                <input id="student" type="text" name="student" required>
+            </div>
             {{ range $task_index, $task := .Tasks }}
                 {{ with $task }}
                     <section>
