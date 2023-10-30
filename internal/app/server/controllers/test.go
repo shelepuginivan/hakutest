@@ -31,5 +31,8 @@ func (t TestController) GetTest(c *gin.Context) {
 		"url": func(s string) template.URL {
 			return template.URL(s)
 		},
+		"incr": func(n int) int {
+			return n + 1
+		},
 	})
 }

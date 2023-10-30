@@ -24,7 +24,7 @@
                                         <input
                                             type="radio"
                                             name="{{ $task_index }}"
-                                            value="{{ $option_index }}"
+                                            value="{{ call $.incr $option_index }}"
                                             id="{{ $input_id }}"
                                         >
                                         <label for="{{ $input_id }}">
@@ -39,7 +39,7 @@
                                         <input
                                             type="checkbox"
                                             name="{{ $task_index }}"
-                                            value="{{ $option_index }}"
+                                            value="{{ call $.incr $option_index }}"
                                             id="{{ $input_id }}"
                                         >
                                         <label for="{{ $input_id }}">
