@@ -19,10 +19,13 @@ type Test struct {
 	CreatedAt   time.Time `json:"createdAt"`
 	ExpiresIn   time.Time `json:"expiresIn"`
 	Tasks       []struct {
-		Type       string   `json:"type"`
-		Text       string   `json:"text"`
-		Attachment string   `json:"attachment"`
-		Options    []string `json:"options"`
+		Type       string `json:"type"`
+		Text       string `json:"text"`
+		Attachment struct {
+			Type string `json:"type"`
+			Src  string `json:"src"`
+		} `json:"attachment"`
+		Options []string `json:"options"`
 	} `json:"tasks"`
 }
 
