@@ -14,6 +14,7 @@ type Test struct {
 		Type       string `json:"type"`
 		Text       string `json:"text"`
 		Attachment struct {
+			Name string `json:"name"`
 			Type string `json:"type"`
 			Src  string `json:"src"`
 		} `json:"attachment"`
