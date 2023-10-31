@@ -75,22 +75,40 @@ func GetTestResults(name string, answers map[string][]string) (TestResults, erro
 
 		studentAnswer := strings.Join(answer, ",")
 		correctAnswer := test.Tasks[index].Answer
+		isCorrect := CompareAnswers(studentAnswer, correctAnswer)
 
-		fmt.Println(correctAnswer, studentAnswer)
+		results.Results.Tasks[i] = isCorrect
 
-		if CompareAnswers(studentAnswer, correctAnswer) {
-			points++
+		if isCorrect {
+			results.Results.Points++
 		}
 	}
 
-	percentage := 100 * points / len(test.Tasks)
-
-	results = TestResults{
-		Student:     student,
-		SubmittedAt: submittedAt,
-		Points:      points,
-		Percentage:  percentage,
-	}
+	results.Results.Percentage = 100 * results.Results.Points / len(test.Tasks)
 
 	return results, nil
+}
+
+func SaveTestResults(name string, results TestResults) error {
+	testResultsDirectory := path.Join(config.Init().ResultsDirectory, name)
+	resultsFilePath := path.Join(testResultsDirectory, results.Student+".txt")
+
+	if _, err := os.Stat(resultsFilePath); !os.IsNotExist(err) {
+		// Test was already submitted by this student
+		return err
+	}
+
+	err := os.MkdirAll(testResultsDirectory, 0770)
+
+	if err != nil && !os.IsExist(err) {
+		return err
+	}
+
+	data, err := yaml.Marshal(results)
+
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile(resultsFilePath, data, 0666)
 }
