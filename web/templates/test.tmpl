@@ -38,6 +38,13 @@
                                     <video controls src="{{ call $.url  .Attachment.Src }}"></video>
                                 {{ else if eq .Attachment.Type "audio" }}
                                     <audio controls src="{{ call $.url  .Attachment.Src }}"></audio>
+                                {{ else if eq .Attachment.Type "file" }}
+                                    <a
+                                        href="{{ call $.url .Attachment.Src }}"
+                                        download="{{ .Attachment.Name }}"
+                                    >
+                                        {{ .Attachment.Name }}
+                                    </a>
                                 {{ end }}
                             </div>
                             <div>
