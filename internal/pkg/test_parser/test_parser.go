@@ -9,14 +9,19 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/config"
 )
 
-func ParseTest(name string) (Test, error) {
+func GetTestPath(name string) string {
+	testsDirectory := config.Init().TestsDirectory
+
 	if !strings.HasSuffix(name, ".json") {
 		name += ".json"
 	}
 
+	return path.Join(testsDirectory, name)
+}
+
+func ParseTest(name string) (Test, error) {
 	test := Test{}
-	testsDirectory := config.Init().TestsDirectory
-	testPath := path.Join(testsDirectory, name)
+	testPath := GetTestPath(name)
 	testFile, err := os.ReadFile(testPath)
 
 	if err != nil {
