@@ -10,6 +10,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:  "hakutest [port]",
+	Args: cobra.RangeArgs(0, 1),
 	RunE: server.Init,
 }
 
