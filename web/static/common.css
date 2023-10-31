@@ -1,0 +1,35 @@
+:root {
+    --white: #f1f2f3;
+    --lightgray: #e5e5e5;
+    --gray: #cacaca;
+    --accent: #1b9e14;
+    --red: #eb363e;
+    --yellow: #ffe600;
+    --green: #2cbe56;
+    --darkgreen: #1c7b38;
+    --transition: all .15s ease-in;
+    --z-1: 1;
+}
+
+* {
+    margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
+}
+
+body {
+    background-color: var(--white);
+}
+
+.main-header {
+    font-family: "Nunito", sans-serif;
+}
+
+.header {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
