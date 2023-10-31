@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	parser "github.com/shelepuginivan/hakutest/internal/pkg/test_parser"
@@ -22,6 +23,11 @@ func (t TestController) GetTest(c *gin.Context) {
 			c.JSON(http.StatusBadRequest, gin.H{"detail": "failed to parse test file"})
 		}
 
+		return
+	}
+
+	if !test.ExpiresIn.IsZero() && test.ExpiresIn.Before(time.Now()) {
+		c.JSON(http.StatusGone, gin.H{"detail": "Test expired"})
 		return
 	}
 
