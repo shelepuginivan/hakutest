@@ -1,6 +1,8 @@
 package parser
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"os"
 	"path"
@@ -31,4 +33,18 @@ func ParseTest(name string) (Test, error) {
 	err = json.Unmarshal(testFile, &test)
 
 	return test, err
+}
+
+func GetTestCheckSum(name string) (string, error) {
+	hasher := sha256.New()
+	testPath := GetTestPath(name)
+	test, err := os.ReadFile(testPath)
+
+	if err != nil {
+		return "", err
+	}
+
+	hasher.Write(test)
+
+	return hex.EncodeToString(hasher.Sum(nil)), nil
 }
