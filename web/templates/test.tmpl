@@ -30,7 +30,10 @@
                             <p>{{ .Text }}</p>
                             <div class="attachment">
                                 {{ if eq .Attachment.Type "image" }}
-                                    <img src="{{ call $.url .Attachment.Src }}">
+                                    <img
+                                        src="{{ call $.url .Attachment.Src }}"
+                                        alt="{{ .Attachment.Name }}"
+                                    >
                                 {{ else if eq .Attachment.Type "video" }}
                                     <video controls src="{{ call $.url  .Attachment.Src }}"></video>
                                 {{ else if eq .Attachment.Type "audio" }}
