@@ -3,6 +3,7 @@
     --lightgray: #e5e5e5;
     --gray: #cacaca;
     --accent: #1b9e14;
+    --transition: all .15s ease-in;
 }
 
 * {
@@ -31,6 +32,7 @@ body {
     max-width: 900px;
     width: 90%;
     margin-inline: auto;
+    padding-bottom: 32px;
 }
 
 .task {
@@ -50,6 +52,7 @@ body {
 }
 
 .input-text {
+    transition: var(--transition);
     padding: 8px;
     border-radius: 4px;
     flex-grow: 1;
@@ -67,6 +70,7 @@ body {
 }
 
 .button {
+    transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,4 +78,12 @@ body {
     border-radius: 4px;
     width: fit-content;
     align-self: center;
+    color: var(--accent);
+    background-color: transparent;
+    border: 2px solid var(--accent);
+}
+
+.button:hover {
+    background-color: var(--accent);
+    color: var(--white);
 }
