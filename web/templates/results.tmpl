@@ -4,12 +4,39 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="static/common.css">
+        <link rel="stylesheet" href="static/results.css">
     </head>
     <body>
-        <main>
-            <h1>{{ .Student }}</h1>
-            <p>{{ .Results.Points }} / {{ .Results.Total }}</p>
-            <p>{{ .Results.Percentage }}%</p>
+        <header class="header">
+            <h1 class="main-header">{{ .Student }}</h1>
+        </header>
+        <main class="main">
+            <section class="points">
+                <div class="points-total">
+                    <p class="points-total-value">
+                        {{ .Results.Points }} / {{ .Results.Total }}
+                    </p>
+                </div>
+                <div class="points-percentage">
+                    <p class="points-percentage-value">{{ .Results.Percentage }}%</p>
+                    {{ $meter_points := "low" }}
+                    {{ if ge .Results.Percentage 50 }}
+                        {{ $meter_points = "medium" }}
+                    {{ end }}
+                    {{ if ge .Results.Percentage 70 }}
+                        {{ $meter_points = "high" }}
+                    {{ end }}
+                    {{ if ge .Results.Percentage 90 }}
+                        {{ $meter_points = "max" }}
+                    {{ end }}
+                    <div
+                        class="points-percentage-meter"
+                        style="width: {{ .Results.Percentage }}%"
+                        data-meter-points="{{ $meter_points }}"
+                    ></div>
+                </div>
+            </section>
         </main>
     </body>
 </html>
