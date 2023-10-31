@@ -50,6 +50,19 @@ body {
     border-radius: 8px;
 }
 
+.attachment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.attachment > img,
+.attachment > video,
+.attachment > audio
+{
+    max-height: 400px;
+}
+
 .input-open-wrapper {
     display: flex;
     align-items: center;

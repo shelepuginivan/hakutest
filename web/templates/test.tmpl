@@ -28,7 +28,7 @@
                     {{ with $task }}
                         <section class="task">
                             <p>{{ .Text }}</p>
-                            <div>
+                            <div class="attachment">
                                 {{ if eq .Attachment.Type "image" }}
                                     <img src="{{ call $.url .Attachment.Src }}">
                                 {{ else if eq .Attachment.Type "video" }}
