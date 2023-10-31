@@ -11,6 +11,7 @@
 	padding: 0;
 	border: 0;
 	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -22,6 +23,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.main-header {
+    font-family: "Nunito", sans-serif;
 }
 
 .form {
@@ -57,6 +62,7 @@ body {
     border-radius: 4px;
     flex-grow: 1;
     border: 2px solid var(--gray);
+    font-size: medium;
 }
 
 .input-text:focus {
@@ -71,6 +77,8 @@ body {
 
 .button {
     transition: var(--transition);
+    font-family: "Nunito", sans-serif;
+    font-size: large;
     display: flex;
     align-items: center;
     justify-content: center;
