@@ -10,6 +10,7 @@ import (
 type Config struct {
 	Port              string `yaml:"port"`
 	TestsDirectory    string `yaml:"tests_directory"`
+	ResultsDirectory  string `yaml:"results_directory"`
 	StudentNameLabel  string `yaml:"student_name_label"`
 	OpenAnswerLabel   string `yaml:"open_answer_label"`
 	SubmitButtonLabel string `yaml:"submit_button_label"`
@@ -29,6 +30,7 @@ func Init() Config {
 	var (
 		port              = "8080"
 		testsDirectory    = "user_test"
+		resultsDirectory  = "user_results"
 		studentNameLabel  = "Your name:"
 		openAnswerLabel   = "Answer:"
 		submitButtonLabel = "Submit"
@@ -40,11 +42,13 @@ func Init() Config {
 
 	if err == nil {
 		testsDirectory = path.Join(cacheDir, "hakutest", "tests")
+		resultsDirectory = path.Join(cacheDir, "hakutest", "results")
 	}
 
 	defaultConfig := Config{
 		Port:              port,
 		TestsDirectory:    testsDirectory,
+		ResultsDirectory:  resultsDirectory,
 		StudentNameLabel:  studentNameLabel,
 		OpenAnswerLabel:   openAnswerLabel,
 		SubmitButtonLabel: submitButtonLabel,
@@ -64,6 +68,10 @@ func Init() Config {
 
 	if config.TestsDirectory == "" {
 		config.TestsDirectory = testsDirectory
+	}
+
+	if config.ResultsDirectory == "" {
+		config.ResultsDirectory = testsDirectory
 	}
 
 	if config.Port == "" {
