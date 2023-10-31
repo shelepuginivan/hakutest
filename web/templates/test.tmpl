@@ -14,7 +14,7 @@
             <form method="POST" class="form">
                 <section class="task">
                     <div class="input-open-wrapper">
-                        <label for="student">Your name:</label>
+                        <label for="student">{{ .Config.StudentNameLabel }}</label>
                         <input
                             id="student"
                             class="input-text"
@@ -73,7 +73,9 @@
                                 {{ else if eq .Type "open" }}
                                     {{ $input_id := (printf "task-%d" $task_index) }}
                                     <div class="input-open-wrapper">
-                                        <label for="{{ $input_id }}">Answer:</label>
+                                        <label for="{{ $input_id }}">
+                                            {{ $.Config.OpenAnswerLabel }}
+                                        </label>
                                         <input
                                             id="{{ $input_id }}"
                                             class="input-text"
@@ -86,7 +88,9 @@
                         </section>
                     {{ end }}
                 {{ end }}
-                <button class="button" type="submit">Submit</button>
+                <button class="button" type="submit">
+                    {{ .Config.SubmitButtonLabel }}
+                </button>
             </form>
         </main>
     </body>

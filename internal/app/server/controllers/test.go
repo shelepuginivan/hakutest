@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/shelepuginivan/hakutest/internal/config"
 	parser "github.com/shelepuginivan/hakutest/internal/pkg/test_parser"
 )
 
@@ -32,8 +33,9 @@ func (t TestController) GetTest(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "test.tmpl", gin.H{
-		"Title": test.Title,
-		"Tasks": test.Tasks,
+		"Config": config.Init(),
+		"Title":  test.Title,
+		"Tasks":  test.Tasks,
 		"url": func(s string) template.URL {
 			return template.URL(s)
 		},
