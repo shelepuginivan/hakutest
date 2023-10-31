@@ -8,8 +8,11 @@ import (
 )
 
 type Config struct {
-	Port           string `yaml:"port"`
-	TestsDirectory string `yaml:"tests_directory"`
+	Port              string `yaml:"port"`
+	TestsDirectory    string `yaml:"tests_directory"`
+	StudentNameLabel  string `yaml:"student_name_label"`
+	OpenAnswerLabel   string `yaml:"open_answer_label"`
+	SubmitButtonLabel string `yaml:"submit_button_label"`
 }
 
 func getConfigPath() string {
@@ -23,17 +26,30 @@ func getConfigPath() string {
 }
 
 func Init() Config {
+	var (
+		port              = "8080"
+		testsDirectory    = "user_test"
+		studentNameLabel  = "Your name:"
+		openAnswerLabel   = "Answer:"
+		submitButtonLabel = "Submit"
+	)
+
 	configPath := getConfigPath()
 	config := Config{}
-	port := "8080"
-	testsDirectory := "user_test"
 	cacheDir, err := os.UserCacheDir()
 
 	if err == nil {
 		testsDirectory = path.Join(cacheDir, "hakutest", "tests")
 	}
 
-	defaultConfig := Config{Port: port, TestsDirectory: testsDirectory}
+	defaultConfig := Config{
+		Port:              port,
+		TestsDirectory:    testsDirectory,
+		StudentNameLabel:  studentNameLabel,
+		OpenAnswerLabel:   openAnswerLabel,
+		SubmitButtonLabel: submitButtonLabel,
+	}
+
 	configFile, err := os.ReadFile(configPath)
 
 	if err != nil {
@@ -52,6 +68,18 @@ func Init() Config {
 
 	if config.Port == "" {
 		config.Port = port
+	}
+
+	if config.StudentNameLabel == "" {
+		config.StudentNameLabel = studentNameLabel
+	}
+
+	if config.OpenAnswerLabel == "" {
+		config.OpenAnswerLabel = openAnswerLabel
+	}
+
+	if config.SubmitButtonLabel == "" {
+		config.SubmitButtonLabel = submitButtonLabel
 	}
 
 	return config
