@@ -52,7 +52,9 @@ func (t TestController) SubmitTest(c *gin.Context) {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{"detail": "failed to parse form"})
 	}
 
-	results, err := parser.GetTestResults(c.Param("test"), c.Request.PostForm)
+	name := c.Param("test")
+
+	results, err := parser.GetTestResults(name, c.Request.PostForm)
 
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -64,5 +66,16 @@ func (t TestController) SubmitTest(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, results)
+	err = parser.SaveTestResults(name, results)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"detail": "failed to save test results"})
+
+		return
+	}
+
+	c.HTML(http.StatusCreated, "results.tmpl", gin.H{
+		"Student": results.Student,
+		"Results": results.Results,
+	})
 }
