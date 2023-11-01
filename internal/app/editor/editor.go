@@ -78,10 +78,12 @@ func promptTask() parser.Task {
 }
 
 func EditorCmd(cmd *cobra.Command, args []string) error {
-	test := parser.Test{}
-	timeLayout := "2006-01-02 15:04:05"
-
-	var name string
+	var (
+		test         = parser.Test{}
+		timeLayout   = "2006-01-02 15:04:05"
+		tasksDeleted = 0
+		name         string
+	)
 
 	if len(args) == 1 {
 		name = args[0]
@@ -112,7 +114,7 @@ func EditorCmd(cmd *cobra.Command, args []string) error {
 
 	for i := 0; i < len(test.Tasks); {
 		action := prompter.Choose(
-			fmt.Sprintf("Task %d:", i+1),
+			fmt.Sprintf("Task %d:", i+tasksDeleted+1),
 			[]string{"leave unchanged", "replace", "delete"},
 			"leave unchanged",
 		)
@@ -127,6 +129,7 @@ func EditorCmd(cmd *cobra.Command, args []string) error {
 			continue
 		case "delete":
 			test.Tasks = append(test.Tasks[:i], test.Tasks[i+1:]...)
+			tasksDeleted++
 			continue
 		}
 	}
