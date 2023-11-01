@@ -3,8 +3,24 @@ package statistics
 import (
 	"fmt"
 
+	"github.com/rodaine/table"
 	"github.com/xuri/excelize/v2"
 )
+
+func ExportToTable(statistics Statistics) table.Table {
+	tbl := table.New("#", "Student", "Points", "%")
+
+	for index, entry := range statistics {
+		tbl.AddRow(
+			index+1,
+			entry.Student,
+			entry.Results.Points,
+			entry.Results.Percentage,
+		)
+	}
+
+	return tbl
+}
 
 func ExportToExcel(statistics Statistics, testName string) error {
 	file := excelize.NewFile()

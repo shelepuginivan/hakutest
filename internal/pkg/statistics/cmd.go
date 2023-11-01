@@ -1,7 +1,6 @@
 package statistics
 
 import (
-	"github.com/rodaine/table"
 	"github.com/spf13/cobra"
 )
 
@@ -13,26 +12,15 @@ func Cmd(cmd *cobra.Command, args []string) error {
 	}
 
 	if len(args) == 1 {
-		tbl := table.New("#", "Student", "Points", "%")
-
-		for index, entry := range stats {
-			tbl.AddRow(
-				index+1,
-				entry.Student,
-				entry.Results.Points,
-				entry.Results.Percentage,
-			)
-		}
-
-		tbl.Print()
-
+		ExportToTable(stats).Print()
 		return nil
 	}
 
 	switch args[1] {
 	case "excel":
 		return ExportToExcel(stats, args[0])
+	default:
+		ExportToTable(stats).Print()
+		return nil
 	}
-
-	return nil
 }
