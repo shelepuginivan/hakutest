@@ -77,7 +77,7 @@ func promptTask() parser.Task {
 	return task
 }
 
-func EditorCmd(cmd *cobra.Command, args []string) error {
+func Cmd(cmd *cobra.Command, args []string) error {
 	var (
 		test         = parser.Test{}
 		timeLayout   = "2006-01-02 15:04:05"

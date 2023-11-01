@@ -13,5 +13,5 @@ var editorCmd = &cobra.Command{
 	Use:   "editor",
 	Short: "Edit test files",
 	Long:  "Edit hakutest test files",
-	RunE:  editor.EditorCmd,
+	RunE:  editor.Cmd,
 }
