@@ -30,16 +30,70 @@ func getAttachmentSrc(src string) (string, error) {
 	return "", err
 }
 
-func EditorCmd(cmd *cobra.Command, args []string) error {
-	test := parser.Test{}
-	timeLayout := "2006-01-02 15:04:05"
+func promptTask() parser.Task {
+	task := parser.Task{}
 	taskType := map[string]string{
 		"Single answer":    "single",
 		"Multiple answers": "multiple",
 		"Open question":    "open",
 	}
 
-	name := prompter.Prompt("Test filename", "test.json")
+	task.Type = taskType[prompter.Choose(
+		"Type of the task",
+		[]string{"Single answer", "Multiple answers", "Open question"},
+		"Open question",
+	)]
+
+	task.Text = prompter.Prompt("Task text", "")
+
+	option := prompter.Prompt("Answer option (leave blank to stop)", "")
+
+	for option != "" {
+		task.Options = append(task.Options, option)
+		option = prompter.Prompt("Answer option (leave blank to stop)", "")
+	}
+
+	task.Answer = prompter.Prompt("Correct answer", "")
+
+	if prompter.YN("Add attachment", false) {
+		task.Attachment.Name = prompter.Prompt("Name", "")
+		task.Attachment.Type = prompter.Choose(
+			"Type",
+			[]string{"image", "video", "audio", "file"},
+			"file",
+		)
+
+		src := prompter.Prompt("Source (URL or local file)", "")
+		attachmentSrc, err := getAttachmentSrc(src)
+
+		for err != nil && prompter.YN("Failed to add attachment! Try again?", false) {
+			src = prompter.Prompt("Source (URL or local file)", "")
+			attachmentSrc, err = getAttachmentSrc(src)
+		}
+
+		task.Attachment.Src = attachmentSrc
+	}
+
+	return task
+}
+
+func EditorCmd(cmd *cobra.Command, args []string) error {
+	test := parser.Test{}
+	timeLayout := "2006-01-02 15:04:05"
+
+	var name string
+
+	if len(args) == 1 {
+		name = args[0]
+
+		parsedTest, err := parser.ParseTest(name)
+
+		if err == nil {
+			test = parsedTest
+		}
+	} else {
+		name = prompter.Prompt("Test filename", "test.json")
+	}
 
 	test.Title = prompter.Prompt("Title of the test", test.Title)
 	test.Target = prompter.Prompt("Target audience", test.Target)
@@ -56,46 +110,29 @@ func EditorCmd(cmd *cobra.Command, args []string) error {
 		}
 	}
 
+	for i := 0; i < len(test.Tasks); {
+		action := prompter.Choose(
+			fmt.Sprintf("Task %d:", i+1),
+			[]string{"leave unchanged", "replace", "delete"},
+			"leave unchanged",
+		)
+
+		switch action {
+		case "leave unchanged":
+			i++
+			continue
+		case "replace":
+			test.Tasks[i] = promptTask()
+			i++
+			continue
+		case "delete":
+			test.Tasks = append(test.Tasks[:i], test.Tasks[i+1:]...)
+			continue
+		}
+	}
+
 	for prompter.YN("Add new task", false) {
-		task := parser.Task{}
-
-		task.Type = taskType[prompter.Choose(
-			"Type of the task",
-			[]string{"Single answer", "Multiple answers", "Open question"},
-			"Open question",
-		)]
-
-		task.Text = prompter.Prompt("Task text", "")
-
-		option := prompter.Prompt("Answer option (leave blank to stop)", "")
-
-		for option != "" {
-			task.Options = append(task.Options, option)
-			option = prompter.Prompt("Answer option (leave blank to stop)", "")
-		}
-
-		task.Answer = prompter.Prompt("Correct answer", "")
-
-		if prompter.YN("Add attachment", false) {
-			task.Attachment.Name = prompter.Prompt("Name", "")
-			task.Attachment.Type = prompter.Choose(
-				"Type",
-				[]string{"image", "video", "audio", "file"},
-				"file",
-			)
-
-			src := prompter.Prompt("Source (URL or local file)", "")
-			attachmentSrc, err := getAttachmentSrc(src)
-
-			for err != nil && prompter.YN("Failed to add attachment! Try again?", false) {
-				src = prompter.Prompt("Source (URL or local file)", "")
-				attachmentSrc, err = getAttachmentSrc(src)
-			}
-
-			task.Attachment.Src = attachmentSrc
-		}
-
-		test.Tasks = append(test.Tasks, task)
+		test.Tasks = append(test.Tasks, promptTask())
 	}
 
 	return test.Save(name)
