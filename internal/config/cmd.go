@@ -46,7 +46,7 @@ func ConfigCmd(cmd *cobra.Command, args []string) {
 			log.Fatal("Invalid field")
 		}
 
-		err := Save(userConfig)
+		err := userConfig.Save()
 
 		if err != nil {
 			log.Fatal(err)

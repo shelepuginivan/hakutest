@@ -8,9 +8,9 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func Save(config Config) error {
+func (c Config) Save() error {
 	configPath := getConfigPath()
-	data, err := yaml.Marshal(config)
+	data, err := yaml.Marshal(c)
 
 	if err != nil {
 		log.Fatal(err)
