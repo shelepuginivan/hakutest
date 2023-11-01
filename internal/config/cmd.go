@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func ConfigCmd(cmd *cobra.Command, args []string) {
+func Cmd(cmd *cobra.Command, args []string) {
 	userConfig := Init()
 
 	if len(args) == 1 {

@@ -14,5 +14,5 @@ var configCmd = &cobra.Command{
 	Short: "Manage configuration",
 	Long:  "Manage configuration for hakutest",
 	Args:  cobra.RangeArgs(0, 2),
-	Run:   config.ConfigCmd,
+	Run:   config.Cmd,
 }
