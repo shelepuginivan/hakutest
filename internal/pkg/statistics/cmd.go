@@ -12,18 +12,27 @@ func Cmd(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	tbl := table.New("#", "Student", "Points", "%")
+	if len(args) == 1 {
+		tbl := table.New("#", "Student", "Points", "%")
 
-	for index, entry := range stats {
-		tbl.AddRow(
-			index+1,
-			entry.Student,
-			entry.Results.Points,
-			entry.Results.Percentage,
-		)
+		for index, entry := range stats {
+			tbl.AddRow(
+				index+1,
+				entry.Student,
+				entry.Results.Points,
+				entry.Results.Percentage,
+			)
+		}
+
+		tbl.Print()
+
+		return nil
 	}
 
-	tbl.Print()
+	switch args[1] {
+	case "excel":
+		return ExportToExcel(stats, args[0])
+	}
 
 	return nil
 }
