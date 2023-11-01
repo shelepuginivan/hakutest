@@ -9,8 +9,10 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func GetStatistics(testName string) ([]parser.TestResults, error) {
-	stats := []parser.TestResults{}
+type Statistics = []parser.TestResults
+
+func GetStatistics(testName string) (Statistics, error) {
+	stats := Statistics{}
 	testResultsDir := path.Join(config.Init().ResultsDirectory, testName)
 	entries, err := os.ReadDir(testResultsDir)
 
