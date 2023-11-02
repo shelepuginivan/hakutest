@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="static/common.css">
+        <link rel="stylesheet" href="static/error.css">
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="main-header error-header">An error occurred!</h1>
+        </header>
+        <main class="main">
+            <details class="error">
+                <summary class="error-summary">Details</summary>
+                <code class="error-info">
+                    {{ .Code }}:
+                    {{ .Detail }}
+                    ({{ .Error }})
+                </code>
+            </details>
+        </main>
+    </body>
+</html>
