@@ -18,11 +18,19 @@ func (t TestController) GetTest(c *gin.Context) {
 	test, err := parser.ParseTest(testName)
 
 	if err != nil {
+		code := http.StatusBadRequest
+		detail := "failed to parse test file"
+
 		if os.IsNotExist(err) {
-			c.JSON(http.StatusNotFound, gin.H{"detail": "test file does not exist"})
-		} else {
-			c.JSON(http.StatusBadRequest, gin.H{"detail": "failed to parse test file"})
+			code = http.StatusNotFound
+			detail = "test file does not exist"
 		}
+
+		c.HTML(code, "error.tmpl", gin.H{
+			"Code":   code,
+			"Detail": detail,
+			"Error":  err.Error(),
+		})
 
 		return
 	}
@@ -49,7 +57,13 @@ func (t TestController) SubmitTest(c *gin.Context) {
 	err := c.Request.ParseForm()
 
 	if err != nil {
-		c.JSON(http.StatusUnprocessableEntity, gin.H{"detail": "failed to parse form"})
+		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
+			"Code":   http.StatusUnprocessableEntity,
+			"Detail": "failed to parse form",
+			"Error":  err.Error(),
+		})
+
+		return
 	}
 
 	name := c.Param("test")
@@ -57,11 +71,19 @@ func (t TestController) SubmitTest(c *gin.Context) {
 	results, err := parser.GetTestResults(name, c.Request.PostForm)
 
 	if err != nil {
+		code := http.StatusBadRequest
+		detail := "failed to parse test file"
+
 		if os.IsNotExist(err) {
-			c.JSON(http.StatusNotFound, gin.H{"detail": "test file does not exist"})
-		} else {
-			c.JSON(http.StatusBadRequest, gin.H{"detail": "failed to parse test file"})
+			code = http.StatusNotFound
+			detail = "test file does not exist"
 		}
+
+		c.HTML(code, "error.tmpl", gin.H{
+			"Code":   code,
+			"Detail": detail,
+			"Error":  err.Error(),
+		})
 
 		return
 	}
@@ -69,7 +91,11 @@ func (t TestController) SubmitTest(c *gin.Context) {
 	err = parser.SaveTestResults(name, results)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"detail": "failed to save test results"})
+		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
+			"Code":   http.StatusBadRequest,
+			"Detail": "failed to save test results",
+			"Error":  err.Error(),
+		})
 
 		return
 	}
