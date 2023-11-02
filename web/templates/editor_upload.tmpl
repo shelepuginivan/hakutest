@@ -4,8 +4,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="static/common.css">
-        <link rel="stylesheet" href="static/form.css">
+        <link rel="stylesheet" href="/static/common.css">
+        <link rel="stylesheet" href="/static/form.css">
     </head>
     <body>
         <header class="header">
@@ -14,8 +14,9 @@
         <main class="main">
             <form
                 class="form"
-                action="/editor"
+                action="/editor/edit"
                 method="POST"
+                enctype="multipart/form-data"
             >
                 <div class="input-file">
                     <label for="test-input">Upload a test</label>
