@@ -1,14 +1,3 @@
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 24px;
-    max-width: 900px;
-    width: 90%;
-    margin-inline: auto;
-    padding-bottom: 32px;
-}
-
 .task {
     display: flex;
     flex-direction: column;
@@ -36,44 +25,4 @@
     display: flex;
     align-items: center;
     gap: 8px
-}
-
-.input-text {
-    transition: var(--transition);
-    padding: 8px;
-    border-radius: 4px;
-    flex-grow: 1;
-    border: 2px solid var(--gray);
-    font-size: medium;
-}
-
-.input-text:focus {
-    border-color: var(--accent)
-}
-
-.input-radio,
-.input-checkbox
-{
-    accent-color: var(--accent);
-}
-
-.button {
-    transition: var(--transition);
-    font-family: "Nunito", sans-serif;
-    font-size: large;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 40px;
-    border-radius: 4px;
-    width: fit-content;
-    align-self: center;
-    color: var(--accent);
-    background-color: transparent;
-    border: 2px solid var(--accent);
-}
-
-.button:hover {
-    background-color: var(--accent);
-    color: var(--white);
 }
