@@ -25,6 +25,10 @@ func Cmd(cmd *cobra.Command, args []string) {
 			fmt.Println(userConfig.OpenAnswerLabel)
 		case "submit_button_label":
 			fmt.Println(userConfig.SubmitButtonLabel)
+		case "error_header_label":
+			fmt.Println(userConfig.ErrorHeaderLabel)
+		case "error_details_label":
+			fmt.Println(userConfig.ErrorDetailsLabel)
 		default:
 			log.Fatal("Invalid field")
 		}
@@ -42,6 +46,10 @@ func Cmd(cmd *cobra.Command, args []string) {
 			userConfig.OpenAnswerLabel = args[1]
 		case "submit_button_label":
 			userConfig.SubmitButtonLabel = args[1]
+		case "error_header_label":
+			userConfig.ErrorHeaderLabel = args[1]
+		case "error_details_label":
+			userConfig.ErrorDetailsLabel = args[1]
 		default:
 			log.Fatal("Invalid field")
 		}
@@ -60,6 +68,8 @@ func Cmd(cmd *cobra.Command, args []string) {
 		tbl.AddRow("student_name_label", userConfig.StudentNameLabel)
 		tbl.AddRow("open_answer_label", userConfig.OpenAnswerLabel)
 		tbl.AddRow("submit_button_label", userConfig.SubmitButtonLabel)
+		tbl.AddRow("error_header_label", userConfig.ErrorHeaderLabel)
+		tbl.AddRow("error_details_label", userConfig.ErrorDetailsLabel)
 
 		tbl.Print()
 	}

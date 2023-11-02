@@ -14,6 +14,8 @@ type Config struct {
 	StudentNameLabel  string `yaml:"student_name_label"`
 	OpenAnswerLabel   string `yaml:"open_answer_label"`
 	SubmitButtonLabel string `yaml:"submit_button_label"`
+	ErrorHeaderLabel  string `yaml:"error_header_label"`
+	ErrorDetailsLabel string `yaml:"error_details_label"`
 }
 
 func getConfigPath() string {
@@ -34,6 +36,8 @@ func Init() Config {
 		studentNameLabel  = "Your name:"
 		openAnswerLabel   = "Answer:"
 		submitButtonLabel = "Submit"
+		errorHeaderLabel  = "An error occurred!"
+		errorDetailsLabel = "Details"
 	)
 
 	configPath := getConfigPath()
@@ -52,6 +56,8 @@ func Init() Config {
 		StudentNameLabel:  studentNameLabel,
 		OpenAnswerLabel:   openAnswerLabel,
 		SubmitButtonLabel: submitButtonLabel,
+		ErrorHeaderLabel:  errorHeaderLabel,
+		ErrorDetailsLabel: errorDetailsLabel,
 	}
 
 	configFile, err := os.ReadFile(configPath)
@@ -88,6 +94,14 @@ func Init() Config {
 
 	if config.SubmitButtonLabel == "" {
 		config.SubmitButtonLabel = submitButtonLabel
+	}
+
+	if config.ErrorHeaderLabel == "" {
+		config.ErrorHeaderLabel = errorHeaderLabel
+	}
+
+	if config.ErrorDetailsLabel == "" {
+		config.ErrorDetailsLabel = errorDetailsLabel
 	}
 
 	return config
