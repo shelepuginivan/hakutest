@@ -19,6 +19,7 @@ type Task struct {
 type Test struct {
 	Title       string    `json:"title"`
 	Target      string    `json:"target"`
+	Description string    `json:"description"`
 	Subject     string    `json:"subject"`
 	Author      string    `json:"author"`
 	Institution string    `json:"institution"`
