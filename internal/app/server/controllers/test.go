@@ -28,6 +28,7 @@ func (t TestController) GetTest(c *gin.Context) {
 
 		c.HTML(code, "error.tmpl", gin.H{
 			"Code":   code,
+			"Config": config.Init(),
 			"Detail": detail,
 			"Error":  err.Error(),
 		})
@@ -59,6 +60,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
 			"Code":   http.StatusUnprocessableEntity,
+			"Config": config.Init(),
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
 		})
@@ -81,6 +83,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 
 		c.HTML(code, "error.tmpl", gin.H{
 			"Code":   code,
+			"Config": config.Init(),
 			"Detail": detail,
 			"Error":  err.Error(),
 		})
@@ -93,6 +96,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 	if err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
 			"Code":   http.StatusBadRequest,
+			"Config": config.Init(),
 			"Detail": "failed to save test results",
 			"Error":  err.Error(),
 		})

@@ -9,11 +9,11 @@
     </head>
     <body>
         <header class="header">
-            <h1 class="main-header error-header">An error occurred!</h1>
+            <h1 class="main-header error-header">{{ .Config.ErrorHeaderLabel }}</h1>
         </header>
         <main class="main">
             <details class="error">
-                <summary class="error-summary">Details</summary>
+                <summary class="error-summary">{{ .Config.ErrorDetailsLabel }}</summary>
                 <code class="error-info">
                     {{ .Code }}:
                     {{ .Detail }}
