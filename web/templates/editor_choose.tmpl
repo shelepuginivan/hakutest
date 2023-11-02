@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="static/common.css">
+        <link rel="stylesheet" href="static/form.css">
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="main-header">Test Editor</h1>
+        </header>
+        <main class="main">
+            <form
+                class="form"
+                action="/editor"
+                method="POST"
+            >
+                <div class="input-file">
+                    <label for="test-input">Upload a test</label>
+                    <input
+                        id="test-input"
+                        type="file"
+                        name="file"
+                        accept="application/json,text/json"
+                    >
+                </div>
+                <div class="button-group">
+                    <button class="button" type="submit">
+                        {{ .Config.SubmitButtonLabel }}
+                    </button>
+                    <a class="button" href="/editor">
+                        New
+                    </a>
+                <div>
+            </form>
+        </main>
+    </body>
+</html>
