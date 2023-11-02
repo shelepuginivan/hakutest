@@ -15,7 +15,8 @@ func NewRouter() *gin.Engine {
 	editor := new(controllers.EditorController)
 	test := new(controllers.TestController)
 
-	router.GET("/edit", editor.ChooseTest)
+	router.GET("/editor/upload", editor.ChooseTest)
+	router.POST("/editor/edit", editor.UploadTest)
 	router.GET("/:test", test.GetTest)
 	router.POST("/:test", test.SubmitTest)
 
