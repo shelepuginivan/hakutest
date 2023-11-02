@@ -98,6 +98,7 @@ func Cmd(cmd *cobra.Command, args []string) error {
 	}
 
 	test.Title = prompter.Prompt("Title of the test", test.Title)
+	test.Description = prompter.Prompt("Description", test.Description)
 	test.Target = prompter.Prompt("Target audience", test.Target)
 	test.Subject = prompter.Prompt("Subject of the test", test.Subject)
 	test.Institution = prompter.Prompt("Educational institution", test.Institution)
