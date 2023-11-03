@@ -48,3 +48,9 @@
 .button-add-option:hover {
     background-color: var(--gray);
 }
+
+.answer-options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}

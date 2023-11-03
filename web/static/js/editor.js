@@ -2,7 +2,7 @@ const tasksSection = document.getElementById("tasks")
 const buttonAddTask = document.getElementById("button-add-task")
 const numberOfTasksInput = document.getElementById("number-of-tasks-input")
 
-let taskIndex = 0
+let taskIndex = Number(numberOfTasksInput.value)
 
 const addTask = (taskIndex) => {
     const newTask = document.createElement('fieldset')
@@ -38,7 +38,7 @@ const addTask = (taskIndex) => {
                 data-enabled="false"
             ></div>
             <div>
-                <div id="${taskIndex}-options"></div>
+                <div class="answer-options" id="${taskIndex}-options"></div>
                 <button
                     class="button-add-option"
                     type="button"

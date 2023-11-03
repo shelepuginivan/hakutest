@@ -25,6 +25,9 @@ func (e EditorController) NewTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
 		"Config": config.Init(),
 		"Test":   parser.Test{},
+		"incr": func(n int) int {
+			return n + 1
+		},
 	})
 }
 
@@ -100,6 +103,9 @@ func (e EditorController) UploadTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
 		"Config": config.Init(),
 		"Test":   test,
+		"incr": func(n int) int {
+			return n + 1
+		},
 	})
 }
 
