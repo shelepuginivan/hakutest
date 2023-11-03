@@ -19,42 +19,78 @@
                 method="POST"
                 enctype="multipart/form-data"
             >
-                <input
-                    class="input-text"
-                    name="title"
-                    type="text"
-                    value="{{ .Test.Title }}"
-                >
-                <textarea
-                    class="input-text"
-                    name="description"
-                    type="text"
-                    value="{{ .Test.Description }}"
-                ></textarea>
-                <input
-                    class="input-text"
-                    name="subject"
-                    type="text"
-                    value="{{ .Test.Subject }}"
-                >
-                <input
-                    class="input-text"
-                    name="target"
-                    type="text"
-                    value="{{ .Test.Target }}"
-                >
-                <input
-                    class="input-text"
-                    name="institution"
-                    type="text"
-                    value="{{ .Test.Institution }}"
-                >
-                <input
-                    class="input-datetime"
-                    name="expiresIn"
-                    type="datetime-local"
-                    value="{{ .Test.ExpiresIn.Format "2006-01-02T15:04:05" }}"
-                >
+                <div class="input-wrapper">
+                    <label for="title">
+                        Title
+                    </label>
+                    <input
+                        id="title"
+                        class="input-text"
+                        name="title"
+                        type="text"
+                        value="{{ .Test.Title }}"
+                    >
+                </div>
+                <div class="input-wrapper">
+                    <label for="description">
+                        Description:
+                    </label>
+                    <textarea
+                        name="description"
+                        class="input-text"
+                        name="description"
+                        type="text"
+                        value="{{ .Test.Description }}"
+                    ></textarea>
+                </div>
+                <div class="input-wrapper">
+                    <label for="subject">
+                        Subject:
+                    </label>
+                    <input
+                        id="subject"
+                        class="input-text"
+                        name="subject"
+                        type="text"
+                        value="{{ .Test.Subject }}"
+                    >
+                </div>
+                <div class="input-wrapper">
+                    <label for="target">
+                        Target audience:
+                    </label>
+                    <input
+                        id="target"
+                        class="input-text"
+                        name="target"
+                        type="text"
+                        value="{{ .Test.Target }}"
+                    >
+                </div>
+                <div class="input-wrapper">
+                    <label for="institution">
+                        Institution:
+                    </label>
+                    <input
+                        id="institution"
+                        class="input-text"
+                        name="institution"
+                        type="text"
+                        value="{{ .Test.Institution }}"
+                    >
+                </div>
+                <div class="input-wrapper">
+                    <label for="expiresIn">
+                        Expires in:
+                    </label>
+                    <input
+                        id="expiresIn"
+                        class="input-datetime"
+                        name="expiresIn"
+                        type="datetime-local"
+                        value="{{ .Test.ExpiresIn.Format "2006-01-02T15:04:05" }}"
+                    >
+                </div>
                 
                 <input
                     id="number-of-tasks-input"
@@ -67,85 +103,127 @@
                     {{ range $taskIndex, $task := .Test.Tasks }}
                         <fieldset class="test-task task-{{ $taskIndex }}">
                             <legend>Task {{ call $.incr $taskIndex }}</legend>
-                            <select
-                                class="input-select"
-                                name="{{ $taskIndex }}-type"
-                                value="{{ $task.Type }}"
-                            >
-                                <option value="single">Single answer</option>
-                                <option value="multiple">Multiple answers</option>
-                                <option value="open">Open question</option>
-                            </select>
-                            <input
-                                class="input-text"
-                                type="text"
-                                name="{{ $taskIndex }}-text"
-                                value="{{ $task.Text }}"
-                            >
-                            <input
-                                class="input-text"
-                                type="text"
-                                name="{{ $taskIndex }}-answer"
-                                value="{{ $task.Answer }}"
-                            >
+                            <div class="input-wrapper">
+                                <label for="{{ $taskIndex }}-type">
+                                    Type:
+                                </label>
+                                <select
+                                    id="{{ $taskIndex }}-type"
+                                    class="input-select"
+                                    name="{{ $taskIndex }}-type"
+                                    value="{{ $task.Type }}"
+                                >
+                                    <option value="single">Single answer</option>
+                                    <option value="multiple">Multiple answers</option>
+                                    <option value="open">Open question</option>
+                                </select>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="{{ $taskIndex }}-text">
+                                    Text:
+                                </label>
+                                <input
+                                    name="{{ $taskIndex }}-id"
+                                    class="input-text"
+                                    type="text"
+                                    name="{{ $taskIndex }}-text"
+                                    value="{{ $task.Text }}"
+                                >
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="{{ $taskIndex }}-answer">
+                                    Answer:
+                                </label>
+                                <input
+                                    id="{{ $taskIndex }}-answer"
+                                    class="input-text"
+                                    type="text"
+                                    name="{{ $taskIndex }}-answer"
+                                    value="{{ $task.Answer }}"
+                                >
+                            </div>
 
                             {{ $hasAttachment := ne $task.Attachment.Type "" }}
-                            <div>
-                                <input
-                                    class="input-checkbox"
-                                    type="checkbox"
-                                    name="{{ $taskIndex }}-has-attachment"
-                                    onchange="toggleAttachment({{ $taskIndex }}, this)"
-                                    checked="{{ $hasAttachment }}"
-                                >
+                            <div class="attachment-wrapper">
+                                <div>
+                                    <input
+                                        id="{{ $taskIndex }}-has-attachment"
+                                        class="input-checkbox"
+                                        type="checkbox"
+                                        name="{{ $taskIndex }}-has-attachment"
+                                        onchange="toggleAttachment({{ $taskIndex }}, this)"
+                                        checked="{{ $hasAttachment }}"
+                                    >
+                                    <label for="{{ $taskIndex }}-has-attachment">
+                                        Add attachment
+                                    </label>
+                                </div>
                                 <div
                                     id="{{ $taskIndex }}-attachment"
                                     class="attachment"
                                     data-enabled="{{ $hasAttachment }}"
                                 >
                                     {{ if $hasAttachment }}
+                                        <div class="input-wrapper">
+                                            <label for="{{ $taskIndex }}-attachment-name">
+                                                Name:
+                                            </label>
+                                            <input
+                                                id="{{ $taskIndex }}-attachment-name"
+                                                class="input-text"
+                                                type="text"
+                                                name="{{ $taskIndex }}-attachment-name"
+                                                value="{{ $task.Attachment.Name }}"
+                                            >
+                                        </div>
+                                        <div class="input-wrapper">
+                                            <label for="{{ $taskIndex }}-attachment-type">
+                                                Type:
+                                            </label>
+                                            <select
+                                                id="{{ $taskIndex }}-attachment-type"
+                                                class="input-select"
+                                                name="{{ $taskIndex }}-attachment-type"
+                                                value="{{ $task.Attachment.Type }}"
+                                            >
+                                                <option value="file">File</option>
+                                                <option value="image">Image</option>
+                                                <option value="video">Video</option>
+                                                <option value="audio">Audio</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-wrapper">
+                                            <label for="{{ $taskIndex }}-attachment-src">
+                                                Source (URL):
+                                            </label>
+                                            <input
+                                                class="input-text"
+                                                type="text"
+                                                name="${taskIndex}-attachment-src"
+                                                value="{{ $task.Attachment.Src }}"
+                                            >
+                                        </div>
+                                    {{ end }}
+                                </div>
+                            </div>
+                            <div class="answer-options-wrapper">
+                                <p>Answer options:</p>
+                                <div class="answer-options" id="{{ $taskIndex }}-options">
+                                    {{ range $task.Options }}
                                         <input
                                             class="input-text"
-                                            type="text"
-                                            name="{{ $taskIndex }}-attachment-name"
-                                            value="{{ $task.Attachment.Name }}"
-                                        >
-                                        <select
-                                            class="input-select"
-                                            name="{{ $taskIndex }}-attachment-type"
-                                            value="{{ $task.Attachment.Type }}"
-                                        >
-                                            <option value="file">File</option>
-                                            <option value="image">Image</option>
-                                            <option value="video">Video</option>
-                                            <option value="audio">Audio</option>
-                                        </select>
-                                        <input
-                                            class="input-text"
-                                            type="text"
-                                            name="${taskIndex}-attachment-src"
-                                            value="{{ $task.Attachment.Src }}"
+                                            name="{{ $taskIndex }}-options"
+                                            value="{{ . }}"
                                         >
                                     {{ end }}
                                 </div>
-                                <div>
-                                    <div class="answer-options" id="{{ $taskIndex }}-options">
-                                        {{ range $task.Options }}
-                                            <input
-                                                class="input-text"
-                                                name="{{ $taskIndex }}-options"
-                                                value="{{ . }}"
-                                            >
-                                        {{ end }}
-                                    </div>
-                                    <button
-                                        class="button-add-option"
-                                        type="button"
-                                        onclick="addOption({{ $taskIndex }})"
-                                    >
-                                        + Add option
-                                    </button>
-                                </div>
+                                <button
+                                    class="button-add-option"
+                                    type="button"
+                                    onclick="addOption({{ $taskIndex }})"
+                                >
+                                    + Add option
+                                </button>
                             </div>
                         </fieldset>
                     {{ end }}
