@@ -9,6 +9,16 @@
     padding-bottom: 32px;
 }
 
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+.input-wrapper > label {
+    width: 85px;
+}
+
 .input-text,
 .input-select,
 .input-datetime {

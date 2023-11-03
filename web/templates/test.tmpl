@@ -15,7 +15,7 @@
         <main class="main">
             <form method="POST" class="form">
                 <section class="task">
-                    <div class="input-open-wrapper">
+                    <div class="input-wrapper">
                         <label for="student">{{ .Config.StudentNameLabel }}</label>
                         <input
                             id="student"
@@ -84,7 +84,7 @@
                                     {{ end }}
                                 {{ else if eq .Type "open" }}
                                     {{ $input_id := (printf "task-%d" $task_index) }}
-                                    <div class="input-open-wrapper">
+                                    <div class="input-wrapper">
                                         <label for="{{ $input_id }}">
                                             {{ $.Config.OpenAnswerLabel }}
                                         </label>
