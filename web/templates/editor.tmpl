@@ -111,11 +111,22 @@
                                     id="{{ $taskIndex }}-type"
                                     class="input-select"
                                     name="{{ $taskIndex }}-type"
-                                    value="{{ $task.Type }}"
                                 >
-                                    <option value="single">Single answer</option>
-                                    <option value="multiple">Multiple answers</option>
-                                    <option value="open">Open question</option>
+                                    {{ if eq $task.Type "single" }}
+                                        <option selected value="single">Single answer</option>
+                                    {{ else }}
+                                        <option value="single">Single answer</option>
+                                    {{ end }}
+                                    {{ if eq $task.Type "multiple" }}
+                                        <option selected value="multiple">Multiple answers</option>
+                                    {{ else }}
+                                        <option value="multiple">Multiple answers</option>
+                                    {{ end }}
+                                    {{ if eq $task.Type "open" }}
+                                        <option selected value="open">Open question</option>
+                                    {{ else }}
+                                        <option value="open">Open question</option>
+                                    {{ end }}
                                 </select>
                             </div>
                             <div class="input-wrapper">
@@ -206,10 +217,26 @@
                                                 name="{{ $taskIndex }}-attachment-type"
                                                 value="{{ $task.Attachment.Type }}"
                                             >
-                                                <option value="file">File</option>
-                                                <option value="image">Image</option>
-                                                <option value="video">Video</option>
-                                                <option value="audio">Audio</option>
+                                                {{ if eq $task.Attachment.Type "file" }}
+                                                    <option selected value="file">File</option>
+                                                {{ else }}
+                                                    <option value="file">File</option>
+                                                {{ end }}
+                                                {{ if eq $task.Attachment.Type "image" }}
+                                                    <option selected value="image">Image</option>
+                                                {{ else }}
+                                                    <option value="image">Image</option>
+                                                {{ end }}
+                                                {{ if eq $task.Attachment.Type "video" }}
+                                                    <option selected value="video">Video</option>
+                                                {{ else }}
+                                                    <option value="video">Video</option>
+                                                {{ end }}
+                                                {{ if eq $task.Attachment.Type "audio" }}
+                                                    <option selected value="audio">Audio</option>
+                                                {{ else }}
+                                                    <option value="audio">Audio</option>
+                                                {{ end }}
                                             </select>
                                         </div>
                                         <div class="input-wrapper">
