@@ -9,16 +9,21 @@
     padding-bottom: 32px;
 }
 
-.input-text {
+.input-text,
+.input-select,
+.input-datetime {
     transition: var(--transition);
     padding: 8px;
     border-radius: 4px;
     flex-grow: 1;
     border: 2px solid var(--gray);
     font-size: medium;
+    background-color: #fff;
 }
 
-.input-text:focus {
+.input-text:focus,
+.input-select:focus,
+.input-datetime:focus {
     border-color: var(--accent)
 }
 
