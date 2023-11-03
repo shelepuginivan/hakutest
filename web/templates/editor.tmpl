@@ -143,6 +143,26 @@
                                 >
                             </div>
 
+                            <div class="answer-options-wrapper">
+                                <p>Answer options:</p>
+                                <div class="answer-options" id="{{ $taskIndex }}-options">
+                                    {{ range $task.Options }}
+                                        <input
+                                            class="input-text"
+                                            name="{{ $taskIndex }}-options"
+                                            value="{{ . }}"
+                                        >
+                                    {{ end }}
+                                </div>
+                                <button
+                                    class="button-add-option"
+                                    type="button"
+                                    onclick="addOption({{ $taskIndex }})"
+                                >
+                                    + Add option
+                                </button>
+                            </div>
+
                             {{ $hasAttachment := ne $task.Attachment.Type "" }}
                             <div class="attachment-wrapper">
                                 <div>
@@ -205,25 +225,6 @@
                                         </div>
                                     {{ end }}
                                 </div>
-                            </div>
-                            <div class="answer-options-wrapper">
-                                <p>Answer options:</p>
-                                <div class="answer-options" id="{{ $taskIndex }}-options">
-                                    {{ range $task.Options }}
-                                        <input
-                                            class="input-text"
-                                            name="{{ $taskIndex }}-options"
-                                            value="{{ . }}"
-                                        >
-                                    {{ end }}
-                                </div>
-                                <button
-                                    class="button-add-option"
-                                    type="button"
-                                    onclick="addOption({{ $taskIndex }})"
-                                >
-                                    + Add option
-                                </button>
                             </div>
                         </fieldset>
                     {{ end }}

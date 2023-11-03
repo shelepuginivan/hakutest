@@ -45,6 +45,17 @@ const addTask = (taskIndex) => {
                 name="${taskIndex}-answer"
             >
         </div>
+        <div class="answer-options-wrapper">
+            <p>Answer options:</p>
+            <div class="answer-options" id="${taskIndex}-options"></div>
+            <button
+                class="button-add-option"
+                type="button"
+                onclick="addOption(${taskIndex})"
+            >
+                + Add option
+            </button>
+        </div>
         <div class="attachment-wrapper">
             <div>
                 <input
@@ -63,17 +74,6 @@ const addTask = (taskIndex) => {
                 class="attachment"
                 data-enabled="false"
             ></div>
-        </div>
-        <div class="answer-options-wrapper">
-            <p>Answer options:</p>
-            <div class="answer-options" id="${taskIndex}-options"></div>
-            <button
-                class="button-add-option"
-                type="button"
-                onclick="addOption(${taskIndex})"
-            >
-                + Add option
-            </button>
         </div>`
 
     tasksSection.appendChild(newTask)
