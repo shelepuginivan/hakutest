@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/common.css">
+        <link rel="stylesheet" href="/static/css/editor.css">
+        <link rel="stylesheet" href="/static/css/form.css">
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="main-header">Test Editor</h1>
+        </header>
+        <main class="main">
+            <form
+                class="form"
+                action="/editor/create"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+                <input
+                    class="input-text"
+                    name="title"
+                    type="text"
+                    value="{{ .Test.Title }}"
+                >
+                <textarea
+                    class="input-text"
+                    name="description"
+                    type="text"
+                    value="{{ .Test.Description }}"
+                ></textarea>
+                <input
+                    class="input-text"
+                    name="subject"
+                    type="text"
+                    value="{{ .Test.Subject }}"
+                >
+                <input
+                    class="input-text"
+                    name="target"
+                    type="text"
+                    value="{{ .Test.Target }}"
+                >
+                <input
+                    class="input-text"
+                    name="institution"
+                    type="text"
+                    value="{{ .Test.Institution }}"
+                >
+                <input
+                    class="input-datetime"
+                    name="expiresIn"
+                    type="datetime-local"
+                    value="{{ .Test.ExpiresIn.Format "2006-01-02T15:04:05" }}"
+                >
+                
+                <input
+                    id="number-of-tasks-input"
+                    name="number-of-tasks"
+                    type="hidden"
+                    value="0"
+                >
+                <section class="tasks" id="tasks"></section>
+
+                <button
+                    id="button-add-task"
+                    class="button-add-task"
+                    type="button"
+                >
+                    + Add task
+                </button>
+
+                <button class="button" type="submit">
+                    {{ .Config.SubmitButtonLabel }}
+                </button>
+            </form>
+        </main>
+        <script src="/static/js/editor.js"></script>
+    </body>
+</html>
