@@ -87,5 +87,8 @@ func (e EditorController) UploadTest(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, test)
+	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
+		"Config": config.Init(),
+		"Test":   test,
+	})
 }
