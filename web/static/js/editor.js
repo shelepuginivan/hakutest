@@ -95,7 +95,7 @@ const addAttachment = (taskIndex) => {
         </div>
         <div class="input-wrapper">
             <label for="${taskIndex}-attachment-type">
-                Name:
+                Type:
             </label>
             <select
                 id="${taskIndex}-attachment-type"
@@ -110,7 +110,7 @@ const addAttachment = (taskIndex) => {
         </div>
         <div class="input-wrapper">
             <label for="${taskIndex}-attachment-src">
-                Name:
+                Source (URL):
             </label>
             <input
                 id="${taskIndex}-attachment-src"
