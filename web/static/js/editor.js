@@ -5,50 +5,51 @@ const numberOfTasksInput = document.getElementById("number-of-tasks-input")
 let taskIndex = 0
 
 const addTask = (taskIndex) => {
-    const newTask = `
-        <fieldset class="test-task task-${taskIndex}">
-            <legend>Task ${taskIndex + 1}</legend>
-            <select class="input-select" name="${taskIndex}-type">
-                <option value="single">Single answer</option>
-                <option value="multiple">Multiple answers</option>
-                <option value="open">Open question</option>
-            </select>
-            <input
-                class="input-text"
-                type="text"
-                name="${taskIndex}-text"
-            >
-            <input
-                class="input-text"
-                type="text"
-                name="${taskIndex}-answer"
-            >
-            <div>
-                <input
-                    class="input-checkbox"
-                    type="checkbox"
-                    name="${taskIndex}-has-attachment"
-                    onchange="toggleAttachment(${taskIndex}, this)"
-                >
-                <div
-                    id="${taskIndex}-attachment"
-                    class="attachment"
-                    data-enabled="false"
-                ></div>
-                <div>
-                    <div id="${taskIndex}-options"></div>
-                    <button
-                        class="button-add-option"
-                        type="button"
-                        onclick="addOption(${taskIndex})"
-                    >
-                        + Add option
-                    </button>
-                </div>
-            </div>
-        </fieldset>`
+    const newTask = document.createElement('fieldset')
 
-    tasksSection.innerHTML += newTask
+    newTask.classList.add("test-task", "task-${taskIndex}")
+    newTask.innerHTML = `
+        <legend>Task ${taskIndex + 1}</legend>
+        <select class="input-select" name="${taskIndex}-type">
+            <option value="single">Single answer</option>
+            <option value="multiple">Multiple answers</option>
+            <option value="open">Open question</option>
+        </select>
+        <input
+            class="input-text"
+            type="text"
+            name="${taskIndex}-text"
+        >
+        <input
+            class="input-text"
+            type="text"
+            name="${taskIndex}-answer"
+        >
+        <div>
+            <input
+                class="input-checkbox"
+                type="checkbox"
+                name="${taskIndex}-has-attachment"
+                onchange="toggleAttachment(${taskIndex}, this)"
+            >
+            <div
+                id="${taskIndex}-attachment"
+                class="attachment"
+                data-enabled="false"
+            ></div>
+            <div>
+                <div id="${taskIndex}-options"></div>
+                <button
+                    class="button-add-option"
+                    type="button"
+                    onclick="addOption(${taskIndex})"
+                >
+                    + Add option
+                </button>
+            </div>
+        </div>`
+
+    tasksSection.appendChild(newTask)
 }
 
 const addAttachment = (taskIndex) => {
@@ -91,15 +92,13 @@ const toggleAttachment = (taskIndex, checkbox) => {
 
 const addOption = (taskIndex) => {
     const taskOptions = document.getElementById(`${taskIndex}-options`)
-    const newOption = `
-        <input
-            class="input-text"
-            type="text"
-            name="${taskIndex}-options"
-        >
-    `
+    const newOption = document.createElement('input')
 
-    taskOptions.innerHTML += newOption
+    newOption.className = "input-text"
+    newOption.type = "text"
+    newOption.name = `${taskIndex}-options`
+
+    taskOptions.appendChild(newOption)
 }
 
 buttonAddTask.onclick = () => {
