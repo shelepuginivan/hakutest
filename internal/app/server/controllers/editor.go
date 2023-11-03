@@ -21,6 +21,13 @@ func (e EditorController) ChooseTest(c *gin.Context) {
 	})
 }
 
+func (e EditorController) NewTest(c *gin.Context) {
+	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
+		"Config": config.Init(),
+		"Test":   parser.Test{},
+	})
+}
+
 func (e EditorController) UploadTest(c *gin.Context) {
 	test := parser.Test{}
 	err := c.Request.ParseForm()
