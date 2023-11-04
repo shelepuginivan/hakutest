@@ -2,6 +2,7 @@ package statistics
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/rodaine/table"
 	"github.com/xuri/excelize/v2"
@@ -27,9 +28,59 @@ func ExportToExcel(statistics Statistics, testName string) error {
 
 	defer file.Close()
 
-	sheetName := "Test Results"
+	correctStyle, err := file.NewStyle(&excelize.Style{
+		Fill: excelize.Fill{
+			Type:    "pattern",
+			Color:   []string{"#2cbe56"},
+			Pattern: 1,
+		},
+	})
+
+	if err != nil {
+		return err
+	}
+
+	incorrectStyle, err := file.NewStyle(&excelize.Style{
+		Fill: excelize.Fill{
+			Type:    "pattern",
+			Color:   []string{"#eb363e"},
+			Pattern: 1,
+		},
+	})
+
+	if err != nil {
+		return err
+	}
+
+	borderBottom, err := file.NewStyle(&excelize.Style{
+		Border: []excelize.Border{{
+			Type:  "bottom",
+			Style: 2,
+			Color: "#000000",
+		}},
+	})
+
+	if err != nil {
+		return err
+	}
+
+	borderRight, err := file.NewStyle(&excelize.Style{
+		Border: []excelize.Border{{
+			Type:  "right",
+			Style: 2,
+			Color: "#000000",
+		}},
+	})
+
+	if err != nil {
+		return err
+	}
+
+	testResultsSheet := "Test Results"
+	statisticsSheet := "Statistics"
+
 	headers := []string{"#", "Student", "Points", "Percentage"}
-	index, err := file.NewSheet(sheetName)
+	index, err := file.NewSheet(testResultsSheet)
 
 	if err != nil {
 		return err
@@ -44,16 +95,66 @@ func ExportToExcel(statistics Statistics, testName string) error {
 			return err
 		}
 
-		file.SetCellValue(sheetName, column+"1", header)
+		cell := column + "1"
+
+		file.SetCellStyle(testResultsSheet, cell, cell, borderBottom)
+		file.SetCellValue(testResultsSheet, cell, header)
 	}
 
 	for i, entry := range statistics {
 		row := i + 2
 
-		file.SetCellValue(sheetName, fmt.Sprintf("A%d", row), i+1)
-		file.SetCellValue(sheetName, fmt.Sprintf("B%d", row), entry.Student)
-		file.SetCellValue(sheetName, fmt.Sprintf("C%d", row), entry.Results.Points)
-		file.SetCellValue(sheetName, fmt.Sprintf("D%d", row), entry.Results.Percentage)
+		file.SetCellValue(testResultsSheet, fmt.Sprintf("A%d", row), i+1)
+		file.SetCellValue(testResultsSheet, fmt.Sprintf("B%d", row), entry.Student)
+		file.SetCellValue(testResultsSheet, fmt.Sprintf("C%d", row), entry.Results.Points)
+		file.SetCellValue(testResultsSheet, fmt.Sprintf("D%d", row), entry.Results.Percentage)
+	}
+
+	if _, err = file.NewSheet(statisticsSheet); err != nil {
+		return err
+	}
+
+	file.SetCellValue(statisticsSheet, "A1", "#")
+
+	for i, entry := range statistics {
+		row := i + 2
+
+		if err != nil {
+			return err
+		}
+
+		studentNameCell := fmt.Sprintf("A%d", row)
+
+		file.SetCellStyle(statisticsSheet, studentNameCell, studentNameCell, borderRight)
+		file.SetCellValue(statisticsSheet, studentNameCell, entry.Student)
+
+		for taskNumber, correct := range entry.Results.Tasks {
+			taskIndex, err := strconv.Atoi(taskNumber)
+
+			if err != nil {
+				return err
+			}
+
+			column, err := excelize.ColumnNumberToName(taskIndex + 2)
+
+			if err != nil {
+				return err
+			}
+
+			valueCell := fmt.Sprintf("%s%d", column, row)
+			taskNumberCell := column + "1"
+
+			file.SetCellStyle(statisticsSheet, taskNumberCell, taskNumberCell, borderBottom)
+			file.SetCellValue(statisticsSheet, taskNumberCell, taskIndex+1)
+
+			if correct {
+				file.SetCellStyle(statisticsSheet, valueCell, valueCell, correctStyle)
+				file.SetCellValue(statisticsSheet, valueCell, 1)
+			} else {
+				file.SetCellStyle(statisticsSheet, valueCell, valueCell, incorrectStyle)
+				file.SetCellValue(statisticsSheet, valueCell, 0)
+			}
+		}
 	}
 
 	return file.SaveAs(testName + ".xlsx")
