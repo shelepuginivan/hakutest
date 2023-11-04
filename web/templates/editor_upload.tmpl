@@ -9,7 +9,9 @@
     </head>
     <body>
         <header class="header">
-            <h1 class="main-header">Test Editor</h1>
+            <h1 class="main-header">
+                {{ .Config.Header }}
+            </h1>
         </header>
         <main class="main">
             <form
@@ -19,7 +21,9 @@
                 enctype="multipart/form-data"
             >
                 <div class="input-file">
-                    <label for="test-input">Upload a test</label>
+                    <label for="test-input">
+                        {{ .Config.LabelUploadTestInput }}
+                    </label>
                     <input
                         id="test-input"
                         type="file"
@@ -29,10 +33,10 @@
                 </div>
                 <div class="button-group">
                     <button class="button" type="submit">
-                        {{ .Config.SubmitButtonLabel }}
+                        {{ .Config.LabelUploadTestButton }}
                     </button>
                     <a class="button" href="/editor/edit">
-                        New
+                        {{ .Config.LabelNewTest }}
                     </a>
                 <div>
             </form>

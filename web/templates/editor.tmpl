@@ -10,7 +10,9 @@
     </head>
     <body>
         <header class="header">
-            <h1 class="main-header">Test Editor</h1>
+            <h1 class="main-header">
+                {{ .Config.Header }}
+            </h1>
         </header>
         <main class="main">
             <form
@@ -21,7 +23,7 @@
             >
                 <div class="input-wrapper">
                     <label for="title">
-                        Title
+                        {{ .Config.LabelTitle }}
                     </label>
                     <input
                         id="title"
@@ -33,7 +35,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="description">
-                        Description:
+                        {{ .Config.LabelDescription }}
                     </label>
                     <textarea
                         name="description"
@@ -45,7 +47,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="subject">
-                        Subject:
+                        {{ .Config.LabelSubject }}
                     </label>
                     <input
                         id="subject"
@@ -57,7 +59,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="target">
-                        Target audience:
+                        {{ .Config.LabelTarget }}
                     </label>
                     <input
                         id="target"
@@ -69,7 +71,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="institution">
-                        Institution:
+                        {{ .Config.LabelInstitution }}
                     </label>
                     <input
                         id="institution"
@@ -81,7 +83,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="expiresIn">
-                        Expires in:
+                        {{ .Config.LabelExpiresIn }}
                     </label>
                     <input
                         id="expiresIn"
@@ -102,10 +104,10 @@
                 <section class="tasks" id="tasks">
                     {{ range $taskIndex, $task := .Test.Tasks }}
                         <fieldset class="test-task task-{{ $taskIndex }}">
-                            <legend>Task {{ call $.incr $taskIndex }}</legend>
+                            <legend>{{ $.Config.LabelTaskHeader }} {{ call $.incr $taskIndex }}</legend>
                             <div class="input-wrapper">
                                 <label for="{{ $taskIndex }}-type">
-                                    Type:
+                                    {{ $.Config.LabelTaskType }}
                                 </label>
                                 <select
                                     id="{{ $taskIndex }}-type"
@@ -113,25 +115,37 @@
                                     name="{{ $taskIndex }}-type"
                                 >
                                     {{ if eq $task.Type "single" }}
-                                        <option selected value="single">Single answer</option>
+                                        <option selected value="single">
+                                            {{ $.Config.LabelTaskTypeSingle }}
+                                        </option>
                                     {{ else }}
-                                        <option value="single">Single answer</option>
+                                        <option value="single">
+                                            {{ $.Config.LabelTaskTypeSingle }}
+                                        </option>
                                     {{ end }}
                                     {{ if eq $task.Type "multiple" }}
-                                        <option selected value="multiple">Multiple answers</option>
+                                        <option selected value="multiple">
+                                            {{ $.Config.LabelTaskTypeMultiple }}
+                                        </option>
                                     {{ else }}
-                                        <option value="multiple">Multiple answers</option>
+                                        <option value="multiple">
+                                            {{ $.Config.LabelTaskTypeMultiple }}
+                                        </option>
                                     {{ end }}
                                     {{ if eq $task.Type "open" }}
-                                        <option selected value="open">Open question</option>
+                                        <option selected value="open">
+                                            {{ $.Config.LabelTaskTypeOpen }}
+                                        </option>
                                     {{ else }}
-                                        <option value="open">Open question</option>
+                                        <option value="open">
+                                            {{ $.Config.LabelTaskTypeOpen }}
+                                        </option>
                                     {{ end }}
                                 </select>
                             </div>
                             <div class="input-wrapper">
                                 <label for="{{ $taskIndex }}-text">
-                                    Text:
+                                    {{ $.Config.LabelTaskText }}
                                 </label>
                                 <input
                                     name="{{ $taskIndex }}-id"
@@ -143,7 +157,7 @@
                             </div>
                             <div class="input-wrapper">
                                 <label for="{{ $taskIndex }}-answer">
-                                    Answer:
+                                    {{ $.Config.LabelTaskAnswer }}
                                 </label>
                                 <input
                                     id="{{ $taskIndex }}-answer"
@@ -155,7 +169,7 @@
                             </div>
 
                             <div class="answer-options-wrapper">
-                                <p>Answer options:</p>
+                                <p>{{ $.Config.LabelTaskOptions }}</p>
                                 <div class="answer-options" id="{{ $taskIndex }}-options">
                                     {{ range $task.Options }}
                                         <input
@@ -170,7 +184,7 @@
                                     type="button"
                                     onclick="addOption({{ $taskIndex }})"
                                 >
-                                    + Add option
+                                    {{ $.Config.LabelTaskAddOption }}
                                 </button>
                             </div>
 
@@ -186,7 +200,7 @@
                                         checked="{{ $hasAttachment }}"
                                     >
                                     <label for="{{ $taskIndex }}-has-attachment">
-                                        Add attachment
+                                        {{ $.Config.LabelAddAttachment }}
                                     </label>
                                 </div>
                                 <div
@@ -197,7 +211,7 @@
                                     {{ if $hasAttachment }}
                                         <div class="input-wrapper">
                                             <label for="{{ $taskIndex }}-attachment-name">
-                                                Name:
+                                                {{ $.Config.LabelAttachmentName }}
                                             </label>
                                             <input
                                                 id="{{ $taskIndex }}-attachment-name"
@@ -209,7 +223,7 @@
                                         </div>
                                         <div class="input-wrapper">
                                             <label for="{{ $taskIndex }}-attachment-type">
-                                                Type:
+                                                {{ $.Config.LabelAttachmentType }}
                                             </label>
                                             <select
                                                 id="{{ $taskIndex }}-attachment-type"
@@ -218,30 +232,46 @@
                                                 value="{{ $task.Attachment.Type }}"
                                             >
                                                 {{ if eq $task.Attachment.Type "file" }}
-                                                    <option selected value="file">File</option>
+                                                    <option selected value="file">
+                                                        {{ $.Config.LabelAttachmentTypeFile }}
+                                                    </option>
                                                 {{ else }}
-                                                    <option value="file">File</option>
+                                                    <option value="file">
+                                                        {{ $.Config.LabelAttachmentTypeFile }}
+                                                    </option>
                                                 {{ end }}
                                                 {{ if eq $task.Attachment.Type "image" }}
-                                                    <option selected value="image">Image</option>
+                                                    <option selected value="image">
+                                                        {{ $.Config.LabelAttachmentTypeImage }}
+                                                    </option>
                                                 {{ else }}
-                                                    <option value="image">Image</option>
+                                                    <option value="image">
+                                                        {{ $.Config.LabelAttachmentTypeImage }}
+                                                    </option>
                                                 {{ end }}
                                                 {{ if eq $task.Attachment.Type "video" }}
-                                                    <option selected value="video">Video</option>
+                                                    <option selected value="video">
+                                                        {{ $.Config.LabelAttachmentTypeVideo }}
+                                                    </option>
                                                 {{ else }}
-                                                    <option value="video">Video</option>
+                                                    <option value="video">
+                                                        {{ $.Config.LabelAttachmentTypeVideo }}
+                                                    </option>
                                                 {{ end }}
                                                 {{ if eq $task.Attachment.Type "audio" }}
-                                                    <option selected value="audio">Audio</option>
+                                                    <option selected value="audio">
+                                                        {{ $.Config.LabelAttachmentTypeAudio }}
+                                                    </option>
                                                 {{ else }}
-                                                    <option value="audio">Audio</option>
+                                                    <option value="audio">
+                                                        {{ $.Config.LabelAttachmentTypeAudio }}
+                                                    </option>
                                                 {{ end }}
                                             </select>
                                         </div>
                                         <div class="input-wrapper">
                                             <label for="{{ $taskIndex }}-attachment-src">
-                                                Source (URL):
+                                                {{ $.Config.LabelAttachmentSrc }}
                                             </label>
                                             <input
                                                 id="{{ $taskIndex }}-attachment-src"
@@ -263,11 +293,11 @@
                     class="button-add-task"
                     type="button"
                 >
-                    + Add task
+                    {{ .Config.LabelAddTask }}
                 </button>
 
                 <button class="button" type="submit">
-                    {{ .Config.SubmitButtonLabel }}
+                    {{ .Config.LabelDownloadTest }}
                 </button>
             </form>
         </main>
