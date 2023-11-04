@@ -4,12 +4,20 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/fatih/color"
 	"github.com/rodaine/table"
 	"github.com/spf13/viper"
 )
 
 func printMap(m map[string]interface{}) {
+	headerFmt := color.New(color.FgGreen, color.Underline).SprintfFunc()
+	columnFmt := color.New(color.FgYellow, color.Bold).SprintfFunc()
+	printKey := color.New(color.FgMagenta, color.Bold).PrintlnFunc()
+
 	tbl := table.New("Key", "Value")
+	tbl.WithHeaderFormatter(headerFmt)
+	tbl.WithFirstColumnFormatter(columnFmt)
+
 	printTable := true
 
 	for key, value := range m {
@@ -20,7 +28,7 @@ func printMap(m map[string]interface{}) {
 
 		if subMap, ok := value.(map[string]interface{}); ok {
 			printTable = false
-			fmt.Println(key)
+			printKey(key)
 			printMap(subMap)
 			fmt.Println()
 		}
