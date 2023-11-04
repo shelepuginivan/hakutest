@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/Songmu/prompter"
+	"github.com/fatih/color"
 	"github.com/gabriel-vasile/mimetype"
 	parser "github.com/shelepuginivan/hakutest/internal/pkg/test_parser"
 	"github.com/spf13/cobra"
@@ -30,6 +32,18 @@ func getAttachmentSrc(src string) (string, error) {
 	return "", err
 }
 
+func message(s string) string {
+	return color.New(color.Bold, color.FgYellow).Sprint(s)
+}
+
+func secondaryMessage(s string) string {
+	return color.New(color.FgMagenta, color.Bold).Sprintf("- %s", s)
+}
+
+func nestedMessage(s string, level int) string {
+	return color.New(color.Bold).Sprintf("%s %s", strings.Repeat("-", level), s)
+}
+
 func promptTask() parser.Task {
 	task := parser.Task{}
 	taskType := map[string]string{
@@ -39,35 +53,37 @@ func promptTask() parser.Task {
 	}
 
 	task.Type = taskType[prompter.Choose(
-		"Type of the task",
+		secondaryMessage("Type of the task"),
 		[]string{"Single answer", "Multiple answers", "Open question"},
 		"Open question",
 	)]
 
-	task.Text = prompter.Prompt("Task text", "")
+	task.Text = prompter.Prompt(secondaryMessage("Task text"), "")
 
-	option := prompter.Prompt("Answer option (leave blank to stop)", "")
+	fmt.Println(secondaryMessage("Answer options:"))
+
+	option := prompter.Prompt(nestedMessage("Add option (leave blank to stop)", 2), "")
 
 	for option != "" {
 		task.Options = append(task.Options, option)
-		option = prompter.Prompt("Answer option (leave blank to stop)", "")
+		option = prompter.Prompt(nestedMessage("Add option (leave blank to stop)", 2), "")
 	}
 
-	task.Answer = prompter.Prompt("Correct answer", "")
+	task.Answer = prompter.Prompt(secondaryMessage("Correct answer"), "")
 
-	if prompter.YN("Add attachment", false) {
-		task.Attachment.Name = prompter.Prompt("Name", "")
+	if prompter.YN(secondaryMessage("Add attachment"), false) {
+		task.Attachment.Name = prompter.Prompt(nestedMessage("Name", 2), "")
 		task.Attachment.Type = prompter.Choose(
-			"Type",
+			nestedMessage("Type", 2),
 			[]string{"image", "video", "audio", "file"},
 			"file",
 		)
 
-		src := prompter.Prompt("Source (URL or local file)", "")
+		src := prompter.Prompt(nestedMessage("Source (URL or local file)", 2), "")
 		attachmentSrc, err := getAttachmentSrc(src)
 
-		for err != nil && prompter.YN("Failed to add attachment! Try again?", false) {
-			src = prompter.Prompt("Source (URL or local file)", "")
+		for err != nil && prompter.YN(secondaryMessage("Failed to add attachment! Try again?"), false) {
+			src = prompter.Prompt(nestedMessage("Source (URL or local file)", 2), "")
 			attachmentSrc, err = getAttachmentSrc(src)
 		}
 
@@ -94,16 +110,16 @@ func Cmd(cmd *cobra.Command, args []string) error {
 			test = parsedTest
 		}
 	} else {
-		name = prompter.Prompt("Test filename", "test.json")
+		name = prompter.Prompt(message("Test filename"), "test.json")
 	}
 
-	test.Title = prompter.Prompt("Title of the test", test.Title)
-	test.Description = prompter.Prompt("Description", test.Description)
-	test.Target = prompter.Prompt("Target audience", test.Target)
-	test.Subject = prompter.Prompt("Subject of the test", test.Subject)
-	test.Institution = prompter.Prompt("Educational institution", test.Institution)
+	test.Title = prompter.Prompt(message("Title of the test"), test.Title)
+	test.Description = prompter.Prompt(message("Description"), test.Description)
+	test.Target = prompter.Prompt(message("Target audience"), test.Target)
+	test.Subject = prompter.Prompt(message("Subject of the test"), test.Subject)
+	test.Institution = prompter.Prompt(message("Educational institution"), test.Institution)
 
-	expiresInString := prompter.Prompt("Expires in", test.ExpiresIn.Format(timeLayout))
+	expiresInString := prompter.Prompt(message("Expires in"), test.ExpiresIn.Format(timeLayout))
 
 	if expiresInString != "" {
 		expiresIn, err := time.Parse(timeLayout, expiresInString)
@@ -115,7 +131,7 @@ func Cmd(cmd *cobra.Command, args []string) error {
 
 	for i := 0; i < len(test.Tasks); {
 		action := prompter.Choose(
-			fmt.Sprintf("Task %d:", i+tasksDeleted+1),
+			message(fmt.Sprintf("Task %d:", i+tasksDeleted+1)),
 			[]string{"leave unchanged", "replace", "delete"},
 			"leave unchanged",
 		)
@@ -135,7 +151,7 @@ func Cmd(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	for prompter.YN("Add new task", false) {
+	for prompter.YN(message("Add new task"), false) {
 		test.Tasks = append(test.Tasks, promptTask())
 	}
 
