@@ -7,6 +7,9 @@ import (
 	"github.com/fatih/color"
 	"github.com/rodaine/table"
 	"github.com/xuri/excelize/v2"
+	"gonum.org/v1/plot"
+	"gonum.org/v1/plot/plotter"
+	"gonum.org/v1/plot/vg"
 )
 
 func ExportToTable(statistics Statistics) table.Table {
@@ -164,4 +167,28 @@ func ExportToExcel(statistics Statistics, testName string) error {
 	}
 
 	return file.SaveAs(testName + ".xlsx")
+}
+
+func ExportToPng(statistics Statistics, testName string) error {
+	p := plot.New()
+
+	values := plotter.Values{}
+
+	for _, entry := range statistics {
+		values = append(values, float64(entry.Results.Points))
+	}
+
+	hist, err := plotter.NewHist(values, 16)
+
+	if err != nil {
+		return err
+	}
+
+	p.Add(hist)
+
+	p.Title.Text = "Student Performance"
+	p.X.Label.Text = "Points"
+	p.Y.Label.Text = "Students"
+
+	return p.Save(8*vg.Inch, 4*vg.Inch, testName+".png")
 }

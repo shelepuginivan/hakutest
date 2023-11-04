@@ -19,6 +19,8 @@ func Cmd(cmd *cobra.Command, args []string) error {
 	switch args[1] {
 	case "excel":
 		return ExportToExcel(stats, args[0])
+	case "image":
+		return ExportToPng(stats, args[0])
 	default:
 		ExportToTable(stats).Print()
 		return nil
