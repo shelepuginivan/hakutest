@@ -9,24 +9,30 @@ const addTask = (taskIndex) => {
 
     newTask.classList.add("test-task", "task-${taskIndex}")
     newTask.innerHTML = `
-        <legend>Task ${taskIndex + 1}</legend>
+        <legend>${config.get("labelTaskHeader")} ${taskIndex + 1}</legend>
         <div class="input-wrapper">
             <label for="${taskIndex}-type">
-                Type:
+                ${config.get("labelTaskType")}
             </label>
             <select
                 id="${taskIndex}-type"
                 class="input-select"
                 name="${taskIndex}-type"
             >
-                <option value="single">Single answer</option>
-                <option value="multiple">Multiple answers</option>
-                <option value="open">Open question</option>
+                <option value="single">
+                    ${config.get("labelTaskTypeSingle")}
+                </option>
+                <option value="multiple">
+                    ${config.get("labelTaskTypeMultiple")}
+                </option>
+                <option value="open">
+                    ${config.get("labelTaskTypeOpen")}
+                </option>
             </select>
         </div>
         <div class="input-wrapper">
             <label for="${taskIndex}-text">
-                Text:
+                ${config.get("labelTaskText")}
             </label>
             <input
                 id="${taskIndex}-text"
@@ -37,7 +43,7 @@ const addTask = (taskIndex) => {
         </div>
         <div class="input-wrapper">
             <label for="${taskIndex}-answer">
-                Answer:
+                ${config.get("labelTaskAnswer")}
             </label>
             <input
                 class="input-text"
@@ -46,14 +52,14 @@ const addTask = (taskIndex) => {
             >
         </div>
         <div class="answer-options-wrapper">
-            <p>Answer options:</p>
+            <p>${config.get("labelTaskOptions")}</p>
             <div class="answer-options" id="${taskIndex}-options"></div>
             <button
                 class="button-add-option"
                 type="button"
                 onclick="addOption(${taskIndex})"
             >
-                + Add option
+                ${config.get("labelTaskAddOption")}
             </button>
         </div>
         <div class="attachment-wrapper">
@@ -66,7 +72,7 @@ const addTask = (taskIndex) => {
                     onchange="toggleAttachment(${taskIndex}, this)"
                 >
                 <label for="${taskIndex}-has-attachment">
-                    Add attachment
+                    ${config.get("labelAddAttachment")}
                 </label>
             </div>
             <div
@@ -84,7 +90,7 @@ const addAttachment = (taskIndex) => {
     const attachmentFields = `
         <div class="input-wrapper">
             <label for="${taskIndex}-attachment-name">
-                Name:
+                ${config.get("labelAttachmentName")}
             </label>
             <input
                 id="${taskIndex}-attachment-name"
@@ -95,22 +101,30 @@ const addAttachment = (taskIndex) => {
         </div>
         <div class="input-wrapper">
             <label for="${taskIndex}-attachment-type">
-                Type:
+                ${config.get("labelAttachmentType")}
             </label>
             <select
                 id="${taskIndex}-attachment-type"
                 class="input-select"
                 name="${taskIndex}-attachment-type"
             >
-                <option value="file">File</option>
-                <option value="image">Image</option>
-                <option value="video">Video</option>
-                <option value="audio">Audio</option>
+                <option value="file">
+                    ${config.get("labelAttachmentTypeFile")}
+                </option>
+                <option value="image">
+                    ${config.get("labelAttachmentTypeImage")}
+                </option>
+                <option value="video">
+                    ${config.get("labelAttachmentTypeVideo")}
+                </option>
+                <option value="audio">
+                    ${config.get("labelAttachmentTypeAudio")}
+                </option>
             </select>
         </div>
         <div class="input-wrapper">
             <label for="${taskIndex}-attachment-src">
-                Source (URL):
+                ${config.get("labelAttachmentSrc")}
             </label>
             <input
                 id="${taskIndex}-attachment-src"

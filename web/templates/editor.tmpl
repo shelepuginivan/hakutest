@@ -4,6 +4,27 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
+        <script>
+            const config = new Map([
+                ["labelTaskHeader",  "{{ .Config.LabelTaskHeader }}"],
+                ["labelTaskType", "{{ .Config.LabelTaskType }}"],
+                ["labelTaskTypeSingle", "{{ .Config.LabelTaskTypeSingle }}"],
+                ["labelTaskTypeMultiple", "{{ .Config.LabelTaskTypeMultiple }}"],
+                ["labelTaskTypeOpen", "{{ .Config.LabelTaskTypeOpen }}"],
+                ["labelTaskText", "{{ .Config.LabelTaskText }}"],
+                ["labelTaskAnswer", "{{ .Config.LabelTaskAnswer }}"],
+                ["labelTaskOptions", "{{ .Config.LabelTaskOptions }}"],
+                ["labelTaskAddOption", "{{ .Config.LabelTaskAddOption }}"],
+                ["labelAddAttachment", "{{ .Config.LabelAddAttachment }}"],
+                ["labelAttachmentType", "{{ .Config.LabelAttachmentType }}"],
+                ["labelAttachmentTypeFile", "{{ .Config.LabelAttachmentTypeFile }}"],
+                ["labelAttachmentTypeImage", "{{ .Config.LabelAttachmentTypeImage }}"],
+                ["labelAttachmentTypeVideo", "{{ .Config.LabelAttachmentTypeVideo }}"],
+                ["labelAttachmentTypeAudio", "{{ .Config.LabelAttachmentTypeAudio }}"],
+                ["labelAttachmentName", "{{ .Config.LabelAttachmentName }}"],
+                ["labelAttachmentSrc", "{{ .Config.LabelAttachmentSrc }}"],
+            ])
+        </script>
         <link rel="stylesheet" href="/static/css/common.css">
         <link rel="stylesheet" href="/static/css/editor.css">
         <link rel="stylesheet" href="/static/css/form.css">
