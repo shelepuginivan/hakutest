@@ -4,12 +4,18 @@ import (
 	"fmt"
 	"strconv"
 
+	"github.com/fatih/color"
 	"github.com/rodaine/table"
 	"github.com/xuri/excelize/v2"
 )
 
 func ExportToTable(statistics Statistics) table.Table {
+	headerFmt := color.New(color.FgGreen, color.Underline).SprintfFunc()
+	columnFmt := color.New(color.FgYellow, color.Bold).SprintfFunc()
+
 	tbl := table.New("#", "Student", "Points", "%")
+	tbl.WithHeaderFormatter(headerFmt)
+	tbl.WithFirstColumnFormatter(columnFmt)
 
 	for index, entry := range statistics {
 		tbl.AddRow(
