@@ -10,67 +10,67 @@ import (
 )
 
 type GeneralConfig struct {
-	TestsDirectory   string `yaml:"tests_directory"`
-	ResultsDirectory string `yaml:"results_directory"`
+	TestsDirectory   string `yaml:"tests_directory" mapstructure:"tests_directory"`
+	ResultsDirectory string `yaml:"results_directory" mapstructure:"results_directory"`
 }
 
 type ServerConfig struct {
-	Port string `yaml:"port"`
+	Port string `yaml:"port" mapstructure:"port"`
 }
 
 type UiEditorConfig struct {
-	Header                   string `yaml:"header"`
-	LabelTitle               string `yaml:"label_title"`
-	LabelDescription         string `yaml:"label_description"`
-	LabelSubject             string `yaml:"label_subject"`
-	LabelTarget              string `yaml:"label_target"`
-	LabelInstitution         string `yaml:"label_institution"`
-	LabelExpiresIn           string `yaml:"label_expires_in"`
-	LabelAddTask             string `yaml:"label_add_task"`
-	LabelTaskHeader          string `yaml:"label_task_header"`
-	LabelTaskType            string `yaml:"label_task_type"`
-	LabelTaskTypeSingle      string `yaml:"label_task_type_single"`
-	LabelTaskTypeMultiple    string `yaml:"label_task_type_multiple"`
-	LabelTaskTypeOpen        string `yaml:"label_task_type_open"`
-	LabelTaskText            string `yaml:"label_task_text"`
-	LabelTaskAnswer          string `yaml:"label_task_answer"`
-	LabelTaskOptions         string `yaml:"label_task_options"`
-	LabelTaskAddOption       string `yaml:"label_task_add_option"`
-	LabelAddAttachment       string `yaml:"label_add_attachment"`
-	LabelAttachmentName      string `yaml:"label_attachment_name"`
-	LabelAttachmentType      string `yaml:"label_attachment_type"`
-	LabelAttachmentTypeFile  string `yaml:"label_attachment_type_file"`
-	LabelAttachmentTypeImage string `yaml:"label_attachment_type_image"`
-	LabelAttachmentTypeVideo string `yaml:"label_attachment_type_video"`
-	LabelAttachmentTypeAudio string `yaml:"label_attachment_type_audio"`
-	LabelAttachmentSrc       string `yaml:"label_attachment_src"`
-	LabelUploadTestInput     string `yaml:"label_upload_test_input"`
-	LabelUploadTestButton    string `yaml:"label_upload_test_button"`
-	LabelNewTest             string `yaml:"label_new_test"`
-	LabelDownloadTest        string `yaml:"label_download_test"`
+	Header                   string `yaml:"header" mapstructure:"header"`
+	LabelTitle               string `yaml:"label_title" mapstructure:"label_title"`
+	LabelDescription         string `yaml:"label_description" mapstructure:"label_description"`
+	LabelSubject             string `yaml:"label_subject" mapstructure:"label_subject"`
+	LabelTarget              string `yaml:"label_target" mapstructure:"label_subject"`
+	LabelInstitution         string `yaml:"label_institution" mapstructure:"label_institution"`
+	LabelExpiresIn           string `yaml:"label_expires_in" mapstructure:"label_expires_in"`
+	LabelAddTask             string `yaml:"label_add_task" mapstructure:"label_add_task"`
+	LabelTaskHeader          string `yaml:"label_task_header" mapstructure:"label_task_header"`
+	LabelTaskType            string `yaml:"label_task_type" mapstructure:"label_task_type"`
+	LabelTaskTypeSingle      string `yaml:"label_task_type_single" mapstructure:"label_task_type_single"`
+	LabelTaskTypeMultiple    string `yaml:"label_task_type_multiple" mapstructure:"label_task_type_multiple"`
+	LabelTaskTypeOpen        string `yaml:"label_task_type_open" mapstructure:"label_task_type_open"`
+	LabelTaskText            string `yaml:"label_task_text" mapstructure:"label_task_text"`
+	LabelTaskAnswer          string `yaml:"label_task_answer" mapstructure:"label_task_answer"`
+	LabelTaskOptions         string `yaml:"label_task_options" mapstructure:"label_task_options"`
+	LabelTaskAddOption       string `yaml:"label_task_add_option" mapstructure:"label_task_add_option"`
+	LabelAddAttachment       string `yaml:"label_add_attachment" mapstructure:"label_add_attachment"`
+	LabelAttachmentName      string `yaml:"label_attachment_name" mapstructure:"label_attachment_name"`
+	LabelAttachmentType      string `yaml:"label_attachment_type" mapstructure:"label_attachment_type"`
+	LabelAttachmentTypeFile  string `yaml:"label_attachment_type_file" mapstructure:"label_attachment_type_file"`
+	LabelAttachmentTypeImage string `yaml:"label_attachment_type_image" mapstructure:"label_attachment_type_image"`
+	LabelAttachmentTypeVideo string `yaml:"label_attachment_type_video" mapstructure:"label_attachment_type_video"`
+	LabelAttachmentTypeAudio string `yaml:"label_attachment_type_audio" mapstructure:"label_attachment_type_audio"`
+	LabelAttachmentSrc       string `yaml:"label_attachment_src" mapstructure:"label_attachment_src"`
+	LabelUploadTestInput     string `yaml:"label_upload_test_input" mapstructure:"label_upload_test_input"`
+	LabelUploadTestButton    string `yaml:"label_upload_test_button" mapstructure:"label_upload_test_button"`
+	LabelNewTest             string `yaml:"label_new_test" mapstructure:"label_new_test"`
+	LabelDownloadTest        string `yaml:"label_download_test" mapstructure:"label_download_test"`
 }
 
 type UiErrorConfig struct {
-	ErrorHeaderLabel  string `yaml:"error_header_label"`
-	ErrorDetailsLabel string `yaml:"error_details_label"`
+	ErrorHeaderLabel  string `yaml:"error_header_label" mapstructure:"error_header_label"`
+	ErrorDetailsLabel string `yaml:"error_details_label" mapstructure:"error_details_label"`
 }
 
 type UiTestConfig struct {
-	StudentNameLabel  string `yaml:"student_name_label"`
-	OpenAnswerLabel   string `yaml:"open_answer_label"`
-	SubmitButtonLabel string `yaml:"submit_button_label"`
+	StudentNameLabel  string `yaml:"student_name_label" mapstructure:"student_name_label"`
+	OpenAnswerLabel   string `yaml:"open_answer_label" mapstructure:"open_answer_label"`
+	SubmitButtonLabel string `yaml:"submit_button_label" mapstructure:"submit_button_label"`
 }
 
 type UiConfig struct {
-	Editor UiEditorConfig `yaml:"editor"`
-	Error  UiErrorConfig  `yaml:"error"`
-	Test   UiTestConfig   `yaml:"test"`
+	Editor UiEditorConfig `yaml:"editor" mapstructure:"editor"`
+	Error  UiErrorConfig  `yaml:"error" mapstructure:"error"`
+	Test   UiTestConfig   `yaml:"test" mapstructure:"test"`
 }
 
 type Config struct {
-	General GeneralConfig `yaml:"general"`
-	Server  ServerConfig  `yaml:"server"`
-	Ui      UiConfig      `yaml:"ui"`
+	General GeneralConfig `yaml:"general" mapstructure:"general"`
+	Server  ServerConfig  `yaml:"server" mapstructure:"server"`
+	Ui      UiConfig      `yaml:"ui" mapstructure:"ui"`
 }
 
 func getConfigDir() string {
@@ -155,6 +155,9 @@ func Init() Config {
 	v.AddConfigPath(configDir)
 	v.SetConfigType("yaml")
 	v.SetConfigName("config")
+	v.SetDefault("general", config.General)
+	v.SetDefault("server", config.Server)
+	v.SetDefault("ui", config.Ui)
 
 	if err := v.ReadInConfig(); err != nil {
 		fmt.Println(err)
