@@ -20,10 +20,36 @@ type ServerConfig struct {
 	Port string `yaml:"port"`
 }
 
-type UiTestConfig struct {
-	StudentNameLabel  string `yaml:"student_name_label"`
-	OpenAnswerLabel   string `yaml:"open_answer_label"`
-	SubmitButtonLabel string `yaml:"submit_button_label"`
+type UiEditorConfig struct {
+	Header                   string `yaml:"header"`
+	LabelTitle               string `yaml:"label_title"`
+	LabelDescription         string `yaml:"label_description"`
+	LabelSubject             string `yaml:"label_subject"`
+	LabelTarget              string `yaml:"label_target"`
+	LabelInstitution         string `yaml:"label_institution"`
+	LabelExpiresIn           string `yaml:"label_expires_in"`
+	LabelAddTask             string `yaml:"label_add_task"`
+	LabelTaskHeader          string `yaml:"label_task_header"`
+	LabelTaskType            string `yaml:"label_task_type"`
+	LabelTaskTypeSingle      string `yaml:"label_task_type_single"`
+	LabelTaskTypeMultiple    string `yaml:"label_task_type_multiple"`
+	LabelTaskTypeOpen        string `yaml:"label_task_type_open"`
+	LabelTaskText            string `yaml:"label_task_text"`
+	LabelTaskAnswer          string `yaml:"label_task_answer"`
+	LabelTaskOptions         string `yaml:"label_task_options"`
+	LabelTaskAddOption       string `yaml:"label_task_add_option"`
+	LabelAddAttachment       string `yaml:"label_add_attachment"`
+	LabelAttachmentName      string `yaml:"label_attachment_name"`
+	LabelAttachmentType      string `yaml:"label_attachment_type"`
+	LabelAttachmentTypeFile  string `yaml:"label_attachment_type_file"`
+	LabelAttachmentTypeImage string `yaml:"label_attachment_type_image"`
+	LabelAttachmentTypeVideo string `yaml:"label_attachment_type_video"`
+	LabelAttachmentTypeAudio string `yaml:"label_attachment_type_audio"`
+	LabelAttachmentSrc       string `yaml:"label_attachment_src"`
+	LabelUploadTestInput     string `yaml:"label_upload_test_input"`
+	LabelUploadTestButton    string `yaml:"label_upload_test_button"`
+	LabelNewTest             string `yaml:"label_new_test"`
+	LabelDownloadTest        string `yaml:"label_download_test"`
 }
 
 type UiErrorConfig struct {
@@ -31,9 +57,16 @@ type UiErrorConfig struct {
 	ErrorDetailsLabel string `yaml:"error_details_label"`
 }
 
+type UiTestConfig struct {
+	StudentNameLabel  string `yaml:"student_name_label"`
+	OpenAnswerLabel   string `yaml:"open_answer_label"`
+	SubmitButtonLabel string `yaml:"submit_button_label"`
+}
+
 type UiConfig struct {
-	Test  UiTestConfig  `yaml:"test"`
-	Error UiErrorConfig `yaml:"error"`
+	Editor UiEditorConfig `yaml:"editor"`
+	Error  UiErrorConfig  `yaml:"error"`
+	Test   UiTestConfig   `yaml:"test"`
 }
 
 type Config struct {
@@ -54,14 +87,43 @@ func getConfigPath() string {
 
 func Init() Config {
 	var (
-		port              = "8080"
-		testsDirectory    = "user_test"
-		resultsDirectory  = "user_results"
-		studentNameLabel  = "Your name:"
-		openAnswerLabel   = "Answer:"
-		submitButtonLabel = "Submit"
-		errorHeaderLabel  = "An error occurred!"
-		errorDetailsLabel = "Details"
+		port                           = "8080"
+		testsDirectory                 = "user_test"
+		resultsDirectory               = "user_results"
+		studentNameLabel               = "Your name:"
+		openAnswerLabel                = "Answer:"
+		submitButtonLabel              = "Submit"
+		errorHeaderLabel               = "An error occurred!"
+		errorDetailsLabel              = "Details"
+		editorHeader                   = "Test Editor"
+		editorLabelTitle               = "Title:"
+		editorLabelDescription         = "Description:"
+		editorLabelSubject             = "Subject:"
+		editorLabelTarget              = "Target audience:"
+		editorLabelInstitution         = "Institution:"
+		editorLabelExpiresIn           = "Expires in:"
+		editorLabelAddTask             = "+ Add task"
+		editorLabelTaskHeader          = "Task"
+		editorLabelTaskType            = "Type:"
+		editorLabelTaskTypeSingle      = "Single answer"
+		editorLabelTaskTypeMultiple    = "Multiple answers"
+		editorLabelTaskTypeOpen        = "Open question"
+		editorLabelTaskText            = "Text:"
+		editorLabelTaskAnswer          = "Answer:"
+		editorLabelTaskOptions         = "Answer options"
+		editorLabelTaskAddOption       = "+ Add option"
+		editorLabelAddAttachment       = "Add attachment"
+		editorLabelAttachmentName      = "Name:"
+		editorLabelAttachmentType      = "Type:"
+		editorLabelAttachmentTypeFile  = "File"
+		editorLabelAttachmentTypeImage = "Image"
+		editorLabelAttachmentTypeVideo = "Video"
+		editorLabelAttachmentTypeAudio = "Audio"
+		editorLabelAttachmentSrc       = "Source (URL):"
+		editorLabelUploadTestInput     = "Upload test file"
+		editorLabelUploadTestButton    = "Upload and edit"
+		editorLabelNewTest             = "Create new test"
+		editorLabelDownloadTest        = "Download test"
 	)
 
 	configPath := getConfigPath()
@@ -82,14 +144,45 @@ func Init() Config {
 			Port: port,
 		},
 		Ui: UiConfig{
-			Test: UiTestConfig{
-				StudentNameLabel:  studentNameLabel,
-				OpenAnswerLabel:   openAnswerLabel,
-				SubmitButtonLabel: submitButtonLabel,
+			Editor: UiEditorConfig{
+				Header:                   editorHeader,
+				LabelTitle:               editorLabelTitle,
+				LabelDescription:         editorLabelDescription,
+				LabelSubject:             editorLabelSubject,
+				LabelTarget:              editorLabelTarget,
+				LabelInstitution:         editorLabelInstitution,
+				LabelExpiresIn:           editorLabelExpiresIn,
+				LabelAddTask:             editorLabelAddTask,
+				LabelTaskHeader:          editorLabelTaskHeader,
+				LabelTaskType:            editorLabelTaskType,
+				LabelTaskTypeSingle:      editorLabelTaskTypeSingle,
+				LabelTaskTypeMultiple:    editorLabelTaskTypeMultiple,
+				LabelTaskTypeOpen:        editorLabelTaskTypeOpen,
+				LabelTaskText:            editorLabelTaskText,
+				LabelTaskAnswer:          editorLabelTaskAnswer,
+				LabelTaskOptions:         editorLabelTaskOptions,
+				LabelTaskAddOption:       editorLabelTaskAddOption,
+				LabelAddAttachment:       editorLabelAddAttachment,
+				LabelAttachmentName:      editorLabelAttachmentName,
+				LabelAttachmentType:      editorLabelAttachmentType,
+				LabelAttachmentTypeFile:  editorLabelAttachmentTypeFile,
+				LabelAttachmentTypeImage: editorLabelAttachmentTypeImage,
+				LabelAttachmentTypeVideo: editorLabelAttachmentTypeVideo,
+				LabelAttachmentTypeAudio: editorLabelAttachmentTypeAudio,
+				LabelAttachmentSrc:       editorLabelAttachmentSrc,
+				LabelUploadTestInput:     editorLabelUploadTestInput,
+				LabelUploadTestButton:    editorLabelUploadTestButton,
+				LabelNewTest:             editorLabelNewTest,
+				LabelDownloadTest:        editorLabelDownloadTest,
 			},
 			Error: UiErrorConfig{
 				ErrorHeaderLabel:  errorHeaderLabel,
 				ErrorDetailsLabel: errorDetailsLabel,
+			},
+			Test: UiTestConfig{
+				StudentNameLabel:  studentNameLabel,
+				OpenAnswerLabel:   openAnswerLabel,
+				SubmitButtonLabel: submitButtonLabel,
 			},
 		},
 	}
@@ -118,6 +211,130 @@ func Init() Config {
 		config.Server.Port = port
 	}
 
+	if config.Ui.Editor.Header == "" {
+		config.Ui.Editor.Header = editorHeader
+	}
+
+	if config.Ui.Editor.LabelTitle == "" {
+		config.Ui.Editor.LabelTitle = editorLabelTitle
+	}
+
+	if config.Ui.Editor.LabelDescription == "" {
+		config.Ui.Editor.LabelDescription = editorLabelDescription
+	}
+
+	if config.Ui.Editor.LabelSubject == "" {
+		config.Ui.Editor.LabelSubject = editorLabelSubject
+	}
+
+	if config.Ui.Editor.LabelTarget == "" {
+		config.Ui.Editor.LabelTarget = editorLabelTarget
+	}
+
+	if config.Ui.Editor.LabelInstitution == "" {
+		config.Ui.Editor.LabelInstitution = editorLabelInstitution
+	}
+
+	if config.Ui.Editor.LabelExpiresIn == "" {
+		config.Ui.Editor.LabelExpiresIn = editorLabelExpiresIn
+	}
+
+	if config.Ui.Editor.LabelAddTask == "" {
+		config.Ui.Editor.LabelAddTask = editorLabelAddTask
+	}
+
+	if config.Ui.Editor.LabelTaskHeader == "" {
+		config.Ui.Editor.LabelTaskHeader = editorLabelTaskHeader
+	}
+
+	if config.Ui.Editor.LabelTaskType == "" {
+		config.Ui.Editor.LabelTaskType = editorLabelTaskType
+	}
+
+	if config.Ui.Editor.LabelTaskTypeSingle == "" {
+		config.Ui.Editor.LabelTaskTypeSingle = editorLabelTaskTypeSingle
+	}
+
+	if config.Ui.Editor.LabelTaskTypeMultiple == "" {
+		config.Ui.Editor.LabelTaskTypeMultiple = editorLabelTaskTypeMultiple
+	}
+
+	if config.Ui.Editor.LabelTaskTypeOpen == "" {
+		config.Ui.Editor.LabelTaskTypeOpen = editorLabelTaskTypeOpen
+	}
+
+	if config.Ui.Editor.LabelTaskText == "" {
+		config.Ui.Editor.LabelTaskText = editorLabelTaskText
+	}
+
+	if config.Ui.Editor.LabelTaskAnswer == "" {
+		config.Ui.Editor.LabelTaskAnswer = editorLabelTaskAnswer
+	}
+
+	if config.Ui.Editor.LabelTaskOptions == "" {
+		config.Ui.Editor.LabelTaskOptions = editorLabelTaskOptions
+	}
+
+	if config.Ui.Editor.LabelTaskAddOption == "" {
+		config.Ui.Editor.LabelTaskAddOption = editorLabelTaskAddOption
+	}
+
+	if config.Ui.Editor.LabelAddAttachment == "" {
+		config.Ui.Editor.LabelAddAttachment = editorLabelAddAttachment
+	}
+
+	if config.Ui.Editor.LabelAttachmentName == "" {
+		config.Ui.Editor.LabelAttachmentName = editorLabelAttachmentName
+	}
+
+	if config.Ui.Editor.LabelAttachmentType == "" {
+		config.Ui.Editor.LabelAttachmentType = editorLabelAttachmentType
+	}
+
+	if config.Ui.Editor.LabelAttachmentTypeFile == "" {
+		config.Ui.Editor.LabelAttachmentTypeFile = editorLabelAttachmentTypeFile
+	}
+
+	if config.Ui.Editor.LabelAttachmentTypeImage == "" {
+		config.Ui.Editor.LabelAttachmentTypeImage = editorLabelAttachmentTypeImage
+	}
+
+	if config.Ui.Editor.LabelAttachmentTypeVideo == "" {
+		config.Ui.Editor.LabelAttachmentTypeVideo = editorLabelAttachmentTypeVideo
+	}
+
+	if config.Ui.Editor.LabelAttachmentTypeAudio == "" {
+		config.Ui.Editor.LabelAttachmentTypeAudio = editorLabelAttachmentTypeAudio
+	}
+
+	if config.Ui.Editor.LabelAttachmentSrc == "" {
+		config.Ui.Editor.LabelAttachmentSrc = editorLabelAttachmentSrc
+	}
+
+	if config.Ui.Editor.LabelUploadTestInput == "" {
+		config.Ui.Editor.LabelUploadTestInput = editorLabelUploadTestInput
+	}
+
+	if config.Ui.Editor.LabelUploadTestButton == "" {
+		config.Ui.Editor.LabelUploadTestButton = editorLabelUploadTestButton
+	}
+
+	if config.Ui.Editor.LabelNewTest == "" {
+		config.Ui.Editor.LabelNewTest = editorLabelNewTest
+	}
+
+	if config.Ui.Editor.LabelDownloadTest == "" {
+		config.Ui.Editor.LabelDownloadTest = editorLabelDownloadTest
+	}
+
+	if config.Ui.Error.ErrorHeaderLabel == "" {
+		config.Ui.Error.ErrorHeaderLabel = errorHeaderLabel
+	}
+
+	if config.Ui.Error.ErrorDetailsLabel == "" {
+		config.Ui.Error.ErrorDetailsLabel = errorDetailsLabel
+	}
+
 	if config.Ui.Test.StudentNameLabel == "" {
 		config.Ui.Test.StudentNameLabel = studentNameLabel
 	}
@@ -128,14 +345,6 @@ func Init() Config {
 
 	if config.Ui.Test.SubmitButtonLabel == "" {
 		config.Ui.Test.SubmitButtonLabel = submitButtonLabel
-	}
-
-	if config.Ui.Error.ErrorHeaderLabel == "" {
-		config.Ui.Error.ErrorHeaderLabel = errorHeaderLabel
-	}
-
-	if config.Ui.Error.ErrorDetailsLabel == "" {
-		config.Ui.Error.ErrorDetailsLabel = errorDetailsLabel
 	}
 
 	return config
