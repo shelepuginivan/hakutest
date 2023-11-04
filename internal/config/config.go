@@ -1,21 +1,45 @@
 package config
 
 import (
+	"errors"
+	"fmt"
+	"log"
 	"os"
 	"path"
 
+	"github.com/rodaine/table"
 	"gopkg.in/yaml.v3"
 )
 
-type Config struct {
-	Port              string `yaml:"port"`
-	TestsDirectory    string `yaml:"tests_directory"`
-	ResultsDirectory  string `yaml:"results_directory"`
+type GeneralConfig struct {
+	TestsDirectory   string `yaml:"tests_directory"`
+	ResultsDirectory string `yaml:"results_directory"`
+}
+
+type ServerConfig struct {
+	Port string `yaml:"port"`
+}
+
+type UiTestConfig struct {
 	StudentNameLabel  string `yaml:"student_name_label"`
 	OpenAnswerLabel   string `yaml:"open_answer_label"`
 	SubmitButtonLabel string `yaml:"submit_button_label"`
+}
+
+type UiErrorConfig struct {
 	ErrorHeaderLabel  string `yaml:"error_header_label"`
 	ErrorDetailsLabel string `yaml:"error_details_label"`
+}
+
+type UiConfig struct {
+	Test  UiTestConfig  `yaml:"test"`
+	Error UiErrorConfig `yaml:"error"`
+}
+
+type Config struct {
+	General GeneralConfig `yaml:"general"`
+	Server  ServerConfig  `yaml:"server"`
+	Ui      UiConfig      `yaml:"ui"`
 }
 
 func getConfigPath() string {
@@ -50,14 +74,24 @@ func Init() Config {
 	}
 
 	defaultConfig := Config{
-		Port:              port,
-		TestsDirectory:    testsDirectory,
-		ResultsDirectory:  resultsDirectory,
-		StudentNameLabel:  studentNameLabel,
-		OpenAnswerLabel:   openAnswerLabel,
-		SubmitButtonLabel: submitButtonLabel,
-		ErrorHeaderLabel:  errorHeaderLabel,
-		ErrorDetailsLabel: errorDetailsLabel,
+		General: GeneralConfig{
+			TestsDirectory:   testsDirectory,
+			ResultsDirectory: resultsDirectory,
+		},
+		Server: ServerConfig{
+			Port: port,
+		},
+		Ui: UiConfig{
+			Test: UiTestConfig{
+				StudentNameLabel:  studentNameLabel,
+				OpenAnswerLabel:   openAnswerLabel,
+				SubmitButtonLabel: submitButtonLabel,
+			},
+			Error: UiErrorConfig{
+				ErrorHeaderLabel:  errorHeaderLabel,
+				ErrorDetailsLabel: errorDetailsLabel,
+			},
+		},
 	}
 
 	configFile, err := os.ReadFile(configPath)
@@ -72,36 +106,36 @@ func Init() Config {
 		return defaultConfig
 	}
 
-	if config.TestsDirectory == "" {
-		config.TestsDirectory = testsDirectory
+	if config.General.TestsDirectory == "" {
+		config.General.TestsDirectory = testsDirectory
 	}
 
-	if config.ResultsDirectory == "" {
-		config.ResultsDirectory = testsDirectory
+	if config.General.ResultsDirectory == "" {
+		config.General.ResultsDirectory = testsDirectory
 	}
 
-	if config.Port == "" {
-		config.Port = port
+	if config.Server.Port == "" {
+		config.Server.Port = port
 	}
 
-	if config.StudentNameLabel == "" {
-		config.StudentNameLabel = studentNameLabel
+	if config.Ui.Test.StudentNameLabel == "" {
+		config.Ui.Test.StudentNameLabel = studentNameLabel
 	}
 
-	if config.OpenAnswerLabel == "" {
-		config.OpenAnswerLabel = openAnswerLabel
+	if config.Ui.Test.OpenAnswerLabel == "" {
+		config.Ui.Test.OpenAnswerLabel = openAnswerLabel
 	}
 
-	if config.SubmitButtonLabel == "" {
-		config.SubmitButtonLabel = submitButtonLabel
+	if config.Ui.Test.SubmitButtonLabel == "" {
+		config.Ui.Test.SubmitButtonLabel = submitButtonLabel
 	}
 
-	if config.ErrorHeaderLabel == "" {
-		config.ErrorHeaderLabel = errorHeaderLabel
+	if config.Ui.Error.ErrorHeaderLabel == "" {
+		config.Ui.Error.ErrorHeaderLabel = errorHeaderLabel
 	}
 
-	if config.ErrorDetailsLabel == "" {
-		config.ErrorDetailsLabel = errorDetailsLabel
+	if config.Ui.Error.ErrorDetailsLabel == "" {
+		config.Ui.Error.ErrorDetailsLabel = errorDetailsLabel
 	}
 
 	return config

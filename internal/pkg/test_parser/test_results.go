@@ -90,7 +90,7 @@ func GetTestResults(name string, answers map[string][]string) (TestResults, erro
 }
 
 func SaveTestResults(name string, results TestResults) error {
-	testResultsDirectory := path.Join(config.Init().ResultsDirectory, name)
+	testResultsDirectory := path.Join(config.Init().General.ResultsDirectory, name)
 	resultsFilePath := path.Join(testResultsDirectory, results.Student+".txt")
 
 	if _, err := os.Stat(resultsFilePath); !os.IsNotExist(err) {

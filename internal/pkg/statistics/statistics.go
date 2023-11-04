@@ -13,7 +13,7 @@ type Statistics = []parser.TestResults
 
 func GetStatistics(testName string) (Statistics, error) {
 	stats := Statistics{}
-	testResultsDir := path.Join(config.Init().ResultsDirectory, testName)
+	testResultsDir := path.Join(config.Init().General.ResultsDirectory, testName)
 	entries, err := os.ReadDir(testResultsDir)
 
 	if err != nil {

@@ -7,7 +7,7 @@ import (
 
 func Init(cmd *cobra.Command, args []string) error {
 	r := NewRouter()
-	port := config.Init().Port
+	port := config.Init().Server.Port
 
 	if len(args) == 1 {
 		port = args[0]

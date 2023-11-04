@@ -37,7 +37,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init(),
+			"Config": config.Init().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
@@ -50,7 +50,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init(),
+			"Config": config.Init().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
@@ -63,7 +63,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init(),
+			"Config": config.Init().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to open uploaded file",
 			"Error":  err.Error(),
@@ -78,7 +78,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init(),
+			"Config": config.Init().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to read uploaded file",
 			"Error":  err.Error(),
@@ -91,7 +91,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init(),
+			"Config": config.Init().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse test",
 			"Error":  err.Error(),
@@ -115,7 +115,7 @@ func (e EditorController) CreateTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init(),
+			"Config": config.Init().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
@@ -169,7 +169,7 @@ func (e EditorController) CreateTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
-			"Config": config.Init(),
+			"Config": config.Init().Ui.Error,
 			"Code":   http.StatusBadRequest,
 			"Detail": "failed to create a test file",
 			"Error":  err.Error(),

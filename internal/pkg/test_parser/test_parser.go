@@ -12,7 +12,7 @@ import (
 )
 
 func GetTestPath(name string) string {
-	testsDirectory := config.Init().TestsDirectory
+	testsDirectory := config.Init().General.TestsDirectory
 
 	if !strings.HasSuffix(name, ".json") {
 		name += ".json"
