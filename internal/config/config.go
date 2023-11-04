@@ -1,52 +1,12 @@
 package config
 
 import (
-	"errors"
 	"fmt"
-	"log"
 	"os"
 	"path"
 
-	"github.com/rodaine/table"
+	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
-)
-
-const (
-	port                           = "8080"
-	studentNameLabel               = "Your name:"
-	openAnswerLabel                = "Answer:"
-	submitButtonLabel              = "Submit"
-	errorHeaderLabel               = "An error occurred!"
-	errorDetailsLabel              = "Details"
-	editorHeader                   = "Test Editor"
-	editorLabelTitle               = "Title:"
-	editorLabelDescription         = "Description:"
-	editorLabelSubject             = "Subject:"
-	editorLabelTarget              = "Target audience:"
-	editorLabelInstitution         = "Institution:"
-	editorLabelExpiresIn           = "Expires in:"
-	editorLabelAddTask             = "+ Add task"
-	editorLabelTaskHeader          = "Task"
-	editorLabelTaskType            = "Type:"
-	editorLabelTaskTypeSingle      = "Single answer"
-	editorLabelTaskTypeMultiple    = "Multiple answers"
-	editorLabelTaskTypeOpen        = "Open question"
-	editorLabelTaskText            = "Text:"
-	editorLabelTaskAnswer          = "Answer:"
-	editorLabelTaskOptions         = "Answer options"
-	editorLabelTaskAddOption       = "+ Add option"
-	editorLabelAddAttachment       = "Add attachment"
-	editorLabelAttachmentName      = "Name:"
-	editorLabelAttachmentType      = "Type:"
-	editorLabelAttachmentTypeFile  = "File"
-	editorLabelAttachmentTypeImage = "Image"
-	editorLabelAttachmentTypeVideo = "Video"
-	editorLabelAttachmentTypeAudio = "Audio"
-	editorLabelAttachmentSrc       = "Source (URL):"
-	editorLabelUploadTestInput     = "Upload test file"
-	editorLabelUploadTestButton    = "Upload and edit"
-	editorLabelNewTest             = "Create new test"
-	editorLabelDownloadTest        = "Download test"
 )
 
 type GeneralConfig struct {
@@ -113,22 +73,24 @@ type Config struct {
 	Ui      UiConfig      `yaml:"ui"`
 }
 
-func getConfigPath() string {
+func getConfigDir() string {
 	configDir, err := os.UserConfigDir()
 
 	if err != nil {
-		return "config.yaml"
+		return "hakutest"
 	}
 
-	return path.Join(configDir, "hakutest", "config.yaml")
+	return path.Join(configDir, "hakutest")
+
 }
 
 func Init() Config {
+	configDir := getConfigDir()
+	configPath := path.Join(configDir, "config.yaml")
+
 	testsDirectory := "user_test"
 	resultsDirectory := "user_results"
 
-	configPath := getConfigPath()
-	config := Config{}
 	cacheDir, err := os.UserCacheDir()
 
 	if err == nil {
@@ -136,218 +98,85 @@ func Init() Config {
 		resultsDirectory = path.Join(cacheDir, "hakutest", "results")
 	}
 
-	defaultConfig := Config{
+	config := Config{
 		General: GeneralConfig{
 			TestsDirectory:   testsDirectory,
 			ResultsDirectory: resultsDirectory,
 		},
 		Server: ServerConfig{
-			Port: port,
+			Port: "8080",
 		},
 		Ui: UiConfig{
 			Editor: UiEditorConfig{
-				Header:                   editorHeader,
-				LabelTitle:               editorLabelTitle,
-				LabelDescription:         editorLabelDescription,
-				LabelSubject:             editorLabelSubject,
-				LabelTarget:              editorLabelTarget,
-				LabelInstitution:         editorLabelInstitution,
-				LabelExpiresIn:           editorLabelExpiresIn,
-				LabelAddTask:             editorLabelAddTask,
-				LabelTaskHeader:          editorLabelTaskHeader,
-				LabelTaskType:            editorLabelTaskType,
-				LabelTaskTypeSingle:      editorLabelTaskTypeSingle,
-				LabelTaskTypeMultiple:    editorLabelTaskTypeMultiple,
-				LabelTaskTypeOpen:        editorLabelTaskTypeOpen,
-				LabelTaskText:            editorLabelTaskText,
-				LabelTaskAnswer:          editorLabelTaskAnswer,
-				LabelTaskOptions:         editorLabelTaskOptions,
-				LabelTaskAddOption:       editorLabelTaskAddOption,
-				LabelAddAttachment:       editorLabelAddAttachment,
-				LabelAttachmentName:      editorLabelAttachmentName,
-				LabelAttachmentType:      editorLabelAttachmentType,
-				LabelAttachmentTypeFile:  editorLabelAttachmentTypeFile,
-				LabelAttachmentTypeImage: editorLabelAttachmentTypeImage,
-				LabelAttachmentTypeVideo: editorLabelAttachmentTypeVideo,
-				LabelAttachmentTypeAudio: editorLabelAttachmentTypeAudio,
-				LabelAttachmentSrc:       editorLabelAttachmentSrc,
-				LabelUploadTestInput:     editorLabelUploadTestInput,
-				LabelUploadTestButton:    editorLabelUploadTestButton,
-				LabelNewTest:             editorLabelNewTest,
-				LabelDownloadTest:        editorLabelDownloadTest,
+				Header:                   "Test Editor",
+				LabelTitle:               "Title:",
+				LabelDescription:         "Description:",
+				LabelSubject:             "Subject:",
+				LabelTarget:              "Target audience:",
+				LabelInstitution:         "Institution:",
+				LabelExpiresIn:           "Expires in:",
+				LabelAddTask:             "+ Add task",
+				LabelTaskHeader:          "Task",
+				LabelTaskType:            "Type:",
+				LabelTaskTypeSingle:      "Single answer",
+				LabelTaskTypeMultiple:    "Multiple answers",
+				LabelTaskTypeOpen:        "Open question",
+				LabelTaskText:            "Text:",
+				LabelTaskAnswer:          "Answer:",
+				LabelTaskOptions:         "Answer options",
+				LabelTaskAddOption:       "+ Add option",
+				LabelAddAttachment:       "Add attachment",
+				LabelAttachmentName:      "Name:",
+				LabelAttachmentType:      "Type:",
+				LabelAttachmentTypeFile:  "File",
+				LabelAttachmentTypeImage: "Image",
+				LabelAttachmentTypeVideo: "Video",
+				LabelAttachmentTypeAudio: "Audio",
+				LabelAttachmentSrc:       "Source (URL):",
+				LabelUploadTestInput:     "Upload test file",
+				LabelUploadTestButton:    "Upload and edit",
+				LabelNewTest:             "Create new test",
+				LabelDownloadTest:        "Download test",
 			},
 			Error: UiErrorConfig{
-				ErrorHeaderLabel:  errorHeaderLabel,
-				ErrorDetailsLabel: errorDetailsLabel,
+				ErrorHeaderLabel:  "An error occurred!",
+				ErrorDetailsLabel: "Details",
 			},
 			Test: UiTestConfig{
-				StudentNameLabel:  studentNameLabel,
-				OpenAnswerLabel:   openAnswerLabel,
-				SubmitButtonLabel: submitButtonLabel,
+				StudentNameLabel:  "Your name:",
+				OpenAnswerLabel:   "Answer:",
+				SubmitButtonLabel: "Submit",
 			},
 		},
 	}
 
-	configFile, err := os.ReadFile(configPath)
+	v := viper.New()
 
-	if err != nil {
-		return defaultConfig
+	v.AddConfigPath(configDir)
+	v.SetConfigType("yaml")
+	v.SetConfigName("config")
+
+	if err := v.ReadInConfig(); err != nil {
+		fmt.Println(err)
+
+		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+			err = os.MkdirAll(path.Dir(configDir), 0770)
+
+			if err == nil || os.IsExist(err) {
+				data, err := yaml.Marshal(config)
+
+				if err != nil {
+					data = []byte{}
+				}
+
+				os.WriteFile(configPath, data, 0666)
+			}
+		}
+
+		return config
 	}
 
-	err = yaml.Unmarshal(configFile, &config)
-
-	if err != nil {
-		return defaultConfig
-	}
-
-	if config.General.TestsDirectory == "" {
-		config.General.TestsDirectory = testsDirectory
-	}
-
-	if config.General.ResultsDirectory == "" {
-		config.General.ResultsDirectory = testsDirectory
-	}
-
-	if config.Server.Port == "" {
-		config.Server.Port = port
-	}
-
-	if config.Ui.Editor.Header == "" {
-		config.Ui.Editor.Header = editorHeader
-	}
-
-	if config.Ui.Editor.LabelTitle == "" {
-		config.Ui.Editor.LabelTitle = editorLabelTitle
-	}
-
-	if config.Ui.Editor.LabelDescription == "" {
-		config.Ui.Editor.LabelDescription = editorLabelDescription
-	}
-
-	if config.Ui.Editor.LabelSubject == "" {
-		config.Ui.Editor.LabelSubject = editorLabelSubject
-	}
-
-	if config.Ui.Editor.LabelTarget == "" {
-		config.Ui.Editor.LabelTarget = editorLabelTarget
-	}
-
-	if config.Ui.Editor.LabelInstitution == "" {
-		config.Ui.Editor.LabelInstitution = editorLabelInstitution
-	}
-
-	if config.Ui.Editor.LabelExpiresIn == "" {
-		config.Ui.Editor.LabelExpiresIn = editorLabelExpiresIn
-	}
-
-	if config.Ui.Editor.LabelAddTask == "" {
-		config.Ui.Editor.LabelAddTask = editorLabelAddTask
-	}
-
-	if config.Ui.Editor.LabelTaskHeader == "" {
-		config.Ui.Editor.LabelTaskHeader = editorLabelTaskHeader
-	}
-
-	if config.Ui.Editor.LabelTaskType == "" {
-		config.Ui.Editor.LabelTaskType = editorLabelTaskType
-	}
-
-	if config.Ui.Editor.LabelTaskTypeSingle == "" {
-		config.Ui.Editor.LabelTaskTypeSingle = editorLabelTaskTypeSingle
-	}
-
-	if config.Ui.Editor.LabelTaskTypeMultiple == "" {
-		config.Ui.Editor.LabelTaskTypeMultiple = editorLabelTaskTypeMultiple
-	}
-
-	if config.Ui.Editor.LabelTaskTypeOpen == "" {
-		config.Ui.Editor.LabelTaskTypeOpen = editorLabelTaskTypeOpen
-	}
-
-	if config.Ui.Editor.LabelTaskText == "" {
-		config.Ui.Editor.LabelTaskText = editorLabelTaskText
-	}
-
-	if config.Ui.Editor.LabelTaskAnswer == "" {
-		config.Ui.Editor.LabelTaskAnswer = editorLabelTaskAnswer
-	}
-
-	if config.Ui.Editor.LabelTaskOptions == "" {
-		config.Ui.Editor.LabelTaskOptions = editorLabelTaskOptions
-	}
-
-	if config.Ui.Editor.LabelTaskAddOption == "" {
-		config.Ui.Editor.LabelTaskAddOption = editorLabelTaskAddOption
-	}
-
-	if config.Ui.Editor.LabelAddAttachment == "" {
-		config.Ui.Editor.LabelAddAttachment = editorLabelAddAttachment
-	}
-
-	if config.Ui.Editor.LabelAttachmentName == "" {
-		config.Ui.Editor.LabelAttachmentName = editorLabelAttachmentName
-	}
-
-	if config.Ui.Editor.LabelAttachmentType == "" {
-		config.Ui.Editor.LabelAttachmentType = editorLabelAttachmentType
-	}
-
-	if config.Ui.Editor.LabelAttachmentTypeFile == "" {
-		config.Ui.Editor.LabelAttachmentTypeFile = editorLabelAttachmentTypeFile
-	}
-
-	if config.Ui.Editor.LabelAttachmentTypeImage == "" {
-		config.Ui.Editor.LabelAttachmentTypeImage = editorLabelAttachmentTypeImage
-	}
-
-	if config.Ui.Editor.LabelAttachmentTypeVideo == "" {
-		config.Ui.Editor.LabelAttachmentTypeVideo = editorLabelAttachmentTypeVideo
-	}
-
-	if config.Ui.Editor.LabelAttachmentTypeAudio == "" {
-		config.Ui.Editor.LabelAttachmentTypeAudio = editorLabelAttachmentTypeAudio
-	}
-
-	if config.Ui.Editor.LabelAttachmentSrc == "" {
-		config.Ui.Editor.LabelAttachmentSrc = editorLabelAttachmentSrc
-	}
-
-	if config.Ui.Editor.LabelUploadTestInput == "" {
-		config.Ui.Editor.LabelUploadTestInput = editorLabelUploadTestInput
-	}
-
-	if config.Ui.Editor.LabelUploadTestButton == "" {
-		config.Ui.Editor.LabelUploadTestButton = editorLabelUploadTestButton
-	}
-
-	if config.Ui.Editor.LabelNewTest == "" {
-		config.Ui.Editor.LabelNewTest = editorLabelNewTest
-	}
-
-	if config.Ui.Editor.LabelDownloadTest == "" {
-		config.Ui.Editor.LabelDownloadTest = editorLabelDownloadTest
-	}
-
-	if config.Ui.Error.ErrorHeaderLabel == "" {
-		config.Ui.Error.ErrorHeaderLabel = errorHeaderLabel
-	}
-
-	if config.Ui.Error.ErrorDetailsLabel == "" {
-		config.Ui.Error.ErrorDetailsLabel = errorDetailsLabel
-	}
-
-	if config.Ui.Test.StudentNameLabel == "" {
-		config.Ui.Test.StudentNameLabel = studentNameLabel
-	}
-
-	if config.Ui.Test.OpenAnswerLabel == "" {
-		config.Ui.Test.OpenAnswerLabel = openAnswerLabel
-	}
-
-	if config.Ui.Test.SubmitButtonLabel == "" {
-		config.Ui.Test.SubmitButtonLabel = submitButtonLabel
-	}
-
+	v.Unmarshal(&config)
 	return config
 }
 
