@@ -7,20 +7,20 @@ import (
 )
 
 func Cmd(cmd *cobra.Command, args []string) {
-	userConfig := Init()
+	Init()
+
+	var err error = nil
 
 	switch len(args) {
 	case 0:
-		userConfig.Print()
+		err = Print()
 	case 1:
-		userConfig.PrintField(args[0])
+		err = PrintField(args[0])
 	case 2:
-		err := userConfig.SetField(args[0], args[1])
+		err = SetField(args[0], args[1])
+	}
 
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		userConfig.Save()
+	if err != nil {
+		log.Fatal(err)
 	}
 }
