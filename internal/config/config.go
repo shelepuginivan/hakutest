@@ -11,6 +11,44 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+const (
+	port                           = "8080"
+	studentNameLabel               = "Your name:"
+	openAnswerLabel                = "Answer:"
+	submitButtonLabel              = "Submit"
+	errorHeaderLabel               = "An error occurred!"
+	errorDetailsLabel              = "Details"
+	editorHeader                   = "Test Editor"
+	editorLabelTitle               = "Title:"
+	editorLabelDescription         = "Description:"
+	editorLabelSubject             = "Subject:"
+	editorLabelTarget              = "Target audience:"
+	editorLabelInstitution         = "Institution:"
+	editorLabelExpiresIn           = "Expires in:"
+	editorLabelAddTask             = "+ Add task"
+	editorLabelTaskHeader          = "Task"
+	editorLabelTaskType            = "Type:"
+	editorLabelTaskTypeSingle      = "Single answer"
+	editorLabelTaskTypeMultiple    = "Multiple answers"
+	editorLabelTaskTypeOpen        = "Open question"
+	editorLabelTaskText            = "Text:"
+	editorLabelTaskAnswer          = "Answer:"
+	editorLabelTaskOptions         = "Answer options"
+	editorLabelTaskAddOption       = "+ Add option"
+	editorLabelAddAttachment       = "Add attachment"
+	editorLabelAttachmentName      = "Name:"
+	editorLabelAttachmentType      = "Type:"
+	editorLabelAttachmentTypeFile  = "File"
+	editorLabelAttachmentTypeImage = "Image"
+	editorLabelAttachmentTypeVideo = "Video"
+	editorLabelAttachmentTypeAudio = "Audio"
+	editorLabelAttachmentSrc       = "Source (URL):"
+	editorLabelUploadTestInput     = "Upload test file"
+	editorLabelUploadTestButton    = "Upload and edit"
+	editorLabelNewTest             = "Create new test"
+	editorLabelDownloadTest        = "Download test"
+)
+
 type GeneralConfig struct {
 	TestsDirectory   string `yaml:"tests_directory"`
 	ResultsDirectory string `yaml:"results_directory"`
@@ -86,45 +124,8 @@ func getConfigPath() string {
 }
 
 func Init() Config {
-	var (
-		port                           = "8080"
-		testsDirectory                 = "user_test"
-		resultsDirectory               = "user_results"
-		studentNameLabel               = "Your name:"
-		openAnswerLabel                = "Answer:"
-		submitButtonLabel              = "Submit"
-		errorHeaderLabel               = "An error occurred!"
-		errorDetailsLabel              = "Details"
-		editorHeader                   = "Test Editor"
-		editorLabelTitle               = "Title:"
-		editorLabelDescription         = "Description:"
-		editorLabelSubject             = "Subject:"
-		editorLabelTarget              = "Target audience:"
-		editorLabelInstitution         = "Institution:"
-		editorLabelExpiresIn           = "Expires in:"
-		editorLabelAddTask             = "+ Add task"
-		editorLabelTaskHeader          = "Task"
-		editorLabelTaskType            = "Type:"
-		editorLabelTaskTypeSingle      = "Single answer"
-		editorLabelTaskTypeMultiple    = "Multiple answers"
-		editorLabelTaskTypeOpen        = "Open question"
-		editorLabelTaskText            = "Text:"
-		editorLabelTaskAnswer          = "Answer:"
-		editorLabelTaskOptions         = "Answer options"
-		editorLabelTaskAddOption       = "+ Add option"
-		editorLabelAddAttachment       = "Add attachment"
-		editorLabelAttachmentName      = "Name:"
-		editorLabelAttachmentType      = "Type:"
-		editorLabelAttachmentTypeFile  = "File"
-		editorLabelAttachmentTypeImage = "Image"
-		editorLabelAttachmentTypeVideo = "Video"
-		editorLabelAttachmentTypeAudio = "Audio"
-		editorLabelAttachmentSrc       = "Source (URL):"
-		editorLabelUploadTestInput     = "Upload test file"
-		editorLabelUploadTestButton    = "Upload and edit"
-		editorLabelNewTest             = "Create new test"
-		editorLabelDownloadTest        = "Download test"
-	)
+	testsDirectory := "user_test"
+	resultsDirectory := "user_results"
 
 	configPath := getConfigPath()
 	config := Config{}
