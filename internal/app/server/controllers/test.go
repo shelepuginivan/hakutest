@@ -15,7 +15,7 @@ type TestController struct{}
 
 func (t TestController) GetTest(c *gin.Context) {
 	testName := c.Param("test")
-	test, err := parser.ParseTest(testName)
+	test, err := parser.Get(testName)
 
 	if err != nil {
 		code := http.StatusBadRequest
@@ -69,8 +69,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 	}
 
 	name := c.Param("test")
-
-	results, err := parser.GetTestResults(name, c.Request.PostForm)
+	test, err := parser.Get(name)
 
 	if err != nil {
 		code := http.StatusBadRequest

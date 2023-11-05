@@ -3,7 +3,6 @@ package parser
 import (
 	"crypto/sha256"
 	"encoding/hex"
-	"encoding/json"
 	"os"
 	"path"
 	"strings"
@@ -19,20 +18,6 @@ func GetTestPath(name string) string {
 	}
 
 	return path.Join(testsDirectory, name)
-}
-
-func ParseTest(name string) (Test, error) {
-	test := Test{}
-	testPath := GetTestPath(name)
-	testFile, err := os.ReadFile(testPath)
-
-	if err != nil {
-		return test, err
-	}
-
-	err = json.Unmarshal(testFile, &test)
-
-	return test, err
 }
 
 func GetTestCheckSum(name string) (string, error) {

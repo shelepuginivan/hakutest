@@ -1,6 +1,10 @@
 package parser
 
-import "time"
+import (
+	"encoding/json"
+	"os"
+	"time"
+)
 
 type Attachment struct {
 	Name string `json:"name"`
@@ -26,4 +30,18 @@ type Test struct {
 	CreatedAt   time.Time `json:"createdAt"`
 	ExpiresIn   time.Time `json:"expiresIn"`
 	Tasks       []Task    `json:"tasks"`
+}
+
+func Get(name string) (Test, error) {
+	test := Test{}
+	testPath := GetTestPath(name)
+	testFile, err := os.ReadFile(testPath)
+
+	if err != nil {
+		return test, err
+	}
+
+	err = json.Unmarshal(testFile, &test)
+
+	return test, err
 }

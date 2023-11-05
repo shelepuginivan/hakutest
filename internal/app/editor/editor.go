@@ -104,7 +104,7 @@ func Cmd(cmd *cobra.Command, args []string) error {
 	if len(args) == 1 {
 		name = args[0]
 
-		parsedTest, err := parser.ParseTest(name)
+		parsedTest, err := parser.Get(name)
 
 		if err == nil {
 			test = parsedTest
