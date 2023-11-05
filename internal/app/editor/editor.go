@@ -117,6 +117,7 @@ func Cmd(cmd *cobra.Command, args []string) error {
 	test.Description = prompter.Prompt(message("Description"), test.Description)
 	test.Target = prompter.Prompt(message("Target audience"), test.Target)
 	test.Subject = prompter.Prompt(message("Subject of the test"), test.Subject)
+	test.Author = prompter.Prompt(message("Author"), test.Author)
 	test.Institution = prompter.Prompt(message("Educational institution"), test.Institution)
 
 	expiresInString := prompter.Prompt(message("Expires in"), test.ExpiresIn.Format(timeLayout))
