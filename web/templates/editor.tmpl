@@ -79,6 +79,18 @@
                     >
                 </div>
                 <div class="input-wrapper">
+                    <label for="author">
+                        {{ .Config.LabelAuthor }}
+                    </label>
+                    <input
+                        id="author"
+                        class="input-text"
+                        name="author"
+                        type="text"
+                        value="{{ .Test.Author }}"
+                    >
+                </div>
+                <div class="input-wrapper">
                     <label for="target">
                         {{ .Config.LabelTarget }}
                     </label>
