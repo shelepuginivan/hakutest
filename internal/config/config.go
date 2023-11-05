@@ -18,6 +18,25 @@ type ServerConfig struct {
 	Port string `yaml:"port" mapstructure:"port"`
 }
 
+type ExcelConfig struct {
+	TestResultsSheet    string `yaml:"test_results_sheet" mapstructure:"test_results_sheet"`
+	TestStatisticsSheet string `yaml:"statistics_sheet" mapstructure:"test_statistics_sheet"`
+	HeaderStudent       string `yaml:"header_student" mapstructure:"header_student"`
+	HeaderPoints        string `yaml:"header_points" mapstructure:"header_points"`
+	HeaderPercentage    string `yaml:"header_percentage" mapstructure:"header_percentage"`
+}
+
+type ImageConfig struct {
+	Title  string `yaml:"title" mapstructure:"title"`
+	LabelX string `yaml:"label_x" mapstructure:"label_x"`
+	LabelY string `yaml:"label_y" mapstructure:"label_y"`
+}
+
+type StatisticsConfig struct {
+	Excel ExcelConfig `yaml:"excel" mapstructure:"excel"`
+	Image ImageConfig `yaml:"image" mapstructure:"image"`
+}
+
 type UiEditorConfig struct {
 	Header                   string `yaml:"header" mapstructure:"header"`
 	LabelTitle               string `yaml:"label_title" mapstructure:"label_title"`
@@ -68,9 +87,10 @@ type UiConfig struct {
 }
 
 type Config struct {
-	General GeneralConfig `yaml:"general" mapstructure:"general"`
-	Server  ServerConfig  `yaml:"server" mapstructure:"server"`
-	Ui      UiConfig      `yaml:"ui" mapstructure:"ui"`
+	General    GeneralConfig    `yaml:"general" mapstructure:"general"`
+	Server     ServerConfig     `yaml:"server" mapstructure:"server"`
+	Statistics StatisticsConfig `yaml:"stats" mapstructure:"stats"`
+	Ui         UiConfig         `yaml:"ui" mapstructure:"ui"`
 }
 
 func getConfigDir() string {
@@ -105,6 +125,20 @@ func Init() Config {
 		},
 		Server: ServerConfig{
 			Port: "8080",
+		},
+		Statistics: StatisticsConfig{
+			Excel: ExcelConfig{
+				TestResultsSheet:    "Test Results",
+				TestStatisticsSheet: "Test Statistics",
+				HeaderStudent:       "Student",
+				HeaderPoints:        "Points",
+				HeaderPercentage:    "%",
+			},
+			Image: ImageConfig{
+				Title:  "Student Performance",
+				LabelX: "Points",
+				LabelY: "Students",
+			},
 		},
 		Ui: UiConfig{
 			Editor: UiEditorConfig{
@@ -157,6 +191,7 @@ func Init() Config {
 	v.SetConfigName("config")
 	v.SetDefault("general", config.General)
 	v.SetDefault("server", config.Server)
+	v.SetDefault("stats", config.Statistics)
 	v.SetDefault("ui", config.Ui)
 
 	if err := v.ReadInConfig(); err != nil {

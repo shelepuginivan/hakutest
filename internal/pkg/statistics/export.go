@@ -6,6 +6,7 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/rodaine/table"
+	"github.com/shelepuginivan/hakutest/internal/config"
 	"github.com/xuri/excelize/v2"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
@@ -33,6 +34,7 @@ func ExportToTable(statistics Statistics) table.Table {
 }
 
 func ExportToExcel(statistics Statistics, testName string) error {
+	excelConfig := config.Init().Statistics.Excel
 	file := excelize.NewFile()
 
 	defer file.Close()
@@ -85,10 +87,16 @@ func ExportToExcel(statistics Statistics, testName string) error {
 		return err
 	}
 
-	testResultsSheet := "Test Results"
-	statisticsSheet := "Statistics"
+	testResultsSheet := excelConfig.TestStatisticsSheet
+	statisticsSheet := excelConfig.TestResultsSheet
 
-	headers := []string{"#", "Student", "Points", "Percentage"}
+	headers := []string{
+		"#",
+		excelConfig.HeaderStudent,
+		excelConfig.HeaderPoints,
+		excelConfig.HeaderPercentage,
+	}
+
 	index, err := file.NewSheet(testResultsSheet)
 
 	if err != nil {
@@ -171,8 +179,8 @@ func ExportToExcel(statistics Statistics, testName string) error {
 
 func ExportToPng(statistics Statistics, testName string) error {
 	p := plot.New()
-
 	values := plotter.Values{}
+	imageConfig := config.Init().Statistics.Image
 
 	for _, entry := range statistics {
 		values = append(values, float64(entry.Results.Points))
@@ -186,9 +194,9 @@ func ExportToPng(statistics Statistics, testName string) error {
 
 	p.Add(hist)
 
-	p.Title.Text = "Student Performance"
-	p.X.Label.Text = "Points"
-	p.Y.Label.Text = "Students"
+	p.Title.Text = imageConfig.Title
+	p.X.Label.Text = imageConfig.LabelX
+	p.Y.Label.Text = imageConfig.LabelY
 
 	return p.Save(8*vg.Inch, 4*vg.Inch, testName+".png")
 }
