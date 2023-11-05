@@ -91,9 +91,8 @@ func (t TestController) SubmitTest(c *gin.Context) {
 	}
 
 	results := test.GetResults(c.Request.PostForm)
-	err = parser.SaveTestResults(name, results)
 
-	if err != nil {
+	if err := results.Save(name); err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
 			"Code":   http.StatusBadRequest,
 			"Config": config.Init().Ui.Error,

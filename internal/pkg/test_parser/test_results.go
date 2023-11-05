@@ -78,9 +78,9 @@ func (t Test) GetResults(answers map[string][]string) TestResults {
 	return results
 }
 
-func SaveTestResults(name string, results TestResults) error {
+func (r TestResults) Save(name string) error {
 	testResultsDirectory := path.Join(config.Init().General.ResultsDirectory, name)
-	resultsFilePath := path.Join(testResultsDirectory, results.Student+".txt")
+	resultsFilePath := path.Join(testResultsDirectory, r.Student+".txt")
 
 	if _, err := os.Stat(resultsFilePath); !os.IsNotExist(err) {
 		// Test was already submitted by this student
@@ -93,7 +93,7 @@ func SaveTestResults(name string, results TestResults) error {
 		return err
 	}
 
-	data, err := yaml.Marshal(results)
+	data, err := yaml.Marshal(r)
 
 	if err != nil {
 		return err
