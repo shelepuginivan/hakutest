@@ -42,6 +42,7 @@ type UiEditorConfig struct {
 	LabelTitle               string `yaml:"label_title" mapstructure:"label_title"`
 	LabelDescription         string `yaml:"label_description" mapstructure:"label_description"`
 	LabelSubject             string `yaml:"label_subject" mapstructure:"label_subject"`
+	LabelAuthor              string `yaml:"label_author" mapstructure:"label_author"`
 	LabelTarget              string `yaml:"label_target" mapstructure:"label_subject"`
 	LabelInstitution         string `yaml:"label_institution" mapstructure:"label_institution"`
 	LabelExpiresIn           string `yaml:"label_expires_in" mapstructure:"label_expires_in"`
@@ -146,6 +147,7 @@ func Init() Config {
 				LabelTitle:               "Title:",
 				LabelDescription:         "Description:",
 				LabelSubject:             "Subject:",
+				LabelAuthor:              "Author:",
 				LabelTarget:              "Target audience:",
 				LabelInstitution:         "Institution:",
 				LabelExpiresIn:           "Expires in:",
