@@ -35,32 +35,21 @@ func CompareAnswers(received, expected string) bool {
 	return strings.TrimSpace(strings.ToLower(received)) == strings.TrimSpace(strings.ToLower(expected))
 }
 
-func GetTestResults(name string, answers map[string][]string) (TestResults, error) {
+func (t Test) GetResults(answers map[string][]string) TestResults {
 	submittedAt := time.Now()
 	student := strings.Join(answers["student"], "")
-	test, err := ParseTest(name)
-
-	if err != nil {
-		return TestResults{}, err
-	}
-
-	checksum, err := GetTestCheckSum(name)
-
-	if err != nil {
-		return TestResults{}, err
-	}
 
 	results := TestResults{
 		Student:     student,
 		SubmittedAt: submittedAt,
 		Test: TestInfo{
-			Title:  test.Title,
-			Author: test.Author,
-			Sha256: checksum,
+			Title:  t.Title,
+			Author: t.Author,
+			Sha256: t.Sha256Sum(),
 		},
 		Results: Results{
 			Points:     0,
-			Total:      len(test.Tasks),
+			Total:      len(t.Tasks),
 			Percentage: 0,
 			Tasks:      make(map[string]bool),
 		},
@@ -74,7 +63,7 @@ func GetTestResults(name string, answers map[string][]string) (TestResults, erro
 		}
 
 		studentAnswer := strings.Join(answer, ",")
-		correctAnswer := test.Tasks[index].Answer
+		correctAnswer := t.Tasks[index].Answer
 		isCorrect := CompareAnswers(studentAnswer, correctAnswer)
 
 		results.Results.Tasks[i] = isCorrect
@@ -84,9 +73,9 @@ func GetTestResults(name string, answers map[string][]string) (TestResults, erro
 		}
 	}
 
-	results.Results.Percentage = 100 * results.Results.Points / len(test.Tasks)
+	results.Results.Percentage = 100 * results.Results.Points / len(t.Tasks)
 
-	return results, nil
+	return results
 }
 
 func SaveTestResults(name string, results TestResults) error {

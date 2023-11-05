@@ -90,6 +90,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 		return
 	}
 
+	results := test.GetResults(c.Request.PostForm)
 	err = parser.SaveTestResults(name, results)
 
 	if err != nil {
