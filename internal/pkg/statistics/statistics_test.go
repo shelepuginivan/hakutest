@@ -6,6 +6,7 @@ import (
 	"time"
 
 	parser "github.com/shelepuginivan/hakutest/internal/pkg/test_parser"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestExportToPng(t *testing.T) {
@@ -33,9 +34,7 @@ func TestExportToPng(t *testing.T) {
 
 	outputFile := "test_output"
 
-	if ExportToPng(statistics, outputFile) != nil {
-		t.Fail()
-	}
+	assert.Nil(t, ExportToPng(statistics, outputFile))
 
 	defer func() {
 		err := os.Remove(outputFile + ".png")
@@ -73,9 +72,7 @@ func TestExportToExcel(t *testing.T) {
 
 	outputFile := "test_output"
 
-	if err := ExportToExcel(statistics, outputFile); err != nil {
-		t.Fail()
-	}
+	assert.Nil(t, ExportToExcel(statistics, outputFile))
 
 	defer func() {
 		err := os.Remove(outputFile + ".xlsx")

@@ -7,14 +7,11 @@ import (
 	"testing"
 
 	"github.com/spf13/viper"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGetConfigDir(t *testing.T) {
-	dir := getConfigDir()
-
-	if !strings.HasSuffix(dir, "/hakutest") {
-		t.Fail()
-	}
+	assert.True(t, strings.HasSuffix(getConfigDir(), "/hakutest"))
 }
 
 func TestInitConfig(t *testing.T) {
@@ -32,9 +29,7 @@ func TestInitConfig(t *testing.T) {
 
 	for _, v := range []reflect.Value{g, s, s_e, s_i, ui_ed, ui_er, ui_t} {
 		for i := 0; i < v.NumField(); i++ {
-			if v.Field(i).Interface() == "" {
-				t.Fail()
-			}
+			assert.NotEqual(t, v.Field(i).Interface(), "")
 		}
 	}
 }
@@ -42,9 +37,7 @@ func TestInitConfig(t *testing.T) {
 func TestPrint(t *testing.T) {
 	Init()
 
-	if Print() != nil {
-		t.Fail()
-	}
+	assert.Nil(t, Print())
 }
 
 func TestPrintField(t *testing.T) {
@@ -56,9 +49,7 @@ func TestPrintField(t *testing.T) {
 	keys := viper.AllKeys()
 
 	for _, k := range keys {
-		if PrintField(k) != nil {
-			t.Fail()
-		}
+		assert.Nil(t, PrintField(k))
 	}
 }
 
@@ -74,9 +65,7 @@ func TestSetField(t *testing.T) {
 		v := viper.Get(k)
 
 		if _, ok := v.(string); ok {
-			if SetField(k, v.(string)) != nil {
-				t.Fail()
-			}
+			assert.Nil(t, SetField(k, v.(string)))
 		}
 	}
 }
@@ -85,8 +74,6 @@ func TestNegativeSetField(t *testing.T) {
 	Init()
 
 	for _, k := range []string{"general", "server", "stats", "stats.excel", "stats.image", "ui", "ui.error", "ui.test"} {
-		if SetField(k, "") == nil {
-			t.Fail()
-		}
+		assert.Error(t, SetField(k, ""))
 	}
 }
