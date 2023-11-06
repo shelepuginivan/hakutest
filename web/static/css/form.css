@@ -64,17 +64,15 @@
 
 .button {
     transition: var(--transition);
+    display: block;
     font-family: "Nunito", sans-serif;
     font-size: large;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 8px 40px;
     border-radius: 4px;
-    width: fit-content;
     align-self: center;
     color: var(--accent);
+    text-align: center;
     background-color: transparent;
     border: 2px solid var(--accent);
     cursor: pointer;
@@ -87,6 +85,7 @@
 
 .button-group {
     display: flex;
+    flex-wrap: wrap;
     gap: 16px;
     align-items: center;
     justify-content: center;
