@@ -37,11 +37,24 @@
                                     <img
                                         src="{{ call $.url .Attachment.Src }}"
                                         alt="{{ .Attachment.Name }}"
+                                        loading="lazy"
                                     >
                                 {{ else if eq .Attachment.Type "video" }}
-                                    <video controls src="{{ call $.url  .Attachment.Src }}"></video>
+                                    <video
+                                        controls
+                                        preload="metadata"
+                                        aria-label="{{ .Attachment.Name }}"
+                                    >
+                                        <source src="{{ call $.url  .Attachment.Src }}">
+                                    </video>
                                 {{ else if eq .Attachment.Type "audio" }}
-                                    <audio controls src="{{ call $.url  .Attachment.Src }}"></audio>
+                                    <audio
+                                        controls
+                                        preload="metadata"
+                                        aria-label="{{ .Attachment.Name }}"
+                                    >
+                                        <source src="{{ call $.url  .Attachment.Src }}">
+                                    </audio>
                                 {{ else if eq .Attachment.Type "file" }}
                                     <a
                                         href="{{ call $.url .Attachment.Src }}"
