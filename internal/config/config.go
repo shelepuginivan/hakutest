@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"os"
 	"path"
 
@@ -197,10 +196,8 @@ func Init() Config {
 	v.SetDefault("ui", config.Ui)
 
 	if err := v.ReadInConfig(); err != nil {
-		fmt.Println(err)
-
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			err = os.MkdirAll(path.Dir(configDir), 0770)
+			err = os.MkdirAll(configDir, 0770)
 
 			if err == nil || os.IsExist(err) {
 				data, err := yaml.Marshal(config)
