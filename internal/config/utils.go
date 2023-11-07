@@ -6,7 +6,6 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/rodaine/table"
-	"github.com/spf13/viper"
 )
 
 func printMap(m map[string]interface{}) {
@@ -40,10 +39,7 @@ func printMap(m map[string]interface{}) {
 }
 
 func Print() error {
-	v := viper.New()
-	v.AddConfigPath(getConfigDir())
-	v.SetConfigType("yaml")
-	v.SetConfigName("config")
+	v := getViper()
 
 	if err := v.ReadInConfig(); err != nil {
 		return err
@@ -55,10 +51,7 @@ func Print() error {
 }
 
 func PrintField(field string) error {
-	v := viper.New()
-	v.AddConfigPath(getConfigDir())
-	v.SetConfigType("yaml")
-	v.SetConfigName("config")
+	v := getViper()
 
 	if err := v.ReadInConfig(); err != nil {
 		return err
@@ -78,10 +71,7 @@ func PrintField(field string) error {
 }
 
 func SetField(field, value string) error {
-	v := viper.New()
-	v.AddConfigPath(getConfigDir())
-	v.SetConfigType("yaml")
-	v.SetConfigName("config")
+	v := getViper()
 
 	if err := v.ReadInConfig(); err != nil {
 		return err

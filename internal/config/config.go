@@ -102,7 +102,16 @@ func getConfigDir() string {
 	}
 
 	return path.Join(configDir, "hakutest")
+}
 
+func getViper() *viper.Viper {
+	v := viper.New()
+
+	v.AddConfigPath(getConfigDir())
+	v.SetConfigType("yaml")
+	v.SetConfigName("config")
+
+	return v
 }
 
 func Init() Config {
@@ -187,11 +196,7 @@ func Init() Config {
 		},
 	}
 
-	v := viper.New()
-
-	v.AddConfigPath(configDir)
-	v.SetConfigType("yaml")
-	v.SetConfigName("config")
+	v := getViper()
 	v.SetDefault("general", config.General)
 	v.SetDefault("server", config.Server)
 	v.SetDefault("stats", config.Statistics)
