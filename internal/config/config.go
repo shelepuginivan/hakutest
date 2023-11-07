@@ -108,6 +108,7 @@ func getViper() *viper.Viper {
 	v := viper.New()
 
 	v.AddConfigPath(getConfigDir())
+	v.AddConfigPath(".")
 	v.SetConfigType("yaml")
 	v.SetConfigName("config")
 
