@@ -3,9 +3,23 @@ package server
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/app/server/controllers"
+	"github.com/shelepuginivan/hakutest/internal/config"
 )
 
+func setMode(mode string) {
+	switch mode {
+	case "debug":
+		gin.SetMode(gin.DebugMode)
+	case "test":
+		gin.SetMode(gin.TestMode)
+	default:
+		gin.SetMode(gin.ReleaseMode)
+	}
+}
+
 func NewRouter() *gin.Engine {
+	setMode(config.Init().Server.Mode)
+
 	router := gin.New()
 	router.LoadHTMLGlob("web/templates/*")
 	router.Static("/static", "web/static")
