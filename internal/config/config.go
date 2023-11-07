@@ -15,6 +15,7 @@ type GeneralConfig struct {
 
 type ServerConfig struct {
 	Port string `yaml:"port" mapstructure:"port"`
+	Mode string `yaml:"mode" mapstructure:"mode"`
 }
 
 type ExcelConfig struct {
@@ -125,6 +126,7 @@ func Init() Config {
 		},
 		Server: ServerConfig{
 			Port: "8080",
+			Mode: "release",
 		},
 		Statistics: StatisticsConfig{
 			Excel: ExcelConfig{
