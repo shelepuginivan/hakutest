@@ -79,7 +79,8 @@ func (t Test) GetResults(answers map[string][]string) TestResults {
 }
 
 func (r TestResults) Save(name string) error {
-	testResultsDirectory := path.Join(config.Init().General.ResultsDirectory, name)
+	testName := strings.TrimSuffix(name, ".json")
+	testResultsDirectory := path.Join(config.Init().General.ResultsDirectory, testName)
 	resultsFilePath := path.Join(testResultsDirectory, r.Student+".txt")
 
 	if _, err := os.Stat(resultsFilePath); !os.IsNotExist(err) {
