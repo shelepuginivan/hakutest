@@ -10,7 +10,7 @@ func init() {
 }
 
 var statisticsCmd = &cobra.Command{
-	Use:   "statistics",
+	Use:   "statistics <test> [format]",
 	Short: "Test results statistics",
 	Long:  "Export test results statistics",
 	Args:  cobra.RangeArgs(1, 2),

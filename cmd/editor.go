@@ -10,8 +10,9 @@ func init() {
 }
 
 var editorCmd = &cobra.Command{
-	Use:   "editor",
+	Use:   "editor [filename]",
 	Short: "Edit test files",
 	Long:  "Edit hakutest test files",
+	Args:  cobra.RangeArgs(0, 1),
 	RunE:  editor.Cmd,
 }
