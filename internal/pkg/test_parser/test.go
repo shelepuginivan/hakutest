@@ -3,6 +3,7 @@ package parser
 import (
 	"encoding/json"
 	"os"
+	"path"
 	"time"
 )
 
@@ -44,4 +45,22 @@ func Get(name string) (Test, error) {
 	err = json.Unmarshal(testFile, &test)
 
 	return test, err
+}
+
+func Import(file string) error {
+	testFile, err := os.ReadFile(file)
+	testPath := GetTestPath(path.Base(file))
+	test := Test{}
+
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(testFile, &test)
+
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile(testPath, testFile, 0666)
 }
