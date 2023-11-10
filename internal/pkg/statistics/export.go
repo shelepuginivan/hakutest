@@ -152,7 +152,7 @@ func ExportToExcel(statistics Statistics, testName string) error {
 				return err
 			}
 
-			column, err := excelize.ColumnNumberToName(taskIndex + 2)
+			column, err := excelize.ColumnNumberToName(taskIndex + 1)
 
 			if err != nil {
 				return err
@@ -162,7 +162,7 @@ func ExportToExcel(statistics Statistics, testName string) error {
 			taskNumberCell := column + "1"
 
 			file.SetCellStyle(statisticsSheet, taskNumberCell, taskNumberCell, borderBottom)
-			file.SetCellValue(statisticsSheet, taskNumberCell, taskIndex+1)
+			file.SetCellValue(statisticsSheet, taskNumberCell, taskIndex)
 
 			if correct {
 				file.SetCellStyle(statisticsSheet, valueCell, valueCell, correctStyle)

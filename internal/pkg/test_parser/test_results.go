@@ -66,7 +66,7 @@ func (t Test) GetResults(answers map[string][]string) TestResults {
 		correctAnswer := t.Tasks[index].Answer
 		isCorrect := CompareAnswers(studentAnswer, correctAnswer)
 
-		results.Results.Tasks[i] = isCorrect
+		results.Results.Tasks[strconv.Itoa(index+1)] = isCorrect
 
 		if isCorrect {
 			results.Results.Points++
