@@ -174,6 +174,12 @@ func ExportToExcel(statistics Statistics, testName string) error {
 		}
 	}
 
+	defaultSheet := "Sheet1"
+
+	if _, err = file.GetSheetIndex(defaultSheet); err == nil {
+		file.DeleteSheet(defaultSheet)
+	}
+
 	return file.SaveAs(testName + ".xlsx")
 }
 
