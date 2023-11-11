@@ -1,0 +1,2 @@
+start hakutest.exe
+
