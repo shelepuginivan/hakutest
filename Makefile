@@ -10,9 +10,11 @@ linux:
 	rm -r ${TARGET_DIR}/linux
 
 windows:
-	GOARCH=amd64 GOOS=windows go build -o ${TARGET_DIR}/win64/${BINARY_NAME}.exe .
-	cp -r web ${TARGET_DIR}/win64
-	cd ${TARGET_DIR} && mv win64 ${BINARY_NAME} && zip ${BINARY_NAME}-win64.zip -r ${BINARY_NAME}
+	GOARCH=amd64 GOOS=windows go build -o ${TARGET_DIR}/${BINARY_NAME}/${BINARY_NAME}.exe .
+	cp -r web ${TARGET_DIR}/${BINARY_NAME}
+	cd ${TARGET_DIR} && zip ${BINARY_NAME}-win64.zip -r ${BINARY_NAME}
+	cp tools/* ${TARGET_DIR}/${BINARY_NAME}
+	cd ${TARGET_DIR} && zip ${BINARY_NAME}-with-scripts-win64.zip -r ${BINARY_NAME}
 	rm -r ${TARGET_DIR}/${BINARY_NAME}
 
 mac:
