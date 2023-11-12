@@ -43,7 +43,7 @@ type UiEditorConfig struct {
 	LabelDescription         string `yaml:"label_description" mapstructure:"label_description"`
 	LabelSubject             string `yaml:"label_subject" mapstructure:"label_subject"`
 	LabelAuthor              string `yaml:"label_author" mapstructure:"label_author"`
-	LabelTarget              string `yaml:"label_target" mapstructure:"label_subject"`
+	LabelTarget              string `yaml:"label_target" mapstructure:"label_target"`
 	LabelInstitution         string `yaml:"label_institution" mapstructure:"label_institution"`
 	LabelExpiresIn           string `yaml:"label_expires_in" mapstructure:"label_expires_in"`
 	LabelAddTask             string `yaml:"label_add_task" mapstructure:"label_add_task"`
