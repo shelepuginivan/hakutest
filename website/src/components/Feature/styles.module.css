@@ -1,0 +1,32 @@
+.feature {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    width: 90%;
+    max-width: 900px;
+    gap: 24px;
+}
+
+.featureText {
+    max-width: 500px;
+}
+
+.featureTitle {
+    font-size: x-large;
+}
+
+.featureImage {
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    min-height: 200px;
+}
+
+@media screen and (max-width: 750px) {
+    .feature {
+        flex-direction: column-reverse;
+        justify-content: center;
+        text-align: center;
+    }
+}
