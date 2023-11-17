@@ -3,8 +3,8 @@ import type { Options, ThemeConfig } from '@docusaurus/preset-classic'
 import { themes as prismThemes } from 'prism-react-renderer'
 
 const config: Config = {
-    title: 'My Site',
-    tagline: 'Dinosaurs are cool',
+    title: 'Hakutest',
+    tagline: 'Reliable and efficient educational testing platform',
     favicon: 'img/favicon.ico',
 
     // Set the production url of your site here
@@ -13,10 +13,8 @@ const config: Config = {
     // For GitHub pages deployment, it is often '/<projectName>/'
     baseUrl: '/',
 
-    // GitHub pages deployment config.
-    // If you aren't using GitHub pages, you don't need these.
-    organizationName: 'facebook', // Usually your GitHub org/user name.
-    projectName: 'docusaurus', // Usually your repo name.
+    organizationName: 'shelepuginivan',
+    projectName: 'hakutest',
 
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
@@ -57,9 +55,9 @@ const config: Config = {
     themeConfig: {
         image: 'img/hakutest-social-card.jpg',
         navbar: {
-            title: 'My Site',
+            title: 'Hakutest',
             logo: {
-                alt: 'My Site Logo',
+                alt: 'Hakutest Logo',
                 src: 'img/logo.svg',
             },
             items: [
@@ -67,11 +65,11 @@ const config: Config = {
                     type: 'docSidebar',
                     sidebarId: 'tutorialSidebar',
                     position: 'left',
-                    label: 'Tutorial',
+                    label: 'Documentation',
                 },
                 { to: '/blog', label: 'Blog', position: 'left' },
                 {
-                    href: 'https://github.com/facebook/docusaurus',
+                    href: 'https://github.com/shelepuginivan/hakutest',
                     label: 'GitHub',
                     position: 'right',
                 },
@@ -84,25 +82,8 @@ const config: Config = {
                     title: 'Docs',
                     items: [
                         {
-                            label: 'Tutorial',
+                            label: 'Getting started',
                             to: '/docs/intro',
-                        },
-                    ],
-                },
-                {
-                    title: 'Community',
-                    items: [
-                        {
-                            label: 'Stack Overflow',
-                            href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-                        },
-                        {
-                            label: 'Discord',
-                            href: 'https://discordapp.com/invite/docusaurus',
-                        },
-                        {
-                            label: 'Twitter',
-                            href: 'https://twitter.com/docusaurus',
                         },
                     ],
                 },
@@ -115,12 +96,12 @@ const config: Config = {
                         },
                         {
                             label: 'GitHub',
-                            href: 'https://github.com/facebook/docusaurus',
+                            href: 'https://github.com/shelepuginivan/hakutest',
                         },
                     ],
                 },
             ],
-            copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+            copyright: `Copyright © ${new Date().getFullYear()} Ivan Shelepugin. Built with Docusaurus.`,
         },
         prism: {
             theme: prismThemes.github,
