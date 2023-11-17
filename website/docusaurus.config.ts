@@ -44,6 +44,12 @@ const config: Config = {
                 theme: {
                     customCss: './src/css/custom.css',
                 },
+                sitemap: {
+                    changefreq: 'weekly',
+                    priority: 0.5,
+                    ignorePatterns: ['/tags/**'],
+                    filename: 'sitemap.xml',
+                },
             } satisfies Options,
         ],
     ],
