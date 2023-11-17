@@ -1,0 +1,25 @@
+.header {
+    background: no-repeat center / cover url('/img/homepage-header-bg.jpg');
+    padding: 64px 16px;
+}
+
+.logoSvg {
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+}
+
+.headerContent {
+    padding: 24px;
+}
+
+.tagline {
+    color: white;
+    font-size: x-large;
+}
+
+.headerButtons {
+    display: flex;
+    gap: 8px;
+    padding-block: 24px;
+}
