@@ -20,6 +20,22 @@
 
 .headerButtons {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     padding-block: 24px;
+}
+
+@media screen and (max-width: 650px) {
+    .logoSvg {
+        width: 100%;
+    }
+
+    .tagline {
+        font-size: large;
+    }
+
+    .headerButtons {
+        flex-direction: column;
+        align-items: center;
+    }
 }
