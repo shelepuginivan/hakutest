@@ -16,6 +16,22 @@ Syntax: `hakutest config [field] [value]`.
 
 The `hakutest config` command is used to manage the configuration for Hakutest via the command line interface. It provides functionality for printing and updating configuration fields. This command has three different uses depending on the number of arguments provided.
 
+:::info
+
+Commands must be run from the installation directory.
+
+:::
+
+:::info
+
+You may need to add ./ before the command depending on your system settings as follows:
+
+```shell
+./hakutest config
+```
+
+:::
+
 ### Print the entire config
 
 If no arguments are provided, the command will print the entire config to the console. The printed config includes tables and other formatting for better readability.
