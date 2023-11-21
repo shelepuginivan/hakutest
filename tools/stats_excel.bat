@@ -8,4 +8,4 @@ if "%~1"=="" (
   for %%i in (%~1) do set testName=%%~ni
 )
 
-hakutest statistics %testName% excel
+hakutest statistics "%testName%" excel
