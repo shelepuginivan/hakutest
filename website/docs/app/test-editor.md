@@ -19,6 +19,12 @@ Default test editor URL is http://localhost:8080/editor/upload.
 
 ## Using the editor
 
+:::tip
+
+For more information about test structure, it is recommended to read [Tests guide](/docs/guide/tests).
+
+:::
+
 ### Create new test
 
 To create new test, click "Create new test" button.
