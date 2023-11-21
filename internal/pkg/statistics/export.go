@@ -87,8 +87,8 @@ func ExportToExcel(statistics Statistics, testName string) error {
 		return err
 	}
 
-	testResultsSheet := excelConfig.TestStatisticsSheet
-	statisticsSheet := excelConfig.TestResultsSheet
+	statisticsSheet := excelConfig.TestStatisticsSheet
+	testResultsSheet := excelConfig.TestResultsSheet
 
 	headers := []string{
 		"#",
