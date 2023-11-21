@@ -36,7 +36,7 @@ You may need to add ./ before the command depending on your system settings as f
 
 If no arguments are provided, server will listen port specified in the configuration (see [Server configuration](/docs/configuration/server#port)).
 
-You can override `port` by specifying it as the second argument. The port must be an integer in the range 1024 to 65535.
+You can override `port` by specifying it as the first argument. The port must be an integer in the range 1024 to 65535.
 
 ### Examples
 
