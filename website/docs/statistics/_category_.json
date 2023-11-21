@@ -1,10 +1,10 @@
 {
-    "position": 6,
-    "label": "Configuration",
+    "position": 5,
+    "label": "Statistics",
     "collapsible": true,
     "collapsed": true,
     "link": {
         "type": "generated-index",
-        "title": "Configuration"
+        "title": "Statistics"
     }
 }
