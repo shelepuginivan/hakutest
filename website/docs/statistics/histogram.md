@@ -19,6 +19,12 @@ Test results statistics is exported as a PNG image with histogram as follows:
 -   The horizontal axis indicates the number of points scored by students.
 -   The vertical axis indicates the quantity of students who scored this number of points.
 
+:::tip
+
+You can change the static text of the histogram by changing the configuration parameters. See [Statistics configuration](/docs/configuration/stats#image) for more information.
+
+:::
+
 ## Using `hakutest statistics` command
 
 Syntax: `hakutest statistics <name-of-the-test-file> image`

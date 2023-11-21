@@ -24,6 +24,12 @@ On the statistics page, there is a table displaying the correctness of tasks per
 -   Red cells represent an incorrect answer, marked the value of 0.
 -   If the cell is empty, student didn't submit answer for this task.
 
+:::tip
+
+You can change the static text of the spreadsheet by changing the configuration parameters. See [Statistics configuration](/docs/configuration/stats#excel) for more information.
+
+:::
+
 ## Using `hakutest statistics` command
 
 Syntax: `hakutest statistics <name-of-the-test-file> excel`
