@@ -80,11 +80,11 @@ Assume there is a test file named "My test.json" in the tests directory.
 
 2. Script will prompt you for a test filename:
 
-    ![Script prompt](./img/script-stats-excel-empty.png)
+    ![Script prompt](./img/script-stats-prompt-empty.png)
 
 3. Enter the filename of the test which statistics you want to export:
 
-    ![Script prompt with value entered](./img/script-stats-excel-value.png)
+    ![Script prompt with value entered](./img/script-stats-prompt-value.png)
 
 4. It will create an Excel spreadsheet in this directory:
 
