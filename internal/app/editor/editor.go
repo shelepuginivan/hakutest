@@ -9,55 +9,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func promptTask() parser.Task {
-	task := parser.Task{}
-	taskType := map[string]string{
-		"Single answer":    "single",
-		"Multiple answers": "multiple",
-		"Open question":    "open",
-	}
-
-	task.Type = taskType[prompter.Choose(
-		secondaryMessage("Type of the task"),
-		[]string{"Single answer", "Multiple answers", "Open question"},
-		"Open question",
-	)]
-
-	task.Text = prompter.Prompt(secondaryMessage("Task text"), "")
-
-	fmt.Println(secondaryMessage("Answer options:"))
-
-	option := prompter.Prompt(nestedMessage("Add option (leave blank to stop)", 2), "")
-
-	for option != "" {
-		task.Options = append(task.Options, option)
-		option = prompter.Prompt(nestedMessage("Add option (leave blank to stop)", 2), "")
-	}
-
-	task.Answer = prompter.Prompt(secondaryMessage("Correct answer"), "")
-
-	if prompter.YN(secondaryMessage("Add attachment"), false) {
-		task.Attachment.Name = prompter.Prompt(nestedMessage("Name", 2), "")
-		task.Attachment.Type = prompter.Choose(
-			nestedMessage("Type", 2),
-			[]string{"image", "video", "audio", "file"},
-			"file",
-		)
-
-		src := prompter.Prompt(nestedMessage("Source (URL or local file)", 2), "")
-		attachmentSrc, err := getAttachmentSrc(src)
-
-		for err != nil && prompter.YN(secondaryMessage("Failed to add attachment! Try again?"), false) {
-			src = prompter.Prompt(nestedMessage("Source (URL or local file)", 2), "")
-			attachmentSrc, err = getAttachmentSrc(src)
-		}
-
-		task.Attachment.Src = attachmentSrc
-	}
-
-	return task
-}
-
 func Cmd(cmd *cobra.Command, args []string) error {
 	var (
 		test         = parser.Test{}
@@ -107,7 +58,7 @@ func Cmd(cmd *cobra.Command, args []string) error {
 			i++
 			continue
 		case "replace":
-			test.Tasks[i] = promptTask()
+			test.Tasks[i] = promptNewTask()
 			i++
 			continue
 		case "delete":
@@ -118,7 +69,7 @@ func Cmd(cmd *cobra.Command, args []string) error {
 	}
 
 	for prompter.YN(message("Add new task"), false) {
-		test.Tasks = append(test.Tasks, promptTask())
+		test.Tasks = append(test.Tasks, promptNewTask())
 	}
 
 	return test.Save(name)
