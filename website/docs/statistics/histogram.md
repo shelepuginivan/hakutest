@@ -66,6 +66,12 @@ hakutest/
     My test.png
 ```
 
+:::tip
+
+See [`statistics` command](/docs/cli/statistics) for more information.
+
+:::
+
 ## Using `stats_image.bat` script
 
 Assume there is a test file named "My test.json" in the tests directory.
