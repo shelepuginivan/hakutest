@@ -49,7 +49,7 @@ func Cmd(cmd *cobra.Command, args []string) error {
 	for i := 0; i < len(test.Tasks); {
 		action := prompter.Choose(
 			message(fmt.Sprintf("Task %d:", i+tasksDeleted+1)),
-			[]string{"leave unchanged", "replace", "remove"},
+			[]string{"leave unchanged", "edit", "replace", "remove"},
 			"leave unchanged",
 		)
 
@@ -57,6 +57,9 @@ func Cmd(cmd *cobra.Command, args []string) error {
 		case "leave unchanged":
 			i++
 			continue
+		case "edit":
+			test.Tasks[i] = promptEditTask(test.Tasks[i])
+			i++
 		case "replace":
 			test.Tasks[i] = promptNewTask()
 			i++
