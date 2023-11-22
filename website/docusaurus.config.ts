@@ -1,4 +1,4 @@
-import type { Config } from '@docusaurus/types'
+import type { Config, PluginConfig } from '@docusaurus/types'
 import type { Options, ThemeConfig } from '@docusaurus/preset-classic'
 import { themes as prismThemes } from 'prism-react-renderer'
 
@@ -26,6 +26,21 @@ const config: Config = {
         defaultLocale: 'en',
         locales: ['en'],
     },
+
+    plugins: [
+        [
+            '@docusaurus/plugin-pwa',
+            {
+                pwaHead: [
+                    {
+                        tagName: 'link',
+                        rel: 'manifest',
+                        href: '/manifest.json',
+                    },
+                ],
+            },
+        ] satisfies PluginConfig,
+    ],
 
     presets: [
         [
