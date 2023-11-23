@@ -9,15 +9,15 @@
         <link rel="stylesheet" href="/static/css/error.css">
         <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
         <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
-        <title>{{ .Config.ErrorHeaderLabel }}</title>
+        <title>{{ .Config.Header }}</title>
     </head>
     <body>
         <header class="header">
-            <h1 class="main-header error-header">{{ .Config.ErrorHeaderLabel }}</h1>
+            <h1 class="main-header error-header">{{ .Config.Header }}</h1>
         </header>
         <main class="main">
             <details class="error">
-                <summary class="error-summary">{{ .Config.ErrorDetailsLabel }}</summary>
+                <summary class="error-summary">{{ .Config.Details }}</summary>
                 <code class="error-info">
                     {{ .Code }}:
                     {{ .Detail }}

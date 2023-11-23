@@ -71,8 +71,8 @@ type UiEditorConfig struct {
 }
 
 type UiErrorConfig struct {
-	ErrorHeaderLabel  string `yaml:"error_header_label" mapstructure:"error_header_label"`
-	ErrorDetailsLabel string `yaml:"error_details_label" mapstructure:"error_details_label"`
+	Header  string `yaml:"header" mapstructure:"header"`
+	Details string `yaml:"details" mapstructure:"details"`
 }
 
 type UiExpiredConfig struct {
@@ -192,8 +192,8 @@ func Init() Config {
 				LabelDownloadTest:        "Download test",
 			},
 			Error: UiErrorConfig{
-				ErrorHeaderLabel:  "An error occurred!",
-				ErrorDetailsLabel: "Details",
+				Header:  "An error occurred!",
+				Details: "Details",
 			},
 			Expired: UiExpiredConfig{
 				Header:  "Test expired!",
