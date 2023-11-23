@@ -37,7 +37,10 @@ func (t TestController) GetTest(c *gin.Context) {
 	}
 
 	if !test.ExpiresIn.IsZero() && test.ExpiresIn.Before(time.Now()) {
-		c.JSON(http.StatusGone, gin.H{"detail": "Test expired"})
+		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
+			"Config": config.Init().Ui.Expired,
+		})
+
 		return
 	}
 
@@ -85,6 +88,14 @@ func (t TestController) SubmitTest(c *gin.Context) {
 			"Config": config.Init().Ui.Error,
 			"Detail": detail,
 			"Error":  err.Error(),
+		})
+
+		return
+	}
+
+	if !test.ExpiresIn.IsZero() && test.ExpiresIn.Before(time.Now()) {
+		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
+			"Config": config.Init().Ui.Expired,
 		})
 
 		return
