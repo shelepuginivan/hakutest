@@ -75,6 +75,11 @@ type UiErrorConfig struct {
 	ErrorDetailsLabel string `yaml:"error_details_label" mapstructure:"error_details_label"`
 }
 
+type UiExpiredConfig struct {
+	Header  string `yaml:"header" mapstructure:"header"`
+	Message string `yaml:"message" mapstructure:"message"`
+}
+
 type UiTestConfig struct {
 	StudentNameLabel  string `yaml:"student_name_label" mapstructure:"student_name_label"`
 	OpenAnswerLabel   string `yaml:"open_answer_label" mapstructure:"open_answer_label"`
@@ -82,9 +87,10 @@ type UiTestConfig struct {
 }
 
 type UiConfig struct {
-	Editor UiEditorConfig `yaml:"editor" mapstructure:"editor"`
-	Error  UiErrorConfig  `yaml:"error" mapstructure:"error"`
-	Test   UiTestConfig   `yaml:"test" mapstructure:"test"`
+	Editor  UiEditorConfig  `yaml:"editor" mapstructure:"editor"`
+	Error   UiErrorConfig   `yaml:"error" mapstructure:"error"`
+	Expired UiExpiredConfig `yaml:"expired" mapstructure:"expired"`
+	Test    UiTestConfig    `yaml:"test" mapstructure:"test"`
 }
 
 type Config struct {
@@ -188,6 +194,10 @@ func Init() Config {
 			Error: UiErrorConfig{
 				ErrorHeaderLabel:  "An error occurred!",
 				ErrorDetailsLabel: "Details",
+			},
+			Expired: UiExpiredConfig{
+				Header:  "Test expired!",
+				Message: "This test is no longer available",
 			},
 			Test: UiTestConfig{
 				StudentNameLabel:  "Your name:",
