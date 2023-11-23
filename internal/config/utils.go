@@ -78,7 +78,7 @@ func SetField(field, value string) error {
 	}
 
 	switch field {
-	case "general", "server", "stats", "stats.excel", "stats.image", "ui", "ui.error", "ui.test":
+	case "general", "server", "stats", "stats.excel", "stats.image", "ui", "ui.editor", "ui.error", "ui.expired", "ui.test":
 		return errors.New("can only set primitive values")
 	default:
 		v.Set(field, value)
