@@ -75,6 +75,19 @@ Customizes error page interface.
 
 ![Error page example](./img/error-example.png)
 
+### `expired`
+
+Customizes expired test page interface.
+
+**Options**:
+
+-   `header` - Header of the expired test page.
+-   `message` - Message with additional information.
+
+**Visual example**:
+
+![Expired page example](./img/expired-example.png)
+
 ### `test`
 
 Customizes test page interface.
@@ -129,6 +142,9 @@ ui:
     error:
         error_header_label: An error occurred!
         error_details_label: Details
+    expired:
+        header: Test expired!
+        message: This test is no longer available
     test:
         student_name_label: 'Your name:'
         open_answer_label: 'Answer:'
