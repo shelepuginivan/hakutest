@@ -73,7 +73,7 @@ func TestSetField(t *testing.T) {
 func TestNegativeSetField(t *testing.T) {
 	Init()
 
-	for _, k := range []string{"general", "server", "stats", "stats.excel", "stats.image", "ui", "ui.error", "ui.test"} {
+	for _, k := range []string{"general", "server", "stats", "stats.excel", "stats.image", "ui", "ui.editor", "ui.error", "ui.expired", "ui.test"} {
 		assert.Error(t, SetField(k, ""))
 	}
 }
