@@ -68,8 +68,8 @@ Customizes error page interface.
 
 **Options**:
 
--   `error_header_label` - Header of the error page.
--   `error_details_label` - Error details header (summary).
+-   `header` - Header of the error page.
+-   `details` - Error details header (summary).
 
 **Visual example**:
 
@@ -140,8 +140,8 @@ ui:
         label_new_test: Create new test
         label_download_test: Download test
     error:
-        error_header_label: An error occurred!
-        error_details_label: Details
+        header: An error occurred!
+        details: Details
     expired:
         header: Test expired!
         message: This test is no longer available
