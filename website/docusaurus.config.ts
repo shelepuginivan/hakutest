@@ -1,6 +1,7 @@
 import type { Config, PluginConfig } from '@docusaurus/types'
 import type { Options, ThemeConfig } from '@docusaurus/preset-classic'
 import { themes as prismThemes } from 'prism-react-renderer'
+import { EnumChangefreq } from 'sitemap'
 
 const config: Config = {
     title: 'Hakutest',
@@ -60,7 +61,7 @@ const config: Config = {
                     customCss: './src/css/custom.css',
                 },
                 sitemap: {
-                    changefreq: 'weekly',
+                    changefreq: EnumChangefreq.WEEKLY,
                     priority: 0.5,
                     ignorePatterns: ['/tags/**'],
                     filename: 'sitemap.xml',
