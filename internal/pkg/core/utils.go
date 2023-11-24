@@ -13,6 +13,27 @@ func CompareAnswers(received, expected string) bool {
 	return strings.TrimSpace(strings.ToLower(received)) == strings.TrimSpace(strings.ToLower(expected))
 }
 
+func GetTestList() []string {
+	testsDirectory := config.Init().General.TestsDirectory
+	testList := []string{}
+
+	entries, err := os.ReadDir(testsDirectory)
+
+	if err != nil {
+		return testList
+	}
+
+	for _, file := range entries {
+		testName := file.Name()
+
+		if !file.IsDir() && strings.HasSuffix(testName, ".json") {
+			testList = append(testList, strings.TrimSuffix(testName, ".json"))
+		}
+	}
+
+	return testList
+}
+
 func GetTestPath(name string) string {
 	testsDirectory := config.Init().General.TestsDirectory
 
