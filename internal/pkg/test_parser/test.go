@@ -1,9 +1,11 @@
 package parser
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
+	"log"
 	"os"
-	"path"
 	"time"
 )
 
@@ -47,20 +49,26 @@ func Get(name string) (Test, error) {
 	return test, err
 }
 
-func Import(file string) error {
-	testFile, err := os.ReadFile(file)
-	testPath := GetTestPath(path.Base(file))
-	test := Test{}
+func (t Test) Save(name string) error {
+	testPath := GetTestPath(name)
+	data, err := json.Marshal(t)
 
 	if err != nil {
-		return err
+		log.Fatal(err)
 	}
 
-	err = json.Unmarshal(testFile, &test)
+	return os.WriteFile(testPath, data, 0666)
+}
+
+func (t Test) Sha256Sum() string {
+	hasher := sha256.New()
+	data, err := json.Marshal(t)
 
 	if err != nil {
-		return err
+		return ""
 	}
 
-	return os.WriteFile(testPath, testFile, 0666)
+	hasher.Write(data)
+
+	return hex.EncodeToString(hasher.Sum(nil))
 }
