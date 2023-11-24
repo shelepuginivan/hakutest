@@ -31,10 +31,6 @@ type TestInfo struct {
 	Sha256 string `yaml:"sha256"`
 }
 
-func CompareAnswers(received, expected string) bool {
-	return strings.TrimSpace(strings.ToLower(received)) == strings.TrimSpace(strings.ToLower(expected))
-}
-
 func (t Test) GetResults(answers map[string][]string) TestResults {
 	submittedAt := time.Now()
 	student := strings.Join(answers["student"], "")
