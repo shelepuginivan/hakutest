@@ -23,6 +23,7 @@
                         id="search-input"
                         class="input-text"
                         name="q"
+                        placeholder="{{ .Config.InputPlaceholder }}"
                         type="search"
                         list="test-list"
                     >
@@ -31,7 +32,7 @@
                             <option value="{{ . }}"></option>
                         {{ end }}
                     </datalist>
-                    <button class="button">Search</button>
+                    <button class="button">{{ .Config.SearchButtonLabel }}</button>
                 </form>
             </main>
         </div>
