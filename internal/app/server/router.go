@@ -27,8 +27,10 @@ func NewRouter() *gin.Engine {
 	router.Use(gin.Recovery())
 
 	editor := new(controllers.EditorController)
+	search := new(controllers.SearchController)
 	test := new(controllers.TestController)
 
+	router.GET("/", search.SearchPage)
 	router.GET("/editor/upload", editor.ChooseTest)
 	router.GET("/editor/edit", editor.NewTest)
 	router.POST("/editor/edit", editor.UploadTest)
