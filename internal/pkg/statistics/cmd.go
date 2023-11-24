@@ -12,17 +12,17 @@ func Cmd(cmd *cobra.Command, args []string) error {
 	}
 
 	if len(args) == 1 {
-		ExportToTable(stats).Print()
+		stats.ExportToTable().Print()
 		return nil
 	}
 
 	switch args[1] {
 	case "excel":
-		return ExportToExcel(stats, args[0])
+		return stats.ExportToExcel(args[0])
 	case "image":
-		return ExportToPng(stats, args[0])
+		return stats.ExportToPng(args[0])
 	default:
-		ExportToTable(stats).Print()
+		stats.ExportToTable().Print()
 		return nil
 	}
 }

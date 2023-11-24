@@ -13,7 +13,7 @@ import (
 	"gonum.org/v1/plot/vg"
 )
 
-func ExportToTable(statistics Statistics) table.Table {
+func (s Statistics) ExportToTable() table.Table {
 	headerFmt := color.New(color.FgGreen, color.Underline).SprintfFunc()
 	columnFmt := color.New(color.FgYellow, color.Bold).SprintfFunc()
 
@@ -21,7 +21,7 @@ func ExportToTable(statistics Statistics) table.Table {
 	tbl.WithHeaderFormatter(headerFmt)
 	tbl.WithFirstColumnFormatter(columnFmt)
 
-	for index, entry := range statistics {
+	for index, entry := range s.Entries {
 		tbl.AddRow(
 			index+1,
 			entry.Student,
@@ -33,7 +33,7 @@ func ExportToTable(statistics Statistics) table.Table {
 	return tbl
 }
 
-func ExportToExcel(statistics Statistics, testName string) error {
+func (s Statistics) ExportToExcel(testName string) error {
 	excelConfig := config.Init().Statistics.Excel
 	file := excelize.NewFile()
 
@@ -118,7 +118,7 @@ func ExportToExcel(statistics Statistics, testName string) error {
 		file.SetCellValue(testResultsSheet, cell, header)
 	}
 
-	for i, entry := range statistics {
+	for i, entry := range s.Entries {
 		row := i + 2
 
 		file.SetCellValue(testResultsSheet, fmt.Sprintf("A%d", row), i+1)
@@ -133,7 +133,7 @@ func ExportToExcel(statistics Statistics, testName string) error {
 
 	file.SetCellValue(statisticsSheet, "A1", "#")
 
-	for i, entry := range statistics {
+	for i, entry := range s.Entries {
 		row := i + 2
 
 		if err != nil {
@@ -183,12 +183,12 @@ func ExportToExcel(statistics Statistics, testName string) error {
 	return file.SaveAs(testName + ".xlsx")
 }
 
-func ExportToPng(statistics Statistics, testName string) error {
+func (s Statistics) ExportToPng(testName string) error {
 	p := plot.New()
 	values := plotter.Values{}
 	imageConfig := config.Init().Statistics.Image
 
-	for _, entry := range statistics {
+	for _, entry := range s.Entries {
 		values = append(values, float64(entry.Results.Points))
 	}
 

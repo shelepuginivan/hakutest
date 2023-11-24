@@ -9,7 +9,9 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-type Statistics = []core.TestResults
+type Statistics struct {
+	Entries []core.TestResults
+}
 
 func GetStatistics(testName string) (Statistics, error) {
 	stats := Statistics{}
@@ -37,7 +39,7 @@ func GetStatistics(testName string) (Statistics, error) {
 			continue
 		}
 
-		stats = append(stats, entry)
+		stats.Entries = append(stats.Entries, entry)
 	}
 
 	return stats, nil
