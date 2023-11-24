@@ -80,6 +80,11 @@ type UiExpiredConfig struct {
 	Message string `yaml:"message" mapstructure:"message"`
 }
 
+type UiSearchConfig struct {
+	InputPlaceholder  string `yaml:"input_placeholder" mapstructure:"input_placeholder"`
+	SearchButtonLabel string `yaml:"search_button_label" mapstructure:"search_button_label"`
+}
+
 type UiTestConfig struct {
 	StudentNameLabel  string `yaml:"student_name_label" mapstructure:"student_name_label"`
 	OpenAnswerLabel   string `yaml:"open_answer_label" mapstructure:"open_answer_label"`
@@ -90,6 +95,7 @@ type UiConfig struct {
 	Editor  UiEditorConfig  `yaml:"editor" mapstructure:"editor"`
 	Error   UiErrorConfig   `yaml:"error" mapstructure:"error"`
 	Expired UiExpiredConfig `yaml:"expired" mapstructure:"expired"`
+	Search  UiSearchConfig  `yaml:"search" mapstructure:"search"`
 	Test    UiTestConfig    `yaml:"test" mapstructure:"test"`
 }
 
@@ -198,6 +204,10 @@ func Init() Config {
 			Expired: UiExpiredConfig{
 				Header:  "Test expired!",
 				Message: "This test is no longer available",
+			},
+			Search: UiSearchConfig{
+				InputPlaceholder:  "Search for a test",
+				SearchButtonLabel: "Search",
 			},
 			Test: UiTestConfig{
 				StudentNameLabel:  "Your name:",
