@@ -1,4 +1,4 @@
-package parser
+package core
 
 import (
 	"crypto/sha256"

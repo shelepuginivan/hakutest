@@ -8,14 +8,14 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/config"
-	parser "github.com/shelepuginivan/hakutest/internal/pkg/test_parser"
+	"github.com/shelepuginivan/hakutest/internal/pkg/core"
 )
 
 type TestController struct{}
 
 func (t TestController) GetTest(c *gin.Context) {
 	testName := c.Param("test")
-	test, err := parser.Get(testName)
+	test, err := core.Get(testName)
 
 	if err != nil {
 		code := http.StatusBadRequest
@@ -72,7 +72,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 	}
 
 	name := c.Param("test")
-	test, err := parser.Get(name)
+	test, err := core.Get(name)
 
 	if err != nil {
 		code := http.StatusBadRequest

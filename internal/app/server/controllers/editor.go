@@ -10,7 +10,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/config"
-	parser "github.com/shelepuginivan/hakutest/internal/pkg/test_parser"
+	"github.com/shelepuginivan/hakutest/internal/pkg/core"
 )
 
 type EditorController struct{}
@@ -24,7 +24,7 @@ func (e EditorController) ChooseTest(c *gin.Context) {
 func (e EditorController) NewTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
 		"Config": config.Init().Ui.Editor,
-		"Test":   parser.Test{},
+		"Test":   core.Test{},
 		"incr": func(n int) int {
 			return n + 1
 		},
@@ -32,7 +32,7 @@ func (e EditorController) NewTest(c *gin.Context) {
 }
 
 func (e EditorController) UploadTest(c *gin.Context) {
-	test := parser.Test{}
+	test := core.Test{}
 	err := c.Request.ParseForm()
 
 	if err != nil {
@@ -110,7 +110,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 }
 
 func (e EditorController) CreateTest(c *gin.Context) {
-	test := parser.Test{}
+	test := core.Test{}
 	err := c.Request.ParseMultipartForm(1000)
 
 	if err != nil {
@@ -145,7 +145,7 @@ func (e EditorController) CreateTest(c *gin.Context) {
 	}
 
 	for i := 0; i < numberOfTasks; i++ {
-		task := parser.Task{}
+		task := core.Task{}
 
 		task.Type = c.Request.Form.Get(fmt.Sprintf("%d-type", i))
 		task.Text = c.Request.Form.Get(fmt.Sprintf("%d-text", i))
@@ -153,7 +153,7 @@ func (e EditorController) CreateTest(c *gin.Context) {
 		task.Options = c.PostFormArray(fmt.Sprintf("%d-options", i))
 
 		if c.Request.Form.Get(fmt.Sprintf("%d-has-attachment", i)) == "on" {
-			attachment := parser.Attachment{}
+			attachment := core.Attachment{}
 
 			attachment.Type = c.Request.Form.Get(fmt.Sprintf("%d-attachment-type", i))
 			attachment.Name = c.Request.Form.Get(fmt.Sprintf("%d-attachment-name", i))

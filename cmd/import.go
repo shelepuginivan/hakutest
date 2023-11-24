@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	parser "github.com/shelepuginivan/hakutest/internal/pkg/test_parser"
+	"github.com/shelepuginivan/hakutest/internal/pkg/core"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,5 @@ var importCmd = &cobra.Command{
 }
 
 func Cmd(cmd *cobra.Command, args []string) error {
-	return parser.Import(args[0])
+	return core.Import(args[0])
 }

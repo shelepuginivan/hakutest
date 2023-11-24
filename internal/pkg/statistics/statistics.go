@@ -5,11 +5,11 @@ import (
 	"path"
 
 	"github.com/shelepuginivan/hakutest/internal/config"
-	parser "github.com/shelepuginivan/hakutest/internal/pkg/test_parser"
+	"github.com/shelepuginivan/hakutest/internal/pkg/core"
 	"gopkg.in/yaml.v3"
 )
 
-type Statistics = []parser.TestResults
+type Statistics = []core.TestResults
 
 func GetStatistics(testName string) (Statistics, error) {
 	stats := Statistics{}
@@ -31,7 +31,7 @@ func GetStatistics(testName string) (Statistics, error) {
 			continue
 		}
 
-		entry := parser.TestResults{}
+		entry := core.TestResults{}
 
 		if yaml.Unmarshal(data, &entry) != nil {
 			continue

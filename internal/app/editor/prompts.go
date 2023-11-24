@@ -4,11 +4,11 @@ import (
 	"fmt"
 
 	"github.com/Songmu/prompter"
-	parser "github.com/shelepuginivan/hakutest/internal/pkg/test_parser"
+	"github.com/shelepuginivan/hakutest/internal/pkg/core"
 )
 
-func promptAddAttachment() parser.Attachment {
-	attachment := parser.Attachment{}
+func promptAddAttachment() core.Attachment {
+	attachment := core.Attachment{}
 
 	attachment.Name = prompter.Prompt(nestedMessage("Name", 2), "")
 	attachment.Type = prompter.Choose(
@@ -30,7 +30,7 @@ func promptAddAttachment() parser.Attachment {
 	return attachment
 }
 
-func promptEditAttachment(attachment parser.Attachment) parser.Attachment {
+func promptEditAttachment(attachment core.Attachment) core.Attachment {
 	attachment.Name = prompter.Prompt(nestedMessage("Name", 2), attachment.Name)
 	attachment.Type = prompter.Choose(
 		nestedMessage("Type", 2),
@@ -53,8 +53,8 @@ func promptEditAttachment(attachment parser.Attachment) parser.Attachment {
 	return attachment
 }
 
-func promptNewTask() parser.Task {
-	task := parser.Task{}
+func promptNewTask() core.Task {
+	task := core.Task{}
 	taskType := map[string]string{
 		"Single answer":    "single",
 		"Multiple answers": "multiple",
@@ -87,7 +87,7 @@ func promptNewTask() parser.Task {
 	return task
 }
 
-func promptEditTask(task parser.Task) parser.Task {
+func promptEditTask(task core.Task) core.Task {
 	taskTypeName := map[string]string{
 		"single":   "Single answer",
 		"multiple": "Multiple answers",
@@ -145,7 +145,7 @@ func promptEditTask(task parser.Task) parser.Task {
 	case "edit":
 		task.Attachment = promptEditAttachment(task.Attachment)
 	case "remove":
-		task.Attachment = parser.Attachment{}
+		task.Attachment = core.Attachment{}
 	}
 
 	return task

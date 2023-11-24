@@ -5,16 +5,16 @@ import (
 	"testing"
 	"time"
 
-	parser "github.com/shelepuginivan/hakutest/internal/pkg/test_parser"
+	"github.com/shelepuginivan/hakutest/internal/pkg/core"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestExportToPng(t *testing.T) {
 	statistics := Statistics{
-		parser.TestResults{
+		core.TestResults{
 			Student:     "John Doe",
 			SubmittedAt: time.Now(),
-			Results: parser.Results{
+			Results: core.Results{
 				Points:     80,
 				Total:      100,
 				Percentage: 80,
@@ -24,7 +24,7 @@ func TestExportToPng(t *testing.T) {
 					"2": false,
 				},
 			},
-			Test: parser.TestInfo{
+			Test: core.TestInfo{
 				Title:  "Unit Test 1",
 				Author: "Jane Smith",
 				Sha256: "abcdef123456",
@@ -46,10 +46,10 @@ func TestExportToPng(t *testing.T) {
 
 func TestExportToExcel(t *testing.T) {
 	statistics := Statistics{
-		parser.TestResults{
+		core.TestResults{
 			Student:     "Alex",
 			SubmittedAt: time.Now(),
-			Results: parser.Results{
+			Results: core.Results{
 				Points:     80,
 				Total:      100,
 				Percentage: 80,
@@ -62,7 +62,7 @@ func TestExportToExcel(t *testing.T) {
 					"5": false,
 				},
 			},
-			Test: parser.TestInfo{
+			Test: core.TestInfo{
 				Title:  "Unit Test 2",
 				Author: "John Doe",
 				Sha256: "53d4843cec3163136498a8e570dcde153046ec0009e57bde714649f95aebe7f7",

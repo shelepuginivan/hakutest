@@ -5,13 +5,13 @@ import (
 	"time"
 
 	"github.com/Songmu/prompter"
-	parser "github.com/shelepuginivan/hakutest/internal/pkg/test_parser"
+	"github.com/shelepuginivan/hakutest/internal/pkg/core"
 	"github.com/spf13/cobra"
 )
 
 func Cmd(cmd *cobra.Command, args []string) error {
 	var (
-		test         = parser.Test{}
+		test         = core.Test{}
 		timeLayout   = "2006-01-02 15:04:05"
 		tasksDeleted = 0
 		name         string
@@ -20,7 +20,7 @@ func Cmd(cmd *cobra.Command, args []string) error {
 	if len(args) == 1 {
 		name = args[0]
 
-		parsedTest, err := parser.Get(name)
+		parsedTest, err := core.Get(name)
 
 		if err == nil {
 			test = parsedTest
