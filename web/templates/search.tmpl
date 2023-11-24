@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/common.css">
+        <link rel="stylesheet" href="/static/css/form.css">
+        <link rel="stylesheet" href="/static/css/search.css">
+        <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+        <title>Hakutest</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="header">
+                <img class="logo" src="/static/img/logo.svg" alt="Hakutest">
+            </header>
+            <main class="main">
+                <form id="search-form" class="form">
+                    <input
+                        id="search-input"
+                        class="input-text"
+                        name="q"
+                        type="search"
+                        list="test-list"
+                    >
+                    <datalist id="test-list">
+                        {{ range .TestList }}
+                            <option value="{{ . }}"></option>
+                        {{ end }}
+                    </datalist>
+                    <button class="button">Search</button>
+                </form>
+            </main>
+        </div>
+        <script src="/static/js/search.js"></script>
+    </body>
+</html>
