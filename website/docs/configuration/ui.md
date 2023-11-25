@@ -88,6 +88,19 @@ Customizes expired test page interface.
 
 ![Expired page example](./img/expired-example.png)
 
+### `search`
+
+Customizes expired search page interface.
+
+**Options**:
+
+-   `input_placeholder` - Placeholder text of the search input field.
+-   `search_button_label` - Text of the search button.
+
+**Visual example**:
+
+![Search page example](./img/search-example.png)
+
 ### `test`
 
 Customizes test page interface.
@@ -145,6 +158,9 @@ ui:
     expired:
         header: Test expired!
         message: This test is no longer available
+    search:
+        input_placeholder: Search for the test
+        search_button_label: Search
     test:
         student_name_label: 'Your name:'
         open_answer_label: 'Answer:'
