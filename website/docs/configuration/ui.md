@@ -17,7 +17,7 @@ Since UI customization allows any static text on web pages to be changed, it can
 
 ### `editor`
 
-Customizes test editor page interface.
+Customizes [test editor page](/docs/app/test-editor) interface.
 
 **Options**:
 
@@ -77,7 +77,7 @@ Customizes error page interface.
 
 ### `expired`
 
-Customizes expired test page interface.
+Customizes [expired test page](/docs/app/test-page#expired-test) interface.
 
 **Options**:
 
@@ -90,7 +90,7 @@ Customizes expired test page interface.
 
 ### `search`
 
-Customizes expired search page interface.
+Customizes expired [search page](/docs/app/search-page) interface.
 
 **Options**:
 
@@ -103,7 +103,7 @@ Customizes expired search page interface.
 
 ### `test`
 
-Customizes test page interface.
+Customizes [test page](/docs/app/test-page) interface.
 
 **Options**:
 
