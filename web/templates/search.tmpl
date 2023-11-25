@@ -26,6 +26,7 @@
                         placeholder="{{ .Config.InputPlaceholder }}"
                         type="search"
                         list="test-list"
+                        aria-label="{{ .Config.InputPlaceholder }}"
                     >
                     <datalist id="test-list">
                         {{ range .TestList }}

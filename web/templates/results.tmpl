@@ -37,6 +37,10 @@
                     <div
                         class="points-percentage-meter"
                         style="width: {{ .Results.Percentage }}%"
+                        role="meter"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="{{ .Results.Percentage }}"
                         data-meter-points="{{ $meter_points }}"
                     ></div>
                 </div>
