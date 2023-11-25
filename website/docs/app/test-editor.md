@@ -7,7 +7,7 @@ description: Test editor that allows to create and edit tests
 
 Test editor allows to create and edit tests.
 
-When the server is running, it can be accessed from any device in the local network at the following URL:
+When the server is running, it can be accessed at the following URL:
 
 `http://localhost:<port>/editor/upload`
 
