@@ -55,6 +55,12 @@ In the example above, both URLs point to `my-test`:
 
 :::
 
+### Test results
+
+Once the student submits their solution to the test, they will see their results. The results page contains the student's name, the points scored, and the percentage of correctly solved tasks.
+
+![Test results page](./img/test-results.png)
+
 ### Expired test
 
 If the test has expired, it will not be available at this URL. Instead of the test, a page will be displayed informing you that the test has expired:
