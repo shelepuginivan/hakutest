@@ -7,6 +7,8 @@ description: The page of the test on which the student can solve it
 
 The test page allows student to solve the test and submit their answers.
 
+![Test page](./img/test-page.png)
+
 When the server is running, it can be accessed from any device in the local network at the following URL:
 
 `http://<local-ip-of-your-device>:<port>/<name-of-the-test-file>`
