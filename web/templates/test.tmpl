@@ -33,8 +33,8 @@
                 </section>
                 {{ range $task_index, $task := .Tasks }}
                     {{ with $task }}
-                        <section class="task">
-                            <p>{{ .Text }}</p>
+                        <fieldset class="task">
+                            <legend class="task-text">{{ .Text }}</legend>
                             <div class="attachment">
                                 {{ if eq .Attachment.Type "image" }}
                                     <img
@@ -115,7 +115,7 @@
                                     </div>
                                 {{ end }}
                             </div>
-                        </section>
+                        </fieldset>
                     {{ end }}
                 {{ end }}
                 <button class="button" type="submit">

@@ -8,6 +8,16 @@
     border-radius: 8px;
 }
 
+fieldset.task {
+    position: relative;
+    padding-top: 52px;
+}
+
+.task-text {
+    position: absolute;
+    top: 16px;
+}
+
 .attachment {
     display: flex;
     align-items: center;
