@@ -5,7 +5,7 @@ const numberOfTasksInput = document.getElementById("number-of-tasks-input")
 let taskIndex = Number(numberOfTasksInput.value)
 
 const addTask = (taskIndex) => {
-    const newTask = document.createElement('fieldset')
+    const newTask = document.createElement("fieldset")
 
     newTask.classList.add("test-task", "task-${taskIndex}")
     newTask.innerHTML = `
@@ -154,7 +154,7 @@ const toggleAttachment = (taskIndex, checkbox) => {
 
 const addOption = (taskIndex) => {
     const taskOptions = document.getElementById(`${taskIndex}-options`)
-    const newOption = document.createElement('input')
+    const newOption = document.createElement("input")
 
     newOption.className = "input-text"
     newOption.type = "text"

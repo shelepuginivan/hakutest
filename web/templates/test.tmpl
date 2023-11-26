@@ -48,7 +48,7 @@
                                         preload="metadata"
                                         aria-label="{{ .Attachment.Name }}"
                                     >
-                                        <source src="{{ call $.url  .Attachment.Src }}">
+                                        <source src="{{ call $.url .Attachment.Src }}">
                                     </video>
                                 {{ else if eq .Attachment.Type "audio" }}
                                     <audio
@@ -56,7 +56,7 @@
                                         preload="metadata"
                                         aria-label="{{ .Attachment.Name }}"
                                     >
-                                        <source src="{{ call $.url  .Attachment.Src }}">
+                                        <source src="{{ call $.url .Attachment.Src }}">
                                     </audio>
                                 {{ else if eq .Attachment.Type "file" }}
                                     <a
