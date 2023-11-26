@@ -20,7 +20,7 @@ func Cmd(cmd *cobra.Command, args []string) error {
 	if len(args) == 1 {
 		name = args[0]
 
-		parsedTest, err := core.Get(name)
+		parsedTest, err := core.GetTest(name)
 
 		if err == nil {
 			test = parsedTest

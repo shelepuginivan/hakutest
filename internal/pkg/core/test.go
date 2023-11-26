@@ -35,7 +35,7 @@ type Test struct {
 	Tasks       []Task    `json:"tasks"`
 }
 
-func Get(name string) (Test, error) {
+func GetTest(name string) (Test, error) {
 	test := Test{}
 	testPath := GetTestPath(name)
 	testFile, err := os.ReadFile(testPath)
