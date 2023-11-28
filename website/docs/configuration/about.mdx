@@ -62,7 +62,7 @@ general:
     tests_directory: ~/.cache/hakutest/tests # May vary depending on OS
     results_directory: ~/.cache/hakutest/results # May vary depending on OS
 server:
-    port: '8080'
+    port: "8080"
     mode: release
 stats:
     excel:
@@ -108,8 +108,14 @@ ui:
         label_new_test: Create new test
         label_download_test: Download test
     error:
-        error_header_label: An error occurred!
-        error_details_label: Details
+        header: An error occurred!
+        details: Details
+    expired:
+        header: Test expired!
+        message: This test is no longer available
+    search:
+        input_placeholder: Search for a test
+        search_button_label: Search
     test:
         student_name_label: 'Your name:'
         open_answer_label: 'Answer:'
