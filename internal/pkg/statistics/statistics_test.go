@@ -19,10 +19,10 @@ func TestExportToPng(t *testing.T) {
 					Points:     80,
 					Total:      100,
 					Percentage: 80,
-					Tasks: map[string]bool{
-						"0": false,
-						"1": true,
-						"2": false,
+					Tasks: map[string]core.TaskResult{
+						"0": {Answer: "4", Correct: false},
+						"1": {Answer: "1,2,5", Correct: true},
+						"2": {Answer: "some", Correct: true},
 					},
 				},
 				Test: core.TestInfo{
@@ -56,13 +56,13 @@ func TestExportToExcel(t *testing.T) {
 					Points:     80,
 					Total:      100,
 					Percentage: 80,
-					Tasks: map[string]bool{
-						"0": true,
-						"1": false,
-						"2": true,
-						"3": true,
-						"4": true,
-						"5": false,
+					Tasks: map[string]core.TaskResult{
+						"0": {Answer: "1,2,4", Correct: true},
+						"1": {Answer: "answer", Correct: false},
+						"2": {Answer: "3", Correct: true},
+						"3": {Answer: "2,4", Correct: true},
+						"4": {Answer: "some", Correct: true},
+						"5": {Answer: "another", Correct: false},
 					},
 				},
 				Test: core.TestInfo{

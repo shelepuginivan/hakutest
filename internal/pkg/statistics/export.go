@@ -145,7 +145,7 @@ func (s Statistics) ExportToExcel(testName string) error {
 		file.SetCellStyle(statisticsSheet, studentNameCell, studentNameCell, borderRight)
 		file.SetCellValue(statisticsSheet, studentNameCell, entry.Student)
 
-		for taskNumber, correct := range entry.Results.Tasks {
+		for taskNumber, taskResult := range entry.Results.Tasks {
 			taskIndex, err := strconv.Atoi(taskNumber)
 
 			if err != nil {
@@ -163,13 +163,12 @@ func (s Statistics) ExportToExcel(testName string) error {
 
 			file.SetCellStyle(statisticsSheet, taskNumberCell, taskNumberCell, borderBottom)
 			file.SetCellValue(statisticsSheet, taskNumberCell, taskIndex)
+			file.SetCellValue(statisticsSheet, valueCell, taskResult.Answer)
 
-			if correct {
+			if taskResult.Correct {
 				file.SetCellStyle(statisticsSheet, valueCell, valueCell, correctStyle)
-				file.SetCellValue(statisticsSheet, valueCell, 1)
 			} else {
 				file.SetCellStyle(statisticsSheet, valueCell, valueCell, incorrectStyle)
-				file.SetCellValue(statisticsSheet, valueCell, 0)
 			}
 		}
 	}
