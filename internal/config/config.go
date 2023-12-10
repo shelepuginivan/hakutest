@@ -4,6 +4,7 @@ import (
 	"os"
 	"path"
 
+	"github.com/shelepuginivan/hakutest/internal/pkg/utils"
 	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
 )
@@ -120,7 +121,7 @@ func getViper() *viper.Viper {
 	v := viper.New()
 
 	v.AddConfigPath(getConfigDir())
-	v.AddConfigPath(".")
+	v.AddConfigPath(utils.GetExecutablePath())
 	v.SetConfigType("yaml")
 	v.SetConfigName("config")
 
