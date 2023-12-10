@@ -10,16 +10,6 @@ Syntax: `hakutest completion [bash|zsh|fish|powershell]`
 
 The `hakutest completion` command is used for generating completion scripts for your shell.
 
-:::info
-
-You may need to add ./ before the command depending on your system settings as follows:
-
-```shell
-./hakutest completion
-```
-
-:::
-
 ## Usage
 
 It is recommended to save the autocompletion script to a file and then execute it in the shell profile:

@@ -10,33 +10,6 @@ Syntax: `hakutest config [field] [value]`.
 
 The `hakutest config` command is used to manage the configuration for Hakutest via the command line interface. It provides functionality for printing and updating configuration fields. This command has three different uses depending on the number of arguments provided.
 
-:::info
-
-This command may need to be run from the installation directory in case if you store configuration file in the installation directory:
-
-```txt {3} title='Directory structure'
-hakutest/
-    hakutest(.exe)
-    config.yaml
-    ...
-```
-
-As Hakutest scans the current working directory for the `config.yaml` file, it may not load correctly.
-
-If the configuration file is stored in the OS specific config directory, it will be loaded regardless of the current working directory.
-
-:::
-
-:::info
-
-You may need to add ./ before the command depending on your system settings as follows:
-
-```shell
-./hakutest config
-```
-
-:::
-
 ### Print the entire config
 
 If no arguments are provided, the command will print the entire config to the console. The printed config includes tables and other formatting for better readability.

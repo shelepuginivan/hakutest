@@ -21,16 +21,6 @@ If no second argument is provided, the command will print a table showing the re
 hakutest statistics "My test"
 ```
 
-:::info
-
-You may need to add ./ before the command depending on your system settings as follows:
-
-```shell
-./hakutest
-```
-
-:::
-
 ```txt title='Output'
 #   Student   Points  %
 1   Alex      2       40
@@ -62,14 +52,7 @@ If second argument `excel` is provided, command generates [Excel spreadsheet](/d
 hakutest statistics "My test" excel
 ```
 
-This command will create a file `My test.xlsx`:
-
-```txt {4} title='Directory structure'
-hakutest/
-    hakutest(.exe)
-    ...
-    My test.xlsx
-```
+This command will create a file `My test.xlsx` in the current working directory.
 
 ### Export statistics to PNG histogram
 
@@ -79,11 +62,4 @@ If second argument `image` is provided, command generates [PNG histogram](/docs/
 hakutest statistics "My test" image
 ```
 
-This command will create a file `My test.png`:
-
-```txt {4} title='Directory structure'
-hakutest/
-    hakutest(.exe)
-    ...
-    My test.png
-```
+This command will create a file `My test.png` in the current working directory.

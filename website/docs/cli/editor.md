@@ -10,16 +10,6 @@ Syntax: `hakutest editor [test-name]`
 
 The `hakutest editor` command is a CLI test editor. It can create new tests and edit existing tests.
 
-:::info
-
-You may need to add ./ before the command depending on your system settings as follows:
-
-```shell
-./hakutest config
-```
-
-:::
-
 ## Creating new test
 
 To create new test, run command without any argument:

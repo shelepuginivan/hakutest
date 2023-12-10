@@ -37,22 +37,6 @@ Syntax: `hakutest statistics <name-of-the-test-file> excel`
 
 _Where `name-of-the-test-file` is the filename of test you want to export_.
 
-:::info
-
-Commands must be run from the installation directory.
-
-:::
-
-:::info
-
-You may need to add ./ before the command depending on your system settings as follows:
-
-```shell
-./hakutest statistics ...
-```
-
-:::
-
 This command creates a file named `<name-of-the-test-file>.xlsx` in the current working directory - Excel spreadsheet with exported statistics.
 
 ### Example
@@ -63,14 +47,7 @@ Assume there is a test file named "My test.json" in the tests directory.
 hakutest statistics "My test" excel
 ```
 
-This command will create a file `My test.xlsx`:
-
-```txt {4} title='Directory structure'
-hakutest/
-    hakutest(.exe)
-    ...
-    My test.xlsx
-```
+This command will create a file `My test.xlsx` in the current working directory.
 
 :::tip
 

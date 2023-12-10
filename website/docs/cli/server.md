@@ -10,31 +10,6 @@ Syntax: `hakutest [port]`
 
 The `hakutest` command is used to start the Hakutest server.
 
-:::info
-
-This command must be run from the installation directory since it uses relative path to load web files:
-
-```txt {2-4} title='Directory structure'
-hakutest/
-    web/              # This is loaded
-        static/
-        templates/
-    hakutest(.exe)
-    ...
-```
-
-:::
-
-:::info
-
-You may need to add ./ before the command depending on your system settings as follows:
-
-```shell
-./hakutest
-```
-
-:::
-
 If no arguments are provided, server will listen port specified in the configuration (see [Server configuration](/docs/configuration/server#port)).
 
 You can override `port` by specifying it as the first argument. The port must be an integer in the range 1024 to 65535.

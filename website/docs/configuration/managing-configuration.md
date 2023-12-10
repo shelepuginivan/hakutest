@@ -18,16 +18,10 @@ The `hakutest config` command is used to manage the configuration for Hakutest v
 
 :::info
 
-Commands must be run from the installation directory.
-
-:::
-
-:::info
-
-You may need to add ./ before the command depending on your system settings as follows:
+To use commands without specifying full path to the executable, add Hakutest installation directory to `$PATH`:
 
 ```shell
-./hakutest config
+export PATH="$PATH:path/to/hakutest/installation"
 ```
 
 :::

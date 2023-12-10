@@ -20,16 +20,10 @@ The `hakutest` command is used to start the Hakutest server.
 
 :::info
 
-Commands must be run from the installation directory.
-
-:::
-
-:::info
-
-You may need to add ./ before the command depending on your system settings as follows:
+To use commands without specifying full path to the executable, add Hakutest installation directory to `$PATH`:
 
 ```shell
-./hakutest
+export PATH="$PATH:path/to/hakutest/installation"
 ```
 
 :::

@@ -7,21 +7,21 @@ description: Overwiew of Hakutest command line interface
 
 Hakutest provides an extensive command line interface (CLI) for a variety of tasks.
 
-You can see all available commands by running `hakutest help`
+:::info
+
+To use commands without specifying full path to the executable, add Hakutest installation directory to `$PATH`:
+
+```shell
+export PATH="$PATH:path/to/hakutest/installation"
+```
+
+:::
+
+You can see all available commands by running `hakutest help`:
 
 ```shell
 hakutest help
 ```
-
-:::info
-
-You may need to add ./ before the command depending on your system settings as follows:
-
-```shell
-./hakutest help
-```
-
-:::
 
 It will print the following help message:
 
