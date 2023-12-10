@@ -27,6 +27,10 @@ clean:
 	go clean
 	rm -r ${TARGET_DIR}
 
+run:
+	go build .
+	bash -c "trap 'rm ./hakutest' 2; ./hakutest"
+
 test:
 	go test ./...
 
