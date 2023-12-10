@@ -1,10 +1,20 @@
 package server
 
 import (
+	"path"
+
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/app/server/controllers"
 	"github.com/shelepuginivan/hakutest/internal/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/utils"
 )
+
+func loadStaticAndTemplates(router *gin.Engine) {
+	exePath := utils.GetExecutablePath()
+
+	router.LoadHTMLGlob(path.Join(exePath, "web/templates/*"))
+	router.Static("/static", path.Join(exePath, "web/static"))
+}
 
 func setMode(mode string) {
 	switch mode {
@@ -21,8 +31,7 @@ func NewRouter() *gin.Engine {
 	setMode(config.Init().Server.Mode)
 
 	router := gin.New()
-	router.LoadHTMLGlob("web/templates/*")
-	router.Static("/static", "web/static")
+	loadStaticAndTemplates(router)
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 
