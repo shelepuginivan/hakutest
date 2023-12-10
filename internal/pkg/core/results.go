@@ -18,11 +18,16 @@ type TestResults struct {
 	Test        TestInfo  `yaml:"test"`
 }
 
+type TaskResult struct {
+	Answer  string `yaml:"answer"`
+	Correct bool   `yaml:"correct"`
+}
+
 type Results struct {
-	Points     int             `yaml:"points"`
-	Total      int             `yaml:"total"`
-	Percentage int             `yaml:"percentage"`
-	Tasks      map[string]bool `yaml:"tasks"`
+	Points     int                   `yaml:"points"`
+	Total      int                   `yaml:"total"`
+	Percentage int                   `yaml:"percentage"`
+	Tasks      map[string]TaskResult `yaml:"tasks"`
 }
 
 type TestInfo struct {
@@ -47,7 +52,7 @@ func (t Test) GetResults(answers map[string][]string) TestResults {
 			Points:     0,
 			Total:      len(t.Tasks),
 			Percentage: 0,
-			Tasks:      make(map[string]bool),
+			Tasks:      make(map[string]TaskResult),
 		},
 	}
 
@@ -62,7 +67,10 @@ func (t Test) GetResults(answers map[string][]string) TestResults {
 		correctAnswer := t.Tasks[index].Answer
 		isCorrect := CompareAnswers(studentAnswer, correctAnswer)
 
-		results.Results.Tasks[strconv.Itoa(index+1)] = isCorrect
+		results.Results.Tasks[strconv.Itoa(index+1)] = TaskResult{
+			Answer:  studentAnswer,
+			Correct: isCorrect,
+		}
 
 		if isCorrect {
 			results.Results.Points++

@@ -74,11 +74,11 @@ func TestGetResults(t *testing.T) {
 					Points:     4,
 					Total:      4,
 					Percentage: 100,
-					Tasks: map[string]bool{
-						"1": true,
-						"2": true,
-						"3": true,
-						"4": true,
+					Tasks: map[string]TaskResult{
+						"1": {Answer: "1,2", Correct: true},
+						"2": {Answer: "2", Correct: true},
+						"3": {Answer: "some", Correct: true},
+						"4": {Answer: "another", Correct: true},
 					},
 				},
 				Test: testInfo,
