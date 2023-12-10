@@ -20,8 +20,9 @@ On the statistics page, there is a table displaying the correctness of tasks per
 
 ![Excel test statistics example](./img/excel-stats.png)
 
--   Green cells represent a correct answer, marked with the value of 1.
--   Red cells represent an incorrect answer, marked the value of 0.
+-   Each cell contains an answer submitted by this student.
+-   Green cells represent a correct answer.
+-   Red cells represent an incorrect answer.
 -   If the cell is empty, student didn't submit answer for this task.
 
 :::tip
