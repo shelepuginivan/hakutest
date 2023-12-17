@@ -1,0 +1,46 @@
+{
+    "version.label": {
+        "message": "Next",
+        "description": "The label for version current"
+    },
+    "sidebar.tutorialSidebar.category.Guide": {
+        "message": "Guide",
+        "description": "The label for category Guide in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Guide.link.generated-index.title": {
+        "message": "Guide",
+        "description": "The generated-index page title for category Guide in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.App": {
+        "message": "App",
+        "description": "The label for category App in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.App.link.generated-index.title": {
+        "message": "App",
+        "description": "The generated-index page title for category App in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Statistics": {
+        "message": "Statistics",
+        "description": "The label for category Statistics in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Statistics.link.generated-index.title": {
+        "message": "Statistics",
+        "description": "The generated-index page title for category Statistics in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Configuration": {
+        "message": "Configuration",
+        "description": "The label for category Configuration in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Configuration.link.generated-index.title": {
+        "message": "Configuration",
+        "description": "The generated-index page title for category Configuration in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Commands": {
+        "message": "Commands",
+        "description": "The label for category Commands in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Commands.link.generated-index.title": {
+        "message": "Commands",
+        "description": "The generated-index page title for category Commands in sidebar tutorialSidebar"
+    }
+}
