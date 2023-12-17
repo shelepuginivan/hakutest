@@ -1,26 +1,26 @@
 ---
 sidebar_position: 1
-description: Learn how to start Hakutest server
+description: Узнайте как запускать сервер Hakutest
 ---
 
-# Server
+# Сервер
 
-Hakutest web pages, including the test page and test editor, require a running server.
+Веб-страницы платформы Hakutest, включая страницы тестов и редактора, требуют работающего сервера.
 
-You can start the Hakutest server using two methods:
+Вы можете запустить сервер Hakutest двумя способами:
 
--   By running the `hakutest` command in a terminal.
--   If you are using the Windows version of Hakutest with scripts, you can run the file `server.bat`.
+-   Исполнив команду `hakutest` в терминале.
+-   Если вы используете версию Hakutest для Windows со скриптами, вы можете запустить файл `server.bat`.
 
-## Using `hakutest` command
+## Использование команды `hakutest`
 
-Syntax: `hakutest [port]`
+Синтаксис: `hakutest [порт]`
 
-The `hakutest` command is used to start the Hakutest server.
+Команда `hakutest` запускает сервер Hakutest.
 
 :::info
 
-To use commands without specifying full path to the executable, add Hakutest installation directory to `$PATH`:
+Для использования команд без указания полного пути до исполняемого файла, добавьте директорию установки Hakutest в `$PATH`:
 
 ```shell
 export PATH="$PATH:path/to/hakutest/installation"
@@ -28,19 +28,19 @@ export PATH="$PATH:path/to/hakutest/installation"
 
 :::
 
-If no arguments are provided, server will listen port specified in the configuration (see [Server configuration](/docs/configuration/server#port)).
+Если не было передано ни одного аргумента, сервер будет прослушивать порт, указанный в конфигурационном файле (см. [Конфигурация сервера](/docs/configuration/server#port))
 
-You can override `port` by specifying it as the first argument. The port must be an integer in the range 1024 to 65535.
+Вы можете указать другой порт, передав его как первый аргумент. Значение порта должно быть целым числом от 1024 до 65535.
 
-### Examples
+### Примеры
 
-1.  Run on the port specified in the configuration:
+1.  Запустить сервер на порту, указанном в конфигурационном файле:
 
     ```shell
     hakutest
     ```
 
-2.  Run on port `8000`:
+2.  Запустить на порту `8000`:
 
     ```shell
     hakutest 8000
