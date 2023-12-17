@@ -1,73 +1,73 @@
 ---
 sidebar_position: 4
-description: Test editor that allows to create and edit tests
+description: Веб-редактор тестов
 ---
 
-# Test editor
+# Редактор тестов
 
-Test editor allows to create and edit tests.
+Редактор тестов позволяет создавать и редактировать файлы тестов.
 
-When the server is running, it can be accessed at the following URL:
+Когда сервер запущен, он доступен по адресу:
 
-`http://localhost:<port>/editor/upload`
+`http://localhost:<порт>/editor/upload`
 
-Where `port` is the port on which server is listening.
+Где `порт` - порт, который прослушивает сервер.
 
-Default test editor URL is http://localhost:8080/editor/upload.
+Адрес редактора по умолчанию: http://localhost:8080/editor/upload.
 
-![Test editor upload](./img/test-editor-upload.png)
+![Страница загрузки теста](./img/test-editor-upload.png)
 
 ## Using the editor
 
 :::tip
 
-For more information about test structure, it is recommended to read [Tests guide](/docs/guide/tests).
+Для получения дополнительной информации о структуре тестов рекомендуется прочитать [Руководство по тестам] (/docs/guide/tests).
 
 :::
 
-### Create new test
+### Создание нового теста
 
-To create new test, click "Create new test" button.
+Чтобы создать новый тест, нажмите на кнопку "Создать новый тест".
 
-### Edit existing test
+### Редактирование существующего тест
 
-To edit existing test file, follow the instruction:
+Чтобы открыть существующий тест для редактирования, следуйте инструкции:
 
-1.  Upload test file that you want to edit by clicking on "Upload test file".
-2.  Click "Edit test" button.
+1.  Загрузите файл теста, который вы хотите отредактировать, нажав на поле "Загрузить файл теста".
+2.  Нажмите на кнопку "Редактировать тест".
 
-### Editor
+### Редактор
 
-Once you have selected one of the options, an editor page will open where you can edit the test by filling in the required fields:
+Когда вы выбрали один из вариантов выше, откроется страница с редактором теста, в котором можно изменять его поля:
 
-![Test editor empty](./img/test-editor-edit-empty.png)
-![Test editor filled](./img/test-editor-edit-filled.png)
+![Редактор тестов (пустые поля)](./img/test-editor-edit-empty.png)
+![Редактор тестов (заполненные поля)](./img/test-editor-edit-filled.png)
 
 :::tip
 
-To create a test with no expiry time, leave the field "Expires in" unchanged or empty.
+Чтобы создать тест без времени истечения, оставьте поле "Доступен до" без изменений или пустым.
 
 :::
 
-### Adding tasks
+### Добавление заданий
 
-To add a task, click the "+ Add task" button:
+Чтобы добавить задание в тест, нажмите кнопку "+ Добавить задание":
 
-![Test editor add task](./img/test-editor-add-task-empty.png)
-![Test editor add filled](./img/test-editor-add-task-filled.png)
+![Редактор тестов: добавление задания (пустые поля)](./img/test-editor-add-task-empty.png)
+![Редактор тестов: добавление задания (заполненные поля)](./img/test-editor-add-task-filled.png)
 
-Here is the example for other types of tasks:
+Пример для остальных типов заданий:
 
-![Test editor many tasks](./img/test-editor-many-tasks.png)
+![Редактор тестов: задания](./img/test-editor-many-tasks.png)
 
-### Adding attachment
+### Добавление вложений
 
-You can also add an attachment to the task by ticking the checkbox "Add attachment":
+Вы также можете добавить вложения к заданию, включив опцию "Добавить вложение"
 
-![Test editor add attachment](./img/test-editor-add-attachment.png)
+![Редактор тестов: добавить вложение](./img/test-editor-add-attachment.png)
 
-### Download the test
+### Скачивание теста
 
-Once you have finished editing the test, download it by clicking "Download test" button.
+Когда вы завершите редактирования теста, вы можете скачать его, нажав "Скачать тест".
 
-To have access to the created test, don't forget to move it to the tests folder.
+Не забудьте положить файл в папку с тестами, чтобы иметь к нему доступ.
