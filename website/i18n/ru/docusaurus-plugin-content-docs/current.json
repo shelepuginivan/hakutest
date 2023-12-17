@@ -12,11 +12,11 @@
         "description": "The generated-index page title for category Guide in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.App": {
-        "message": "App",
+        "message": "Приложение",
         "description": "The label for category App in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.App.link.generated-index.title": {
-        "message": "App",
+        "message": "Приложение",
         "description": "The generated-index page title for category App in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.Statistics": {

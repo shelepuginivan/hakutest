@@ -1,10 +1,10 @@
 {
     "position": 4,
-    "label": "App",
+    "label": "Приложение",
     "collapsible": true,
     "collapsed": true,
     "link": {
         "type": "generated-index",
-        "title": "App"
+        "title": "Приложение"
     }
 }
