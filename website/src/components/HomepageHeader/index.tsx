@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import HakutestLogo from '@site/static/img/hakutest-logo.svg'
 
 import styles from './styles.module.css'
+import Translate from '@docusaurus/Translate'
 
 const HomepageHeader = () => {
     const { siteConfig } = useDocusaurusContext()
@@ -18,13 +19,13 @@ const HomepageHeader = () => {
                         className="button button--secondary button--lg"
                         to="/docs/intro"
                     >
-                        Getting started 🚀
+                        <Translate>Getting started 🚀</Translate>
                     </Link>
                     <Link
                         className="button button--secondary button--lg"
                         to="/docs/intro"
                     >
-                        Documentation 📗
+                        <Translate>Documentation 📗</Translate>
                     </Link>
                 </nav>
             </div>
