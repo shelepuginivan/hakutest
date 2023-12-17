@@ -1,4 +1,4 @@
-import type { Config, PluginConfig } from '@docusaurus/types'
+import type { Config, I18nConfig, PluginConfig } from '@docusaurus/types'
 import type { Options, ThemeConfig } from '@docusaurus/preset-classic'
 import { themes as prismThemes } from 'prism-react-renderer'
 import { EnumChangefreq } from 'sitemap'
@@ -20,13 +20,17 @@ const config: Config = {
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
 
-    // Even if you don't use internationalization, you can use this field to set
-    // useful metadata like html lang. For example, if your site is Chinese, you
-    // may want to replace "en" with "zh-Hans".
     i18n: {
         defaultLocale: 'en',
-        locales: ['en'],
-    },
+        path: 'i18n',
+        locales: ['en', 'ru'],
+        localeConfigs: {
+            ru: {
+                label: 'Русский',
+                htmlLang: 'ru',
+            },
+        },
+    } satisfies I18nConfig,
 
     plugins: [
         [
@@ -86,6 +90,10 @@ const config: Config = {
                     label: 'Documentation',
                 },
                 { to: '/blog', label: 'Blog', position: 'left' },
+                {
+                    type: 'localeDropdown',
+                    position: 'right',
+                },
                 {
                     href: 'https://github.com/shelepuginivan/hakutest',
                     label: 'GitHub',
