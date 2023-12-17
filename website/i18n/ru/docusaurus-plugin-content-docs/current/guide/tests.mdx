@@ -1,107 +1,107 @@
 ---
 sidebar_position: 2
-description: Learn more about test files
+description: Узнайте о тестах и файлах тестов
 ---
 
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-# Tests
+# Тесты
 
-In Hakutest, each test is represented by a JSON file that is stored locally on your computer. When the Hakutest server is running, students can access the test through the browser. The platform dynamically generates a web page for each test, displaying the questions and any additional content specified in the test file.
+В Hakutest каждый тест представляет собой JSON-файл, хранящийся на вашем устройстве. Когда сервер Hakutest запущен, ученики могут получить к нему доступ через браузер. Платформа динамически генерирует веб-страницу для каждого теста, отображает задания и любой дополнительный контент, указанный в файле.
 
-### Structure of the test file
+### Структура файла теста
 
-Test files contain the following information:
+Файл теста содержит следующую информацию:
 
--   Test title
--   Description of the test
--   Subject of the test
--   Author of the test
--   Target audience of the test
--   Educational institution
--   Test creation time (automatically generated when the test is created)
--   Test expiry time (optional)
--   Tasks of the test
+-   Название теста
+-   Описание теста
+-   Тема (предмет) теста
+-   Автор теста
+-   Целевая аудитория теста
+-   Образовательное учреждение
+-   Дата создания теста (автоматически генерируется при его создании)
+-   Время истечения теста (опционально)
+-   Задания теста
 
-### Task
+### Задания
 
-The test tasks contain the following information:
+Задания теста содержат следующую информацию:
 
--   Task type
-    -   Single answer - the student can choose one answer from the given options.
-    -   Multiple answers - the student can choose several answers from the given options.
-    -   Open question - the student must write the answer in the input field.
--   Task text (usually terms of the task)
--   Answer options from which the student can choose an answer
--   Correct answer to the task
+-   Тип задания
+    -   Один вариант ответа - ученик выбирает один из предложенных вариантов.
+    -   Множественный выбор - ученик выбирает несколько вариантов.
+    -   Открытый вопрос - ученик самостоятельно вводит ответ в текстовое поле.
+-   Текст (условия) задания
+-   Варианты ответов
+-   Правильный ответ на задание
 
 :::note
 
-The form of the correct answer differs depending on the type of task.
+Форма записи правильного ответа зависит от типа задания.
 
 <Tabs>
-    <TabItem value="single" label="Single answer" default>
-        Correct answer number.
+    <TabItem value="single" label="Один вариант ответа" default>
+        Номер правильного варианта ответа.
 
-        For example:
+        Например:
 
-        >   Task text: "2 + 2 = ?"
+        >   Текст задания: "2 + 2 = ?"
         >
-        >   Answer options:
+        >   Варианты ответов:
         >       -   1
         >       -   4
         >       -   5
         >       -   9
 
-        In this case, the correct answer is "2", as this is the correct answer number.
+        В этом случае в поле следует указать "2", так как это номер правильгого ответа.
     </TabItem>
 
-    <TabItem value="multiple" label="Multiple answers">
-        Numbers of correct answers, separated with commas.
+    <TabItem value="multiple" label="Множественный выбор">
+        Номера правильных ответов, разделённые запятыми.
 
-        For example:
+        Например:
 
-        >   Task text: "Choose prime numbers".
+        >   Текст задания: "Выберите простые числа".
         >
-        >   Answer options:
+        >   Варианты ответов:
         >       -   2
         >       -   3
         >       -   9
         >       -   13
         >       -   15
 
-        In this case, the correct answer is "1,2,4", as these are numbers of correct answers.
+        В этом случае в поле следует указать "1,2,4", так как это номера правильных ответов.
     </TabItem>
 
-    <TabItem value="open" label="Open question">
-        A string representing correct answer.
+    <TabItem value="open" label="Открытый вопрос">
+        Строка, обозначающая правильный ответ.
 
-        For example:
+        Например:
 
-        >   Task text: "Find root of the equation: x + 7 = 2".
+        >   Текст задания: "Найдите корень уравнения: x + 7 = 2".
         >
-        >   *(There are no answer options since it is an open question)*
+        >   *(Вариантов ответа нет, так как это вопрос открытого типа)*
 
-        In this case, the correct answer is a string "-5".
+        В этом случае правильным ответом будет строка "-5".
     </TabItem>
 </Tabs>
 
 :::
 
-You can also attach an attachment to the task. An attachment can be a video, audio, image, or link. It includes the following fields:
+Вы также можете добавить вложение к каждому заданию. Вложение может быть видео, аудио, изображением или ссылкой. Оно содержит следующие поля:
 
--   Name of attachment
--   Attachment type
-    -   Image
-    -   Video
-    -   Audio
-    -   Link
--   Attachment Source (URL)
+-   Название вложения
+-   Тип вложения
+    -   Изображение
+    -   Видео
+    -   Аудио
+    -   Ссылка
+-   Источник (URL)
 
-### Creating and editing test files
+### Создание и редактирование файлов теста.
 
-Hakutest provides two ways of creating and editing test files:
+Hakutest предоставляет два варианта создания и редактирования файлов теста:
 
--   Web editor (see [Test editor](/docs/app/test-editor)) - recommended for most users
--   CLI editor (see [Editor command](/docs/cli/editor))
+-   Веб-редактор (см. [Редактор тестов](/docs/app/test-editor)) - рекомендован для большинства пользователей
+-   CLI-редактор (см. [CLI-редактор](/docs/cli/editor))
