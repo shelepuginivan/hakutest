@@ -297,5 +297,32 @@
     "theme.unlistedContent.message": {
         "message": "This page is unlisted. Search engines will not index it, and only users having a direct link can access it.",
         "description": "The unlisted content banner message"
+    },
+    "Efficient": {
+        "message": "Производительный"
+    },
+    "Hakutest is written in Go, making it a high-performance system.": {
+        "message": "Hakutest написан на Go, что делает его высокопроизводительной системой."
+    },
+    "Secure": {
+        "message": "Безопасный"
+    },
+    "Your data, such as tests and results, is stored locally on your machine.": {
+        "message": "Ваши данные и данные ваших учеников хранятся локально на вашем устройстве."
+    },
+    "Configurable": {
+        "message": "Настраиваемый"
+    },
+    "Hakutest provides an extensive configuration option, allowing you to tailor the experience to your specific needs.": {
+        "message": "Hakutest предоставляет широкие возможности для конфигурации, позволяя изменить опыт использования под ваши требования."
+    },
+    "Cross-platform": {
+        "message": "Кроссплатформенный"
+    },
+    "Prebuilt packages are available for Windows, Linux, and macOS.": {
+        "message": "Скомпилированные пакеты доступны для Windows, Linux и macOS."
+    },
+    "Features": {
+        "message": "Преимущества"
     }
 }
