@@ -4,11 +4,11 @@
         "description": "The label for version current"
     },
     "sidebar.tutorialSidebar.category.Guide": {
-        "message": "Guide",
+        "message": "Гайд",
         "description": "The label for category Guide in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.Guide.link.generated-index.title": {
-        "message": "Guide",
+        "message": "Гайд",
         "description": "The generated-index page title for category Guide in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.App": {

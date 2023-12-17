@@ -1,10 +1,10 @@
 {
     "position": 3,
-    "label": "Guide",
+    "label": "Гайд",
     "collapsible": true,
     "collapsed": true,
     "link": {
         "type": "generated-index",
-        "title": "Guide"
+        "title": "Гайд"
     }
 }
