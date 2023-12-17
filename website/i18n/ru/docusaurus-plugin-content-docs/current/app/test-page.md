@@ -1,40 +1,40 @@
 ---
 sidebar_position: 3
-description: The page of the test on which the student can solve it
+description: Страница теста, на которой ученик может решить его
 ---
 
-# Test page
+# Страница теста
 
-The test page allows student to solve the test and submit their answers.
+Страница теста позволяет ученикам решать тест и отправлять свои ответы на проверку.
 
-![Test page](./img/test-page.png)
+![Страница теста](./img/test-page.png)
 
-When the server is running, it can be accessed from any device in the local network at the following URL:
+Когда сервер запущен, она доступна по следующему адресу в локальной сети:
 
-`http://<local-ip-of-your-device>:<port>/<name-of-the-test-file>`
+`http://<локальный-ip-устройства>:<порт>/<имя-файла-теста>`
 
-Where:
+Где:
 
--   `local-ip-of-your-device` - The local IP address of the device running the Hakutest server.
--   `port` - The port on which server is listening (see [Server configuration](/docs/configuration/server#port)).
--   `name-of-the-test-file` - Filename of the test you want to access. The test file should be placed in the tests directory (see [General configuration](/docs/configuration/general#tests_directory)).
+-   `локальный-ip-устройства` - Локальный IP-адрес устройства, на котором запущен сервер Hakutest server.
+-   `порт` - Порт, который прослушивает сервер (см. [Конфигурация севрера](/docs/configuration/server#port)).
+-   `имя-файла-теста` - Имя файла теста, который будет открыт. Файл должен находиться в директории тестов (см. [Основная конфигурация](/docs/configuration/general#tests_directory)).
 
 :::tip
 
-To find out your local IP address, see the instructions on the [Search page](/docs/app/search-page).
+Чтобы узнать локальный IP-адрес устройства, см. инструкцию [Страница поиска](/docs/app/search-page)
 
 :::
 
-### Example
+### Пример
 
-Let's assume that:
+Допустим, что:
 
--   The local IP of your device is `192.168.1.34`.
--   The port on which the server is running is `8080`.
--   The `tests` directory is located in the `./data/tests`
--   The `tests` directory contains the `my-test.json` file.
+-   Локальный адрес вашего устройства: `192.168.1.34`.
+-   Сервер прослушивает порт `8080`.
+-   Директория тестов находится по пути `./data/tests`.
+-   В директории тестов находится файл `my-test.json`.
 
-```txt title='Directory structure'
+```txt title='Структура папок'
 hakutest/
     hakutest(.exe)
     data/
@@ -42,29 +42,30 @@ hakutest/
             my-test.json
 ```
 
-In this example, when the server is running, you can access the test `my-test` at http://192.168.1.34:8080/my-test.
+В этом случае, когда сервер запущен, вы можете открыть страницу поиска тестов по адресу http://192.168.1.34:8080/my-test.
 
 :::note
 
+Расширения файла теста (`.json`) можно опустить.
 Test file extension (`.json`) can be omitted.
 
-In the example above, both URLs point to `my-test`:
+В примере выше, оба адреса относятся к тесту `my-test`:
 
 -   http://192.168.1.34:8080/my-test
 -   http://192.168.1.34:8080/my-test.json
 
 :::
 
-### Test results
+### Результаты тестирования
 
-Once the student submits their solution to the test, they will see their results. The results page contains the student's name, the points scored, and the percentage of correctly solved tasks.
+После того как учащийся отправит свое решение теста, он увидит свои результаты. На странице результатов указаны имя ученика, количество набранных баллов и процент правильно решенных задач.
 
-![Test results page](./img/test-results.png)
+![Страница результатов теста](./img/test-results.png)
 
-### Expired test
+### Тест с истекшим сроком действия
 
-If the test has expired, it will not be available at this URL. Instead of the test, a page will be displayed informing you that the test has expired:
+Если срок действия теста истек, он будет недоступен по этому адресу. Вместо теста будет отображена страница, информирующая о том, что срок действия теста истек:
 
-![Test expired page](./img/test-expired-page.png)
+![Страница теста с истекшим сроком](./img/test-expired-page.png)
 
-This page will also be displayed when the student attempts to submit answers to an expired test.
+Эта страница также будет отображаться при попытке отправить ответы на тест с истекшим сроком действия.
