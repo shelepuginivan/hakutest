@@ -2,30 +2,30 @@
 sidebar_position: 1
 ---
 
-# Getting started
+# Начало работы
 
-![Hakutest Logo](/img/hakutest-logo.svg)
+![Логотип Hakutest](/img/hakutest-logo.svg)
 
-### About Hakutest
+### О Hakutest
 
-Hakutest is an educational platform designed for testing. It allows you to test students, conduct quizzes, and even take exams. In other words, you can use Hakutest for every task that requires automatic answer check.
+Hakutest - это платформа для образовательного тестирования. Она позволяет проводить тесты, квизы и даже экзамены. Иными словами, вы можете использовать Hakutest для любой задачи, требующей автоматической проверки ответов.
 
-It has a number of advantages over its analogues:
+У платформы есть ряд преимуществ по сравнению с аналогами:
 
--   **Security**: Your data and your students' data are stored locally, ensuring that no one else can access it.
--   **Efficiency**: Hakutest is an efficient system capable of checking students' answers in a matter of milliseconds.
--   **Customizability**: You can customize the system to suit your needs: internationalization, different environments, data export and more.
--   **Cross-platform**: Prebuilt packages are available for Windows, Linux and macOS.
--   **Free**: Hakutest is a free and open source software.
+-   **Безопасность**: Ваши данные и данные ваших учеников хранятся локально, что исключает возможность доступа к ним посторонних лиц.
+-   **Производительность**: Hakutest - высокопроизводительная система, способная обрабатывать запросы и проверять ответы за миллисекунды.
+-   **Настраиваемость**: Вы можете настроить систему под свои нужды: интернационализация, различные среды и окружения, экспорт данных и многое другое.
+-   **Кроссплатформенность**: Скомпилированные пакеты доступны для Windows, Linux и macOS.
+-   **Свобода**: Hakutest - бесплатное ПО с открытым исходным кодом.
 
-### Motivation
+### Мотивация
 
-Today, numerous testing systems are available for educational institutions. However, each of them has significant drawbacks. Some of them have security issues: they compromise answers or allow students to falsify their results. Some of them are proprietary, so student data is stored on third-party servers. Hakutest was created with the intention to mitigate these weaknesses and provide the best testing experience for both students and teachers.
+Сегодня существует большое количество образовательных тестирующих систем. Однако, каждая из них обладает рядом недостатков. У некоторых есть уязвимости в безопасности, позволяющие скомпрометировать правильные ответы или подделать результат. Некоторые из них проприетарны: данные хранятся на сторонних серверах и могут использоваться третьими лицами. Hakutest был создан с целью решить эти проблемы и предоставить наилучший опыт тестирования как для учеников, так и для учителей.
 
-### How it works
+### Принцип работы
 
-In Hakutest, each test is represented by a JSON file that is stored locally on your computer. When the Hakutest server is running, students can access the test through the browser. The platform dynamically generates a web page for each test, displaying the questions and any additional content specified in the test file.
+В Hakutest каждый тест представляет собой JSON-файл, хранящийся на вашем устройстве. Когда сервер Hakutest запущен, ученики могут получить к нему доступ через браузер. Платформа динамически генерирует веб-страницу для каждого теста, отображает задания и любой дополнительный контент, указанный в файле.
 
-Once students have completed the test and submitted their answers, Hakutest automatically checks their responses against the expected solutions. This automated answer checking process provides instant feedback to students. The platform evaluates each answer based on the predefined criteria set in the test file, allowing for accurate and efficient grading.
+После того как учащиеся выполнили тест и отправили свои ответы, Hakutest автоматически сверяет их ответы с ожидаемыми решениями. Этот автоматизированный процесс проверки ответов обеспечивает мгновенную обратную связь с учащимися. Платформа оценивает каждый ответ на основе предопределенных критериев, заданных в файле теста, что позволяет точно и эффективно выставлять оценки.
 
-By utilizing this approach, Hakutest ensures that the testing process is secure and reliable. Since the test files are stored locally, the platform maintains data privacy and prevents unauthorized access to sensitive information.
+Используя такой подход, Hakutest обеспечивает безопасность и надежность процесса тестирования. Поскольку файлы тестов хранятся локально, платформа обеспечивает конфиденциальность данных и предотвращает несанкционированный доступ к конфиденциальной информации.
