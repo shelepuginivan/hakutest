@@ -1,71 +1,81 @@
 ---
 sidebar_position: 3
-description: Learn about students results
+description: Узнайте о результатах тестирования
 ---
 
-# Results
+# Результаты
 
-As with tests, Hakutest stores test results as text files on your device.
-Results of the same test are grouped into folders, all folders are stored in `results_directory`, which is usually:
+Как и в случае с тестами, Hakutest хранит результаты тестирований на вашем устройстве в текстовых файлах.
+Результаты каждого теста сгрупированы в папки, все папки хранятся в `results_directory`, обычно:
 
--   `~/AppData/Local/hakutest/results` on Windows.
--   `~/.cache/hakutest/results` on Linux and macOS.
+-   `~/AppData/Local/hakutest/results` на Windows.
+-   `~/.cache/hakutest/results` на Linux и macOS.
 
 :::tip
 
-For more information about results directory, see [General configuration](/docs/configuration/general#results_directory).
+Для информации о директории результатов тестов см. [Основная конфигурация](/docs/configuration/general#results_directory).
 
 :::
 
-### Structure of the test result
+### Структура файла
 
-Each test result contains the following information:
+Каждый файл результата тестирования содержит следующую информацию:
 
--   Student name
--   Submission time
--   Student score:
-    -   Scored points
-    -   Maximum points
-    -   Scored percentage
-    -   Correctness of answer for each task
--   Information about the test:
-    -   Test title
-    -   Test author
-    -   Test checksum (SHA256)
+-   Имя ученика
+-   Време отправки ответа
+-   Результаты проверки:
+    -   Балл
+    -   Максимальный балл
+    -   Процент правильно решённых заданий
+    -   Правильность ответа на каждое задание
+-   Информация о тесте:
+    -   Название теста
+    -   Автор теста
+    -   Контрольная сумма теста в формате SHA256
 
-### Example
+### Пример
 
-Let's look at the following example of test results:
+Рассмотрим следующий пример результата тестирования:
 
 ```yaml
-student: Sam
-submittedAt: 2023-11-05T15:45:03.885641702+03:00
+student: Александр
+submittedAt: 2023-12-10T20:46:06.566462172+03:00
 results:
-    points: 4
+    points: 3
     total: 5
-    percentage: 80
+    percentage: 60
     tasks:
-        '1': true
-        '2': false
-        '3': true
-        '4': true
-        '5': true
+        '1':
+            answer: '1'
+            correct: false
+        '2':
+            answer: some text
+            correct: true
+        '3':
+            answer: '2'
+            correct: true
+        '4':
+            answer: '1'
+            correct: true
+        '5':
+            answer: some text
+            correct: false
 test:
-    title: Information Security Grade 9
-    author: Jane Doe
-    sha256: b0f8bf6a584f3002ff9bcf1653a62d8d9b8100468e443bafffab5838354ae17c
+    title: Информационная безопасность 9 класс
+    author: Иван Иванов
+    sha256: 77faf2dafa2f936a5d5b5f56aab0eaeb860b91ab6bd65fddbf5456ed35fbb25a
 ```
 
-In this example:
+В этом примере:
 
--   The student's name is Sam.
--   The submission time is 2023-11-05T15:45:03.885641702+03:00.
--   The student scored 4 points out of a maximum of 5 points, resulting in a percentage of 80%.
--   The correctness of the answers for each task is as follows:
-    -   Task 1: true (correct)
-    -   Task 2: false (incorrect)
-    -   Task 3: true (correct)
-    -   Task 4: true (correct)
-    -   Task 5: true (correct)
--   The test is titled Information Security Grade 9 and was authored by Jane Doe.
--   The test checksum (SHA256) is b0f8bf6a584f3002ff9bcf1653a62d8d9b8100468e443bafffab5838354ae17c.
+-   Имя ученика - Александр
+-   Время отправки ответа - 2023-12-10T20:46:06.566462172+03:00.
+-   Ученик набрал 3 балла из 5 возможных - 60%.
+-   Правильность ответов следующая:
+    -   Задание 1: false (дан неверный ответ "1")
+    -   Задание 2: true (дан верный ответ "some text")
+    -   Задание 3: true (дан верный ответ "2")
+    -   Задание 4: true (дан верный ответ "1")
+    -   Задание 5: false (дан неверный ответ "some text")
+-   Название теста - "Информационная безопасность 9 класс", автор - Иван Иванов.
+-   Контрольная сумма теста: 77faf2dafa2f936a5d5b5f56aab0eaeb860b91ab6bd65fddbf5456ed35fbb25a.
