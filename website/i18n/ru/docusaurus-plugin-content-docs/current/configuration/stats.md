@@ -1,59 +1,59 @@
 ---
 sidebar_position: 5
-description: Hakutest settings for exporting student results and statistics
+description: Настройки экспорта результатов и статистики учеников
 ---
 
-# Statistics
+# Статистика
 
-Hakutest settings for exporting student results and statistics. Specified under the `stats` field in the config file.
+Настройки экспорта данных учеников, их результатов и статистики. Определены в секции `stats` конфигурационного файла.
 
-## Fields
+## Поля
 
 ### `excel`
 
-Specifies the settings for exporting results to an Excel document.
+Определяет настройки экспорта данных в Excel-таблицу.
 
-**Options**:
+**Параметры**:
 
--   `test_results_sheet` - Name of sheet with students' results.
--   `statistics_sheet` - Name of sheet with test statistics.
--   `header_student` - Header for the column with student names.
--   `header_points` - Header for the column with points scored by students.
--   `header_percentage` - Header for the column with percentage of correct answers.
+-   `test_results_sheet` - Название листа с результатами учеников.
+-   `statistics_sheet` - Название листа со статистикой.
+-   `header_student` - Заголовок столбца имён учеников.
+-   `header_points` - Заголовок столбца набранных баллов.
+-   `header_percentage` - Заголовок столбца процента правильно решённых заданий.
 
-**Visual example**:
+**Визуальный пример**:
 
-![Excel configuration example](./img/excel-example.png)
+![Пример настройки экспорта в Excel-таблицу](./img/excel-example.png)
 
 ### `image`
 
-Specifies the settings for exporting results to a PNG histogram.
+Определяет настройки экспорта данных в PNG-гистограмму.
 
-**Options**:
+**Параметры**:
 
--   `title` - Title of the histogram.
--   `label_x` - Label for histogram x-axis (Points).
--   `label_y` - Label for histogram y-axis (Students).
+-   `title` - Название гистограммы.
+-   `label_x` - Подпись оси Ox (набранные баллы).
+-   `label_y` - Подпись оси Oy (количество учеников).
 
-**Visual example**:
+**Визуальный пример**:
 
-![Histogram configuration example](./img/histogram-example.png)
+![Пример настройки экспорта в гистограмму](./img/histogram-example.png)
 
-## Example
+## Пример
 
-Example of statistics configuration:
+Пример секции `stats` конфигурационного файла:
 
 ```yaml title='config.yaml'
 stats:
     excel:
-        test_results_sheet: Test Results
-        statistics_sheet: Test Statistics
-        header_student: Student
-        header_points: Points
+        test_results_sheet: Результаты
+        statistics_sheet: Статистика
+        header_student: Ученик
+        header_points: Баллы
         header_percentage: '%'
     image:
-        title: Student Performance
-        label_x: Points
-        label_y: Students
-# Other fields...
+        title: Успеваемость учеников
+        label_x: Баллы
+        label_y: Ученики
+# Остальные поля...
 ```
