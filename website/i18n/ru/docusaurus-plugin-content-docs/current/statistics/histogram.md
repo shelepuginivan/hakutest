@@ -1,81 +1,81 @@
 ---
 sidebar_position: 3
-description: Export test results to a PNG histogram
+description: Экспорт результатов тестов в PNG гистограмму
 ---
 
-# Histogram
+# Гистограмма
 
-Student test results can be exported to a histogram via two methods:
+Результаты тестирований могут быть экспортированы в PNG гистограмму двумя методами:
 
--   By using the `hakutest statistics` command.
--   If you are using the Windows version of Hakutest with scripts, you can run the file `stats_image.bat`.
+-   При помощи команды `hakutest statistics`.
+-   Если вы используете версию Hakutest для Windows со скриптами, вы можете запустить файл `stats_image.bat`.
 
-## Data format
+## Формат данных
 
-Test results statistics is exported as a PNG image with histogram as follows:
+Результаты тестирования экспортируются в PNG-изображение с гистограммой следующим образом:
 
 ![Histogram example](./img/histogram.png)
 
--   The horizontal axis indicates the number of points scored by students.
--   The vertical axis indicates the quantity of students who scored this number of points.
+-   Горизонтальная ось обозначает количество баллов, набранных учениками.
+-   Вертикальная ось обозначает количество учеников, набравших этот балл.
 
 :::tip
 
-You can change the static text of the histogram by changing the configuration parameters. See [Statistics configuration](/docs/configuration/stats#image) for more information.
+Вы можете менять статичный текст гистограммы, указав нужные значения в конфигурации. Для более подробной информации см. [Конфигурация статистики](/docs/configuration/stats#image).
 
 :::
 
-## Using `hakutest statistics` command
+## Использование команды `hakutest statistics`
 
-Syntax: `hakutest statistics <name-of-the-test-file> image`
+Синтаксис: `hakutest statistics <название-теста> image`
 
-_Where `name-of-the-test-file` is the filename of test you want to export_.
+_Где `название-теста` - название папки результатов теста (т.е. название его файла), статистику которого вы хотите экспортировать_.
 
-This command creates a file named `<name-of-the-test-file>.png` in the current working directory - PNG histogram with exported statistics.
+Эта команда создаст файл `<название-теста>.png` (изображение PNG с гистограммой) в текущей рабочей директории.
 
-### Example
+### Пример
 
-Assume there is a test file named "My test.json" in the tests directory.
+Предположим, в директории результатов есть папка "My test" с результатами тестирования.
 
-```shell title='Command'
+```shell title='Команда'
 hakutest statistics "My test" image
 ```
 
-This command will create a file `My test.png` in the current working directory.
+Эта команда создаст файл `My test.png` в текущей рабочей директории.
 
 :::tip
 
-See [`statistics` command](/docs/cli/statistics) for more information.
+Для более подробной информации см. [Команда `statistics`](/docs/cli/statistics).
 
 :::
 
-## Using `stats_image.bat` script
+## Использование скрипта `stats_image.bat`
 
-Assume there is a test file named "My test.json" in the tests directory.
+Предположим, в директории результатов есть папка "My test" с результатами тестирования.
 
-1. Double-click file `stats_image.bat` in the Hakutest installation directory:
+1. Запустите файл `stats_image.bat`, расположенный в директории установки Hakutest, двойным нажатием:
 
-    ```txt {4} title='Directory structure'
+    ```txt {4} title='Структура папок'
     hakutest/
         hakutest.exe
         ...
-        stats_image.bat
+        stats_excel.bat
     ```
 
-2. Script will prompt you for a test filename:
+2. Скрипт попросит ввести название теста:
 
-    ![Script prompt](./img/script-stats-prompt-empty.png)
+    ![Ввод названия (пустой)](./img/script-stats-prompt-empty.png)
 
-3. Enter the filename of the test which statistics you want to export:
+3. Введите название нужного теста:
 
-    ![Script prompt with value entered](./img/script-stats-prompt-value.png)
+    ![Ввод названия (со значением)](./img/script-stats-prompt-value.png)
 
-4. It will create a PNG image in this directory:
+4. В той же папке будет создано изображение:
 
-    ```txt {5} title='Directory structure'
+    ```txt {5} title='Структура папок'
     hakutest/
         hakutest.exe
         ...
-        stats_image.bat
+        stats_excel.bat
         My test.png
     ```
