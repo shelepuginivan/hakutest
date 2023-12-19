@@ -10,7 +10,7 @@ Syntax: `hakutest statistics <test-name> [format]`
 
 The `hakutest statistics` command is used to export test results statistics to different formats.
 
--   The first argument `test-name` is a name of the test file which statistics you want to export.
+-   The first argument `test-name` is the name of the test results folder (i.e. its file name) which statistics you want to export.
 -   The second argument `format` is the format of statistics.
 
 ### Print results table

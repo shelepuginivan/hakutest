@@ -27,15 +27,15 @@ You can change the static text of the histogram by changing the configuration pa
 
 ## Using `hakutest statistics` command
 
-Syntax: `hakutest statistics <name-of-the-test-file> image`
+Syntax: `hakutest statistics <test-name> excel`
 
-_Where `name-of-the-test-file` is the filename of test you want to export_.
+_Where `test-name` is the name of the test results folder (i.e. its file name) which statistics you want to export_.
 
-This command creates a file named `<name-of-the-test-file>.png` in the current working directory - PNG histogram with exported statistics.
+This command creates a file named `<test-name>.png` in the current working directory - PNG histogram with exported statistics.
 
 ### Example
 
-Assume there is a test file named "My test.json" in the tests directory.
+Assume there is a "My test" folder with test results in the results directory.
 
 ```shell title='Command'
 hakutest statistics "My test" image
@@ -51,7 +51,7 @@ See [`statistics` command](/docs/cli/statistics) for more information.
 
 ## Using `stats_image.bat` script
 
-Assume there is a test file named "My test.json" in the tests directory.
+Assume there is a "My test" folder with test results in the results directory.
 
 1. Double-click file `stats_image.bat` in the Hakutest installation directory:
 
