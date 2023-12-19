@@ -28,11 +28,11 @@
         "description": "The generated-index page title for category Statistics in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.Configuration": {
-        "message": "Configuration",
+        "message": "Конфигурация",
         "description": "The label for category Configuration in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.Configuration.link.generated-index.title": {
-        "message": "Configuration",
+        "message": "Конфигурация",
         "description": "The generated-index page title for category Configuration in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.Commands": {
