@@ -9,7 +9,6 @@ import TabItem from '@theme/TabItem'
 # О конфигурации
 
 Hakutest предоставляет различные возможности кастомизации. Все настройки организованы в несколько категорий:
-Hakutest provides various customization options. All settings are organized into several categories:
 
 -   **Основные (`general`)**: Общие настройки Hakutest, такие как директории хранения данных.
 -   **Сервер (`server`)**: Настройки сервера Hakutest.
