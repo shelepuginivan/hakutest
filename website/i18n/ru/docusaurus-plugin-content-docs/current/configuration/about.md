@@ -21,7 +21,7 @@ Hakutest provides various customization options. All settings are organized into
 Конфигурация Hakutest хранится в файле `config.yaml`. Программа проверяет наличие этого файла в следующих директориях:
 
 -   **Папка конфигурации ОС** - Директория с конфигурациями приложений, определённая операционной системой. Она может варьироваться в зависимости от ОС. Наиболее распространённые пути:
-    
+
     <Tabs>
         <TabItem value="windows" label="Windows" default>
             -   `%USERPROFILE%/hakutest`
@@ -61,10 +61,10 @@ Hakutest provides various customization options. All settings are organized into
 ```yaml title='config.yaml'
 general:
     # может отличаться в зависимости от ОС
-    tests_directory: ~/.cache/hakutest/tests 
+    tests_directory: ~/.cache/hakutest/tests
     results_directory: ~/.cache/hakutest/results
 server:
-    port: "8080"
+    port: '8080'
     mode: release
 stats:
     excel:

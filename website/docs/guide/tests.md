@@ -85,6 +85,7 @@ The form of the correct answer differs depending on the type of task.
 
         In this case, the correct answer is a string "-5".
     </TabItem>
+
 </Tabs>
 
 :::

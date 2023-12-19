@@ -20,7 +20,7 @@ Hakutest provides various customization options. All settings are organized into
 The configuration of Hakutest is stored in a `config.yaml` file. The program searches for this file in the following directories:
 
 -   **OS config directory** - Configuration directory defined by your operating system. It can vary depending on the operating system and its version used. The common paths are:
-    
+
     <Tabs>
         <TabItem value="windows" label="Windows" default>
             -   `%USERPROFILE%/hakutest`
@@ -62,7 +62,7 @@ general:
     tests_directory: ~/.cache/hakutest/tests # May vary depending on OS
     results_directory: ~/.cache/hakutest/results # May vary depending on OS
 server:
-    port: "8080"
+    port: '8080'
     mode: release
 stats:
     excel:

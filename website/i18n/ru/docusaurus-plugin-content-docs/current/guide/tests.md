@@ -85,6 +85,7 @@ import TabItem from '@theme/TabItem'
 
         В этом случае правильным ответом будет строка "-5".
     </TabItem>
+
 </Tabs>
 
 :::
