@@ -1,35 +1,35 @@
 ---
 sidebar_position: 2
-description: Hakutest common settings
+description: Основные настройки Hakutest
 ---
 
-# General
+# Основные
 
-Hakutest common settings, specified under the `general` field in the config file.
+Основные настройки Hakutest определены в секции `general` конфигурационного файла.
 
-## Fields
+## Поля
 
 ### `tests_directory`
 
-Specifies the folder where tests files are stored.
+Определяет директорию хранения файлов тестов.
 
--   **Value**: path (absolute or relative) to the folder where you want to store the tests.
--   **Default**: _Depends on your operating system._
+-   **Значение**: путь (абсолютный или относительный) до папки с файлами тестов.
+-   **По умолчанию**: _Зависит от вашей операционной системы._
 
 ### `results_directory`
 
-Specifies the folder where students' results are stored.
+Определяет директорию хранения результатов тестирований.
 
--   **Value**: path (absolute or relative) to the folder where you want to store the results.
--   **Default**: _Depends on your operating system._
+-   **Значение**: путь (абсолютный или относительный) до папки с результатами.
+-   **По умолчанию**: _Зависит от вашей операционной системы._
 
-## Example
+## Пример
 
-Example of general configuration:
+Пример секции `general` конфигурационного файла:
 
 ```yaml title='config.yaml'
 general:
     tests_directory: ./data/tests
     results_directory: ./data/results
-# Other fields...
+# Остальные поля...
 ```
