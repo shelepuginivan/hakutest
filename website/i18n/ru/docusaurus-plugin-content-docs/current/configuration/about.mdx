@@ -1,25 +1,26 @@
 ---
 sidebar_position: 1
-description: A brief introduction into Hakutest configuration
+description: Введение в конфигурацию Hakutest
 ---
 
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-# About configuration
+# О конфигурации
 
+Hakutest предоставляет различные возможности кастомизации. Все настройки организованы в несколько категорий:
 Hakutest provides various customization options. All settings are organized into several categories:
 
--   **General**: Common Hakutest settings, such as data storage directories.
--   **Server**: Settings of the Hakutest server.
--   **UI**: User interface customization, including configuration of different pages of the application.
--   **Statistics**: Settings for exporting student results and statistics.
+-   **Основные (`general`)**: Общие настройки Hakutest, такие как директории хранения данных.
+-   **Сервер (`server`)**: Настройки сервера Hakutest.
+-   **Пользовательский интерфейс (`ui`)**: Кастомизация интерфейса, в том числе отдельных страниц приложения.
+-   **Статистика (`statistics`)**: Настройки экспорта статистических данных.
 
-### Config file
+### Конфигурационный файл
 
-The configuration of Hakutest is stored in a `config.yaml` file. The program searches for this file in the following directories:
+Конфигурация Hakutest хранится в файле `config.yaml`. Программа проверяет наличие этого файла в следующих директориях:
 
--   **OS config directory** - Configuration directory defined by your operating system. It can vary depending on the operating system and its version used. The common paths are:
+-   **Папка конфигурации ОС** - Директория с конфигурациями приложений, определённая операционной системой. Она может варьироваться в зависимости от ОС. Наиболее распространённые пути:
     
     <Tabs>
         <TabItem value="windows" label="Windows" default>
@@ -32,11 +33,11 @@ The configuration of Hakutest is stored in a `config.yaml` file. The program sea
         </TabItem>
     </Tabs>
 
--   **Working directory** - The config file can be placed in the same directory with the executable:
+-   **Рабочая директория** - Конфигурационный файл может находиться в той же папке, что и исполняемый файл Hakutest:
 
     <Tabs>
         <TabItem value="windows" label="Windows" default>
-            ```txt title='Directory structure'
+            ```txt title='Структура папок'
             hakutest/
                 ...
                 hakutest.exe
@@ -44,7 +45,7 @@ The configuration of Hakutest is stored in a `config.yaml` file. The program sea
             ```
         </TabItem>
         <TabItem value="unix" label="Linux/macOS">
-            ```txt title='Directory structure'
+            ```txt title='Структура папок'
             hakutest/
                 ...
                 hakutest
@@ -53,14 +54,15 @@ The configuration of Hakutest is stored in a `config.yaml` file. The program sea
         </TabItem>
     </Tabs>
 
-### Default configuration
+### Конфигурация по умолчанию
 
-The default Hakutest configuration is as follows:
+Ниже представлена конфигурация Hakutest по умолчанию:
 
 ```yaml title='config.yaml'
 general:
-    tests_directory: ~/.cache/hakutest/tests # May vary depending on OS
-    results_directory: ~/.cache/hakutest/results # May vary depending on OS
+    # может отличаться в зависимости от ОС
+    tests_directory: ~/.cache/hakutest/tests 
+    results_directory: ~/.cache/hakutest/results
 server:
     port: "8080"
     mode: release
