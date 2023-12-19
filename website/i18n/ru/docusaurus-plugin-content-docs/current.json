@@ -20,11 +20,11 @@
         "description": "The generated-index page title for category App in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.Statistics": {
-        "message": "Statistics",
+        "message": "Статистика",
         "description": "The label for category Statistics in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.Statistics.link.generated-index.title": {
-        "message": "Statistics",
+        "message": "Статистика",
         "description": "The generated-index page title for category Statistics in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.Configuration": {
