@@ -1,35 +1,36 @@
 ---
 sidebar_position: 3
-description: Hakutest server configuration
+description: Настройки сервера Hakutest
 ---
 
-# Server
+# Сервер
 
-Hakutest server configuration, specified under the `server` field in the config file.
+Настройки сервера Hakutest определены в секции `server` конфигурационного файла.
 
-## Fields
+## Поля
 
 ### `port`
 
-Specifies the port on which the Hakutest server will run.
+Определяет порт, на котором сервер Hakutest будет запущен.
 
--   **Value**: a string representing an integer between 1024 and 65535 (e.g., `'8000'`).
--   **Default**: `'8080'`.
+-   **Значение**: строка, обозначающая целое число от 1024 до 65535.
+-   **По умолчанию**: `'8080'`.
 
 ### `mode`
 
+Определяет режим, в котором сервер Hakutest будет запущен.
 Specifies the mode in which the Hakutest server will run.
 
--   **Value**: `'release'`, `'debug'` or `'test'`. Any other string will fallback to `'release'`.
--   **Default**: `'release'`.
+-   **Значение**: `'release'`, `'debug'` или `'test'`. Любое другое значение возвращается к `'release'`.
+-   **По умолчанию**: `'release'`.
 
-## Example
+## Пример
 
-Example of server configuration:
+Пример секции `server` конфигурационного файла.
 
 ```yaml title='config.yaml'
 server:
     port: '8080'
     mode: release
-# Other fields...
+# Остальные поля...
 ```
