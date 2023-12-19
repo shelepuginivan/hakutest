@@ -1,84 +1,84 @@
 ---
 sidebar_position: 2
-description: Export test results to an Excel spreadsheet
+description: Экспорт результатов тестов в таблицу Excel
 ---
 
 # Excel
 
-Student test results can be exported to an Excel spreadsheet via two methods:
+Результаты тестирований могут быть экспортированы в Excel-таблицу двумя методами:
 
--   By using the `hakutest statistics` command.
--   If you are using the Windows version of Hakutest with scripts, you can run the file `stats_excel.bat`.
+-   При помощи команды `hakutest statistics`.
+-   Если вы используете версию Hakutest для Windows со скриптами, вы можете запустить файл `stats_excel.bat`.
 
-## Data format
+## Формат данных
 
-On the test results page, there is a table displaying the student's scores and the percentage of tasks they completed correctly:
+На листе результатов находится таблица, отображающая баллы учеников и процент правильности решённых заданий
 
-![Excel test results example](./img/excel-results.png)
+![Пример листа результатов](./img/excel-results.png)
 
-On the statistics page, there is a table displaying the correctness of tasks performed by students:
+На листе статистики находится таблица с подробной информацией о правильности решения каждого задания учениками:
 
-![Excel test statistics example](./img/excel-stats.png)
+![Пример листа статистики](./img/excel-stats.png)
 
--   Each cell contains an answer submitted by this student.
--   Green cells represent a correct answer.
--   Red cells represent an incorrect answer.
--   If the cell is empty, student didn't submit answer for this task.
+-   Каждая ячейка содержит ответ ученика.
+-   Зелёные ячейки обозначают верный ответ.
+-   Красные ячейки обозначают неверный ответ.
+-   Пустые ячейки обозначают, что ученик не отправил ответ на это задание.
 
 :::tip
 
-You can change the static text of the spreadsheet by changing the configuration parameters. See [Statistics configuration](/docs/configuration/stats#excel) for more information.
+Вы можете менять статичный текст таблицы, указав нужные значения в конфигурации. Для более подробной информации см. [Конфигурация статистики](/docs/configuration/stats#excel).
 
 :::
 
-## Using `hakutest statistics` command
+## Использование команды `hakutest statistics`
 
-Syntax: `hakutest statistics <name-of-the-test-file> excel`
+Синтаксис: `hakutest statistics <название-теста> excel`
 
-_Where `name-of-the-test-file` is the filename of test you want to export_.
+_Где `название-теста` - название папки результатов теста (т.е. название его файла), статистику которого вы хотите экспортировать_.
 
-This command creates a file named `<name-of-the-test-file>.xlsx` in the current working directory - Excel spreadsheet with exported statistics.
+Эта команда создаст файл `<название-теста>.xlsx` (таблицу Excel с результатами тестирования) в текущей рабочей директории.
 
-### Example
+### Пример
 
-Assume there is a test file named "My test.json" in the tests directory.
+Предположим, в директории результатов есть папка "My test" с результатами тестирования.
 
-```shell title='Command'
+```shell title='Команда'
 hakutest statistics "My test" excel
 ```
 
-This command will create a file `My test.xlsx` in the current working directory.
+Эта команда создаст файл `My test.xlsx` в текущей рабочей директории.
 
 :::tip
 
-See [`statistics` command](/docs/cli/statistics) for more information.
+Для более подробной информации см. [Команда `statistics`](/docs/cli/statistics).
 
 :::
 
-## Using `stats_excel.bat` script
+## Использование скрипта `stats_excel.bat`
 
-Assume there is a test file named "My test.json" in the tests directory.
+Предположим, в директории результатов есть папка "My test" с результатами тестирования.
 
-1. Double-click file `stats_excel.bat` in the Hakutest installation directory:
+1. Запустите файл `stats_excel.bat`, расположенный в директории установки Hakutest, двойным нажатием:
 
-    ```txt {4} title='Directory structure'
+    ```txt {4} title='Структура папок'
     hakutest/
         hakutest.exe
         ...
         stats_excel.bat
     ```
 
-2. Script will prompt you for a test filename:
+2. Скрипт попросит ввести название теста:
 
-    ![Script prompt](./img/script-stats-prompt-empty.png)
+    ![Ввод названия (пустой)](./img/script-stats-prompt-empty.png)
 
-3. Enter the filename of the test which statistics you want to export:
+3. Введите название нужного теста:
 
-    ![Script prompt with value entered](./img/script-stats-prompt-value.png)
+    ![Ввод названия (со значением)](./img/script-stats-prompt-value.png)
 
-4. It will create an Excel spreadsheet in this directory:
+4. В той же папке будет создана таблица Excel:
 
-    ```txt {5} title='Directory structure'
+    ```txt {5} title='Структура папок'
     hakutest/
         hakutest.exe
         ...
