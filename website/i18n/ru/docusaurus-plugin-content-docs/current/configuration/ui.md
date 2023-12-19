@@ -1,169 +1,169 @@
 ---
 sidebar_position: 4
-description: Hakutest user interface customization
+description: Настройки пользовательского интерфейса Hakutest
 ---
 
-# User interface
+# Интерфейс
 
-Hakutest user interface customization, specified under the `ui` field in the config file.
+Кастомизация пользовательского интерфейса Hakutest. Определена в секции `ui` конфигурационного файла.
 
 :::tip
 
-Since UI customization allows any static text on web pages to be changed, it can also facilitate internationalization.
+Так как кастомизация пользовательского интерфейса позволяет изменять весь статический текст страниц, она также реализует интернационализацию.
 
 :::
 
-## Fields
+## Поля
 
 ### `editor`
 
-Customizes [test editor page](/docs/app/test-editor) interface.
+Кастомизация [Веб-редактора тестов](/docs/app/test-editor).
 
-**Options**:
+**Параметры**:
 
--   `header` - Test editor page header.
--   `label_title` - Title input label.
--   `label_description` - Description input label.
--   `label_subject` - Subject input label.
--   `label_author` - Author input label.
--   `label_target` - Target audience input label.
--   `label_institution` - Educational institution input label.
--   `label_expires_in` - Expiration time input label.
--   `label_add_task` - Text of the button that adds new task.
--   `label_task_header` - Header of the task (input group).
--   `label_task_type` - Task type input label.
--   `label_task_type_single` - Single answer type label.
--   `label_task_type_multiple` - Multiple answers type label.
--   `label_task_type_open` - Open question type label.
--   `label_task_text` - Task text input label.
--   `label_task_answer` - Task correct answer input label.
--   `label_task_options` - Task answer options input label.
--   `label_task_add_option` - Text of the button that adds new answer option.
--   `label_add_attachment` - Add attachment checkbox label.
--   `label_attachment_name` - Attachment name input label.
--   `label_attachment_type` - Attachment type input label.
--   `label_attachment_type_file` - File type label.
--   `label_attachment_type_image` - Image type label.
--   `label_attachment_type_video` - Video type label.
--   `label_attachment_type_audio` - Audio type label.
--   `label_attachment_src` - Attachment source (i.e. URL) input label.
--   `label_upload_test_input` - Test file upload input text.
--   `label_upload_test_button` - Test upload button text.
--   `label_new_test` - Create new test button text.
--   `label_download_test` - Test download button text.
+-   `header` - Заголовок страницы редактора тестов.
+-   `label_title` - Подпись поля ввода названия теста.
+-   `label_description` - Подпись поля ввода описания теста.
+-   `label_subject` - Подпись поля ввода темы теста.
+-   `label_author` - Подпись поля ввода автора теста.
+-   `label_target` - Подпись поля ввода целевой аудитории теста.
+-   `label_institution` - Подпись поля ввода образовательного учреждения.
+-   `label_expires_in` - Подпись поля ввода времени истечения теста.
+-   `label_add_task` - Текст кнопки добавления новых заданий.
+-   `label_task_header` - Заголовок задания (группы полей ввода).
+-   `label_task_type` - Подпись поля ввода типа задания.
+-   `label_task_type_single` - Подпись типа задания с одним вариантом ответа.
+-   `label_task_type_multiple` - Подпись типа задания с несколькими вариантами ответа.
+-   `label_task_type_open` - Подпись типа задания с открытым ответом.
+-   `label_task_text` - Подпись поля ввода текста задания.
+-   `label_task_answer` - Подпись поля ввода правильного ответа на задание.
+-   `label_task_options` - Подпись поля ввода вариантов ответа.
+-   `label_task_add_option` - Текст кнопки добавления вариантов ответа.
+-   `label_add_attachment` - Текст опции добавления вложения.
+-   `label_attachment_name` - Подпись поля ввода названия вложения.
+-   `label_attachment_type` - Подпись поля ввода типа вложения.
+-   `label_attachment_type_file` - Подпись вложения типа "Файл".
+-   `label_attachment_type_image` - Подпись вложения типа "Изображение".
+-   `label_attachment_type_video` - Подпись вложения типа "Видео".
+-   `label_attachment_type_audio` - Подпись вложения типа "Аудио".
+-   `label_attachment_src` - Подпись поля ввода источника вложения.
+-   `label_upload_test_input` - Текст поля добавления файла теста.
+-   `label_upload_test_button` - Текст кнопки загрузки теста для редактирования.
+-   `label_new_test` - Текст кнопки создания нового теста.
+-   `label_download_test` - Текст кнопки скачивания теста.
 
-**Visual examples**:
+**Визуальный примерs**:
 
-Editor test upload page:
+Страница загрузки теста для редактирования:
 
-![Editor upload page example](./img/test-editor-upload-example.png)
+![Пример страницы загрузки теста](./img/test-editor-upload-example.png)
 
-Test editor page:
+Страница редактора теста:
 
-![Editor edit page example](./img/test-editor-edit-example.png)
+![Пример страницы редактора теста](./img/test-editor-edit-example.png)
 
 ### `error`
 
-Customizes error page interface.
+Кастомизация страницы ошибки.
 
-**Options**:
+**Параметры**:
 
--   `header` - Header of the error page.
--   `details` - Error details header (summary).
+-   `header` - Залоговок страницы.
+-   `details` - Подпись информации об ошибке.
 
-**Visual example**:
+**Визуальный пример**:
 
-![Error page example](./img/error-example.png)
+![Пример страницы ошибки](./img/error-example.png)
 
 ### `expired`
 
-Customizes [expired test page](/docs/app/test-page#expired-test) interface.
+Кастомизация [страницы теста с истекшим сроком действия](/docs/app/test-page#expired-test).
 
-**Options**:
+**Параметры**:
 
--   `header` - Header of the expired test page.
--   `message` - Message with additional information.
+-   `header` - Залоговок страницы.
+-   `message` - Сообщение с дополнительной информацией для ученика.
 
-**Visual example**:
+**Визуальный пример**:
 
-![Expired page example](./img/expired-example.png)
+![Пример страницы теста с истекшим сроком действия](./img/expired-example.png)
 
 ### `search`
 
-Customizes expired [search page](/docs/app/search-page) interface.
+Кастомизация [страницы поиска](/docs/app/search-page).
 
-**Options**:
+**Параметры**:
 
--   `input_placeholder` - Placeholder text of the search input field.
--   `search_button_label` - Text of the search button.
+-   `input_placeholder` - Текст поля ввода названия теста.
+-   `search_button_label` - Текст кнопки поиска.
 
-**Visual example**:
+**Визуальный пример**:
 
-![Search page example](./img/search-example.png)
+![Пример страницы поиска](./img/search-example.png)
 
 ### `test`
 
-Customizes [test page](/docs/app/test-page) interface.
+Кастомизация [страницы теста](/docs/app/test-page).
 
-**Options**:
+**Параметры**:
 
--   `student_name_label` - Label of student name input.
--   `open_answer_label` - Label of open question answer input.
--   `submit_button_label` - Text of test solution submission button.
+-   `student_name_label` - Подпись поля ввода имени ученика.
+-   `open_answer_label` - Подпись поля ввода ответа для заданий с открытым ответом.
+-   `submit_button_label` - Текст кнопки отправки решения.
 
-**Visual example**:
+**Визуальный пример**:
 
-![Test page example](./img/test-example.png)
+![Пример страницы теста](./img/test-example.png)
 
-## Example
+## Пример
 
-Example of user interface configuration:
+Пример секции `ui` конфигурационного файла.
 
 ```yaml title='config.yaml'
 ui:
     editor:
-        header: Test Editor
-        label_title: 'Title:'
-        label_description: 'Description:'
-        label_subject: 'Subject:'
-        label_author: 'Author:'
-        label_target: 'Target audience:'
-        label_institution: 'Institution:'
-        label_expires_in: 'Expires in:'
-        label_add_task: + Add task
-        label_task_header: Task
-        label_task_type: 'Type:'
-        label_task_type_single: Single answer
-        label_task_type_multiple: Multiple answers
-        label_task_type_open: Open question
-        label_task_text: 'Text:'
-        label_task_answer: 'Answer:'
-        label_task_options: Answer options
-        label_task_add_option: + Add option
-        label_add_attachment: Add attachment
-        label_attachment_name: 'Name:'
-        label_attachment_type: 'Type:'
-        label_attachment_type_file: File
-        label_attachment_type_image: Image
-        label_attachment_type_video: Video
-        label_attachment_type_audio: Audio
-        label_attachment_src: 'Source (URL):'
-        label_upload_test_input: Upload test file
-        label_upload_test_button: Upload and edit
-        label_new_test: Create new test
-        label_download_test: Download test
+        header: Редактор тестов
+        label_title: 'Название:'
+        label_description: 'Описание:'
+        label_subject: 'Тема:'
+        label_author: 'Автор:'
+        label_target: 'Целевая аудитория:'
+        label_institution: 'Уч. заведение:'
+        label_expires_in: 'Доступен до:'
+        label_add_task: + Добавить задание
+        label_task_header: Задание
+        label_task_type: 'Тип:'
+        label_task_type_single: Один вариант ответа
+        label_task_type_multiple: Несколько вариантов ответа
+        label_task_type_open: Открытый вопрос
+        label_task_text: 'Текст:'
+        label_task_answer: 'Ответ:'
+        label_task_options: Варианты ответов
+        label_task_add_option: + Добавить вариант ответа
+        label_add_attachment: Добавить приложение
+        label_attachment_name: 'Название:'
+        label_attachment_type: 'Тип:'
+        label_attachment_type_file: Файл
+        label_attachment_type_image: Изображение
+        label_attachment_type_video: Видео
+        label_attachment_type_audio: Аудио
+        label_attachment_src: 'Источник (URL):'
+        label_upload_test_input: Выберите файл теста
+        label_upload_test_button: Загрузить и редактировать
+        label_new_test: Создать новый тест
+        label_download_test: Скачать тест
     error:
-        header: An error occurred!
-        details: Details
+        header: Произошла ошибка!
+        details: Подробно
     expired:
-        header: Test expired!
-        message: This test is no longer available
+        header: Тест больше не доступен!
+        message: Срок выполнения данного теста истёк
     search:
-        input_placeholder: Search for the test
-        search_button_label: Search
+        input_placeholder: Искать тесты
+        search_button_label: Искать
     test:
-        student_name_label: 'Your name:'
-        open_answer_label: 'Answer:'
-        submit_button_label: Submit
-# Other fields...
+        student_name_label: 'ФИО:'
+        open_answer_label: 'Ответ:'
+        submit_button_label: Отправить
+# Остальные поля...
 ```
