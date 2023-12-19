@@ -1,13 +1,13 @@
 ---
 sidebar_position: 1
-description: A brief introduction to Hakutest statistics
+description: Введение в экспорт статистики Hakutest
 ---
 
-# About statistics
+# О статистике
 
-Hakutest provides the option of exporting student test results to various formats for easier analysis of performance, progress monitoring and statistical collection.
+Hakutest предоставляет возможность экспортировать результаты тестирования учащихся в различные форматы для более удобного анализа успеваемости, мониторинга прогресса и сбора статистики.
 
-Currently 2 formats of statistics export are supported:
+На данный момент доступно 2 формата экспорта:
 
--   [Excel Spreadsheet](/docs/statistics/excel) with student performance on different tasks.
--   [Performance Histogram](/docs/statistics/histogram) showing the distribution of students by score.
+-   [Excel-таблица](/docs/statistics/excel) с результатами учеников по каждому заданию.
+-   [Гистограмма успеваемости](/docs/statistics/histogram), показывающая распределение баллов, набранных учениками.
