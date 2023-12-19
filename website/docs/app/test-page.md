@@ -21,7 +21,7 @@ Where:
 
 :::tip
 
-To find out your local IP address, see the instructions on the [Search page](/docs/app/search-page).
+To find out your local IP address, see [Local IP address guide](/docs/guide/local-ip).
 
 :::
 
