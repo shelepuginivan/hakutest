@@ -90,7 +90,7 @@ Customizes [expired test page](/docs/app/test-page#expired-test) interface.
 
 ### `search`
 
-Customizes expired [search page](/docs/app/search-page) interface.
+Customizes [search page](/docs/app/search-page) interface.
 
 **Options**:
 
