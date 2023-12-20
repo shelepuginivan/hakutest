@@ -1,78 +1,78 @@
 ---
 sidebar_position: 2
-title: Completion
-description: Generate Hakutest autocompletion scripts
+title: Автозаполнение
+description: Генерация скрипта автозаполнения Hakutest
 ---
 
-# `completion` command
+# Команда `completion`
 
-Syntax: `hakutest completion [bash|zsh|fish|powershell]`
+Синтаксис: `hakutest completion [bash|zsh|fish|powershell]`
 
-The `hakutest completion` command is used for generating completion scripts for your shell.
+Команда `hakutest completion` используется для генерации скриптов автозаполнения для различных оболочек.
 
-## Usage
+## Использование
 
-It is recommended to save the autocompletion script to a file and then execute it in the shell profile:
+Рекомендуется сохранить скрипт в файл, а затем выполнять его в профиле оболочки:
 
-1.  Generate autocompletion scripts for your shell as follows:
+1.  Сгенерируйте скрипт для вашей оболочки как показано ниже:
 
     ```shell
     hakutest completion [bash|zsh|fish|powershell] > _hakutest
     ```
 
-2.  Move the created file to the completions folder (if any):
+2.  Переместите сгенерированный файл в папку скриптов автозаполнений (если таковая имеется):
 
     ```shell
     mv _hakutest ~/path/to/completion/folder
     ```
 
-3.  Enable completion script in your shell profile. Below are instructions for each supported shell:
+3.  Разрешите автозаполнение в профиле вашей оболочки. Ниже представлены инструкции для каждой поддерживаемой оболочки:
 
-    -   **Bash**: Add the following line to your `~/.bashrc` or `~/.bash_profile`:
+    -   **Bash**: Добавьте строку ниже в файл `~/.bashrc` или `~/.bash_profile`:
 
         ```shell
         source ~/path/to/completion/folder/_hakutest
         ```
 
-    -   **Zsh**: Add the following line to your `~/.zshrc`:
+    -   **Zsh**: Добавьте строку ниже в файл `~/.zshrc`:
 
         ```zsh
         source ~/path/to/completion/folder/_hakutest
         ```
 
-    -   **Fish**: Run the following command:
+    -   **Fish**: Запустите следующую команду:
 
         ```fish
         source ~/path/to/completion/folder/_hakutest
         ```
 
-    -   **PowerShell**: Add the following line to your `$PROFILE`:
+    -   **PowerShell**: Добавьте строку ниже в файл `$PROFILE`:
 
         ```powershell
         . ~/path/to/completion/folder/_hakutest
         ```
 
-Alternatively, you may generate the completion script dynamically, though it will be slower than the prior method as the scripts will be generated each time you log in to a shell. It is also important to add the installation folder of hakutest to your `$PATH`:
+В качестве альтернативы, вы можете генерировать скрипт динамически, однако этот метод менее эффективен по сравнению с предыдущим, так как скрипт будет генерироваться каждый раз, когда вы запускаете оболочку. Кроме того, важно добавить директорию установки Hakutest в `$PATH`:
 
--   **Bash**: Add the following line to your `~/.bashrc` or `~/.bash_profile`:
+-   **Bash**: Добавьте строку ниже в файл `~/.bashrc` or `~/.bash_profile`:
 
     ```shell
     source <(hakutest completion bash)
     ```
 
--   **Zsh**: Add the following line to your `~/.zshrc`:
+-   **Zsh**: Добавьте строку ниже в файл `~/.zshrc`:
 
     ```zsh
     source <(hakutest completion zsh)
     ```
 
--   **Fish**: Run the following command:
+-   **Fish**: Запустите следующую команду:
 
     ```fish
     hakutest completion fish | source
     ```
 
--   **PowerShell**: Add the following line to your `$PROFILE`:
+-   **PowerShell**: Добавьте строку ниже в файл `$PROFILE`:
 
     ```powershell
     hakutest completion powershell | Out-String | Invoke-Expression
