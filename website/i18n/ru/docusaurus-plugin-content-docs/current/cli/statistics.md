@@ -1,27 +1,27 @@
 ---
 sidebar_position: 7
-title: Statistics
-description: Hakutest statistics export
+title: Статистика
+description: Команда экспорта статистики Hakutest
 ---
 
-# `statistics` command
+# Команда `statistics`
 
-Syntax: `hakutest statistics <test-name> [format]`
+Синтаксис: `hakutest statistics <название-теста> [формат]`
 
-The `hakutest statistics` command is used to export test results statistics to different formats.
+Команда `hakutest statistics` используется для экспорта результатов тестирований в различные форматы.
 
--   The first argument `test-name` is a name of the test file which statistics you want to export.
--   The second argument `format` is the format of statistics.
+-   `название-теста` - название папки результатов теста (т.е. название его файла), статистику которого вы хотите экспортировать.
+-   `формат` - формат экспорта.
 
-### Print results table
+### Вывод таблицы результатов
 
-If no second argument is provided, the command will print a table showing the results of the students. This format is also used as a fallback for unsupported formats.
+Если не было передано второго аргумента, программа выведет таблицу, показывающую результаты учеников. Этот формат также используется в качестве формата по умолчанию для неподдерживаемых значений.
 
 ```shell
 hakutest statistics "My test"
 ```
 
-```txt title='Output'
+```txt title='Вывод'
 #   Student   Points  %
 1   Alex      2       40
 2   Amelia    4       80
@@ -40,26 +40,26 @@ hakutest statistics "My test"
 
 :::note
 
-The actual formatting of the output configuration may vary depending on the terminal.
+Форматирование таблицы может отличаться в зависимости от используемого терминала.
 
 :::
 
-### Export statistics to Excel
+### Экспорт статистики в таблицу Excel
 
-If second argument `excel` is provided, command generates [Excel spreadsheet](/docs/statistics/excel) with statistics.
+Если передан второй аргумент `excel`, программа сгенерирует [Excel-таблицу](/docs/statistics/excel) со статистикой.
 
 ```shell
 hakutest statistics "My test" excel
 ```
 
-This command will create a file `My test.xlsx` in the current working directory.
+Эта команда создась файл `My test.xlsx` в текущей рабочей директории.
 
-### Export statistics to PNG histogram
+### Экспорт статистики в PNG гистограмму
 
-If second argument `image` is provided, command generates [PNG histogram](/docs/statistics/histogram).
+Если передан второй аргумент `image`, программа сгенерирует [PNG гистограмму](/docs/statistics/histogram), отображающую успеваемость учеников.
 
 ```shell
 hakutest statistics "My test" image
 ```
 
-This command will create a file `My test.png` in the current working directory.
+Эта команда создась файл `My test.png` в текущей рабочей директории.
