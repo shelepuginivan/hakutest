@@ -1,15 +1,15 @@
 ---
 sidebar_position: 1
-description: Overwiew of Hakutest command line interface
+description: Обзор интерфейса командной строки Hakutest
 ---
 
-# About CLI
+# О CLI
 
-Hakutest provides an extensive command line interface (CLI) for a variety of tasks.
+Hakutest предоставляет широкий интерфейс командной строки (CLI) для различных задач.
 
 :::info
 
-To use commands without specifying full path to the executable, add Hakutest installation directory to `$PATH`:
+Для использования команд без указания полного пути до исполняемого файла, добавьте директорию установки Hakutest в `$PATH`:
 
 ```shell
 export PATH="$PATH:path/to/hakutest/installation"
@@ -17,13 +17,13 @@ export PATH="$PATH:path/to/hakutest/installation"
 
 :::
 
-You can see all available commands by running `hakutest help`:
+Вы можете увидеть список всех команд, запустив `hakutest help`:
 
 ```shell
 hakutest help
 ```
 
-It will print the following help message:
+Программа выведет следующее сообщение:
 
 ```txt title='Help message'
 Start hakutest server
