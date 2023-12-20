@@ -1,0 +1,66 @@
+# **Обратите внимание, что в этом конфигурационном файле отсутствует секция
+# `general`, так как её значения вариируются в зависимости от операционной
+# системы и её настроек.**
+#
+# general:
+#   results_directory:
+#   tests_directory:
+server:
+  mode: release
+  port: "8080"
+stats:
+  excel:
+    header_percentage: "%"
+    header_points: Баллы
+    header_student: Ученик
+    statistics_sheet: Статистика
+    test_results_sheet: Результаты
+  image:
+    label_x: Баллы
+    label_y: Ученики
+    title: Успеваемость
+ui:
+  editor:
+    header: Редактор тестов
+    label_add_attachment: Добавить приложение
+    label_add_task: + Добавить задание
+    label_attachment_name: "Название:"
+    label_attachment_src: "Источник (URL):"
+    label_attachment_type: "Тип:"
+    label_attachment_type_audio: Аудио
+    label_attachment_type_file: Файл
+    label_attachment_type_image: Изображение
+    label_attachment_type_video: Видео
+    label_author: "Автор:"
+    label_description: "Описание:"
+    label_download_test: Скачать тест
+    label_expires_in: "Доступен до:"
+    label_institution: "Уч. заведение:"
+    label_new_test: Создать новый тест
+    label_subject: "Тема:"
+    label_target: "Целевая аудитория:"
+    label_task_add_option: + Добавить вариант ответа
+    label_task_answer: "Ответ:"
+    label_task_header: Задание
+    label_task_options: Варианты ответов
+    label_task_text: "Текст:"
+    label_task_type: "Тип:"
+    label_task_type_multiple: Несколько вариантов ответа
+    label_task_type_open: Открытый вопрос
+    label_task_type_single: Один вариант ответа
+    label_title: "Название:"
+    label_upload_test_button: Загрузить и редактировать
+    label_upload_test_input: Выберите файл теста
+  error:
+    details: Подробно
+    header: Произошла ошибка!
+  expired:
+    header: Тест больше не доступен!
+    message: Срок выполнения данного теста истёк
+  search:
+    input_placeholder: Искать тесты
+    search_button_label: Искать
+  test:
+    open_answer_label: "Ответ:"
+    student_name_label: "ФИО:"
+    submit_button_label: Отправить
