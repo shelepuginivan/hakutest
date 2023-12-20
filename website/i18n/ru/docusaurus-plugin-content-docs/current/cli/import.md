@@ -1,19 +1,19 @@
 ---
 sidebar_position: 6
-title: Import
-description: Import test files command
+title: Импорт
+description: Команда для импорта файлов тестов
 ---
 
-# `import` command
+# Команда `import`
 
-Syntax: `hakutest import <path-to-test-file>`
+Синтаксис: `hakutest import <путь-до-файла>`
 
-The `hakutest import` command is used to import test files. It copies specified test file in tests directory. This command is essentially an alternative to manually copying a file to the tests directory.
+Команда `hakutest import` используется для импорта тестовых файлов. Она копирует указанный файл теста в нужную директорию. В сущности, это альтернатива ручному копированию файла.
 
-### Example
+### Пример
 
 ```shell
 hakutest import ~/Downloads/my-test.json
 ```
 
-This command will copy the file `my-test.json` located in `~/Downloads` folder to the tests directory.
+Эта команда скопирует файл `my-test.json`, расположенный в `~/Downloads`, в папку тестов.
