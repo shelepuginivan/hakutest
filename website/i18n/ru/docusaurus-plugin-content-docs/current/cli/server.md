@@ -1,34 +1,34 @@
 ---
-sidebar_position: 2
-title: Server
-description: Hakutest server start command
+sidebar_position: 3
+title: Сервер
+description: Команда запуска сервера Hakutest
 ---
 
-# `hakutest` command
+# Команда `hakutest`
 
-Syntax: `hakutest [port]`
+Синтаксис: `hakutest [port]`
 
-The `hakutest` command is used to start the Hakutest server.
+Команда `hakutest` используется для запуска сервера Hakutest.
 
-If no arguments are provided, server will listen port specified in the configuration (see [Server configuration](/docs/configuration/server#port)).
+Если не было передано ни одного аргумента, сервер будет прослушивать порт, указанный в конфигурационном файле (см. [Конфигурация сервера](/docs/configuration/server#port))
 
-You can override `port` by specifying it as the first argument. The port must be an integer in the range 1024 to 65535.
+Вы можете указать другой порт, передав его как первый аргумент. Значение порта должно быть целым числом от 1024 до 65535.
 
-### Examples
+### Примеры
 
-1.  Run on the port specified in the configuration:
+1.  Запустить сервер на порту, указанном в конфигурационном файле:
 
     ```shell
     hakutest
     ```
 
-2.  Run on port `8000`:
+2.  Запустить на порту `8000`:
 
     ```shell
     hakutest 8000
     ```
 
-3.  Invalid port (`80` \< `1024`), results in error:
+3.  Невалидный порт (`80` \< `1024`), приводит к ошибке:
 
     ```shell
     hakutest 80
@@ -39,7 +39,7 @@ You can override `port` by specifying it as the first argument. The port must be
     exit status 1
     ```
 
-4.  Invalid port (not a number), results in error:
+4.  Невалидный порт (нечисловое значение), приводит к ошибке:
 
     ```shell
     hakutest some_string
