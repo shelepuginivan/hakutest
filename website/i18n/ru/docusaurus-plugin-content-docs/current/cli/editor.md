@@ -1,102 +1,102 @@
 ---
 sidebar_position: 5
-title: Editor
-description: Hakutest CLI test editor
+title: Редактор
+description: CLI-редактор тестов Hakutest
 ---
 
-# `editor` command
+# Команда `editor`
 
-Syntax: `hakutest editor [test-name]`
+Синтаксис: `hakutest editor [имя теста]`
 
-The `hakutest editor` command is a CLI test editor. It can create new tests and edit existing tests.
+Команда `hakutest editor` - CLI-редактор тестов. Она позволяет создавать новые тесты и редактировать существующие.
 
-## Creating new test
+## Создание новых тестов
 
-To create new test, run command without any argument:
+Чтобы создать новый тест, запустите команды без агрументов:
 
 ```shell
 hakutest editor
 ```
 
-## Edit existing test
+## Редактирование существующих тестов
 
-To edit existing test, run command with one argument - the filename of the test to be edited. The test should be placed in tests directory.
+Чтобы изменить существующий тест, запустите команду с одним аргументом - именем файла теста, который вы хотите отредактировать. Файл должен находиться в папке тестов:
 
 ```shell
 hakutest editor my-test
 ```
 
-## Usage
+## Использование
 
-### Test fields
+### Поля теста
 
-Once you have selected one of the options, the editor will start prompting for values for each of the test fields:
+После выбора одного из вариантов редактор начнет запрашивать значения для каждого из полей теста:
 
--   Test title
--   Description of the test
--   Subject of the test
--   Author of the test
--   Target audience of the test
--   Educational institution
--   Test expiry time
+-   Название теста
+-   Описание теста
+-   Тема теста
+-   Автор теста
+-   Целевая аудитория теста
+-   Учебное заведение
+-   Срок действия теста
 
 :::tip
 
-For more information about test structure, it is recommended to read [Tests guide](/docs/guide/tests).
+См. [Гайд - Тесты](/docs/guide/tests) для дополнительной информации.
 
 :::
 
 :::info
 
-The default values are shown in brackets as follows:
+Значения по умолчанию указаны в квадратных скобках:
 
-```txt title='Prompt'
+```txt title='Ввод'
 Add new task (y/n) [n]:
 ```
 
-If you edit an existing test, its fields will be shown in brackets as well:
+Если вы редактируете существующий тест, его поля также будут показаны в скобках:
 
-```txt title='Prompt'
+```txt title='Ввод'
 Title of the test [Trigonometric equations]:
 ```
 
 :::
 
-### Adding tasks
+### Добавление заданий
 
-Once you have filled in the fields above, you will be able to add the test tasks:
+После заполнения полей выше, вы можете добавить задания теста:
 
-```txt title='Prompt'
+```txt title='Ввод'
 Add new task (y/n) [n]:
 ```
 
-If `y` is chosen, editor will prompt you to enter the task fields:
+Если выбран вариант `y` (да), редактор попросит ввести поля задания:
 
--   Task type
--   Task text
--   Answer options
--   Correct answer to the task
+-   Тип задания
+-   Текст задания
+-   Варианты ответа
+-   Правильный ответ
 
-#### Task attachment
+#### Вложения
 
-For each task, you can add an attachment:
+К каждому заданию вы можете добавить вложение:
 
-```txt title='Prompt'
+```txt title='Ввод'
 - Add attachment (y/n) [n]:
 ```
 
-If `y` is chosen, you will be able to enter the following fields of the attachment:
+Если выбран вариант `y`, вы редактор попросит ввести поля вложения:
 
--   Name of attachment
--   Attachment type
--   Attachment source (URL or path to a file)
+-   Название вложения
+-   Тип вложения
+-   Источник вложения (URL или путь до файла)
 
 :::tip
 
-You can specify the path to a local file as the attachment source. In this case, the editor will convert it to a base64 string and add it as an attachment source.
+В качестве источника вложений можно указать путь к локальному файлу. В этом случае редактор преобразует его в строку base64 и добавит в качестве источника вложений.
 
 :::
 
-### Saving test files
+### Сохранение файлов тестов
 
-When you finish editing a test, it will be automatically saved in the tests directory.
+По завершении редактирования теста, он будет автоматически сохранён в нужную директорию.
