@@ -6,7 +6,7 @@ description: Команда запуска сервера Hakutest
 
 # Команда `hakutest`
 
-Синтаксис: `hakutest [port]`
+Синтаксис: `hakutest [порт]`
 
 Команда `hakutest` используется для запуска сервера Hakutest.
 
