@@ -36,11 +36,11 @@
         "description": "The generated-index page title for category Configuration in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.Commands": {
-        "message": "Commands",
+        "message": "Команды",
         "description": "The label for category Commands in sidebar tutorialSidebar"
     },
     "sidebar.tutorialSidebar.category.Commands.link.generated-index.title": {
-        "message": "Commands",
+        "message": "Команды",
         "description": "The generated-index page title for category Commands in sidebar tutorialSidebar"
     }
 }

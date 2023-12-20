@@ -1,10 +1,10 @@
 {
     "position": 7,
-    "label": "Commands",
+    "label": "Команды",
     "collapsible": true,
     "collapsed": true,
     "link": {
         "type": "generated-index",
-        "title": "Commands"
+        "title": "Команды"
     }
 }
