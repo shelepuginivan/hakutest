@@ -40,7 +40,7 @@ hakutest statistics "My test"
 
 :::note
 
-The actual formatting of the output configuration may vary depending on the terminal.
+The actual formatting of the output statistics may vary depending on the terminal.
 
 :::
 
