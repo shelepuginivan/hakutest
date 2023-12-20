@@ -1,26 +1,36 @@
 ---
 sidebar_position: 4
-title: Config
-description: Hakutest configuration management command
+title: Конфигурация
+description: Команда для управления конфигурации Hakutest
 ---
 
-# `config` command
+# Команда `config`
 
-Syntax: `hakutest config [field] [value]`.
+Синтаксис: `hakutest config [field] [value]`.
 
-The `hakutest config` command is used to manage the configuration for Hakutest via the command line interface. It provides functionality for printing and updating configuration fields. This command has three different uses depending on the number of arguments provided.
+Команда `hakutest config` используется для управления конфигурацией Hakutest через интерфейс командной строки. Она предоставляет функционал отображения и изменения настроек. Использование отличается в зависимости от количества аргументов.
 
-### Print the entire config
+:::info
 
-If no arguments are provided, the command will print the entire config to the console. The printed config includes tables and other formatting for better readability.
+Для использования команд без указания полного пути до исполняемого файла, добавьте директорию установки Hakutest в `$PATH`:
 
-**Example**:
+```shell
+export PATH="$PATH:path/to/hakutest/installation"
+```
 
-```shell title='Command'
+:::
+
+### Показать всю конфигурацию
+
+Если не передать команде ни одного аргумента, она печатает всю конфигурацию в стандартный вывод, сгрупированных в таблицы.
+
+**Пример**:
+
+```shell title='Команда'
 hakutest config
 ```
 
-```txt title='Output'
+```txt title='Вывод'
 ui
 editor
 Key                          Value
@@ -70,55 +80,49 @@ results_directory  ./data/results
 tests_directory    ./data/tests
 ```
 
-:::note
+### Вывод конкретного поля или секции
 
-The actual formatting of the output configuration may vary depending on the terminal.
+Если передать команде один аргумент, она печатает в стандартный вывод только указанное поле (или секцию полей).
 
-:::
+**Пример (одно поле)**:
 
-### Print a specific field or category
-
-If a single argument `<field>` is provided, the command will print only the specified field of the config. It can also log an entire category by specifying the category name.
-
-**Example (specific field)**:
-
-```shell title='Command'
+```shell title='Команда'
 hakutest config server.port
 ```
 
-```txt title='Output'
+```txt title='Вывод'
 8080
 ```
 
-**Example (category)**:
+**Пример (секция)**:
 
-```shell title='Command'
+```shell title='Команда'
 hakutest config server
 ```
 
-```txt title='Output'
+```txt title='Вывод'
 Key   Value
 port  8080
 mode  release
 ```
 
-### Update configuration
+### Изменение конфигурации
 
-If two arguments are provided, the command will update the configuration by setting the specified `<field>` to the specified `<value>`.
+Если передать команде два аргумента, она изменяет конфигурацию, устанавливая указанному полю (`field`) данное значение (`value`).
 
-**Example**:
+**Пример**:
 
-```shell title='Command'
+```shell title='Команда'
 hakutest config server.port 8000
 ```
 
-This command will update config and set field `server.port` to `8000`. You can validate that the value was set properly by running:
+Эта команда изменит конфигурацию, установит значение `8000` полю `server.port`. Вы можете убедиться, что команда верно установила значение, запустив:
 
-```shell title='Command'
+```shell title='Команда'
 hakutest config server.port
 ```
 
-It should output the updated value:
+Должно быть выведено новое значение:
 
 ```txt title='Output'
 8000
@@ -126,13 +130,13 @@ It should output the updated value:
 
 :::warning
 
-`hakutest config` can only set values for primitive fields and cannot change values within sub-branches. For instance, the following command will result in error:
+Команда `hakutest config` может устанавливать только значения примитивных типов, но не секций конфигурации. К примеру, следующая команда приведёт к ошибке:
 
-```shell title='Command'
+```shell title='Команда'
 hakutest config server some_value
 ```
 
-```txt title='Output'
+```txt title='Вывод'
 2023/11/18 20:55:27 can only set primitive values
 exit status 1
 ```
