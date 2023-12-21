@@ -9,14 +9,14 @@ Hakutest web pages, including the test page and test editor, require a running s
 
 You can start the Hakutest server using two methods:
 
--   By running the `hakutest` command in a terminal.
+-   By running the `hakutest server` command in a terminal.
 -   If you are using the Windows version of Hakutest with scripts, you can run the file `server.bat`.
 
-## Using `hakutest` command
+## Using `hakutest server` command
 
-Syntax: `hakutest [port]`
+Syntax: `hakutest server [port]`
 
-The `hakutest` command is used to start the Hakutest server.
+The `hakutest server` command is used to start the Hakutest server.
 
 :::info
 
@@ -37,11 +37,11 @@ You can override `port` by specifying it as the first argument. The port must be
 1.  Run on the port specified in the configuration:
 
     ```shell
-    hakutest
+    hakutest server
     ```
 
 2.  Run on port `8000`:
 
     ```shell
-    hakutest 8000
+    hakutest server 8000
     ```

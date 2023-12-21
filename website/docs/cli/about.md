@@ -26,10 +26,9 @@ hakutest help
 It will print the following help message:
 
 ```txt title='Help message'
-Start hakutest server
+Reliable and efficient educational testing platform
 
 Usage:
-  hakutest [port] [flags]
   hakutest [command]
 
 Available Commands:
@@ -38,6 +37,7 @@ Available Commands:
   editor      Edit test files
   help        Help about any command
   import      Import test file
+  server      Start hakutest server
   statistics  Test results statistics
 
 Flags:

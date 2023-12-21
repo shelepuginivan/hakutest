@@ -4,11 +4,11 @@ title: Server
 description: Hakutest server start command
 ---
 
-# `hakutest` command
+# `server` command
 
-Syntax: `hakutest [port]`
+Syntax: `hakutest server [port]`
 
-The `hakutest` command is used to start the Hakutest server.
+The `hakutest server` command is used to start the Hakutest server.
 
 If no arguments are provided, server will listen port specified in the configuration (see [Server configuration](/docs/configuration/server#port)).
 
@@ -19,19 +19,19 @@ You can override `port` by specifying it as the first argument. The port must be
 1.  Run on the port specified in the configuration:
 
     ```shell
-    hakutest
+    hakutest server
     ```
 
 2.  Run on port `8000`:
 
     ```shell
-    hakutest 8000
+    hakutest server 8000
     ```
 
 3.  Invalid port (`80` \< `1024`), results in error:
 
     ```shell
-    hakutest 80
+    hakutest server 80
     ```
 
     ```txt title='Output'
@@ -42,7 +42,7 @@ You can override `port` by specifying it as the first argument. The port must be
 4.  Invalid port (not a number), results in error:
 
     ```shell
-    hakutest some_string
+    hakutest server some_string
     ```
 
     ```txt title='Output'
