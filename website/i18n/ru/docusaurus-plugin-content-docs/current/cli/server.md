@@ -4,11 +4,11 @@ title: Сервер
 description: Команда запуска сервера Hakutest
 ---
 
-# Команда `hakutest`
+# Команда `server`
 
 Синтаксис: `hakutest [порт]`
 
-Команда `hakutest` используется для запуска сервера Hakutest.
+Команда `hakutest server` используется для запуска сервера Hakutest.
 
 Если не было передано ни одного аргумента, сервер будет прослушивать порт, указанный в конфигурационном файле (см. [Конфигурация сервера](/docs/configuration/server#port))
 
@@ -19,19 +19,19 @@ description: Команда запуска сервера Hakutest
 1.  Запустить сервер на порту, указанном в конфигурационном файле:
 
     ```shell
-    hakutest
+    hakutest server
     ```
 
 2.  Запустить на порту `8000`:
 
     ```shell
-    hakutest 8000
+    hakutest server 8000
     ```
 
 3.  Невалидный порт (`80` \< `1024`), приводит к ошибке:
 
     ```shell
-    hakutest 80
+    hakutest server 80
     ```
 
     ```txt title='Output'
@@ -42,7 +42,7 @@ description: Команда запуска сервера Hakutest
 4.  Невалидный порт (нечисловое значение), приводит к ошибке:
 
     ```shell
-    hakutest some_string
+    hakutest server some_string
     ```
 
     ```txt title='Output'

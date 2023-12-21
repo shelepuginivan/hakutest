@@ -9,14 +9,14 @@ description: Узнайте как запускать сервер Hakutest
 
 Вы можете запустить сервер Hakutest двумя способами:
 
--   Исполнив команду `hakutest` в терминале.
+-   Исполнив команду `hakutest server` в терминале.
 -   Если вы используете версию Hakutest для Windows со скриптами, вы можете запустить файл `server.bat`.
 
-## Использование команды `hakutest`
+## Использование команды `hakutest server`
 
-Синтаксис: `hakutest [порт]`
+Синтаксис: `hakutest server [порт]`
 
-Команда `hakutest` запускает сервер Hakutest.
+Команда `hakutest server` запускает сервер Hakutest.
 
 :::info
 
@@ -37,11 +37,11 @@ export PATH="$PATH:path/to/hakutest/installation"
 1.  Запустить сервер на порту, указанном в конфигурационном файле:
 
     ```shell
-    hakutest
+    hakutest server
     ```
 
 2.  Запустить на порту `8000`:
 
     ```shell
-    hakutest 8000
+    hakutest server 8000
     ```
