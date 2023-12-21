@@ -1,2 +1,1 @@
-start hakutest.exe
-
+start hakutest.exe server
