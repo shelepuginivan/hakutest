@@ -23,6 +23,13 @@ mac:
 	tar -czf ${TARGET_DIR}/${BINARY_NAME}-mac.tar.gz --transform 's/^./${BINARY_NAME}/' -C ${TARGET_DIR}/mac .
 	rm -r ${TARGET_DIR}/mac
 
+manual:
+	mkdir -p ${TARGET_DIR}
+	cp -r docs ${TARGET_DIR}/man
+	gzip --recursive ${TARGET_DIR}/man
+	tar -czf ${TARGET_DIR}/${BINARY_NAME}-manual.tar.gz --transform 's/^./man/' -C ${TARGET_DIR}/man .
+	rm -r ${TARGET_DIR}/man
+
 clean:
 	go clean
 	rm -r ${TARGET_DIR}
