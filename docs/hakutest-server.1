@@ -1,0 +1,37 @@
+.TH "HAKUTEST\-SERVER" "1" "2023-12-23" "github.com/shelepuginivan/hakutest" "Hakutest Manual"
+
+.nh
+.ad l
+
+.SH "NAME"
+hakutest\-server \- start hakutest server.
+
+.SH "SYNOPSIS"
+hakutest server [\fIport\fR]
+
+.SH "DESCRIPTION"
+Start Hakutest server on the specified \fBport\fR. If no arguments are provided, server will listen port specified in the configuration.
+
+Hakutest web pages, including the test page and test editor, require a running server.
+
+.SH "OPTIONS"
+.PP
+port
+.RS 4
+The port on which server is started. Must be an integer in the range 1024 to 65535.
+.RE
+
+.SH "EXAMPLES"
+.PP
+$ hakutest server
+.RS 4
+Start Hakutest server on the port specified in the configuration file.
+.RE
+.PP
+$ hakutest server 3000
+.RS 4
+Start Hakutest server on port 3000.
+.RE
+
+.SH "SEE ALSO"
+\fBhakutest-config\fR(1), \fBhakutest-configuration\fR(7)
