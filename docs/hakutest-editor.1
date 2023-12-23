@@ -1,0 +1,46 @@
+.TH "HAKUTEST\-EDITOR" "1" "2023-12-23" "github.com/shelepuginivan/hakutest" "Hakutest Manual"
+
+.nh
+.ad l
+
+.SH "NAME"
+hakutest\-editor \- interactive test editor.
+
+.SH "SYNOPSIS"
+hakutest editor [\fItest-name\fR]
+
+.SH "DESCRIPTION"
+Interactive command line test editor. It allows to create new test and edit existing ones via CLI.
+
+.SH "OPTIONS"
+.PP
+test-name
+.RS 4
+Name of the test file to be edited. If no argument is provided, a new test will be created in the Hakutest tests directory and you will be prompted to name the file. Note that the extension (\fB.json\fR) of the test filename can be omitted.
+.RE
+
+.SH "USAGE"
+Firstly, the editor will prompt you for values for each of the common test fields, such as \fBtitle\fR, \fBdescription\fR, \fBauthor\fR, etc.
+
+Once you have entered values, you will be able to add the test tasks. Choose \fBy\fR to add a task. The editor will prompt you for the task fields, such as \fBtype\fr, \fBtext\fr, \fBanswer\fR, etc. You can add answer options from which students will choose their answer.
+
+For each task, you can add an attachment, which is either an image, video, audio, or file (link). The editor will ask if you want to add the attachment, choose \fBy\fR to proceed. You will be prompted for attachment fields, which includes: \fBname\fR, \fBtype\fR, \fBsource\fR.
+
+You can add as many tasks as needed.
+
+When you finish editing a test, it will be automatically saved in the Hakutest tests directory.
+
+.SH "EXAMPLES"
+.PP
+$ hakutest editor
+.RS 4
+Create new test file.
+.RE
+.PP
+$ hakutest editor my\-test
+.RS 4
+Edit existing test \fBmy\-test\fR.
+.RE
+
+.SH "SEE ALSO"
+\fBhakutest-tests\fR(7)
