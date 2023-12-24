@@ -1,0 +1,60 @@
+.TH "HAKUTEST\-APP" "7" "2023-12-24" "github.com/shelepuginivan/hakutest" "Hakutest Manual"
+
+.nh
+.ad l
+
+.SH "NAME"
+hakutest\-app\- hakutest web application overview.
+
+.SH "DESCRIPTION"
+This page describes pages of the Hakutest application. Each page can be accessed when \fBhakutest\-server\fR(1) is running.
+
+.SS "Search page"
+The main page of the application is the search page that allows to search for and access existing tests. It contains a search input that allows to open an existing test. As you enter text into the search input, a list of suggested existing tests will appear. You can choose one of the suggestions or type the name manually. Once you have entered the name of the test, press "Search" button (or the Enter key). The page with the selected test will open, if it exists.
+
+Can be accessed at: \fBhttp://<local\-ip\-of\-your\-device>:<port>/\fR
+.br
+Where:
+.RS 4
+\fIlocal\-ip\-of\-your\-device\fR \- Local IP address of the device where server is running (see \fBhostname\fR(1)).
+.br
+\fIport\fR \- Port on which server is running, specified in the \fBhakutest-configuration\fR(7).
+.br
+.RE
+
+.SS "Test page"
+The test page allows student to solve the test and submit their answers.
+
+Can be accessed at: \fBhttp://<local\-ip\-of\-your\-device>:<port>/<name\-of\-the\-test\-file>\fR
+.br
+Where:
+.RS 4
+\fIlocal\-ip\-of\-your\-device\fR \- Local IP address of the device where server is running (see \fBhostname\fR(1)).
+.br
+\fIport\fR \- Port on which server is running, specified in the \fBhakutest-configuration\fR(7).
+.br
+\fIname\-of\-the\-test\-file\fR \- Filename of the test you want to access. The test file should be placed in the tests directory (see \fBhakutest-configuration\fR(7)).
+.br
+.RE
+
+If the test has expired, it will not be available at this URL. Instead of the test, a page will be displayed informing you that the test has expired. This page will also be displayed when the student attempts to submit answers to an expired test.
+
+.SS "Web test editor"
+Test editor allows to create and edit tests. An alternative of \fBhakutest-editor\fR(1).
+
+Can be accessed at: \fBhttp://localhost:<port>/editor/upload\fR
+.br
+Where:
+.RS 4
+\fIport\fR \- Port on which server is running, specified in the \fBhakutest\-configuration\fR(7).
+.br
+.RE
+
+To create new test, click "Create new test" button. To edit existing test file, upload it by clicking on "Upload test file" and click "Edit test" button.
+
+Once you have selected one of the options, an editor page will open where you can edit the test by filling in the required fields, adding tasks and attachments.
+
+Once you have finished editing the test, download it by clicking "Download test" button. To have access to the created test, don't forget to move it to the tests folder using \fBhakutest\-import\fR(1) or \fBmv\fR(1).
+
+.SH "SEE ALSO"
+\fBhakutest\-configuration\fR(7), \fBhakutest\-editor\fR(1), \fBhakutest\-import\fR(1), \fBhakutest\-server\fR(1), \fBhostname\fR(1), \fBmv\fR(1)
