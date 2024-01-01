@@ -32,3 +32,15 @@ func TestEditorUpload(t *testing.T) {
 	_, err := html.Parse(w.Body)
 	assert.NoError(t, err)
 }
+
+func TestEditorEdit(t *testing.T) {
+	r := NewRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest(http.MethodGet, "/editor/edit", http.NoBody)
+	r.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+
+	_, err := html.Parse(w.Body)
+	assert.NoError(t, err)
+}
