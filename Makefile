@@ -39,7 +39,7 @@ server:
 	bash -c "trap 'rm ./hakutest' 2; ./hakutest server"
 
 test:
-	go test ./...
-
-coverage:
-	go test ./... -cover
+	go test -c ./...
+	for t in *.test; do \
+		./$$t 1> /dev/null || { echo "TEST FAILED!"; exit 1; } ; \
+	done
