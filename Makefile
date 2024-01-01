@@ -41,5 +41,6 @@ server:
 test:
 	go test -c ./...
 	for t in *.test; do \
-		./$$t 1> /dev/null || { echo "TEST FAILED!"; exit 1; } ; \
+		./$$t 1> /dev/null || { echo "TEST FAILED!"; rm *.test; exit 1; } ; \
 	done
+	rm *.test
