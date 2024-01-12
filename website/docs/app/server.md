@@ -14,7 +14,7 @@ You can start the Hakutest server using two methods:
 
 ## Using `hakutest server` command
 
-Syntax: `hakutest server [port]`
+Syntax: `hakutest server`
 
 The `hakutest server` command is used to start the Hakutest server.
 
@@ -30,7 +30,7 @@ export PATH="$PATH:path/to/hakutest/installation"
 
 If no arguments are provided, server will listen port specified in the configuration (see [Server configuration](/docs/configuration/server#port)).
 
-You can override `port` by specifying it as the first argument. The port must be an integer in the range 1024 to 65535.
+You can override the default port with a flag `-p|--port`. The port must be an integer in the range 1024 to 65535.
 
 ### Examples
 
@@ -43,5 +43,9 @@ You can override `port` by specifying it as the first argument. The port must be
 2.  Run on port `8000`:
 
     ```shell
-    hakutest server 8000
+    hakutest server -p 8000
+    ```
+
+    ```shell
+    hakutest server --port 8000
     ```

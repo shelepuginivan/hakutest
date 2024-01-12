@@ -6,13 +6,13 @@ description: Hakutest server start command
 
 # `server` command
 
-Syntax: `hakutest server [port]`
+Syntax: `hakutest server`
 
 The `hakutest server` command is used to start the Hakutest server.
 
 If no arguments are provided, server will listen port specified in the configuration (see [Server configuration](/docs/configuration/server#port)).
 
-You can override `port` by specifying it as the first argument. The port must be an integer in the range 1024 to 65535.
+You can override the default port with a flag `-p|--port`. The port must be an integer in the range 1024 to 65535.
 
 ### Examples
 
@@ -25,13 +25,17 @@ You can override `port` by specifying it as the first argument. The port must be
 2.  Run on port `8000`:
 
     ```shell
-    hakutest server 8000
+    hakutest server -p 8000
+    ```
+
+    ```shell
+    hakutest server --port 8000
     ```
 
 3.  Invalid port (`80` \< `1024`), results in error:
 
     ```shell
-    hakutest server 80
+    hakutest server --port 80
     ```
 
     ```txt title='Output'
@@ -42,7 +46,7 @@ You can override `port` by specifying it as the first argument. The port must be
 4.  Invalid port (not a number), results in error:
 
     ```shell
-    hakutest server some_string
+    hakutest server --port some_string
     ```
 
     ```txt title='Output'
