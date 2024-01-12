@@ -13,8 +13,8 @@ Hakutest server configuration, specified under the `server` field in the config 
 
 Specifies the port on which the Hakutest server will run.
 
--   **Value**: a string representing an integer between 1024 and 65535 (e.g., `'8000'`).
--   **Default**: `'8080'`.
+-   **Value**: an integer in range 1024 to 65535 (e.g., `8000`).
+-   **Default**: `8080`.
 
 ### `mode`
 
@@ -29,7 +29,7 @@ Example of server configuration:
 
 ```yaml title='config.yaml'
 server:
-    port: '8080'
+    port: 8080
     mode: release
 # Other fields...
 ```

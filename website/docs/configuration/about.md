@@ -62,7 +62,7 @@ general:
     tests_directory: ~/.cache/hakutest/tests # May vary depending on OS
     results_directory: ~/.cache/hakutest/results # May vary depending on OS
 server:
-    port: '8080'
+    port: 8080
     mode: release
 stats:
     excel:
