@@ -3,7 +3,7 @@ package core
 import (
 	"encoding/json"
 	"os"
-	"path"
+	"path/filepath"
 	"strings"
 
 	"github.com/shelepuginivan/hakutest/internal/config"
@@ -41,12 +41,12 @@ func GetTestPath(name string) string {
 		name += ".json"
 	}
 
-	return path.Join(testsDirectory, name)
+	return filepath.Join(testsDirectory, name)
 }
 
 func Import(file string) error {
 	testFile, err := os.ReadFile(file)
-	testPath := GetTestPath(path.Base(file))
+	testPath := GetTestPath(filepath.Base(file))
 	test := Test{}
 
 	if err != nil {

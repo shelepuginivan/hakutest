@@ -1,7 +1,7 @@
 package config
 
 import (
-	"path"
+	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
@@ -43,7 +43,7 @@ func TestPrint(t *testing.T) {
 func TestPrintField(t *testing.T) {
 	Init()
 
-	viper.SetConfigFile(path.Join(getConfigDir(), "config.yaml"))
+	viper.SetConfigFile(filepath.Join(getConfigDir(), "config.yaml"))
 	viper.ReadInConfig()
 
 	keys := viper.AllKeys()
@@ -56,7 +56,7 @@ func TestPrintField(t *testing.T) {
 func TestSetField(t *testing.T) {
 	Init()
 
-	viper.SetConfigFile(path.Join(getConfigDir(), "config.yaml"))
+	viper.SetConfigFile(filepath.Join(getConfigDir(), "config.yaml"))
 	viper.ReadInConfig()
 
 	keys := viper.AllKeys()

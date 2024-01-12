@@ -2,7 +2,7 @@ package statistics
 
 import (
 	"os"
-	"path"
+	"path/filepath"
 
 	"github.com/shelepuginivan/hakutest/internal/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/core"
@@ -15,7 +15,7 @@ type Statistics struct {
 
 func GetStatistics(testName string) (Statistics, error) {
 	stats := Statistics{}
-	testResultsDir := path.Join(config.Init().General.ResultsDirectory, testName)
+	testResultsDir := filepath.Join(config.Init().General.ResultsDirectory, testName)
 	entries, err := os.ReadDir(testResultsDir)
 
 	if err != nil {
@@ -27,7 +27,7 @@ func GetStatistics(testName string) (Statistics, error) {
 			continue
 		}
 
-		data, err := os.ReadFile(path.Join(testResultsDir, file.Name()))
+		data, err := os.ReadFile(filepath.Join(testResultsDir, file.Name()))
 
 		if err != nil {
 			continue

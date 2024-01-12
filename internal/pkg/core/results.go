@@ -2,7 +2,7 @@ package core
 
 import (
 	"os"
-	"path"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
@@ -84,8 +84,8 @@ func (t Test) GetResults(answers map[string][]string) TestResults {
 
 func (r TestResults) Save(name string) error {
 	testName := strings.TrimSuffix(name, ".json")
-	testResultsDirectory := path.Join(config.Init().General.ResultsDirectory, testName)
-	resultsFilePath := path.Join(testResultsDirectory, r.Student+".txt")
+	testResultsDirectory := filepath.Join(config.Init().General.ResultsDirectory, testName)
+	resultsFilePath := filepath.Join(testResultsDirectory, r.Student+".txt")
 
 	if _, err := os.Stat(resultsFilePath); !os.IsNotExist(err) {
 		// Test was already submitted by this student

@@ -2,7 +2,7 @@ package config
 
 import (
 	"os"
-	"path"
+	"path/filepath"
 
 	"github.com/shelepuginivan/hakutest/internal/pkg/utils"
 	"github.com/spf13/viper"
@@ -114,7 +114,7 @@ func getConfigDir() string {
 		return "hakutest"
 	}
 
-	return path.Join(configDir, "hakutest")
+	return filepath.Join(configDir, "hakutest")
 }
 
 func getViper() *viper.Viper {
@@ -130,7 +130,7 @@ func getViper() *viper.Viper {
 
 func Init() Config {
 	configDir := getConfigDir()
-	configPath := path.Join(configDir, "config.yaml")
+	configPath := filepath.Join(configDir, "config.yaml")
 
 	testsDirectory := "user_test"
 	resultsDirectory := "user_results"
@@ -138,8 +138,8 @@ func Init() Config {
 	cacheDir, err := os.UserCacheDir()
 
 	if err == nil {
-		testsDirectory = path.Join(cacheDir, "hakutest", "tests")
-		resultsDirectory = path.Join(cacheDir, "hakutest", "results")
+		testsDirectory = filepath.Join(cacheDir, "hakutest", "tests")
+		resultsDirectory = filepath.Join(cacheDir, "hakutest", "results")
 	}
 
 	config := Config{

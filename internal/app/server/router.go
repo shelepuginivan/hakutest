@@ -1,7 +1,7 @@
 package server
 
 import (
-	"path"
+	"path/filepath"
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/app/server/controllers"
@@ -12,8 +12,8 @@ import (
 func loadStaticAndTemplates(router *gin.Engine) {
 	exePath := utils.GetExecutablePath()
 
-	router.LoadHTMLGlob(path.Join(exePath, "web/templates/*"))
-	router.Static("/static", path.Join(exePath, "web/static"))
+	router.LoadHTMLGlob(filepath.Join(exePath, "web/templates/*"))
+	router.Static("/static", filepath.Join(exePath, "web/static"))
 }
 
 func setMode(mode string) {
