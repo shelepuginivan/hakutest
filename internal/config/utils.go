@@ -20,17 +20,15 @@ func printMap(m map[string]interface{}) {
 	printTable := true
 
 	for key, value := range m {
-		if str, ok := value.(string); ok {
-			tbl.AddRow(key, str)
-			continue
-		}
-
 		if subMap, ok := value.(map[string]interface{}); ok {
 			printTable = false
 			printKey(key)
 			printMap(subMap)
 			fmt.Println()
+			continue
 		}
+
+		tbl.AddRow(key, value)
 	}
 
 	if printTable {
@@ -61,9 +59,7 @@ func PrintField(field string) error {
 
 	if _, ok := value.(map[string]interface{}); ok {
 		printMap(value.(map[string]interface{}))
-	}
-
-	if _, ok := value.(string); ok {
+	} else {
 		fmt.Println(value)
 	}
 
