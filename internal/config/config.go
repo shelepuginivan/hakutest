@@ -15,7 +15,7 @@ type GeneralConfig struct {
 }
 
 type ServerConfig struct {
-	Port string `yaml:"port" mapstructure:"port"`
+	Port int    `yaml:"port" mapstructure:"port"`
 	Mode string `yaml:"mode" mapstructure:"mode"`
 }
 
@@ -145,7 +145,7 @@ func Default() Config {
 			ResultsDirectory: resultsDirectory,
 		},
 		Server: ServerConfig{
-			Port: "8080",
+			Port: 8080,
 			Mode: "release",
 		},
 		Statistics: StatisticsConfig{
