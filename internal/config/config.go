@@ -218,7 +218,7 @@ func Default() Config {
 	return defaultConfig
 }
 
-func Init() Config {
+func New() Config {
 	config := Default()
 	configDir := getConfigDir()
 	configPath := filepath.Join(configDir, "config.yaml")

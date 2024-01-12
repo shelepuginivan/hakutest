@@ -17,13 +17,13 @@ type EditorController struct{}
 
 func (e EditorController) ChooseTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor_upload.tmpl", gin.H{
-		"Config": config.Init().Ui.Editor,
+		"Config": config.New().Ui.Editor,
 	})
 }
 
 func (e EditorController) NewTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
-		"Config": config.Init().Ui.Editor,
+		"Config": config.New().Ui.Editor,
 		"Test":   core.Test{},
 		"incr": func(n int) int {
 			return n + 1
@@ -37,7 +37,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init().Ui.Error,
+			"Config": config.New().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
@@ -50,7 +50,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init().Ui.Error,
+			"Config": config.New().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
@@ -63,7 +63,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init().Ui.Error,
+			"Config": config.New().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to open uploaded file",
 			"Error":  err.Error(),
@@ -78,7 +78,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init().Ui.Error,
+			"Config": config.New().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to read uploaded file",
 			"Error":  err.Error(),
@@ -91,7 +91,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init().Ui.Error,
+			"Config": config.New().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse test",
 			"Error":  err.Error(),
@@ -101,7 +101,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
-		"Config": config.Init().Ui.Editor,
+		"Config": config.New().Ui.Editor,
 		"Test":   test,
 		"incr": func(n int) int {
 			return n + 1
@@ -115,7 +115,7 @@ func (e EditorController) CreateTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": config.Init().Ui.Error,
+			"Config": config.New().Ui.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
@@ -169,7 +169,7 @@ func (e EditorController) CreateTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
-			"Config": config.Init().Ui.Error,
+			"Config": config.New().Ui.Error,
 			"Code":   http.StatusBadRequest,
 			"Detail": "failed to create a test file",
 			"Error":  err.Error(),

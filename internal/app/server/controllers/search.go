@@ -12,7 +12,7 @@ type SearchController struct{}
 
 func (s SearchController) SearchPage(c *gin.Context) {
 	c.HTML(http.StatusOK, "search.tmpl", gin.H{
-		"Config":   config.Init().Ui.Search,
+		"Config":   config.New().Ui.Search,
 		"TestList": core.GetTestList(),
 	})
 }

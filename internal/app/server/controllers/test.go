@@ -28,7 +28,7 @@ func (t TestController) GetTest(c *gin.Context) {
 
 		c.HTML(code, "error.tmpl", gin.H{
 			"Code":   code,
-			"Config": config.Init().Ui.Error,
+			"Config": config.New().Ui.Error,
 			"Detail": detail,
 			"Error":  err.Error(),
 		})
@@ -38,14 +38,14 @@ func (t TestController) GetTest(c *gin.Context) {
 
 	if !test.ExpiresIn.IsZero() && test.ExpiresIn.Before(time.Now()) {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
-			"Config": config.Init().Ui.Expired,
+			"Config": config.New().Ui.Expired,
 		})
 
 		return
 	}
 
 	c.HTML(http.StatusOK, "test.tmpl", gin.H{
-		"Config": config.Init().Ui.Test,
+		"Config": config.New().Ui.Test,
 		"Title":  test.Title,
 		"Tasks":  test.Tasks,
 		"url": func(s string) template.URL {
@@ -63,7 +63,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
 			"Code":   http.StatusUnprocessableEntity,
-			"Config": config.Init().Ui.Error,
+			"Config": config.New().Ui.Error,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
 		})
@@ -85,7 +85,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 
 		c.HTML(code, "error.tmpl", gin.H{
 			"Code":   code,
-			"Config": config.Init().Ui.Error,
+			"Config": config.New().Ui.Error,
 			"Detail": detail,
 			"Error":  err.Error(),
 		})
@@ -95,7 +95,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 
 	if !test.ExpiresIn.IsZero() && test.ExpiresIn.Before(time.Now()) {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
-			"Config": config.Init().Ui.Expired,
+			"Config": config.New().Ui.Expired,
 		})
 
 		return
@@ -106,7 +106,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 	if err := results.Save(name); err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
 			"Code":   http.StatusBadRequest,
-			"Config": config.Init().Ui.Error,
+			"Config": config.New().Ui.Error,
 			"Detail": "failed to save test results",
 			"Error":  err.Error(),
 		})

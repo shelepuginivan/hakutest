@@ -15,7 +15,7 @@ type Statistics struct {
 
 func GetStatistics(testName string) (Statistics, error) {
 	stats := Statistics{}
-	testResultsDir := filepath.Join(config.Init().General.ResultsDirectory, testName)
+	testResultsDir := filepath.Join(config.New().General.ResultsDirectory, testName)
 	entries, err := os.ReadDir(testResultsDir)
 
 	if err != nil {

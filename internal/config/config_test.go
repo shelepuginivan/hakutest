@@ -15,7 +15,7 @@ func TestGetConfigDir(t *testing.T) {
 }
 
 func TestInitConfig(t *testing.T) {
-	c := Init()
+	c := New()
 
 	var (
 		g     = reflect.ValueOf(c.General)
@@ -35,13 +35,13 @@ func TestInitConfig(t *testing.T) {
 }
 
 func TestPrint(t *testing.T) {
-	Init()
+	New()
 
 	assert.Nil(t, Print())
 }
 
 func TestPrintField(t *testing.T) {
-	Init()
+	New()
 
 	viper.SetConfigFile(filepath.Join(getConfigDir(), "config.yaml"))
 	viper.ReadInConfig()
@@ -54,7 +54,7 @@ func TestPrintField(t *testing.T) {
 }
 
 func TestSetField(t *testing.T) {
-	Init()
+	New()
 
 	viper.SetConfigFile(filepath.Join(getConfigDir(), "config.yaml"))
 	viper.ReadInConfig()
@@ -71,7 +71,7 @@ func TestSetField(t *testing.T) {
 }
 
 func TestNegativeSetField(t *testing.T) {
-	Init()
+	New()
 
 	for _, k := range []string{"general", "server", "stats", "stats.excel", "stats.image", "ui", "ui.editor", "ui.error", "ui.expired", "ui.test"} {
 		assert.Error(t, SetField(k, ""))

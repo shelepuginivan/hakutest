@@ -14,7 +14,7 @@ func CompareAnswers(received, expected string) bool {
 }
 
 func GetTestList() []string {
-	testsDirectory := config.Init().General.TestsDirectory
+	testsDirectory := config.New().General.TestsDirectory
 	testList := []string{}
 
 	entries, err := os.ReadDir(testsDirectory)
@@ -35,7 +35,7 @@ func GetTestList() []string {
 }
 
 func GetTestPath(name string) string {
-	testsDirectory := config.Init().General.TestsDirectory
+	testsDirectory := config.New().General.TestsDirectory
 
 	if !strings.HasSuffix(name, ".json") {
 		name += ".json"

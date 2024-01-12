@@ -34,7 +34,7 @@ func (s Statistics) ExportToTable() table.Table {
 }
 
 func (s Statistics) ExportToExcel(testName string) error {
-	excelConfig := config.Init().Statistics.Excel
+	excelConfig := config.New().Statistics.Excel
 	file := excelize.NewFile()
 
 	defer file.Close()
@@ -185,7 +185,7 @@ func (s Statistics) ExportToExcel(testName string) error {
 func (s Statistics) ExportToPng(testName string) error {
 	p := plot.New()
 	values := plotter.Values{}
-	imageConfig := config.Init().Statistics.Image
+	imageConfig := config.New().Statistics.Image
 
 	for _, entry := range s.Entries {
 		values = append(values, float64(entry.Results.Points))

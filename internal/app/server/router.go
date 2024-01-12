@@ -28,7 +28,7 @@ func setMode(mode string) {
 }
 
 func NewRouter() *gin.Engine {
-	setMode(config.Init().Server.Mode)
+	setMode(config.New().Server.Mode)
 
 	router := gin.New()
 	loadStaticAndTemplates(router)

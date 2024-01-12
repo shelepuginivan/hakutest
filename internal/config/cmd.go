@@ -7,7 +7,7 @@ import (
 )
 
 func Cmd(cmd *cobra.Command, args []string) {
-	Init()
+	New()
 
 	var err error = nil
 
