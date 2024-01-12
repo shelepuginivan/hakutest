@@ -63,7 +63,7 @@ general:
     tests_directory: ~/.cache/hakutest/tests
     results_directory: ~/.cache/hakutest/results
 server:
-    port: '8080'
+    port: 8080
     mode: release
 stats:
     excel:
