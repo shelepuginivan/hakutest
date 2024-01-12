@@ -128,10 +128,7 @@ func getViper() *viper.Viper {
 	return v
 }
 
-func Init() Config {
-	configDir := getConfigDir()
-	configPath := filepath.Join(configDir, "config.yaml")
-
+func Default() Config {
 	testsDirectory := "user_test"
 	resultsDirectory := "user_results"
 
@@ -142,7 +139,7 @@ func Init() Config {
 		resultsDirectory = filepath.Join(cacheDir, "hakutest", "results")
 	}
 
-	config := Config{
+	defaultConfig := Config{
 		General: GeneralConfig{
 			TestsDirectory:   testsDirectory,
 			ResultsDirectory: resultsDirectory,
@@ -218,13 +215,21 @@ func Init() Config {
 		},
 	}
 
+	return defaultConfig
+}
+
+func Init() Config {
+	config := Default()
+	configDir := getConfigDir()
+	configPath := filepath.Join(configDir, "config.yaml")
+
 	v := getViper()
 	v.SetDefault("general", config.General)
 	v.SetDefault("server", config.Server)
 	v.SetDefault("stats", config.Statistics)
 	v.SetDefault("ui", config.Ui)
 
-	if _, err = os.Stat(configPath); os.IsNotExist(err) {
+	if _, err := os.Stat(configPath); os.IsNotExist(err) {
 		if err = os.MkdirAll(configDir, os.ModeDir|os.ModePerm); err != nil {
 			panic(err)
 		}
@@ -244,11 +249,11 @@ func Init() Config {
 		file.Write(data)
 	}
 
-	if err = v.ReadInConfig(); err != nil {
+	if err := v.ReadInConfig(); err != nil {
 		panic(err)
 	}
 
-	if err = v.Unmarshal(&config); err != nil {
+	if err := v.Unmarshal(&config); err != nil {
 		panic(err)
 	}
 
