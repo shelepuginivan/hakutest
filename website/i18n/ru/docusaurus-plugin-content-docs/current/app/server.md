@@ -14,7 +14,7 @@ description: Узнайте как запускать сервер Hakutest
 
 ## Использование команды `hakutest server`
 
-Синтаксис: `hakutest server [порт]`
+Синтаксис: `hakutest server`
 
 Команда `hakutest server` запускает сервер Hakutest.
 
@@ -30,7 +30,7 @@ export PATH="$PATH:path/to/hakutest/installation"
 
 Если не было передано ни одного аргумента, сервер будет прослушивать порт, указанный в конфигурационном файле (см. [Конфигурация сервера](/docs/configuration/server#port))
 
-Вы можете указать другой порт, передав его как первый аргумент. Значение порта должно быть целым числом от 1024 до 65535.
+Вы можете переопределить порт по умолчанию с помощью флага `-p|--port`. Порт должен быть целым числом в диапазоне от 1024 до 65535.
 
 ### Примеры
 
@@ -43,5 +43,9 @@ export PATH="$PATH:path/to/hakutest/installation"
 2.  Запустить на порту `8000`:
 
     ```shell
-    hakutest server 8000
+    hakutest server -p 8000
+    ```
+
+    ```shell
+    hakutest server --port 8000
     ```
