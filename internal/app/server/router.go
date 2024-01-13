@@ -6,6 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/app/server/controllers"
 	"github.com/shelepuginivan/hakutest/internal/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/results"
+	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"github.com/shelepuginivan/hakutest/internal/pkg/utils"
 )
 
@@ -35,9 +37,12 @@ func NewRouter() *gin.Engine {
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 
-	editor := new(controllers.EditorController)
-	search := new(controllers.SearchController)
-	test := new(controllers.TestController)
+	testService := test.NewService()
+	resultsService := results.NewService()
+
+	editor := controllers.NewEditorController()
+	search := controllers.NewSearchController(testService)
+	test := controllers.NewTestController(testService, resultsService)
 
 	router.GET("/", search.SearchPage)
 	router.GET("/editor/upload", editor.ChooseTest)

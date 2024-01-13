@@ -8,14 +8,22 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/config"
-	"github.com/shelepuginivan/hakutest/internal/pkg/core"
+	"github.com/shelepuginivan/hakutest/internal/pkg/results"
+	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
-type TestController struct{}
+type TestController struct {
+	s test.TestService
+	r results.ResultsService
+}
 
-func (t TestController) GetTest(c *gin.Context) {
-	testName := c.Param("test")
-	test, err := core.GetTest(testName)
+func NewTestController(s test.TestService, r results.ResultsService) TestController {
+	return TestController{s: s, r: r}
+}
+
+func (co TestController) GetTest(c *gin.Context) {
+	name := c.Param("test")
+	t, err := co.s.GetByName(name)
 
 	if err != nil {
 		code := http.StatusBadRequest
@@ -36,7 +44,7 @@ func (t TestController) GetTest(c *gin.Context) {
 		return
 	}
 
-	if !test.ExpiresIn.IsZero() && test.ExpiresIn.Before(time.Now()) {
+	if !t.ExpiresIn.IsZero() && t.ExpiresIn.Before(time.Now()) {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
 			"Config": config.New().Ui.Expired,
 		})
@@ -46,8 +54,8 @@ func (t TestController) GetTest(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "test.tmpl", gin.H{
 		"Config": config.New().Ui.Test,
-		"Title":  test.Title,
-		"Tasks":  test.Tasks,
+		"Title":  t.Title,
+		"Tasks":  t.Tasks,
 		"url": func(s string) template.URL {
 			return template.URL(s)
 		},
@@ -57,7 +65,7 @@ func (t TestController) GetTest(c *gin.Context) {
 	})
 }
 
-func (t TestController) SubmitTest(c *gin.Context) {
+func (co TestController) SubmitTest(c *gin.Context) {
 	err := c.Request.ParseForm()
 
 	if err != nil {
@@ -72,7 +80,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 	}
 
 	name := c.Param("test")
-	test, err := core.GetTest(name)
+	t, err := co.s.GetByName(name)
 
 	if err != nil {
 		code := http.StatusBadRequest
@@ -93,7 +101,7 @@ func (t TestController) SubmitTest(c *gin.Context) {
 		return
 	}
 
-	if !test.ExpiresIn.IsZero() && test.ExpiresIn.Before(time.Now()) {
+	if !t.ExpiresIn.IsZero() && t.ExpiresIn.Before(time.Now()) {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
 			"Config": config.New().Ui.Expired,
 		})
@@ -101,9 +109,9 @@ func (t TestController) SubmitTest(c *gin.Context) {
 		return
 	}
 
-	results := test.GetResults(c.Request.PostForm)
+	results := co.r.GetResults(t, c.Request.PostForm)
 
-	if err := results.Save(name); err != nil {
+	if err := co.r.Save(results, name); err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
 			"Code":   http.StatusBadRequest,
 			"Config": config.New().Ui.Error,

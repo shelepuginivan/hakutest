@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/shelepuginivan/hakutest/internal/pkg/core"
+	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,6 @@ var importCmd = &cobra.Command{
 }
 
 func Cmd(cmd *cobra.Command, args []string) error {
-	return core.Import(args[0])
+	testService := test.NewService()
+	return testService.Import(args[0])
 }

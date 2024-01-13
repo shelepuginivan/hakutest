@@ -10,10 +10,14 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/config"
-	"github.com/shelepuginivan/hakutest/internal/pkg/core"
+	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
 type EditorController struct{}
+
+func NewEditorController() EditorController {
+	return EditorController{}
+}
 
 func (e EditorController) ChooseTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor_upload.tmpl", gin.H{
@@ -24,7 +28,7 @@ func (e EditorController) ChooseTest(c *gin.Context) {
 func (e EditorController) NewTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
 		"Config": config.New().Ui.Editor,
-		"Test":   core.Test{},
+		"Test":   test.Test{},
 		"incr": func(n int) int {
 			return n + 1
 		},
@@ -32,7 +36,7 @@ func (e EditorController) NewTest(c *gin.Context) {
 }
 
 func (e EditorController) UploadTest(c *gin.Context) {
-	test := core.Test{}
+	t := test.Test{}
 	err := c.Request.ParseForm()
 
 	if err != nil {
@@ -87,7 +91,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 		return
 	}
 
-	err = json.Unmarshal(data, &test)
+	err = json.Unmarshal(data, &t)
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
@@ -102,7 +106,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
 		"Config": config.New().Ui.Editor,
-		"Test":   test,
+		"Test":   t,
 		"incr": func(n int) int {
 			return n + 1
 		},
@@ -110,7 +114,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 }
 
 func (e EditorController) CreateTest(c *gin.Context) {
-	test := core.Test{}
+	t := test.Test{}
 	err := c.Request.ParseMultipartForm(1000)
 
 	if err != nil {
@@ -127,16 +131,16 @@ func (e EditorController) CreateTest(c *gin.Context) {
 	expiresIn, err := time.Parse("2006-01-02T15:04:05", c.Request.Form.Get("expiresIn"))
 
 	if err == nil {
-		test.ExpiresIn = expiresIn
+		t.ExpiresIn = expiresIn
 	}
 
-	test.Title = c.Request.Form.Get("title")
-	test.Description = c.Request.Form.Get("description")
-	test.Subject = c.Request.Form.Get("subject")
-	test.Target = c.Request.Form.Get("target")
-	test.Title = c.Request.Form.Get("title")
-	test.Author = c.Request.Form.Get("author")
-	test.Institution = c.Request.Form.Get("institution")
+	t.Title = c.Request.Form.Get("title")
+	t.Description = c.Request.Form.Get("description")
+	t.Subject = c.Request.Form.Get("subject")
+	t.Target = c.Request.Form.Get("target")
+	t.Title = c.Request.Form.Get("title")
+	t.Author = c.Request.Form.Get("author")
+	t.Institution = c.Request.Form.Get("institution")
 
 	numberOfTasks, err := strconv.Atoi(c.Request.Form.Get("number-of-tasks"))
 
@@ -145,7 +149,7 @@ func (e EditorController) CreateTest(c *gin.Context) {
 	}
 
 	for i := 0; i < numberOfTasks; i++ {
-		task := core.Task{}
+		task := test.Task{}
 
 		task.Type = c.Request.Form.Get(fmt.Sprintf("%d-type", i))
 		task.Text = c.Request.Form.Get(fmt.Sprintf("%d-text", i))
@@ -153,7 +157,7 @@ func (e EditorController) CreateTest(c *gin.Context) {
 		task.Options = c.PostFormArray(fmt.Sprintf("%d-options", i))
 
 		if c.Request.Form.Get(fmt.Sprintf("%d-has-attachment", i)) == "on" {
-			attachment := core.Attachment{}
+			attachment := test.Attachment{}
 
 			attachment.Type = c.Request.Form.Get(fmt.Sprintf("%d-attachment-type", i))
 			attachment.Name = c.Request.Form.Get(fmt.Sprintf("%d-attachment-name", i))
@@ -162,10 +166,10 @@ func (e EditorController) CreateTest(c *gin.Context) {
 			task.Attachment = attachment
 		}
 
-		test.Tasks = append(test.Tasks, task)
+		t.Tasks = append(t.Tasks, task)
 	}
 
-	data, err := json.Marshal(test)
+	data, err := json.Marshal(t)
 
 	if err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
@@ -178,7 +182,7 @@ func (e EditorController) CreateTest(c *gin.Context) {
 		return
 	}
 
-	c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=%s.json", test.Title))
+	c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=%s.json", t.Title))
 	c.Header("Content-Type", "application/json")
 	c.Status(http.StatusCreated)
 	c.Writer.Write(data)

@@ -5,12 +5,12 @@ import (
 	"path/filepath"
 
 	"github.com/shelepuginivan/hakutest/internal/config"
-	"github.com/shelepuginivan/hakutest/internal/pkg/core"
+	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"gopkg.in/yaml.v3"
 )
 
 type Statistics struct {
-	Entries []core.TestResults
+	Entries []results.TestResults
 }
 
 func GetStatistics(testName string) (Statistics, error) {
@@ -33,7 +33,7 @@ func GetStatistics(testName string) (Statistics, error) {
 			continue
 		}
 
-		entry := core.TestResults{}
+		entry := results.TestResults{}
 
 		if yaml.Unmarshal(data, &entry) != nil {
 			continue

@@ -4,11 +4,11 @@ import (
 	"fmt"
 
 	"github.com/Songmu/prompter"
-	"github.com/shelepuginivan/hakutest/internal/pkg/core"
+	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
-func promptAddAttachment() core.Attachment {
-	attachment := core.Attachment{}
+func promptAddAttachment() test.Attachment {
+	attachment := test.Attachment{}
 
 	attachment.Name = prompter.Prompt(nestedMessage("Name", 2), "")
 	attachment.Type = prompter.Choose(
@@ -30,7 +30,7 @@ func promptAddAttachment() core.Attachment {
 	return attachment
 }
 
-func promptEditAttachment(attachment core.Attachment) core.Attachment {
+func promptEditAttachment(attachment test.Attachment) test.Attachment {
 	attachment.Name = prompter.Prompt(nestedMessage("Name", 2), attachment.Name)
 	attachment.Type = prompter.Choose(
 		nestedMessage("Type", 2),
@@ -53,8 +53,8 @@ func promptEditAttachment(attachment core.Attachment) core.Attachment {
 	return attachment
 }
 
-func promptNewTask() core.Task {
-	task := core.Task{}
+func promptNewTask() test.Task {
+	task := test.Task{}
 	taskType := map[string]string{
 		"Single answer":    "single",
 		"Multiple answers": "multiple",
@@ -87,7 +87,7 @@ func promptNewTask() core.Task {
 	return task
 }
 
-func promptEditTask(task core.Task) core.Task {
+func promptEditTask(task test.Task) test.Task {
 	taskTypeName := map[string]string{
 		"single":   "Single answer",
 		"multiple": "Multiple answers",
@@ -145,7 +145,7 @@ func promptEditTask(task core.Task) core.Task {
 	case "edit":
 		task.Attachment = promptEditAttachment(task.Attachment)
 	case "remove":
-		task.Attachment = core.Attachment{}
+		task.Attachment = test.Attachment{}
 	}
 
 	return task

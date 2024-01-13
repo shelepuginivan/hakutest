@@ -5,13 +5,15 @@ import (
 	"time"
 
 	"github.com/Songmu/prompter"
-	"github.com/shelepuginivan/hakutest/internal/pkg/core"
+	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"github.com/spf13/cobra"
 )
 
 func Cmd(cmd *cobra.Command, args []string) error {
+	testService := test.NewService()
+
 	var (
-		test         = core.Test{}
+		t            = test.Test{}
 		timeLayout   = "2006-01-02 15:04:05"
 		tasksDeleted = 0
 		name         string
@@ -20,33 +22,33 @@ func Cmd(cmd *cobra.Command, args []string) error {
 	if len(args) == 1 {
 		name = args[0]
 
-		parsedTest, err := core.GetTest(name)
+		parsedTest, err := testService.GetByName(name)
 
 		if err == nil {
-			test = parsedTest
+			t = parsedTest
 		}
 	} else {
 		name = prompter.Prompt(message("Test filename"), "test.json")
 	}
 
-	test.Title = prompter.Prompt(message("Title of the test"), test.Title)
-	test.Description = prompter.Prompt(message("Description"), test.Description)
-	test.Target = prompter.Prompt(message("Target audience"), test.Target)
-	test.Subject = prompter.Prompt(message("Subject of the test"), test.Subject)
-	test.Author = prompter.Prompt(message("Author"), test.Author)
-	test.Institution = prompter.Prompt(message("Educational institution"), test.Institution)
+	t.Title = prompter.Prompt(message("Title of the test"), t.Title)
+	t.Description = prompter.Prompt(message("Description"), t.Description)
+	t.Target = prompter.Prompt(message("Target audience"), t.Target)
+	t.Subject = prompter.Prompt(message("Subject of the test"), t.Subject)
+	t.Author = prompter.Prompt(message("Author"), t.Author)
+	t.Institution = prompter.Prompt(message("Educational institution"), t.Institution)
 
-	expiresInString := prompter.Prompt(message("Expires in"), test.ExpiresIn.Format(timeLayout))
+	expiresInString := prompter.Prompt(message("Expires in"), t.ExpiresIn.Format(timeLayout))
 
 	if expiresInString != "" {
 		expiresIn, err := time.Parse(timeLayout, expiresInString)
 
 		if err == nil {
-			test.ExpiresIn = expiresIn
+			t.ExpiresIn = expiresIn
 		}
 	}
 
-	for i := 0; i < len(test.Tasks); {
+	for i := 0; i < len(t.Tasks); {
 		action := prompter.Choose(
 			message(fmt.Sprintf("Task %d:", i+tasksDeleted+1)),
 			[]string{"leave unchanged", "edit", "replace", "remove"},
@@ -58,20 +60,20 @@ func Cmd(cmd *cobra.Command, args []string) error {
 			i++
 			continue
 		case "edit":
-			test.Tasks[i] = promptEditTask(test.Tasks[i])
+			t.Tasks[i] = promptEditTask(t.Tasks[i])
 			i++
 		case "replace":
-			test.Tasks[i] = promptNewTask()
+			t.Tasks[i] = promptNewTask()
 			i++
 		case "remove":
-			test.Tasks = append(test.Tasks[:i], test.Tasks[i+1:]...)
+			t.Tasks = append(t.Tasks[:i], t.Tasks[i+1:]...)
 			tasksDeleted++
 		}
 	}
 
 	for prompter.YN(message("Add new task"), false) {
-		test.Tasks = append(test.Tasks, promptNewTask())
+		t.Tasks = append(t.Tasks, promptNewTask())
 	}
 
-	return test.Save(name)
+	return testService.SaveToTestsDirectory(t, name)
 }
