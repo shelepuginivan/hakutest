@@ -61,6 +61,7 @@ The default Hakutest configuration is as follows:
 general:
     tests_directory: ~/.cache/hakutest/tests # May vary depending on OS
     results_directory: ~/.cache/hakutest/results # May vary depending on OS
+    show_results: true
 server:
     port: 8080
     mode: release
@@ -116,6 +117,9 @@ ui:
     search:
         input_placeholder: Search for a test
         search_button_label: Search
+    submitted:
+        header: Submitted!
+        message: The test results are not displayed according to the system settings
     test:
         student_name_label: 'Your name:'
         open_answer_label: 'Answer:'

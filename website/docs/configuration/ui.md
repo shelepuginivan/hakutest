@@ -101,6 +101,19 @@ Customizes [search page](/docs/app/search-page) interface.
 
 ![Search page example](./img/search-example.png)
 
+### `submitted`
+
+Customizes [submission page](/docs/app/test-page#test-results)
+
+**Options**:
+
+-   `header` - Header of the test submission page.
+-   `message` - Message with additional information.
+
+**Visual example**:
+
+![Submission page example](./img/test-submitted-example.png)
+
 ### `test`
 
 Customizes [test page](/docs/app/test-page) interface.

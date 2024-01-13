@@ -23,6 +23,13 @@ Specifies the folder where students' results are stored.
 -   **Value**: path (absolute or relative) to the folder where you want to store the results.
 -   **Default**: _Depends on your operating system._
 
+### `show_results`
+
+Specifies whether the results will be displayed immediately after the response is sent.
+
+-   **Value**: bool (`true` or `false`), show results or not respectively.
+-   **Default**: `true`
+
 ## Example
 
 Example of general configuration:
@@ -31,5 +38,6 @@ Example of general configuration:
 general:
     tests_directory: ./data/tests
     results_directory: ./data/results
+    show_results: true
 # Other fields...
 ```
