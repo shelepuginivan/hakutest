@@ -33,6 +33,10 @@ type Test struct {
 	Tasks       []Task    `json:"tasks"`
 }
 
+func (t Test) IsExpired() bool {
+	return !t.ExpiresIn.IsZero() && t.ExpiresIn.Before(time.Now())
+}
+
 func (t Test) Sha256Sum() string {
 	hasher := sha256.New()
 	data, err := json.Marshal(t)

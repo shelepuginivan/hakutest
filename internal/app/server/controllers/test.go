@@ -4,7 +4,6 @@ import (
 	"html/template"
 	"net/http"
 	"os"
-	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/config"
@@ -44,7 +43,7 @@ func (co TestController) GetTest(c *gin.Context) {
 		return
 	}
 
-	if !t.ExpiresIn.IsZero() && t.ExpiresIn.Before(time.Now()) {
+	if t.IsExpired() {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
 			"Config": config.New().Ui.Expired,
 		})
@@ -101,7 +100,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 		return
 	}
 
-	if !t.ExpiresIn.IsZero() && t.ExpiresIn.Before(time.Now()) {
+	if t.IsExpired() {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
 			"Config": config.New().Ui.Expired,
 		})
