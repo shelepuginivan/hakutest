@@ -1,8 +1,9 @@
-# **Please note that this configuration file does not contain a `general`
-# section as its values are dependent on the operating system and its
-# settings.**
+# **Please note that this configuration file does not contain fields
+# `general.results_directory` and `general.tests_directory` as their
+# values are dependent on the operating system and its settings.**
 #
-# general:
+general:
+  show_results: true
 #   results_directory:
 #   tests_directory:
 server:
@@ -60,6 +61,9 @@ ui:
   search:
     input_placeholder: Search for a test
     search_button_label: Search
+  submitted:
+    header: "Submitted!"
+    message: "The test results are not displayed according to the system settings."
   test:
     open_answer_label: "Answer:"
     student_name_label: "Your name:"

@@ -1,8 +1,9 @@
-# **Обратите внимание, что в этом конфигурационном файле отсутствует секция
-# `general`, так как её значения вариируются в зависимости от операционной
-# системы и её настроек.**
+# **Обратите внимание, что в этом конфигурационном файле отсутствуют поля
+# `general.results_directory` и `general.tests_directory`, так как их значения
+# вариируются в зависимости от операционной системы и её настроек.**
 #
-# general:
+general:
+  show_results: true
 #   results_directory:
 #   tests_directory:
 server:
@@ -60,6 +61,9 @@ ui:
   search:
     input_placeholder: Искать тесты
     search_button_label: Искать
+  submitted:
+    header: Ответы сохранены!
+    message: "В соответствии с настройками системы, результаты не отображаются."
   test:
     open_answer_label: "Ответ:"
     student_name_label: "ФИО:"
