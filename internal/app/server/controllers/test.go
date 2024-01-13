@@ -66,11 +66,12 @@ func (co TestController) GetTest(c *gin.Context) {
 
 func (co TestController) SubmitTest(c *gin.Context) {
 	err := c.Request.ParseForm()
+	conf := config.New()
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
 			"Code":   http.StatusUnprocessableEntity,
-			"Config": config.New().Ui.Error,
+			"Config": conf.Ui.Error,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
 		})
@@ -92,7 +93,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 
 		c.HTML(code, "error.tmpl", gin.H{
 			"Code":   code,
-			"Config": config.New().Ui.Error,
+			"Config": conf.Ui.Error,
 			"Detail": detail,
 			"Error":  err.Error(),
 		})
@@ -102,7 +103,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 
 	if t.IsExpired() {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
-			"Config": config.New().Ui.Expired,
+			"Config": conf.Ui.Expired,
 		})
 
 		return
@@ -113,7 +114,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 	if err := co.r.Save(results, name); err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
 			"Code":   http.StatusBadRequest,
-			"Config": config.New().Ui.Error,
+			"Config": conf.Ui.Error,
 			"Detail": "failed to save test results",
 			"Error":  err.Error(),
 		})
@@ -121,8 +122,15 @@ func (co TestController) SubmitTest(c *gin.Context) {
 		return
 	}
 
-	c.HTML(http.StatusCreated, "results.tmpl", gin.H{
-		"Student": results.Student,
-		"Results": results.Results,
+	if conf.General.ShowResults {
+		c.HTML(http.StatusCreated, "results.tmpl", gin.H{
+			"Student": results.Student,
+			"Results": results.Results,
+		})
+		return
+	}
+
+	c.HTML(http.StatusCreated, "submitted.tmpl", gin.H{
+		"Config": conf.Ui.Submitted,
 	})
 }
