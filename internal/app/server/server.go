@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func Init(cmd *cobra.Command, args []string) error {
+func Run(cmd *cobra.Command, args []string) error {
 	r := NewRouter()
 	port, err := cmd.Flags().GetInt("port")
 

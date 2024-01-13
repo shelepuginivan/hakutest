@@ -17,5 +17,5 @@ var serverCmd = &cobra.Command{
 	Short: "Start Hakutest server",
 	Long:  "Start Hakutest server",
 	Args:  cobra.NoArgs,
-	RunE:  server.Init,
+	RunE:  server.Run,
 }
