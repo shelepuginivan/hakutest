@@ -19,13 +19,13 @@ func NewEditorController() EditorController {
 	return EditorController{}
 }
 
-func (e EditorController) ChooseTest(c *gin.Context) {
+func (co EditorController) ChooseTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor_upload.tmpl", gin.H{
 		"Config": config.New().Ui.Editor,
 	})
 }
 
-func (e EditorController) NewTest(c *gin.Context) {
+func (co EditorController) NewTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
 		"Config": config.New().Ui.Editor,
 		"Test":   test.Test{},
@@ -35,7 +35,7 @@ func (e EditorController) NewTest(c *gin.Context) {
 	})
 }
 
-func (e EditorController) UploadTest(c *gin.Context) {
+func (co EditorController) UploadTest(c *gin.Context) {
 	t := test.Test{}
 	err := c.Request.ParseForm()
 
@@ -113,7 +113,7 @@ func (e EditorController) UploadTest(c *gin.Context) {
 	})
 }
 
-func (e EditorController) CreateTest(c *gin.Context) {
+func (co EditorController) CreateTest(c *gin.Context) {
 	t := test.Test{}
 	err := c.Request.ParseMultipartForm(1000)
 
