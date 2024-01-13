@@ -1,4 +1,4 @@
-.TH "HAKUTEST\-CONFIGURATION" "7" "2024-01-12" "github.com/shelepuginivan/hakutest" "Hakutest Manual"
+.TH "HAKUTEST\-CONFIGURATION" "7" "2024-01-13" "github.com/shelepuginivan/hakutest" "Hakutest Manual"
 
 .nh
 .ad l
@@ -35,6 +35,8 @@ Fields (value type is indicated in brackets):
 \fItests_directory\fR (string) \- Test files storage directory (absolute or relative path).
 .br
 \fItests_results\fR (string) \- Test results storage directory (absolute or relative path).
+.br
+\fIshow_results\fR (bool) \- Show the results to the student after the submission.
 .RE
 .RE
 
@@ -212,6 +214,20 @@ Fields (value type is indicated in brackets):
 \fIinput_placeholder\fR (string) \- Placeholder text of the search input field.
 .br
 \fIsearch_button_label\fR (string) \- Text of the search button.
+.br
+.RE
+.RE
+
+.PP
+\fIsubmitted\fR
+.RS 4
+Customizes submission page.
+.PP
+Fields (value type is indicated in brackets):
+.RS 4
+\fIheader\fR (string) \- Header of the submission page.
+.br
+\fImessage\fR (string) \- Message with additional information.
 .br
 .RE
 .RE
