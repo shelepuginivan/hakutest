@@ -87,6 +87,11 @@ type UiSearchConfig struct {
 	SearchButtonLabel string `yaml:"search_button_label" mapstructure:"search_button_label"`
 }
 
+type UiSubmittedConfig struct {
+	Header  string `yaml:"header" mapstructure:"header"`
+	Message string `yaml:"message" mapstructure:"message"`
+}
+
 type UiTestConfig struct {
 	StudentNameLabel  string `yaml:"student_name_label" mapstructure:"student_name_label"`
 	OpenAnswerLabel   string `yaml:"open_answer_label" mapstructure:"open_answer_label"`
@@ -94,11 +99,12 @@ type UiTestConfig struct {
 }
 
 type UiConfig struct {
-	Editor  UiEditorConfig  `yaml:"editor" mapstructure:"editor"`
-	Error   UiErrorConfig   `yaml:"error" mapstructure:"error"`
-	Expired UiExpiredConfig `yaml:"expired" mapstructure:"expired"`
-	Search  UiSearchConfig  `yaml:"search" mapstructure:"search"`
-	Test    UiTestConfig    `yaml:"test" mapstructure:"test"`
+	Editor    UiEditorConfig    `yaml:"editor" mapstructure:"editor"`
+	Error     UiErrorConfig     `yaml:"error" mapstructure:"error"`
+	Expired   UiExpiredConfig   `yaml:"expired" mapstructure:"expired"`
+	Search    UiSearchConfig    `yaml:"search" mapstructure:"search"`
+	Submitted UiSubmittedConfig `yaml:"submitted" mapstructure:"submitted"`
+	Test      UiTestConfig      `yaml:"test" mapstructure:"test"`
 }
 
 type Config struct {
@@ -208,6 +214,10 @@ func Default() Config {
 			Search: UiSearchConfig{
 				InputPlaceholder:  "Search for a test",
 				SearchButtonLabel: "Search",
+			},
+			Submitted: UiSubmittedConfig{
+				Header:  "Submitted!",
+				Message: "The test results are not displayed according to the system settings.",
 			},
 			Test: UiTestConfig{
 				StudentNameLabel:  "Your name:",
