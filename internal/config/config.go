@@ -217,7 +217,7 @@ func Default() Config {
 			},
 			Submitted: UiSubmittedConfig{
 				Header:  "Submitted!",
-				Message: "The test results are not displayed according to the system settings.",
+				Message: "The test results are not displayed according to the system settings",
 			},
 			Test: UiTestConfig{
 				StudentNameLabel:  "Your name:",

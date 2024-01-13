@@ -63,7 +63,7 @@ ui:
     search_button_label: Искать
   submitted:
     header: Ответы сохранены!
-    message: "В соответствии с настройками системы, результаты не отображаются."
+    message: "В соответствии с настройками системы, результаты не отображаются"
   test:
     open_answer_label: "Ответ:"
     student_name_label: "ФИО:"
