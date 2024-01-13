@@ -35,3 +35,14 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.container {
+    display: flex;
+    max-width: 900px;
+    width: 90%;
+    margin-inline: auto;
+    gap: 24px;
+    background-color: var(--lightgray);
+    padding: 24px;
+    border-radius: 16px;
+}
