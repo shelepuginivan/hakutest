@@ -174,6 +174,9 @@ ui:
     search:
         input_placeholder: Search for the test
         search_button_label: Search
+    submitted:
+        header: Submitted!
+        message: The test results are not displayed according to the system settings
     test:
         student_name_label: 'Your name:'
         open_answer_label: 'Answer:'

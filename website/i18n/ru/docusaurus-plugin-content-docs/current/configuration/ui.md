@@ -174,6 +174,9 @@ ui:
     search:
         input_placeholder: Искать тесты
         search_button_label: Искать
+    submitted:
+        header: Ответы сохранены!
+        message: 'В соответствии с настройками системы, результаты не отображаются'
     test:
         student_name_label: 'ФИО:'
         open_answer_label: 'Ответ:'
