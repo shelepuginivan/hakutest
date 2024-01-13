@@ -62,6 +62,7 @@ general:
     # может отличаться в зависимости от ОС
     tests_directory: ~/.cache/hakutest/tests
     results_directory: ~/.cache/hakutest/results
+    show_results: true
 server:
     port: 8080
     mode: release
@@ -117,6 +118,9 @@ ui:
     search:
         input_placeholder: Search for a test
         search_button_label: Search
+    submitted:
+        header: Submitted!
+        message: The test results are not displayed according to the system settings
     test:
         student_name_label: 'Your name:'
         open_answer_label: 'Answer:'
