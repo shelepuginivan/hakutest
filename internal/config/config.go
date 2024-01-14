@@ -242,7 +242,7 @@ func New() Config {
 	v.SetDefault("ui", config.Ui)
 
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
-		if err = os.MkdirAll(configDir, os.ModeDir|os.ModePerm); err != nil {
+		if err := os.MkdirAll(configDir, os.ModeDir|os.ModePerm); err != nil {
 			panic(err)
 		}
 
@@ -258,7 +258,9 @@ func New() Config {
 			data = []byte{}
 		}
 
-		file.Write(data)
+		if _, err := file.Write(data); err != nil {
+			panic(err)
+		}
 	}
 
 	if err := v.ReadInConfig(); err != nil {
