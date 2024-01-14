@@ -22,7 +22,7 @@ func (s ResultsService) CompareAnswers(received, expected string) bool {
 	return strings.TrimSpace(strings.ToLower(received)) == strings.TrimSpace(strings.ToLower(expected))
 }
 
-func (s ResultsService) GetResults(t test.Test, answers map[string][]string) TestResults {
+func (s ResultsService) CheckAnswers(t test.Test, answers map[string][]string) TestResults {
 	submittedAt := time.Now()
 	student := strings.Join(answers["student"], "")
 

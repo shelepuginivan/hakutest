@@ -109,7 +109,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 		return
 	}
 
-	results := co.r.GetResults(t, c.Request.PostForm)
+	results := co.r.CheckAnswers(t, c.Request.PostForm)
 
 	if err := co.r.Save(results, name); err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
