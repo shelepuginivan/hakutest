@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/shelepuginivan/hakutest/internal/app/editor"
+	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"github.com/spf13/cobra"
 )
 
@@ -14,5 +15,5 @@ var editorCmd = &cobra.Command{
 	Short: "Edit test files",
 	Long:  "Edit hakutest test files",
 	Args:  cobra.RangeArgs(0, 1),
-	RunE:  editor.Cmd,
+	RunE:  editor.Cmd(test.NewService()),
 }

@@ -3,6 +3,8 @@ package cmd
 import (
 	"github.com/shelepuginivan/hakutest/internal/app/server"
 	"github.com/shelepuginivan/hakutest/internal/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/results"
+	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +19,5 @@ var serverCmd = &cobra.Command{
 	Short: "Start Hakutest server",
 	Long:  "Start Hakutest server",
 	Args:  cobra.NoArgs,
-	RunE:  server.Run,
+	RunE:  server.Cmd(test.NewService(), results.NewService()),
 }

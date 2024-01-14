@@ -5,12 +5,17 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/shelepuginivan/hakutest/internal/pkg/results"
+	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/net/html"
 )
 
 func TestIndexRoute(t *testing.T) {
-	r := NewRouter()
+	testService := test.NewService()
+	resultsService := results.NewService()
+
+	r := NewRouter(testService, resultsService)
 	w := httptest.NewRecorder()
 	req, _ := http.NewRequest(http.MethodGet, "/", http.NoBody)
 	r.ServeHTTP(w, req)
@@ -22,7 +27,10 @@ func TestIndexRoute(t *testing.T) {
 }
 
 func TestEditorUpload(t *testing.T) {
-	r := NewRouter()
+	testService := test.NewService()
+	resultsService := results.NewService()
+
+	r := NewRouter(testService, resultsService)
 	w := httptest.NewRecorder()
 	req, _ := http.NewRequest(http.MethodGet, "/editor/upload", http.NoBody)
 	r.ServeHTTP(w, req)
@@ -34,7 +42,10 @@ func TestEditorUpload(t *testing.T) {
 }
 
 func TestEditorEdit(t *testing.T) {
-	r := NewRouter()
+	testService := test.NewService()
+	resultsService := results.NewService()
+
+	r := NewRouter(testService, resultsService)
 	w := httptest.NewRecorder()
 	req, _ := http.NewRequest(http.MethodGet, "/editor/edit", http.NoBody)
 	r.ServeHTTP(w, req)

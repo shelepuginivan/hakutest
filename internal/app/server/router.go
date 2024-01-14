@@ -29,7 +29,7 @@ func setMode(mode string) {
 	}
 }
 
-func NewRouter() *gin.Engine {
+func NewRouter(t test.TestService, r results.ResultsService) *gin.Engine {
 	setMode(config.New().Server.Mode)
 
 	router := gin.New()
@@ -37,12 +37,9 @@ func NewRouter() *gin.Engine {
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 
-	testService := test.NewService()
-	resultsService := results.NewService()
-
 	editor := controllers.NewEditorController()
-	search := controllers.NewSearchController(testService)
-	test := controllers.NewTestController(testService, resultsService)
+	search := controllers.NewSearchController(t)
+	test := controllers.NewTestController(t, r)
 
 	router.GET("/", search.SearchPage)
 	router.GET("/editor/upload", editor.ChooseTest)
