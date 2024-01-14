@@ -68,6 +68,38 @@ func (s ResultsService) CheckAnswers(t test.Test, answers map[string][]string) T
 	return results
 }
 
+func (s ResultsService) GetResultsOfTest(name string) ([]TestResults, error) {
+	results := []TestResults{}
+	testResultsDir := filepath.Join(config.New().General.ResultsDirectory, name)
+	entries, err := os.ReadDir(testResultsDir)
+
+	if err != nil {
+		return nil, err
+	}
+
+	for _, file := range entries {
+		if file.IsDir() {
+			continue
+		}
+
+		data, err := os.ReadFile(filepath.Join(testResultsDir, file.Name()))
+
+		if err != nil {
+			continue
+		}
+
+		entry := TestResults{}
+
+		if yaml.Unmarshal(data, &entry) != nil {
+			continue
+		}
+
+		results = append(results, entry)
+	}
+
+	return results, nil
+}
+
 func (s ResultsService) Save(r TestResults, name string) error {
 	testName := strings.TrimSuffix(name, ".json")
 	testResultsDirectory := filepath.Join(config.New().General.ResultsDirectory, testName)
