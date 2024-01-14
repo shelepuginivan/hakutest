@@ -1,28 +1,33 @@
 package statistics
 
 import (
+	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/spf13/cobra"
 )
 
-func Cmd(cmd *cobra.Command, args []string) error {
-	stats, err := GetStatistics(args[0])
+func Cmd(s results.ResultsService) func(*cobra.Command, []string) error {
+	return func(cmd *cobra.Command, args []string) error {
+		results, err := s.GetResultsOfTest(args[0])
 
-	if err != nil {
-		return err
-	}
+		if err != nil {
+			return err
+		}
 
-	if len(args) == 1 {
-		stats.ExportToTable().Print()
-		return nil
-	}
+		stats := New(results)
 
-	switch args[1] {
-	case "excel":
-		return stats.ExportToExcel(args[0])
-	case "image":
-		return stats.ExportToPng(args[0])
-	default:
-		stats.ExportToTable().Print()
-		return nil
+		if len(args) == 1 {
+			stats.ExportToTable().Print()
+			return nil
+		}
+
+		switch args[1] {
+		case "excel":
+			return stats.ExportToExcel(args[0])
+		case "image":
+			return stats.ExportToPng(args[0])
+		default:
+			stats.ExportToTable().Print()
+			return nil
+		}
 	}
 }

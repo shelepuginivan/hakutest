@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/statistics"
 	"github.com/spf13/cobra"
 )
@@ -14,5 +15,5 @@ var statisticsCmd = &cobra.Command{
 	Short: "Test results statistics",
 	Long:  "Export test results statistics",
 	Args:  cobra.RangeArgs(1, 2),
-	RunE:  statistics.Cmd,
+	RunE:  statistics.Cmd(results.NewService()),
 }
