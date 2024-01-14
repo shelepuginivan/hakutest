@@ -185,5 +185,13 @@ func (co EditorController) CreateTest(c *gin.Context) {
 	c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=%s.json", t.Title))
 	c.Header("Content-Type", "application/json")
 	c.Status(http.StatusCreated)
-	c.Writer.Write(data)
+
+	if _, err := c.Writer.Write(data); err != nil {
+		c.HTML(http.StatusInternalServerError, "error.tmpl", gin.H{
+			"Config": config.New().Ui.Error,
+			"Code":   http.StatusInternalServerError,
+			"Detail": "failed to write response data",
+			"Error":  err.Error(),
+		})
+	}
 }
