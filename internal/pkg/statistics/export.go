@@ -114,24 +114,43 @@ func (s Statistics) ExportToExcel(testName string) error {
 
 		cell := column + "1"
 
-		file.SetCellStyle(testResultsSheet, cell, cell, borderBottom)
-		file.SetCellValue(testResultsSheet, cell, header)
+		if err := file.SetCellStyle(testResultsSheet, cell, cell, borderBottom); err != nil {
+			return err
+		}
+
+		if err := file.SetCellValue(testResultsSheet, cell, header); err != nil {
+			return err
+		}
 	}
 
 	for i, entry := range s.Entries {
 		row := i + 2
 
-		file.SetCellValue(testResultsSheet, fmt.Sprintf("A%d", row), i+1)
-		file.SetCellValue(testResultsSheet, fmt.Sprintf("B%d", row), entry.Student)
-		file.SetCellValue(testResultsSheet, fmt.Sprintf("C%d", row), entry.Results.Points)
-		file.SetCellValue(testResultsSheet, fmt.Sprintf("D%d", row), entry.Results.Percentage)
+		if err := file.SetCellValue(testResultsSheet, fmt.Sprintf("A%d", row), i+1); err != nil {
+			return err
+		}
+
+		if err := file.SetCellValue(testResultsSheet, fmt.Sprintf("B%d", row), entry.Student); err != nil {
+			return err
+		}
+
+		if err := file.SetCellValue(testResultsSheet, fmt.Sprintf("C%d", row), entry.Results.Points); err != nil {
+			return err
+		}
+
+		if err := file.SetCellValue(testResultsSheet, fmt.Sprintf("D%d", row), entry.Results.Percentage); err != nil {
+			return err
+		}
+
 	}
 
 	if _, err = file.NewSheet(statisticsSheet); err != nil {
 		return err
 	}
 
-	file.SetCellValue(statisticsSheet, "A1", "#")
+	if err := file.SetCellValue(statisticsSheet, "A1", "#"); err != nil {
+		return err
+	}
 
 	for i, entry := range s.Entries {
 		row := i + 2
@@ -142,8 +161,13 @@ func (s Statistics) ExportToExcel(testName string) error {
 
 		studentNameCell := fmt.Sprintf("A%d", row)
 
-		file.SetCellStyle(statisticsSheet, studentNameCell, studentNameCell, borderRight)
-		file.SetCellValue(statisticsSheet, studentNameCell, entry.Student)
+		if err := file.SetCellStyle(statisticsSheet, studentNameCell, studentNameCell, borderRight); err != nil {
+			return err
+		}
+
+		if err := file.SetCellValue(statisticsSheet, studentNameCell, entry.Student); err != nil {
+			return err
+		}
 
 		for taskNumber, taskResult := range entry.Results.Tasks {
 			taskIndex, err := strconv.Atoi(taskNumber)
@@ -161,14 +185,28 @@ func (s Statistics) ExportToExcel(testName string) error {
 			valueCell := fmt.Sprintf("%s%d", column, row)
 			taskNumberCell := column + "1"
 
-			file.SetCellStyle(statisticsSheet, taskNumberCell, taskNumberCell, borderBottom)
-			file.SetCellValue(statisticsSheet, taskNumberCell, taskIndex)
-			file.SetCellValue(statisticsSheet, valueCell, taskResult.Answer)
+			if err := file.SetCellStyle(statisticsSheet, taskNumberCell, taskNumberCell, borderBottom); err != nil {
+				return err
+			}
+
+			if err := file.SetCellValue(statisticsSheet, taskNumberCell, taskIndex); err != nil {
+				return err
+			}
+
+			if err := file.SetCellValue(statisticsSheet, valueCell, taskResult.Answer); err != nil {
+				return err
+			}
+
+			var cellStyle int
 
 			if taskResult.Correct {
-				file.SetCellStyle(statisticsSheet, valueCell, valueCell, correctStyle)
+				cellStyle = correctStyle
 			} else {
-				file.SetCellStyle(statisticsSheet, valueCell, valueCell, incorrectStyle)
+				cellStyle = incorrectStyle
+			}
+
+			if err := file.SetCellStyle(statisticsSheet, valueCell, valueCell, cellStyle); err != nil {
+				return err
 			}
 		}
 	}
