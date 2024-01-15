@@ -241,30 +241,30 @@ func New() Config {
 	v.SetDefault("stats", config.Statistics)
 	v.SetDefault("ui", config.Ui)
 
-	if _, err := os.Stat(configPath); os.IsNotExist(err) {
-		if err := os.MkdirAll(configDir, os.ModeDir|os.ModePerm); err != nil {
-			panic(err)
-		}
-
-		file, err := os.Create(configPath)
-		if err != nil {
-			panic(err)
-		}
-		defer file.Close()
-
-		data, err := yaml.Marshal(config)
-
-		if err != nil {
-			data = []byte{}
-		}
-
-		if _, err := file.Write(data); err != nil {
-			panic(err)
-		}
-	}
-
 	if err := v.ReadInConfig(); err != nil {
-		panic(err)
+		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+			if err := os.MkdirAll(configDir, os.ModeDir|os.ModePerm); err != nil {
+				panic(err)
+			}
+
+			file, err := os.Create(configPath)
+			if err != nil {
+				panic(err)
+			}
+			defer file.Close()
+
+			data, err := yaml.Marshal(config)
+
+			if err != nil {
+				data = []byte{}
+			}
+
+			if _, err := file.Write(data); err != nil {
+				panic(err)
+			}
+		} else {
+			panic(err)
+		}
 	}
 
 	if err := v.Unmarshal(&config); err != nil {
