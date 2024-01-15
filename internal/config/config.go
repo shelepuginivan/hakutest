@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/utils"
+	"github.com/shelepuginivan/hakutest/internal/pkg/runtime"
 	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
 )
@@ -114,21 +114,11 @@ type Config struct {
 	Ui         UiConfig         `yaml:"ui" mapstructure:"ui"`
 }
 
-func getConfigDir() string {
-	configDir, err := os.UserConfigDir()
-
-	if err != nil {
-		return "hakutest"
-	}
-
-	return filepath.Join(configDir, "hakutest")
-}
-
 func getViper() *viper.Viper {
 	v := viper.New()
 
-	v.AddConfigPath(getConfigDir())
-	v.AddConfigPath(utils.GetExecutablePath())
+	v.AddConfigPath(runtime.ConfigDir())
+	v.AddConfigPath(runtime.ExecutableDir())
 	v.SetConfigType("yaml")
 	v.SetConfigName("config")
 
@@ -136,15 +126,9 @@ func getViper() *viper.Viper {
 }
 
 func Default() Config {
-	testsDirectory := "user_test"
-	resultsDirectory := "user_results"
-
-	cacheDir, err := os.UserCacheDir()
-
-	if err == nil {
-		testsDirectory = filepath.Join(cacheDir, "hakutest", "tests")
-		resultsDirectory = filepath.Join(cacheDir, "hakutest", "results")
-	}
+	dataDir := runtime.DataDir()
+	testsDirectory := filepath.Join(dataDir, "tests")
+	resultsDirectory := filepath.Join(dataDir, "results")
 
 	defaultConfig := Config{
 		General: GeneralConfig{
@@ -232,7 +216,7 @@ func Default() Config {
 
 func New() Config {
 	config := Default()
-	configDir := getConfigDir()
+	configDir := runtime.ConfigDir()
 	configPath := filepath.Join(configDir, "config.yaml")
 
 	v := getViper()

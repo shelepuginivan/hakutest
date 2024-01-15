@@ -3,16 +3,12 @@ package config
 import (
 	"path/filepath"
 	"reflect"
-	"strings"
 	"testing"
 
+	"github.com/shelepuginivan/hakutest/internal/pkg/runtime"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )
-
-func TestGetConfigDir(t *testing.T) {
-	assert.True(t, strings.HasSuffix(getConfigDir(), "/hakutest"))
-}
 
 func TestInitConfig(t *testing.T) {
 	c := New()
@@ -43,7 +39,7 @@ func TestPrint(t *testing.T) {
 func TestPrintField(t *testing.T) {
 	New()
 
-	viper.SetConfigFile(filepath.Join(getConfigDir(), "config.yaml"))
+	viper.SetConfigFile(filepath.Join(runtime.ConfigDir(), "config.yaml"))
 	viper.ReadInConfig()
 
 	keys := viper.AllKeys()
@@ -56,7 +52,7 @@ func TestPrintField(t *testing.T) {
 func TestSetField(t *testing.T) {
 	New()
 
-	viper.SetConfigFile(filepath.Join(getConfigDir(), "config.yaml"))
+	viper.SetConfigFile(filepath.Join(runtime.ConfigDir(), "config.yaml"))
 	viper.ReadInConfig()
 
 	keys := viper.AllKeys()
