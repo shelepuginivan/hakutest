@@ -154,13 +154,23 @@ const toggleAttachment = (taskIndex, checkbox) => {
 
 const addOption = (taskIndex) => {
     const taskOptions = document.getElementById(`${taskIndex}-options`)
-    const newOption = document.createElement("input")
+    const optionIndex = taskOptions.children.length
+    const newOptionWrapper = document.createElement("div")
+    const newOptionLabel = document.createElement("label")
+    const newOptionInput = document.createElement("input")
 
-    newOption.className = "input-text"
-    newOption.type = "text"
-    newOption.name = `${taskIndex}-options`
+    newOptionWrapper.classList.add("input-wrapper")
+    newOptionLabel.innerText = `${optionIndex + 1})`
+    newOptionLabel.htmlFor = `${taskIndex}-option-${optionIndex}`
+    newOptionInput.id = `${taskIndex}-option-${optionIndex}`
+    newOptionInput.className = "input-text"
+    newOptionInput.type = "text"
+    newOptionInput.name = `${taskIndex}-options`
 
-    taskOptions.appendChild(newOption)
+    newOptionWrapper.appendChild(newOptionLabel)
+    newOptionWrapper.appendChild(newOptionInput)
+
+    taskOptions.appendChild(newOptionWrapper)
 }
 
 buttonAddTask.onclick = () => {

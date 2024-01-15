@@ -208,12 +208,18 @@
                             <div class="answer-options-wrapper">
                                 <p>{{ $.Config.LabelTaskOptions }}</p>
                                 <div class="answer-options" id="{{ $taskIndex }}-options">
-                                    {{ range $task.Options }}
-                                        <input
-                                            class="input-text"
-                                            name="{{ $taskIndex }}-options"
-                                            value="{{ . }}"
-                                        >
+                                    {{ range $optionIndex, $option := $task.Options }}
+                                        <div class="input-wrapper">
+                                            <label for="{{ $taskIndex }}-option-{{ $optionIndex }}">
+                                                {{ call $.incr $optionIndex }})
+                                            </label>
+                                            <input
+                                                id="{{ $taskIndex }}-option-{{ $optionIndex }}"
+                                                class="input-text"
+                                                name="{{ $taskIndex }}-options"
+                                                value="{{ . }}"
+                                            >
+                                        </div>
                                     {{ end }}
                                 </div>
                                 <button
