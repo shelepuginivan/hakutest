@@ -7,12 +7,12 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/app/server/controllers"
 	"github.com/shelepuginivan/hakutest/internal/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
+	"github.com/shelepuginivan/hakutest/internal/pkg/runtime"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
-	"github.com/shelepuginivan/hakutest/internal/pkg/utils"
 )
 
 func loadStaticAndTemplates(router *gin.Engine) {
-	exePath := utils.GetExecutablePath()
+	exePath := runtime.ExecutableDir()
 
 	router.LoadHTMLGlob(filepath.Join(exePath, "web/templates/*"))
 	router.Static("/static", filepath.Join(exePath, "web/static"))
