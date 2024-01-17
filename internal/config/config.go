@@ -117,8 +117,8 @@ type Config struct {
 func getViper() *viper.Viper {
 	v := viper.New()
 
-	v.AddConfigPath(directories.Config())
 	v.AddConfigPath(directories.Executable())
+	v.AddConfigPath(directories.Config())
 	v.SetConfigType("yaml")
 	v.SetConfigName("config")
 
