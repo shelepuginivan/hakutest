@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/runtime"
+	"github.com/shelepuginivan/hakutest/internal/pkg/directories"
 	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
 )
@@ -117,8 +117,8 @@ type Config struct {
 func getViper() *viper.Viper {
 	v := viper.New()
 
-	v.AddConfigPath(runtime.ConfigDir())
-	v.AddConfigPath(runtime.ExecutableDir())
+	v.AddConfigPath(directories.Config())
+	v.AddConfigPath(directories.Executable())
 	v.SetConfigType("yaml")
 	v.SetConfigName("config")
 
@@ -126,7 +126,7 @@ func getViper() *viper.Viper {
 }
 
 func Default() Config {
-	dataDir := runtime.DataDir()
+	dataDir := directories.Data()
 	testsDirectory := filepath.Join(dataDir, "tests")
 	resultsDirectory := filepath.Join(dataDir, "results")
 
@@ -214,10 +214,37 @@ func Default() Config {
 	return defaultConfig
 }
 
+func createDefaultConfig() error {
+	configDir := directories.Config()
+	configPath := filepath.Join(configDir, "config.yaml")
+
+	err := os.MkdirAll(configDir, os.ModeDir|os.ModePerm)
+
+	if err != nil {
+		return err
+	}
+
+	file, err := os.Create(configPath)
+
+	if err != nil {
+		return err
+	}
+
+	defer file.Close()
+
+	data, err := yaml.Marshal(Default())
+
+	if err != nil {
+		data = []byte{}
+	}
+
+	_, err = file.Write(data)
+
+	return err
+}
+
 func New() Config {
 	config := Default()
-	configDir := runtime.ConfigDir()
-	configPath := filepath.Join(configDir, "config.yaml")
 
 	v := getViper()
 	v.SetDefault("general", config.General)
@@ -226,27 +253,11 @@ func New() Config {
 	v.SetDefault("ui", config.Ui)
 
 	if err := v.ReadInConfig(); err != nil {
-		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			if err := os.MkdirAll(configDir, os.ModeDir|os.ModePerm); err != nil {
-				panic(err)
-			}
+		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
+			panic(err)
+		}
 
-			file, err := os.Create(configPath)
-			if err != nil {
-				panic(err)
-			}
-			defer file.Close()
-
-			data, err := yaml.Marshal(config)
-
-			if err != nil {
-				data = []byte{}
-			}
-
-			if _, err := file.Write(data); err != nil {
-				panic(err)
-			}
-		} else {
+		if err := createDefaultConfig(); err != nil {
 			panic(err)
 		}
 	}
