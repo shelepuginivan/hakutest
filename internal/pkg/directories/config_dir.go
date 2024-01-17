@@ -1,11 +1,11 @@
-package runtime
+package directories
 
 import (
 	"os"
 	"path/filepath"
 )
 
-func ConfigDir() string {
+func Config() string {
 	configDir, err := os.UserConfigDir()
 
 	if err != nil {

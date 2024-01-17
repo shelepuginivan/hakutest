@@ -1,11 +1,11 @@
-package runtime
+package directories
 
 import (
 	"os"
 	"path/filepath"
 )
 
-func DataDir() string {
+func Data() string {
 	cacheDir, err := os.UserCacheDir()
 
 	if err != nil {

@@ -1,11 +1,11 @@
-package runtime
+package directories
 
 import (
 	"os"
 	"path/filepath"
 )
 
-func ExecutableDir() string {
+func Executable() string {
 	executable, err := os.Executable()
 
 	if err != nil {
