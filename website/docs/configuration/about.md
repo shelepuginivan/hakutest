@@ -53,6 +53,12 @@ The configuration of Hakutest is stored in a `config.yaml` file. The program sea
         </TabItem>
     </Tabs>
 
+:::note
+
+The configuration file located in the Hakutest installation directory has higher priority.
+
+:::
+
 ### Default configuration
 
 The default Hakutest configuration is as follows:
