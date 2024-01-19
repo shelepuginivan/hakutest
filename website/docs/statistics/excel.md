@@ -70,11 +70,15 @@ Assume there is a "My test" folder with test results in the results directory.
 
 2. Script will prompt you for a test filename:
 
-    ![Script prompt](./img/script-stats-prompt-empty.png)
+    > ```
+    > Enter the name of the test:
+    > ```
 
 3. Enter the filename of the test which statistics you want to export:
 
-    ![Script prompt with value entered](./img/script-stats-prompt-value.png)
+    > ```
+    > Enter the name of the test: My test
+    > ```
 
 4. It will create an Excel spreadsheet in this directory:
 
