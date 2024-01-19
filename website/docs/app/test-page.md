@@ -7,7 +7,7 @@ description: The page of the test on which the student can solve it
 
 The test page allows student to solve the test and submit their answers.
 
-![Test page](./img/test-page.png)
+![Test page](./img/test-page.webp)
 
 When the server is running, it can be accessed from any device in the local network at the following URL:
 
@@ -59,16 +59,16 @@ In the example above, both URLs point to `my-test`:
 
 Once the student submits their solution to the test, they will see their results. The results page contains the student's name, the points scored, and the percentage of correctly solved tasks.
 
-![Test results page](./img/test-results.png)
+![Test results page](./img/test-results.webp)
 
 You can choose not to display results to students by specifying a value of `false` in the `general.show_results` field of the configuration file (see [General configuration](/docs/configuration/general#show_results)). In this case, Hakutest will display a page indicating that the solution was submitted without showing the actual score:
 
-![Test submission page](./img/test-submitted.png)
+![Test submission page](./img/test-submitted.webp)
 
 ### Expired test
 
 If the test has expired, it will not be available at this URL. Instead of the test, a page will be displayed informing you that the test has expired:
 
-![Test expired page](./img/test-expired-page.png)
+![Test expired page](./img/test-expired-page.webp)
 
 This page will also be displayed when the student attempts to submit answers to an expired test.

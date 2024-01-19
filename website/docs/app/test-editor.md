@@ -15,7 +15,7 @@ Where `port` is the port on which server is listening.
 
 Default test editor URL is http://localhost:8080/editor/upload.
 
-![Test editor upload](./img/test-editor-upload.png)
+![Test editor upload](./img/test-editor-upload.webp)
 
 ## Using the editor
 
@@ -40,8 +40,8 @@ To edit existing test file, follow the instruction:
 
 Once you have selected one of the options, an editor page will open where you can edit the test by filling in the required fields:
 
-![Test editor empty](./img/test-editor-edit-empty.png)
-![Test editor filled](./img/test-editor-edit-filled.png)
+![Test editor empty](./img/test-editor-edit-empty.webp)
+![Test editor filled](./img/test-editor-edit-filled.webp)
 
 :::tip
 
@@ -53,18 +53,18 @@ To create a test with no expiry time, leave the field "Expires in" unchanged or 
 
 To add a task, click the "+ Add task" button:
 
-![Test editor add task](./img/test-editor-add-task-empty.png)
-![Test editor add filled](./img/test-editor-add-task-filled.png)
+![Test editor add task](./img/test-editor-add-task-empty.webp)
+![Test editor add filled](./img/test-editor-add-task-filled.webp)
 
 Here is the example for other types of tasks:
 
-![Test editor many tasks](./img/test-editor-many-tasks.png)
+![Test editor many tasks](./img/test-editor-many-tasks.webp)
 
 ### Adding attachment
 
 You can also add an attachment to the task by ticking the checkbox "Add attachment":
 
-![Test editor add attachment](./img/test-editor-add-attachment.png)
+![Test editor add attachment](./img/test-editor-add-attachment.webp)
 
 ### Download the test
 

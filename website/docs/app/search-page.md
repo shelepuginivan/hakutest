@@ -7,7 +7,7 @@ description: Main page of the app with test search
 
 The main page of the application is the search page that allows to search for and access existing tests.
 
-![Search page](./img/search.png)
+![Search page](./img/search.webp)
 
 As you enter text into the search input, a list of suggested existing tests will appear. You can choose one of the suggestions or type the name manually. Once you have entered the name of the test, press "Search" button (or the Enter key). The [page](/docs/app/test-page) with the selected test will open, if it exists.
 
