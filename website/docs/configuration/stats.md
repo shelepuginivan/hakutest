@@ -23,7 +23,7 @@ Specifies the settings for exporting results to an Excel document.
 
 **Visual example**:
 
-![Excel configuration example](./img/excel-example.png)
+![Excel configuration example](./img/excel-example.webp)
 
 ### `image`
 
@@ -37,7 +37,7 @@ Specifies the settings for exporting results to a PNG histogram.
 
 **Visual example**:
 
-![Histogram configuration example](./img/histogram-example.png)
+![Histogram configuration example](./img/histogram-example.webp)
 
 ## Example
 

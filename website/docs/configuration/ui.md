@@ -56,11 +56,11 @@ Customizes [test editor page](/docs/app/test-editor) interface.
 
 Editor test upload page:
 
-![Editor upload page example](./img/test-editor-upload-example.png)
+![Editor upload page example](./img/test-editor-upload-example.webp)
 
 Test editor page:
 
-![Editor edit page example](./img/test-editor-edit-example.png)
+![Editor edit page example](./img/test-editor-edit-example.webp)
 
 ### `error`
 
@@ -73,7 +73,7 @@ Customizes error page interface.
 
 **Visual example**:
 
-![Error page example](./img/error-example.png)
+![Error page example](./img/error-example.webp)
 
 ### `expired`
 
@@ -86,7 +86,7 @@ Customizes [expired test page](/docs/app/test-page#expired-test) interface.
 
 **Visual example**:
 
-![Expired page example](./img/expired-example.png)
+![Expired page example](./img/expired-example.webp)
 
 ### `search`
 
@@ -99,7 +99,7 @@ Customizes [search page](/docs/app/search-page) interface.
 
 **Visual example**:
 
-![Search page example](./img/search-example.png)
+![Search page example](./img/search-example.webp)
 
 ### `submitted`
 
@@ -112,7 +112,7 @@ Customizes [submission page](/docs/app/test-page#test-results)
 
 **Visual example**:
 
-![Submission page example](./img/test-submitted-example.png)
+![Submission page example](./img/test-submitted-example.webp)
 
 ### `test`
 
@@ -126,7 +126,7 @@ Customizes [test page](/docs/app/test-page) interface.
 
 **Visual example**:
 
-![Test page example](./img/test-example.png)
+![Test page example](./img/test-example.webp)
 
 ## Example
 
