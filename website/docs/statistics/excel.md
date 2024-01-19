@@ -14,11 +14,11 @@ Student test results can be exported to an Excel spreadsheet via two methods:
 
 On the test results page, there is a table displaying the student's scores and the percentage of tasks they completed correctly:
 
-![Excel test results example](./img/excel-results.png)
+![Excel test results example](./img/excel-results.webp)
 
 On the statistics page, there is a table displaying the correctness of tasks performed by students:
 
-![Excel test statistics example](./img/excel-stats.png)
+![Excel test statistics example](./img/excel-stats.webp)
 
 -   Each cell contains an answer submitted by this student.
 -   Green cells represent a correct answer.

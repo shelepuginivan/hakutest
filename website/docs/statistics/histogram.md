@@ -14,7 +14,7 @@ Student test results can be exported to a histogram via two methods:
 
 Test results statistics is exported as a PNG image with histogram as follows:
 
-![Histogram example](./img/histogram.png)
+![Histogram example](./img/histogram.webp)
 
 -   The horizontal axis indicates the number of points scored by students.
 -   The vertical axis indicates the quantity of students who scored this number of points.
