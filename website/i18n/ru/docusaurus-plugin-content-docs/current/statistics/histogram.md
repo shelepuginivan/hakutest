@@ -64,11 +64,15 @@ hakutest statistics "My test" image
 
 2. Скрипт попросит ввести название теста:
 
-    ![Ввод названия (пустой)](./img/script-stats-prompt-empty.png)
+    > ```
+    > Enter the name of the test:
+    > ```
 
 3. Введите название нужного теста:
 
-    ![Ввод названия (со значением)](./img/script-stats-prompt-value.png)
+    > ```
+    > Enter the name of the test: My test
+    > ```
 
 4. В той же папке будет создано изображение:
 
