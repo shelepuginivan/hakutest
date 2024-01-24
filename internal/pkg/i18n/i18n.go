@@ -219,7 +219,7 @@ func New() I18n {
 	i18n := Default()
 
 	v := getViper()
-	v.SetDefault("statistics", i18n.Statistics)
+	v.SetDefault("stats", i18n.Statistics)
 	v.SetDefault("web", i18n.Web)
 
 	if err := v.ReadInConfig(); err != nil {
