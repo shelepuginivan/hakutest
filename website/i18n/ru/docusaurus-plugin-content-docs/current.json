@@ -42,5 +42,13 @@
     "sidebar.tutorialSidebar.category.Commands.link.generated-index.title": {
         "message": "Команды",
         "description": "The generated-index page title for category Commands in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Internationalization": {
+        "message": "Интернационализация",
+        "description": "The label for category Internationalization in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Internationalization.link.generated-index.title": {
+        "message": "Интернационализация",
+        "description": "The generated-index page title for category Internationalization in sidebar tutorialSidebar"
     }
 }
