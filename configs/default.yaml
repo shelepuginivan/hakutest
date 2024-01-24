@@ -1,70 +1,10 @@
-# **Please note that this configuration file does not contain fields
-# `general.results_directory` and `general.tests_directory` as their
-# values are dependent on the operating system and its settings.**
+# **`tests_directory` and `results_directory` depends on the settings of
+# your operating system. Please set them manually.**
 #
 general:
-  show_results: true
-#   results_directory:
-#   tests_directory:
+    # tests_directory:
+    # results_directory:
+    show_results: true
 server:
-  mode: release
-  port: "8080"
-stats:
-  excel:
-    header_percentage: "%"
-    header_points: Points
-    header_student: Student
-    statistics_sheet: Test Statistics
-    test_results_sheet: Test Results
-  image:
-    label_x: Points
-    label_y: Students
-    title: Student Performance
-ui:
-  editor:
-    header: Test Editor
-    label_add_attachment: Add attachment
-    label_add_task: + Add task
-    label_attachment_name: "Name:"
-    label_attachment_src: "Source (URL):"
-    label_attachment_type: "Type:"
-    label_attachment_type_audio: Audio
-    label_attachment_type_file: File
-    label_attachment_type_image: Image
-    label_attachment_type_video: Video
-    label_author: "Author:"
-    label_description: "Description:"
-    label_download_test: Download test
-    label_expires_in: "Expires in:"
-    label_institution: "Institution:"
-    label_new_test: Create new test
-    label_subject: "Subject:"
-    label_target: "Target audience:"
-    label_task_add_option: + Add option
-    label_task_answer: "Answer:"
-    label_task_header: Task
-    label_task_options: Answer options
-    label_task_text: "Text:"
-    label_task_type: "Type:"
-    label_task_type_multiple: Multiple answers
-    label_task_type_open: Open question
-    label_task_type_single: Single answer
-    label_title: "Title:"
-    label_upload_test_button: Upload and edit
-    label_upload_test_input: Upload test file
-  error:
-    details: Details
-    header: An error occurred!
-  expired:
-    header: Test expired!
-    message: This test is no longer available
-  search:
-    input_placeholder: Search for a test
-    search_button_label: Search
-  submitted:
-    header: "Submitted!"
-    message: "The test results are not displayed according to the system settings"
-  test:
-    open_answer_label: "Answer:"
-    student_name_label: "Your name:"
-    submit_button_label: Submit
+    port: 8080
+    mode: release
