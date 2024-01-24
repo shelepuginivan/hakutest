@@ -1,10 +1,10 @@
 {
-    "position": 8,
-    "label": "Commands",
+    "position": 7,
+    "label": "Internationalization",
     "collapsible": true,
     "collapsed": true,
     "link": {
         "type": "generated-index",
-        "title": "Commands"
+        "title": "Internationalization"
     }
 }
