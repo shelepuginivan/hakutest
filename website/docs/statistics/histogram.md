@@ -21,7 +21,7 @@ Test results statistics is exported as a PNG image with histogram as follows:
 
 :::tip
 
-You can change the static text of the histogram by changing the configuration parameters. See [Statistics configuration](/docs/configuration/stats#image) for more information.
+You can change the static text of the histogram by changing the configuration parameters. See [Statistics internationalization](/docs/i18n/stats#image) for more information.
 
 :::
 

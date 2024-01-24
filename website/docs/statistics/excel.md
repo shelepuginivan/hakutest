@@ -27,7 +27,7 @@ On the statistics page, there is a table displaying the correctness of tasks per
 
 :::tip
 
-You can change the static text of the spreadsheet by changing the configuration parameters. See [Statistics configuration](/docs/configuration/stats#excel) for more information.
+You can change the static text of the spreadsheet by changing the configuration parameters. See [Statistics internationalization](/docs/i18n/stats#excel) for more information.
 
 :::
 
