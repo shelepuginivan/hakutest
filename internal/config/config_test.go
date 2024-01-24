@@ -14,16 +14,11 @@ func TestInitConfig(t *testing.T) {
 	c := New()
 
 	var (
-		g     = reflect.ValueOf(c.General)
-		s     = reflect.ValueOf(c.Server)
-		s_e   = reflect.ValueOf(c.Statistics.Excel)
-		s_i   = reflect.ValueOf(c.Statistics.Image)
-		ui_ed = reflect.ValueOf(c.Ui.Editor)
-		ui_er = reflect.ValueOf(c.Ui.Error)
-		ui_t  = reflect.ValueOf(c.Ui.Test)
+		g = reflect.ValueOf(c.General)
+		s = reflect.ValueOf(c.Server)
 	)
 
-	for _, v := range []reflect.Value{g, s, s_e, s_i, ui_ed, ui_er, ui_t} {
+	for _, v := range []reflect.Value{g, s} {
 		for i := 0; i < v.NumField(); i++ {
 			assert.NotEqual(t, v.Field(i).Interface(), "")
 		}

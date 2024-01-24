@@ -6,7 +6,7 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/rodaine/table"
-	"github.com/shelepuginivan/hakutest/internal/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/xuri/excelize/v2"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
@@ -34,7 +34,7 @@ func (s Statistics) ExportToTable() table.Table {
 }
 
 func (s Statistics) ExportToExcel(testName string) error {
-	excelConfig := config.New().Statistics.Excel
+	excelConfig := i18n.New().Statistics.Excel
 	file := excelize.NewFile()
 
 	defer file.Close()
@@ -223,7 +223,7 @@ func (s Statistics) ExportToExcel(testName string) error {
 func (s Statistics) ExportToPng(testName string) error {
 	p := plot.New()
 	values := plotter.Values{}
-	imageConfig := config.New().Statistics.Image
+	imageConfig := i18n.New().Statistics.Image
 
 	for _, entry := range s.Entries {
 		values = append(values, float64(entry.Results.Points))

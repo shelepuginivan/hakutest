@@ -7,6 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
@@ -35,7 +36,7 @@ func (co TestController) GetTest(c *gin.Context) {
 
 		c.HTML(code, "error.tmpl", gin.H{
 			"Code":   code,
-			"Config": config.New().Ui.Error,
+			"Config": i18n.New().Web.Error,
 			"Detail": detail,
 			"Error":  err.Error(),
 		})
@@ -45,14 +46,14 @@ func (co TestController) GetTest(c *gin.Context) {
 
 	if t.IsExpired() {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
-			"Config": config.New().Ui.Expired,
+			"Config": i18n.New().Web.Expired,
 		})
 
 		return
 	}
 
 	c.HTML(http.StatusOK, "test.tmpl", gin.H{
-		"Config": config.New().Ui.Test,
+		"Config": i18n.New().Web.Test,
 		"Title":  t.Title,
 		"Tasks":  t.Tasks,
 		"url": func(s string) template.URL {
@@ -66,12 +67,11 @@ func (co TestController) GetTest(c *gin.Context) {
 
 func (co TestController) SubmitTest(c *gin.Context) {
 	err := c.Request.ParseForm()
-	conf := config.New()
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
 			"Code":   http.StatusUnprocessableEntity,
-			"Config": conf.Ui.Error,
+			"Config": i18n.New().Web.Error,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
 		})
@@ -93,7 +93,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 
 		c.HTML(code, "error.tmpl", gin.H{
 			"Code":   code,
-			"Config": conf.Ui.Error,
+			"Config": i18n.New().Web.Error,
 			"Detail": detail,
 			"Error":  err.Error(),
 		})
@@ -103,7 +103,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 
 	if t.IsExpired() {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
-			"Config": conf.Ui.Expired,
+			"Config": i18n.New().Web.Expired,
 		})
 
 		return
@@ -114,7 +114,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 	if err := co.r.Save(results, name); err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
 			"Code":   http.StatusBadRequest,
-			"Config": conf.Ui.Error,
+			"Config": i18n.New().Web.Error,
 			"Detail": "failed to save test results",
 			"Error":  err.Error(),
 		})
@@ -122,7 +122,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 		return
 	}
 
-	if conf.General.ShowResults {
+	if config.New().General.ShowResults {
 		c.HTML(http.StatusCreated, "results.tmpl", gin.H{
 			"Student": results.Student,
 			"Results": results.Results,
@@ -131,6 +131,6 @@ func (co TestController) SubmitTest(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusCreated, "submitted.tmpl", gin.H{
-		"Config": conf.Ui.Submitted,
+		"Config": i18n.New().Web.Submitted,
 	})
 }
