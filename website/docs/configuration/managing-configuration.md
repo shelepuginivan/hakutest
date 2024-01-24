@@ -37,48 +37,10 @@ hakutest config
 ```
 
 ```txt title='Output'
-ui
-editor
-Key                          Value
-label_task_type              Type:
-label_institution            Institution:
-label_task_type_open         Open question
-label_task_header            Task
-label_add_task               + Add task
-...
-
-test
-Key                  Value
-open_answer_label    Answer:
-submit_button_label  Submit
-student_name_label   Your name:
-
-error
-Key                  Value
-error_details_label  Details
-error_header_label   An error occurred!
-
-
 server
 Key   Value
 mode  release
 port  8080
-
-stats
-image
-Key      Value
-label_x  Points
-label_y  Students
-title    Student Performance
-
-excel
-Key                 Value
-header_student      Student
-statistics_sheet    Test Statistics
-header_percentage   %
-test_results_sheet  Test Results
-header_points       Points
-
 
 general
 Key                Value
