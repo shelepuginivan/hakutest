@@ -34,12 +34,11 @@ const addTask = (taskIndex) => {
             <label for="${taskIndex}-text">
                 ${config.get("labelTaskText")}
             </label>
-            <input
+            <textarea
                 id="${taskIndex}-text"
                 class="input-text"
-                type="text"
                 name="${taskIndex}-text"
-            >
+            ></textarea>
         </div>
         <div class="input-wrapper">
             <label for="${taskIndex}-answer">

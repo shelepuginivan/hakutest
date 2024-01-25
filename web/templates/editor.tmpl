@@ -184,13 +184,11 @@
                                 <label for="{{ $taskIndex }}-text">
                                     {{ $.Config.LabelTaskText }}
                                 </label>
-                                <input
+                                <textarea
                                     id="{{ $taskIndex }}-text"
                                     class="input-text"
-                                    type="text"
                                     name="{{ $taskIndex }}-text"
-                                    value="{{ $task.Text }}"
-                                >
+                                >{{ $task.Text }}</textarea>
                             </div>
                             <div class="input-wrapper">
                                 <label for="{{ $taskIndex }}-answer">
