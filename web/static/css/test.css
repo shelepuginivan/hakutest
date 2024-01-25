@@ -8,14 +8,11 @@
     border-radius: 8px;
 }
 
-fieldset.task {
-    position: relative;
-    padding-top: 52px;
-}
-
 .task-text {
-    position: absolute;
-    top: 16px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 .attachment {

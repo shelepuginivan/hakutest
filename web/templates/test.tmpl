@@ -34,7 +34,7 @@
                 {{ range $task_index, $task := .Tasks }}
                     {{ with $task }}
                         <fieldset class="task">
-                            <legend class="task-text">{{ .Text }}</legend>
+                            <div class="task-text">{{ .Text }}</div>
                             <div class="attachment">
                                 {{ if eq .Attachment.Type "image" }}
                                     <img
