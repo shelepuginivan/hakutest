@@ -16,7 +16,8 @@
 }
 
 .input-wrapper > label {
-    width: 85px;
+    min-width: 100px;
+    width: min-content;
 }
 
 .input-text,
@@ -27,6 +28,7 @@
     padding: 8px;
     border-radius: 4px;
     flex-grow: 1;
+    width: 100%;
     border: 2px solid var(--gray);
     font-size: medium;
     background-color: #fff;

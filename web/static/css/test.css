@@ -31,6 +31,6 @@
 
 @media screen and (max-width: 576px) {
     .input-wrapper > label {
-        width: 50px;
+        min-width: 64px;
     }
 }
