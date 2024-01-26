@@ -38,6 +38,10 @@
     border-color: var(--accent)
 }
 
+textarea.input-text {
+    resize: vertical;
+}
+
 .input-radio,
 .input-checkbox
 {
