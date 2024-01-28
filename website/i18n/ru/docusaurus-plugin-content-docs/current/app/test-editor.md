@@ -17,7 +17,7 @@ description: Веб-редактор тестов
 
 ![Страница загрузки теста](./img/test-editor-upload.webp)
 
-## Using the editor
+## Использование редактора
 
 :::tip
 
