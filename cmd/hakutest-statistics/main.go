@@ -94,7 +94,7 @@ func chooseDirectoryButton(parent fyne.Window, initialPath string) *widget.Butto
 	button := widget.NewButton(initialPath, func() {})
 
 	directoryDialog := dialog.NewFolderOpen(func(lu fyne.ListableURI, err error) {
-		if err != nil {
+		if err != nil || lu == nil {
 			return
 		}
 
