@@ -3,6 +3,7 @@ package statistics
 import (
 	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/fatih/color"
 	"github.com/rodaine/table"
@@ -49,7 +50,11 @@ func (s Statistics) ExportToTable() table.Table {
 	return tbl
 }
 
-func (s Statistics) ExportToExcel(testName string) error {
+func (s Statistics) ExportToExcel(dest string) error {
+	if !strings.HasSuffix(dest, ".xlsx") {
+		dest += ".xlsx"
+	}
+
 	excelConfig := i18n.New().Statistics.Excel
 	file := excelize.NewFile()
 
@@ -233,10 +238,14 @@ func (s Statistics) ExportToExcel(testName string) error {
 		file.DeleteSheet(defaultSheet)
 	}
 
-	return file.SaveAs(testName + ".xlsx")
+	return file.SaveAs(dest)
 }
 
-func (s Statistics) ExportToPng(testName string) error {
+func (s Statistics) ExportToPng(dest string) error {
+	if !strings.HasSuffix(dest, ".png") {
+		dest += ".png"
+	}
+
 	p := plot.New()
 	values := plotter.Values{}
 	imageConfig := i18n.New().Statistics.Image
@@ -257,5 +266,5 @@ func (s Statistics) ExportToPng(testName string) error {
 	p.X.Label.Text = imageConfig.LabelX
 	p.Y.Label.Text = imageConfig.LabelY
 
-	return p.Save(8*vg.Inch, 4*vg.Inch, testName+".png")
+	return p.Save(8*vg.Inch, 4*vg.Inch, dest)
 }
