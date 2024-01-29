@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"net/http"
 	"os"
 
@@ -46,5 +47,10 @@ func onReady() {
 	go func() {
 		<-mStop.ClickedCh
 		systray.Quit()
+
+		err := srv.Shutdown(context.Background())
+		if err != nil {
+			panic(err)
+		}
 	}()
 }
