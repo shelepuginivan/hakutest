@@ -1,1 +1,0 @@
-start hakutest.exe server
