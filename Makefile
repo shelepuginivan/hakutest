@@ -5,12 +5,14 @@ build: linux windows mac
 
 linux:
 	GOARCH=amd64 GOOS=linux go build -trimpath -o ${TARGET_DIR}/linux/${BINARY_NAME} ./cmd/hakutest
+	GOARCH=amd64 GOOS=linux CGO_ENABLED=1 go build -trimpath -o ${TARGET_DIR}/linux/${BINARY_NAME}-server ./cmd/hakutest-server
 	cp -r web ${TARGET_DIR}/linux
 	tar -czf ${TARGET_DIR}/${BINARY_NAME}-linux.tar.gz --transform 's/^./${BINARY_NAME}/' -C ${TARGET_DIR}/linux .
 	rm -r ${TARGET_DIR}/linux
 
 windows:
 	GOARCH=amd64 GOOS=windows go build -trimpath -o ${TARGET_DIR}/${BINARY_NAME}/${BINARY_NAME}.exe ./cmd/hakutest
+	GOARCH=amd64 GOOS=windows go build -ldflags "-H=windowsgui" -trimpath -o ${TARGET_DIR}/${BINARY_NAME}/${BINARY_NAME}-server.exe ./cmd/hakutest-server
 	cp -r web ${TARGET_DIR}/${BINARY_NAME}
 	cd ${TARGET_DIR} && zip ${BINARY_NAME}-win64.zip -r ${BINARY_NAME}
 	cp tools/* ${TARGET_DIR}/${BINARY_NAME}
