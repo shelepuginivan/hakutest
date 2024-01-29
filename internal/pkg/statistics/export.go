@@ -13,6 +13,22 @@ import (
 	"gonum.org/v1/plot/vg"
 )
 
+const (
+	FormatExcel string = "excel"
+	FormatImage string = "image"
+)
+
+func (s Statistics) Export(dest string, format string) error {
+	switch format {
+	case FormatExcel:
+		return s.ExportToExcel(dest)
+	case FormatImage:
+		return s.ExportToPng(dest)
+	default:
+		return fmt.Errorf("unknown format %s", format)
+	}
+}
+
 func (s Statistics) ExportToTable() table.Table {
 	headerFmt := color.New(color.FgGreen, color.Underline).SprintfFunc()
 	columnFmt := color.New(color.FgYellow, color.Bold).SprintfFunc()
