@@ -9,6 +9,8 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
+const IconPath = "web/static/img/favicon.ico"
+
 func main() {
 	systray.Run(onReady, func() {})
 }
@@ -24,7 +26,7 @@ func getIcon(s string) []byte {
 func onReady() {
 	systray.SetTitle("Hakutest server")
 	systray.SetTooltip("Hakutest")
-	systray.SetIcon(getIcon("assets/hakutest.ico"))
+	systray.SetIcon(getIcon(IconPath))
 
 	mStop := systray.AddMenuItem("Stop Hakutest", "Stop Hakutest server and quit")
 
