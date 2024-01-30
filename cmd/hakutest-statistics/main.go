@@ -15,8 +15,10 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
+const appID = "com.github.shelepuginivan.Hakutest.Statistics"
+
 func main() {
-	a := app.New()
+	a := app.NewWithID(appID)
 	w := a.NewWindow("Hakutest Statistics")
 
 	testService := test.NewService()
