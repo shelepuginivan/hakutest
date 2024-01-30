@@ -4,14 +4,12 @@ import (
 	"fmt"
 	"image/color"
 	"os"
-	"path/filepath"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
-	"fyne.io/fyne/v2/widget"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/statistics"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
@@ -20,6 +18,11 @@ import (
 func main() {
 	a := app.New()
 	w := a.NewWindow("Hakutest Statistics")
+
+	testService := test.NewService()
+	statsService := statistics.NewService(results.NewService())
+
+	formats := []string{statistics.FormatExcel, statistics.FormatImage}
 
 	exportDir, err := os.Getwd()
 
@@ -31,64 +34,36 @@ func main() {
 	headerLabel.TextSize = 36
 	headerLabel.Alignment = fyne.TextAlignCenter
 
-	statusLabel := widget.NewLabel("")
-
-	testService := test.NewService()
-	resultsService := results.NewService()
-
-	formats := []string{statistics.FormatExcel, statistics.FormatImage}
-
-	directoryButton := chooseDirectoryButton(w, exportDir)
-	testSelect := widget.NewSelect(testService.GetTestList(), func(_ string) {})
-	formatSelect := widget.NewSelect(formats, func(_ string) {})
-
-	form := &widget.Form{
-		Items: []*widget.FormItem{
-			{Text: "Test", Widget: testSelect},
-			{Text: "Format", Widget: formatSelect},
-			{Text: "Export to", Widget: directoryButton},
+	form := statsExportForm(
+		w,
+		testService.GetTestList(),
+		formats,
+		exportDir,
+		statsService.Export,
+		func() {
+			a.SendNotification(fyne.NewNotification(
+				"Hakutest Statistics",
+				"Exported statistics successfully",
+			))
 		},
-		OnSubmit: func() {
-			testName := testSelect.Selected
-			format := formatSelect.Selected
-
-			if testName == "" || format == "" {
-				statusLabel.SetText("Please select test and format")
-				return
-			}
-
-			res, err := resultsService.GetResultsOfTest(testName)
-
-			if err != nil {
-				statusLabel.SetText(errorLabel(err))
-				return
-			}
-
-			stats := statistics.New(res)
-			exportPath := filepath.Join(directoryButton.Text, testName)
-
-			if err := stats.Export(exportPath, formatSelect.Selected); err != nil {
-				statusLabel.SetText(errorLabel(err))
-				return
-			}
-
-			statusLabel.SetText(fmt.Sprintf("Successfully exported to: %s", exportPath))
+		func(err error) {
+			a.SendNotification(fyne.NewNotification(
+				"Hakutest Statistics",
+				fmt.Sprintf("Error occurred: %s", err.Error()),
+			))
 		},
-		OnCancel: w.Close,
-	}
+	)
 
 	w.SetContent(container.NewVBox(
+		layout.NewSpacer(),
+		layout.NewSpacer(),
 		layout.NewSpacer(),
 		headerLabel,
 		layout.NewSpacer(),
 		form,
 		layout.NewSpacer(),
-		container.NewCenter(statusLabel),
+		layout.NewSpacer(),
 		layout.NewSpacer(),
 	))
 	w.ShowAndRun()
-}
-
-func errorLabel(err error) string {
-	return fmt.Sprintf("Error: %s", err.Error())
 }
