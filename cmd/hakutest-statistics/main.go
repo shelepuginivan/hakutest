@@ -16,11 +16,14 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
-const appID = "com.github.shelepuginivan.Hakutest.Statistics"
+const (
+	appID   = "com.github.shelepuginivan.Hakutest.Statistics"
+	appName = "Hakutest Statistics"
+)
 
 func main() {
 	a := app.NewWithID(appID)
-	w := a.NewWindow("Hakutest Statistics")
+	w := a.NewWindow(appName)
 
 	appI18n := i18n.New().Statistics.App
 	testService := test.NewService()
@@ -34,7 +37,7 @@ func main() {
 		exportDir = ""
 	}
 
-	headerLabel := canvas.NewText("Hakutest Statistics", color.Black)
+	headerLabel := canvas.NewText(appName, color.Black)
 	headerLabel.TextSize = 36
 	headerLabel.Alignment = fyne.TextAlignCenter
 
@@ -46,13 +49,13 @@ func main() {
 		statsService.Export,
 		func() {
 			a.SendNotification(fyne.NewNotification(
-				"Hakutest Statistics",
+				appName,
 				appI18n.SuccessText,
 			))
 		},
 		func(err error) {
 			a.SendNotification(fyne.NewNotification(
-				"Hakutest Statistics",
+				appName,
 				fmt.Sprintf("%s %v", appI18n.ErrorPrefix, err),
 			))
 		},
