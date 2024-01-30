@@ -14,6 +14,17 @@ type ServerI18n struct {
 	StopTooltip string `yaml:"stop_tooltip" mapstructure:"stop_tooltip"`
 }
 
+type StatsAppI18n struct {
+	LabelTest      string `yaml:"label_test" mapstructure:"label_test"`
+	LabelFormat    string `yaml:"label_format" mapstructure:"label_format"`
+	LabelDirectory string `yaml:"label_directory" mapstructure:"label_directory"`
+	SubmitText     string `yaml:"submit_text" mapstructure:"submit_text"`
+	CancelText     string `yaml:"cancel_text" mapstructure:"cancel_text"`
+	SelectText     string `yaml:"select_text" mapstructure:"select_text"`
+	SuccessText    string `yaml:"success_text" mapstructure:"success_text"`
+	ErrorPrefix    string `yaml:"error_prefix" mapstructure:"error_prefix"`
+}
+
 type StatsExcelI18n struct {
 	TestResultsSheet    string `yaml:"test_results_sheet" mapstructure:"test_results_sheet"`
 	TestStatisticsSheet string `yaml:"statistics_sheet" mapstructure:"test_statistics_sheet"`
@@ -29,6 +40,7 @@ type StatsImageI18n struct {
 }
 
 type StatsI18n struct {
+	App   StatsAppI18n   `yaml:"app" mapstructure:"app"`
 	Excel StatsExcelI18n `yaml:"excel" mapstructure:"excel"`
 	Image StatsImageI18n `yaml:"image" mapstructure:"image"`
 }
@@ -125,6 +137,16 @@ func Default() I18n {
 			StopTooltip: "Stop Hakutest server and quit",
 		},
 		Statistics: StatsI18n{
+			App: StatsAppI18n{
+				LabelTest:      "Test",
+				LabelFormat:    "Format",
+				LabelDirectory: "Export to",
+				SubmitText:     "Export",
+				CancelText:     "Cancel",
+				SelectText:     "(Select one)",
+				SuccessText:    "Statistics exported successfully!",
+				ErrorPrefix:    "An error occurred! Detail:",
+			},
 			Excel: StatsExcelI18n{
 				TestResultsSheet:    "Test Results",
 				TestStatisticsSheet: "Test Statistics",

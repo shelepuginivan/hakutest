@@ -10,6 +10,7 @@ import (
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/statistics"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
@@ -21,6 +22,7 @@ func main() {
 	a := app.NewWithID(appID)
 	w := a.NewWindow("Hakutest Statistics")
 
+	appI18n := i18n.New().Statistics.App
 	testService := test.NewService()
 	statsService := statistics.NewService(results.NewService())
 
@@ -45,15 +47,16 @@ func main() {
 		func() {
 			a.SendNotification(fyne.NewNotification(
 				"Hakutest Statistics",
-				"Exported statistics successfully",
+				appI18n.SuccessText,
 			))
 		},
 		func(err error) {
 			a.SendNotification(fyne.NewNotification(
 				"Hakutest Statistics",
-				fmt.Sprintf("Error occurred: %s", err.Error()),
+				fmt.Sprintf("%s %v", appI18n.ErrorPrefix, err),
 			))
 		},
+		appI18n,
 	)
 
 	w.SetContent(container.NewVBox(
