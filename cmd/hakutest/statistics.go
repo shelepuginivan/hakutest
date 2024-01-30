@@ -15,5 +15,5 @@ var statisticsCmd = &cobra.Command{
 	Short: "Test results statistics",
 	Long:  "Export test results statistics",
 	Args:  cobra.RangeArgs(1, 2),
-	RunE:  statistics.Cmd(results.NewService()),
+	RunE:  statistics.Cmd(statistics.NewService(results.NewService())),
 }
