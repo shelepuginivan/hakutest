@@ -13,12 +13,12 @@ import (
 )
 
 type TestController struct {
-	s test.TestService
-	r results.ResultsService
+	s *test.TestService
+	r *results.ResultsService
 }
 
-func NewTestController(s test.TestService, r results.ResultsService) TestController {
-	return TestController{s: s, r: r}
+func NewTestController(s *test.TestService, r *results.ResultsService) *TestController {
+	return &TestController{s: s, r: r}
 }
 
 func (co TestController) GetTest(c *gin.Context) {

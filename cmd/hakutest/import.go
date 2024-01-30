@@ -17,7 +17,7 @@ var importCmd = &cobra.Command{
 	RunE:  Cmd(test.NewService()),
 }
 
-func Cmd(s test.TestService) func(*cobra.Command, []string) error {
+func Cmd(s *test.TestService) func(*cobra.Command, []string) error {
 	return func(cmd *cobra.Command, args []string) error {
 		return s.Import(args[0])
 	}

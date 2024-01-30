@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func Cmd(s test.TestService) func(*cobra.Command, []string) error {
+func Cmd(s *test.TestService) func(*cobra.Command, []string) error {
 	return func(cmd *cobra.Command, args []string) error {
 		var (
 			t            = test.Test{}

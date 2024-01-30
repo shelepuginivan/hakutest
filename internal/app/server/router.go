@@ -29,7 +29,7 @@ func setMode(mode string) {
 	}
 }
 
-func NewRouter(t test.TestService, r results.ResultsService) *gin.Engine {
+func NewRouter(t *test.TestService, r *results.ResultsService) *gin.Engine {
 	setMode(config.New().Server.Mode)
 
 	router := gin.New()

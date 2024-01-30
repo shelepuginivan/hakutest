@@ -9,11 +9,11 @@ import (
 )
 
 type SearchController struct {
-	s test.TestService
+	s *test.TestService
 }
 
-func NewSearchController(s test.TestService) SearchController {
-	return SearchController{s: s}
+func NewSearchController(s *test.TestService) *SearchController {
+	return &SearchController{s: s}
 }
 
 func (co SearchController) SearchPage(c *gin.Context) {

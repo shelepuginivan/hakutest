@@ -15,8 +15,8 @@ import (
 
 type EditorController struct{}
 
-func NewEditorController() EditorController {
-	return EditorController{}
+func NewEditorController() *EditorController {
+	return &EditorController{}
 }
 
 func (co EditorController) ChooseTest(c *gin.Context) {

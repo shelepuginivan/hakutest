@@ -11,8 +11,8 @@ import (
 
 type TestService struct{}
 
-func NewService() TestService {
-	return TestService{}
+func NewService() *TestService {
+	return &TestService{}
 }
 
 func (s TestService) GetByName(name string) (Test, error) {

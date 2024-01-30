@@ -14,8 +14,8 @@ import (
 
 type ResultsService struct{}
 
-func NewService() ResultsService {
-	return ResultsService{}
+func NewService() *ResultsService {
+	return &ResultsService{}
 }
 
 func (s ResultsService) CompareAnswers(received, expected string) bool {
