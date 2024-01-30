@@ -8,6 +8,7 @@ import (
 	"github.com/getlantern/systray"
 	"github.com/shelepuginivan/hakutest/internal/app/server"
 	"github.com/shelepuginivan/hakutest/internal/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
@@ -27,11 +28,13 @@ func getIcon(s string) []byte {
 }
 
 func onReady() {
+	serverI18n := i18n.New().Server
+
 	systray.SetTitle("Hakutest server")
 	systray.SetTooltip("Hakutest")
 	systray.SetIcon(getIcon(IconPath))
 
-	mStop := systray.AddMenuItem("Stop Hakutest", "Stop Hakutest server and quit")
+	mStop := systray.AddMenuItem(serverI18n.StopTitle, serverI18n.StopTooltip)
 
 	port := config.New().Server.Port
 	r := server.NewRouter(test.NewService(), results.NewService())

@@ -9,7 +9,12 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-type ExcelI18n struct {
+type ServerI18n struct {
+	StopTitle   string `yaml:"stop_title" mapstructure:"stop_title"`
+	StopTooltip string `yaml:"stop_tooltip" mapstructure:"stop_tooltip"`
+}
+
+type StatsExcelI18n struct {
 	TestResultsSheet    string `yaml:"test_results_sheet" mapstructure:"test_results_sheet"`
 	TestStatisticsSheet string `yaml:"statistics_sheet" mapstructure:"test_statistics_sheet"`
 	HeaderStudent       string `yaml:"header_student" mapstructure:"header_student"`
@@ -17,15 +22,15 @@ type ExcelI18n struct {
 	HeaderPercentage    string `yaml:"header_percentage" mapstructure:"header_percentage"`
 }
 
-type ImageI18n struct {
+type StatsImageI18n struct {
 	Title  string `yaml:"title" mapstructure:"title"`
 	LabelX string `yaml:"label_x" mapstructure:"label_x"`
 	LabelY string `yaml:"label_y" mapstructure:"label_y"`
 }
 
-type StatisticsI18n struct {
-	Excel ExcelI18n `yaml:"excel" mapstructure:"excel"`
-	Image ImageI18n `yaml:"image" mapstructure:"image"`
+type StatsI18n struct {
+	Excel StatsExcelI18n `yaml:"excel" mapstructure:"excel"`
+	Image StatsImageI18n `yaml:"image" mapstructure:"image"`
 }
 
 type WebEditorI18n struct {
@@ -97,8 +102,9 @@ type WebI18n struct {
 }
 
 type I18n struct {
-	Statistics StatisticsI18n `yaml:"stats" mapstructure:"stats"`
-	Web        WebI18n        `yaml:"web" mapstructure:"web"`
+	Server     ServerI18n `yaml:"server" mapstructure:"server"`
+	Statistics StatsI18n  `yaml:"stats" mapstructure:"stats"`
+	Web        WebI18n    `yaml:"web" mapstructure:"web"`
 }
 
 func getViper() *viper.Viper {
@@ -114,15 +120,19 @@ func getViper() *viper.Viper {
 
 func Default() I18n {
 	return I18n{
-		Statistics: StatisticsI18n{
-			Excel: ExcelI18n{
+		Server: ServerI18n{
+			StopTitle:   "Stop Hakutest",
+			StopTooltip: "Stop Hakutest server and quit",
+		},
+		Statistics: StatsI18n{
+			Excel: StatsExcelI18n{
 				TestResultsSheet:    "Test Results",
 				TestStatisticsSheet: "Test Statistics",
 				HeaderStudent:       "Student",
 				HeaderPoints:        "Points",
 				HeaderPercentage:    "%",
 			},
-			Image: ImageI18n{
+			Image: StatsImageI18n{
 				Title:  "Student Performance",
 				LabelX: "Points",
 				LabelY: "Students",
