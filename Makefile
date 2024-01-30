@@ -13,7 +13,7 @@ linux:
 
 windows:
 	GOARCH=amd64 GOOS=windows go build -trimpath -o ${TARGET_DIR}/${BINARY_NAME}/${BINARY_NAME}.exe ./cmd/hakutest
-	GOARCH=amd64 GOOS=windows go build -ldflags "-H=windowsgui" -trimpath -o ${TARGET_DIR}/${BINARY_NAME}/${BINARY_NAME}-server.exe ./cmd/hakutest-server
+	GOARCH=amd64 GOOS=windows CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc go build -ldflags "-H=windowsgui" -trimpath -o ${TARGET_DIR}/${BINARY_NAME}/${BINARY_NAME}-server.exe ./cmd/hakutest-server
 	GOARCH=amd64 GOOS=windows CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc go build -ldflags "-H=windowsgui" -trimpath -o ${TARGET_DIR}/${BINARY_NAME}/${BINARY_NAME}-statistics.exe ./cmd/hakutest-statistics
 	cp -r web ${TARGET_DIR}/${BINARY_NAME}
 	cd ${TARGET_DIR} && zip ${BINARY_NAME}-win64.zip -r ${BINARY_NAME}
