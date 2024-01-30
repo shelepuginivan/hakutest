@@ -10,7 +10,6 @@ import (
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
@@ -88,21 +87,6 @@ func main() {
 		layout.NewSpacer(),
 	))
 	w.ShowAndRun()
-}
-
-func chooseDirectoryButton(parent fyne.Window, initialPath string) *widget.Button {
-	button := widget.NewButton(initialPath, func() {})
-
-	directoryDialog := dialog.NewFolderOpen(func(lu fyne.ListableURI, err error) {
-		if err != nil || lu == nil {
-			return
-		}
-
-		button.SetText(lu.Path())
-	}, parent)
-
-	button.OnTapped = directoryDialog.Show
-	return button
 }
 
 func errorLabel(err error) string {
