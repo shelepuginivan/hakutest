@@ -17,7 +17,7 @@ func NewService() *TestService {
 
 func (s TestService) GetByName(name string) (Test, error) {
 	test := Test{}
-	testPath := GetTestPath(name)
+	testPath := s.GetTestPath(name)
 	testFile, err := os.ReadFile(testPath)
 
 	if err != nil {
@@ -63,6 +63,16 @@ func (s TestService) GetTestList() []string {
 	return testList
 }
 
+func (s TestService) GetTestPath(name string) string {
+	testsDirectory := config.New().General.TestsDirectory
+
+	if !strings.HasSuffix(name, ".json") {
+		name += ".json"
+	}
+
+	return filepath.Join(testsDirectory, name)
+}
+
 func (s TestService) Import(path string) error {
 	name := filepath.Base(path)
 
@@ -75,7 +85,7 @@ func (s TestService) Import(path string) error {
 }
 
 func (s TestService) SaveToTestsDirectory(t Test, name string) error {
-	testPath := GetTestPath(name)
+	testPath := s.GetTestPath(name)
 	data, err := json.Marshal(t)
 
 	if err != nil {
