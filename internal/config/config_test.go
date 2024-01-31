@@ -10,15 +10,30 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestInitConfig(t *testing.T) {
+func TestDefaultConfig(t *testing.T) {
+	c := Default()
+
+	configBranches := []reflect.Value{
+		reflect.ValueOf(c.General),
+		reflect.ValueOf(c.Server),
+	}
+
+	for _, v := range configBranches {
+		for i := 0; i < v.NumField(); i++ {
+			assert.NotEqual(t, v.Field(i).Interface(), "")
+		}
+	}
+}
+
+func TestNewConfig(t *testing.T) {
 	c := New()
 
-	var (
-		g = reflect.ValueOf(c.General)
-		s = reflect.ValueOf(c.Server)
-	)
+	configBranches := []reflect.Value{
+		reflect.ValueOf(c.General),
+		reflect.ValueOf(c.Server),
+	}
 
-	for _, v := range []reflect.Value{g, s} {
+	for _, v := range configBranches {
 		for i := 0; i < v.NumField(); i++ {
 			assert.NotEqual(t, v.Field(i).Interface(), "")
 		}
