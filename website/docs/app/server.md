@@ -9,8 +9,12 @@ Hakutest web pages, including the test page and test editor, require a running s
 
 You can start the Hakutest server using two methods:
 
+-   By running `hakutest-server` executable (recommended for most users)
 -   By running the `hakutest server` command in a terminal.
--   If you are using the Windows version of Hakutest with scripts, you can run the file `server.bat`.
+
+## Using `hakutest-server` executable
+
+The easiest way to start the Hakutest server is to run the `hakutest-server` executable. This is the recommended method for most users. When the executable is running, an icon is displayed in the system tray. It can be used to stop the server.
 
 ## Using `hakutest server` command
 
