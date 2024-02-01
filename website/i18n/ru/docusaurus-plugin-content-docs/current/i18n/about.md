@@ -62,7 +62,19 @@ Hakutest предоставляет возможности для интерна
 Ниже представлены настройки интернационализации Hakutest по умолчанию:
 
 ```yaml title="i18n.yaml"
+server:
+    stop_title: Stop Hakutest
+    stop_tooltip: Stop Hakutest server and quit
 stats:
+    app:
+        label_test: Test
+        label_format: Format
+        label_directory: Export to
+        submit_text: Export
+        cancel_text: Cancel
+        select_text: (Select one)
+        success_text: Statistics exported successfully!
+        error_prefix: 'An error occurred! Detail:'
     excel:
         test_results_sheet: Test Results
         statistics_sheet: Test Statistics
