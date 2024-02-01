@@ -7,8 +7,8 @@ description: Export test results to an Excel spreadsheet
 
 Student test results can be exported to an Excel spreadsheet via two methods:
 
+-   By using the `hakutest-statistics` executable (recommended for most users).
 -   By using the `hakutest statistics` command.
--   If you are using the Windows version of Hakutest with scripts, you can run the file `stats_excel.bat`.
 
 ## Data format
 
@@ -31,7 +31,21 @@ You can change the static text of the spreadsheet by changing the configuration 
 
 :::
 
-## Using `hakutest statistics` command
+## Using the `hakutest-statistics` executable
+
+To export results statistics using the `hakutest-statistics` executable, follow the instruction bellow:
+
+1. Run the `hakutest-statistics` (`hakutest-statistics.exe` on Windows).
+
+2. In the opened window, select the test, export format, and the directory where the statistics will be exported:
+
+![Hakutest statistics Excel](./img/example-excel.webp)
+
+3. Press the "Export" button to export statistics.
+
+This will produce a file named `<test-name>.xlsx` (in this example, `Example test.xlsx`) in the selected export directory.
+
+## Using the `hakutest statistics` command
 
 Syntax: `hakutest statistics <test-name> excel`
 
@@ -54,38 +68,3 @@ This command will create a file `My test.xlsx` in the current working directory.
 See [`statistics` command](/docs/cli/statistics) for more information.
 
 :::
-
-## Using `stats_excel.bat` script
-
-Assume there is a "My test" folder with test results in the results directory.
-
-1. Double-click file `stats_excel.bat` in the Hakutest installation directory:
-
-    ```txt {4} title='Directory structure'
-    hakutest/
-        hakutest.exe
-        ...
-        stats_excel.bat
-    ```
-
-2. Script will prompt you for a test filename:
-
-    > ```
-    > Enter the name of the test:
-    > ```
-
-3. Enter the filename of the test which statistics you want to export:
-
-    > ```
-    > Enter the name of the test: My test
-    > ```
-
-4. It will create an Excel spreadsheet in this directory:
-
-    ```txt {5} title='Directory structure'
-    hakutest/
-        hakutest.exe
-        ...
-        stats_excel.bat
-        My test.xlsx
-    ```

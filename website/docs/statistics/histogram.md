@@ -7,8 +7,8 @@ description: Export test results to a PNG histogram
 
 Student test results can be exported to a histogram via two methods:
 
+-   By using the `hakutest-statistics` executable (recommended for most users).
 -   By using the `hakutest statistics` command.
--   If you are using the Windows version of Hakutest with scripts, you can run the file `stats_image.bat`.
 
 ## Data format
 
@@ -24,6 +24,20 @@ Test results statistics is exported as a PNG image with histogram as follows:
 You can change the static text of the histogram by changing the configuration parameters. See [Statistics internationalization](/docs/i18n/stats#image) for more information.
 
 :::
+
+## Using the `hakutest-statistics` executable
+
+To export results statistics using the `hakutest-statistics` executable, follow the instruction bellow:
+
+1. Run the `hakutest-statistics` (`hakutest-statistics.exe` on Windows).
+
+2. In the opened window, select the test, export format, and the directory where the statistics will be exported:
+
+![Hakutest statistics Histogram](./img/example-image.webp)
+
+3. Press the "Export" button to export statistics.
+
+This will produce a file named `<test-name>.png` (in this example, `Example test.png`) in the selected export directory.
 
 ## Using `hakutest statistics` command
 
@@ -48,38 +62,3 @@ This command will create a file `My test.png` in the current working directory.
 See [`statistics` command](/docs/cli/statistics) for more information.
 
 :::
-
-## Using `stats_image.bat` script
-
-Assume there is a "My test" folder with test results in the results directory.
-
-1. Double-click file `stats_image.bat` in the Hakutest installation directory:
-
-    ```txt {4} title='Directory structure'
-    hakutest/
-        hakutest.exe
-        ...
-        stats_image.bat
-    ```
-
-2. Script will prompt you for a test filename:
-
-    > ```
-    > Enter the name of the test:
-    > ```
-
-3. Enter the filename of the test which statistics you want to export:
-
-    > ```
-    > Enter the name of the test: My test
-    > ```
-
-4. It will create a PNG image in this directory:
-
-    ```txt {5} title='Directory structure'
-    hakutest/
-        hakutest.exe
-        ...
-        stats_image.bat
-        My test.png
-    ```
