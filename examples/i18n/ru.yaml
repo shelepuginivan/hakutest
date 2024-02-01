@@ -1,4 +1,16 @@
+server:
+  stop_title: Остановить Hakutest
+  stop_tooltip: Остановить сервер Hakutest и выйти
 stats:
+  app:
+    label_test: Тест
+    label_format: Формат
+    label_directory: Экспортировать в
+    submit_text: Экспорт
+    cancel_text: Отмена
+    select_text: "(Выберите вариант)"
+    success_text: "Статистика успешно экспортирована!"
+    error_prefix: "Произошла ошибка! Подробно:"
   excel:
     header_percentage: "%"
     header_points: Баллы
