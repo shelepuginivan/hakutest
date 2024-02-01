@@ -99,20 +99,20 @@ func TestTestService_GetTestPath(t *testing.T) {
 	}
 }
 
-func TestTestService_GetByName(t *testing.T) {
+func TestTestService_GetTestByName(t *testing.T) {
 	// get test created in setup function
-	test, err := NewService().GetByName("__test__")
+	test, err := NewService().GetTestByName("__test__")
 
 	assert.NoError(t, err)
 	assert.Equal(t, "Mock test", test.Title)
 }
 
-func TestTestService_GetByPath(t *testing.T) {
+func TestTestService_GetTestByPath(t *testing.T) {
 	mockTest := Test{
 		Title:       "Mock test",
 		Author:      "John Doe",
 		Target:      "Assert",
-		Institution: "TestTestService_GetByPath",
+		Institution: "TestTestService_GetTestByName",
 	}
 
 	data, err := json.Marshal(mockTest)
@@ -135,7 +135,7 @@ func TestTestService_GetByPath(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	test, err := NewService().GetByPath(testPath)
+	test, err := NewService().GetTestByPath(testPath)
 
 	assert.NoError(t, err)
 	assert.Equal(t, test, mockTest)
@@ -160,7 +160,7 @@ func TestTestService_SaveToTestsDirectory(t *testing.T) {
 
 	assert.NoError(t, err)
 
-	test, err := NewService().GetByName("__mock_test__")
+	test, err := NewService().GetTestByName("__mock_test__")
 
 	assert.NoError(t, err)
 	assert.Equal(t, test, mockTest)
@@ -196,7 +196,7 @@ func TestTestService_Import(t *testing.T) {
 
 	assert.NoError(t, NewService().Import(testPath))
 
-	test, err := NewService().GetByName(filepath.Base(testPath))
+	test, err := NewService().GetTestByName(filepath.Base(testPath))
 
 	assert.NoError(t, err)
 	assert.Equal(t, test, mockTest)

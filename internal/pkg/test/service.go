@@ -15,7 +15,7 @@ func NewService() *TestService {
 	return &TestService{}
 }
 
-func (s TestService) GetByName(name string) (Test, error) {
+func (s TestService) GetTestByName(name string) (Test, error) {
 	test := Test{}
 	testPath := s.GetTestPath(name)
 	testFile, err := os.ReadFile(testPath)
@@ -29,7 +29,7 @@ func (s TestService) GetByName(name string) (Test, error) {
 	return test, err
 }
 
-func (s TestService) GetByPath(path string) (Test, error) {
+func (s TestService) GetTestByPath(path string) (Test, error) {
 	test := Test{}
 	testFile, err := os.ReadFile(path)
 
@@ -76,7 +76,7 @@ func (s TestService) GetTestPath(name string) string {
 func (s TestService) Import(path string) error {
 	name := filepath.Base(path)
 
-	t, err := s.GetByPath(path)
+	t, err := s.GetTestByPath(path)
 	if err != nil {
 		return err
 	}

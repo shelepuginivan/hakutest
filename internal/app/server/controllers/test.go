@@ -23,7 +23,7 @@ func NewTestController(s *test.TestService, r *results.ResultsService) *TestCont
 
 func (co TestController) GetTest(c *gin.Context) {
 	name := c.Param("test")
-	t, err := co.s.GetByName(name)
+	t, err := co.s.GetTestByName(name)
 
 	if err != nil {
 		code := http.StatusBadRequest
@@ -80,7 +80,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 	}
 
 	name := c.Param("test")
-	t, err := co.s.GetByName(name)
+	t, err := co.s.GetTestByName(name)
 
 	if err != nil {
 		code := http.StatusBadRequest

@@ -21,7 +21,7 @@ func Cmd(s *test.TestService) func(*cobra.Command, []string) error {
 		if len(args) == 1 {
 			name = args[0]
 
-			parsedTest, err := s.GetByName(name)
+			parsedTest, err := s.GetTestByName(name)
 
 			if err == nil {
 				t = parsedTest
