@@ -17,11 +17,11 @@ Specified the internationalization for the interface of `hakutest-statistics` ex
 
 - `label_test`: Label of the test selection field.
 - `label_format`: Label of the format selection field.
-- `label_directory`: Label of the export directory selection field
-- `submit_text`: Text of the form submission button
+- `label_directory`: Label of the export directory selection field.
+- `submit_text`: Text of the form submission button.
 - `cancel_text`: Text of the form cancel button
-- `select_text`: Placeholder of the selection field
-- `success_text`: Message shown in the notification on success
+- `select_text`: Placeholder of the selection field.
+- `success_text`: Message shown in the notification on success.
 - `error_prefix`: Prefix of the message shown in the notification. An error itself is appended to it automatically.
 
 **Visual example**
