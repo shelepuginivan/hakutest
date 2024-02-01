@@ -16,6 +16,8 @@ You can start the Hakutest server using two methods:
 
 The easiest way to start the Hakutest server is to run the `hakutest-server` executable. This is the recommended method for most users. When the executable is running, an icon is displayed in the system tray. It can be used to stop the server.
 
+The server will be started on the port specified in the configuration (see [Server configuration](/docs/configuration/server#port)).
+
 ## Using `hakutest server` command
 
 Syntax: `hakutest server`
