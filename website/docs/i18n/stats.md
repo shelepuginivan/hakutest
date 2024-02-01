@@ -74,7 +74,7 @@ Specifies the internationalization for exporting results to a PNG histogram.
 
 ## Example
 
-Example of statistics configuration:
+Example of statistics internationalization:
 
 ```yaml title='i18n.yaml'
 stats:

@@ -124,7 +124,7 @@ Internationalization of the [test page](/docs/app/test-page).
 
 ## Example
 
-Example of user interface configuration:
+Example of the web user interface internationalization:
 
 ```yaml title='i18n.yaml'
 web:
