@@ -9,12 +9,15 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/config"
 )
 
+// TestService is a struct that provides methods for manipulating Test structures.
 type TestService struct{}
 
+// NewService returns a TestService instance.
 func NewService() *TestService {
 	return &TestService{}
 }
 
+// GetTestByName retrieves the Test from the directory specified in the configuration by the test name.
 func (s TestService) GetTestByName(name string) (Test, error) {
 	test := Test{}
 	testPath := s.GetTestPath(name)
@@ -29,6 +32,7 @@ func (s TestService) GetTestByName(name string) (Test, error) {
 	return test, err
 }
 
+// GetTestByPath retrieves the Test by its file path.
 func (s TestService) GetTestByPath(path string) (Test, error) {
 	test := Test{}
 	testFile, err := os.ReadFile(path)
@@ -42,6 +46,7 @@ func (s TestService) GetTestByPath(path string) (Test, error) {
 	return test, err
 }
 
+// GetTestList retrieves a list of test names from the tests directory specified in the configuration.
 func (s TestService) GetTestList() []string {
 	testsDirectory := config.New().General.TestsDirectory
 	testList := []string{}
@@ -63,6 +68,9 @@ func (s TestService) GetTestList() []string {
 	return testList
 }
 
+// GetTestPath returns the absolute path of the Test by its name.
+// It assumes that the test is stored in the tests directory specified in the configuration.
+// It doesn't check whether a test with this name exists.
 func (s TestService) GetTestPath(name string) string {
 	testsDirectory := config.New().General.TestsDirectory
 
@@ -73,6 +81,7 @@ func (s TestService) GetTestPath(name string) string {
 	return filepath.Join(testsDirectory, name)
 }
 
+// Import copies the test file saved by path to the tests directory defined in the configuration.
 func (s TestService) Import(path string) error {
 	name := filepath.Base(path)
 
@@ -84,6 +93,8 @@ func (s TestService) Import(path string) error {
 	return s.SaveToTestsDirectory(t, name)
 }
 
+// SaveToTestsDirectory saves the Test as a JSON file in the tests directory specified in the configuration.
+// The name is used as a filename.
 func (s TestService) SaveToTestsDirectory(t Test, name string) error {
 	testPath := s.GetTestPath(name)
 	data, err := json.Marshal(t)
