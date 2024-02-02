@@ -12,16 +12,21 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// ResultsService is a struct that provides methods for manipulating Result structures.
 type ResultsService struct{}
 
+// NewService returns a ResultsService instance.
 func NewService() *ResultsService {
 	return &ResultsService{}
 }
 
+// CompareAnswers reports whether answers match.
+// It is case-insensitive and ignores leading and trailing spaces.
 func (s ResultsService) CompareAnswers(received, expected string) bool {
 	return strings.TrimSpace(strings.ToLower(received)) == strings.TrimSpace(strings.ToLower(expected))
 }
 
+// CheckAnswers returns the results of the test.
 func (s ResultsService) CheckAnswers(t test.Test, answers map[string][]string) TestResults {
 	submittedAt := time.Now()
 	student := strings.Join(answers["student"], "")
@@ -68,6 +73,8 @@ func (s ResultsService) CheckAnswers(t test.Test, answers map[string][]string) T
 	return results
 }
 
+// GetResultsOfTest retrieves all results of the test from the results directory specified in the configuration.
+// The name is the filename of the test.
 func (s ResultsService) GetResultsOfTest(name string) ([]TestResults, error) {
 	results := []TestResults{}
 	testResultsDir := filepath.Join(config.New().General.ResultsDirectory, name)
@@ -100,6 +107,8 @@ func (s ResultsService) GetResultsOfTest(name string) ([]TestResults, error) {
 	return results, nil
 }
 
+// Save saves test results in the results directory specified in the configuration.
+// The results are saved in a subdirectory name.
 func (s ResultsService) Save(r TestResults, name string) error {
 	testName := strings.TrimSuffix(name, ".json")
 	testResultsDirectory := filepath.Join(config.New().General.ResultsDirectory, testName)
