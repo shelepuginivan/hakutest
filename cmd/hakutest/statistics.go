@@ -15,5 +15,17 @@ var statisticsCmd = &cobra.Command{
 	Short: "Test results statistics",
 	Long:  "Export test results statistics",
 	Args:  cobra.RangeArgs(1, 2),
-	RunE:  statistics.Cmd(statistics.NewService(results.NewService())),
+	RunE:  statisticsCommand(statistics.NewService(results.NewService())),
+}
+
+func statisticsCommand(s *statistics.StatisticsService) func(*cobra.Command, []string) error {
+	return func(cmd *cobra.Command, args []string) error {
+		testName := args[0]
+
+		if len(args) == 1 {
+			return s.Export(testName, testName, statistics.FormatTable)
+		}
+
+		return s.Export(testName, testName, args[1])
+	}
 }
