@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/shelepuginivan/hakutest/internal/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/stretchr/testify/assert"
 )
 

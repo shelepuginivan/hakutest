@@ -7,7 +7,7 @@ import (
 
 	"github.com/getlantern/systray"
 	"github.com/shelepuginivan/hakutest/internal/app/server"
-	"github.com/shelepuginivan/hakutest/internal/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"

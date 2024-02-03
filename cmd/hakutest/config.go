@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/shelepuginivan/hakutest/internal/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/spf13/cobra"
 )
 

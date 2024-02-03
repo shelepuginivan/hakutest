@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shelepuginivan/hakutest/internal/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"gopkg.in/yaml.v3"
 )
