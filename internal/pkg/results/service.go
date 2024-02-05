@@ -73,6 +73,28 @@ func (s ResultsService) CheckAnswers(t test.Test, answers map[string][]string) T
 	return results
 }
 
+// GetResultsList retrieves a list of results names from the results directory specified in the configuration.
+func (s ResultsService) GetResultsList() []string {
+	resultsDirectory := config.New().General.ResultsDirectory
+	resultsList := []string{}
+
+	entries, err := os.ReadDir(resultsDirectory)
+
+	if err != nil {
+		return resultsList
+	}
+
+	for _, file := range entries {
+		resultsName := file.Name()
+
+		if file.IsDir() {
+			resultsList = append(resultsList, resultsName)
+		}
+	}
+
+	return resultsList
+}
+
 // GetResultsOfTest retrieves all results of the test from the results directory specified in the configuration.
 // The name is the filename of the test.
 func (s ResultsService) GetResultsOfTest(name string) ([]TestResults, error) {

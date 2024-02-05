@@ -19,6 +19,7 @@ func TestMain(m *testing.M) {
 func setup() func() {
 	generalConfig := config.New().General
 	testName := "__mock__"
+	mockResultsDir := filepath.Join(generalConfig.ResultsDirectory, testName)
 
 	mockTest := test.Test{
 		Title:  "Mock test",
@@ -35,6 +36,10 @@ func setup() func() {
 		panic(err)
 	}
 
+	if err := os.MkdirAll(mockResultsDir, os.ModeDir|os.ModePerm); err != nil {
+		panic(err)
+	}
+
 	return func() {
 		testPath := filepath.Join(generalConfig.TestsDirectory, testName+".json")
 		resultsPath := filepath.Join(generalConfig.ResultsDirectory, testName)
@@ -45,6 +50,11 @@ func setup() func() {
 		}
 
 		err = os.RemoveAll(resultsPath)
+		if err != nil {
+			panic(err)
+		}
+
+		err = os.RemoveAll(mockResultsDir)
 		if err != nil {
 			panic(err)
 		}
@@ -124,6 +134,13 @@ func TestResultsService_CheckAnswers(t *testing.T) {
 
 	assert.Equal(t, expectedResultsInfo, results)
 	assert.Less(t, expectedResultsInfo.SubmittedAt, time.Now())
+}
+
+func TestResultsService_GetResultsList(t *testing.T) {
+	list := NewService().GetResultsList()
+
+	assert.GreaterOrEqual(t, len(list), 1)
+	assert.Contains(t, list, "__mock__")
 }
 
 func TestResultsService_Save(t *testing.T) {
