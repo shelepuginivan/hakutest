@@ -13,7 +13,6 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/statistics"
-	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
 const (
@@ -26,8 +25,8 @@ func main() {
 	w := a.NewWindow(appName)
 
 	appI18n := i18n.New().Statistics.App
-	testService := test.NewService()
-	statsService := statistics.NewService(results.NewService())
+	resultsService := results.NewService()
+	statsService := statistics.NewService(resultsService)
 
 	formats := []string{statistics.FormatExcel, statistics.FormatImage}
 
@@ -43,7 +42,7 @@ func main() {
 
 	form := statsExportForm(
 		w,
-		testService.GetTestList(),
+		resultsService.GetResultsList(),
 		formats,
 		exportDir,
 		statsService.Export,
