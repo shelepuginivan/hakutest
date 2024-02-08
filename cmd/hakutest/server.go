@@ -15,9 +15,10 @@ func init() {
 }
 
 var serverCmd = &cobra.Command{
-	Use:   "server [port]",
-	Short: "Start Hakutest server",
-	Long:  "Start Hakutest server",
-	Args:  cobra.NoArgs,
-	RunE:  server.Cmd(server.NewRouter(test.NewService(), results.NewService())),
+	Use:     "server",
+	Short:   "Start Hakutest server",
+	Long:    "Start Hakutest server",
+	Args:    cobra.NoArgs,
+	RunE:    server.Cmd(server.NewRouter(test.NewService(), results.NewService())),
+	Aliases: []string{"srv"},
 }

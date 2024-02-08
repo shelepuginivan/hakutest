@@ -10,9 +10,10 @@ func init() {
 }
 
 var configCmd = &cobra.Command{
-	Use:   "config [field] [value]",
-	Short: "Manage the configuration settings",
-	Long:  "Manage hakutest configuration settings",
-	Args:  cobra.RangeArgs(0, 2),
-	Run:   config.Cmd,
+	Use:     "config [field] [value]",
+	Short:   "Manage the configuration settings",
+	Long:    "Manage hakutest configuration settings",
+	Args:    cobra.RangeArgs(0, 2),
+	Run:     config.Cmd,
+	Aliases: []string{"cfg"},
 }

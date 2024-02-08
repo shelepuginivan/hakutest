@@ -11,11 +11,13 @@ func init() {
 }
 
 var statisticsCmd = &cobra.Command{
-	Use:   "statistics <test> [format]",
-	Short: "Test results statistics",
-	Long:  "Export test results statistics",
-	Args:  cobra.RangeArgs(1, 2),
-	RunE:  statisticsCommand(statistics.NewService(results.NewService())),
+	Use:       "statistics <test> [format]",
+	Short:     "Test results statistics",
+	Long:      "Export test results statistics",
+	Args:      cobra.RangeArgs(1, 2),
+	ValidArgs: []string{statistics.FormatExcel, statistics.FormatImage, statistics.FormatTable},
+	RunE:      statisticsCommand(statistics.NewService(results.NewService())),
+	Aliases:   []string{"stats"},
 }
 
 func statisticsCommand(s *statistics.StatisticsService) func(*cobra.Command, []string) error {
