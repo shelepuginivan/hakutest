@@ -9,8 +9,8 @@ Hakutest internationalization for the `hakutest-server` executable
 
 ## Fields
 
-- `stop_title`: Title of the stop menu entry
-- `stop_tooltip`: Tooltip of the stop menu entry (Windows and macOS only)
+-   `stop_title`: Title of the stop menu entry
+-   `stop_tooltip`: Tooltip of the stop menu entry (Windows and macOS only)
 
 ## Example
 

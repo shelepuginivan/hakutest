@@ -15,14 +15,14 @@ Specified the internationalization for the interface of `hakutest-statistics` ex
 
 **Options**
 
-- `label_test`: Label of the test selection field.
-- `label_format`: Label of the format selection field.
-- `label_directory`: Label of the export directory selection field.
-- `submit_text`: Text of the form submission button.
-- `cancel_text`: Text of the form cancel button
-- `select_text`: Placeholder of the selection field.
-- `success_text`: Message shown in the notification on success.
-- `error_prefix`: Prefix of the message shown in the notification. An error itself is appended to it automatically.
+-   `label_test`: Label of the test selection field.
+-   `label_format`: Label of the format selection field.
+-   `label_directory`: Label of the export directory selection field.
+-   `submit_text`: Text of the form submission button.
+-   `cancel_text`: Text of the form cancel button
+-   `select_text`: Placeholder of the selection field.
+-   `success_text`: Message shown in the notification on success.
+-   `error_prefix`: Prefix of the message shown in the notification. An error itself is appended to it automatically.
 
 **Visual example**
 
@@ -30,17 +30,17 @@ Specified the internationalization for the interface of `hakutest-statistics` ex
 
 **Noticication example**
 
-- Success:
+-   Success:
 
-    >   Hakutest Statistics
+    > Hakutest Statistics
     >
-    >   `success_text`
+    > `success_text`
 
-- Error:
+-   Error:
 
-    >   Hakutest Statistics
+    > Hakutest Statistics
     >
-    >   `error_prefix` `<Text of the occurred error>`
+    > `error_prefix` `<Text of the occurred error>`
 
 ### `excel`
 
