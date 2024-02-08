@@ -8,6 +8,10 @@ description: Hakutest server start command
 
 Syntax: `hakutest server`
 
+Aliases:
+
+-   `hakutest srv`
+
 The `hakutest server` command is used to start the Hakutest server.
 
 If no arguments are provided, server will listen port specified in the configuration (see [Server configuration](/docs/configuration/server#port)).

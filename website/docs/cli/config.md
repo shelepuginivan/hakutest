@@ -8,6 +8,10 @@ description: Hakutest configuration management command
 
 Syntax: `hakutest config [field] [value]`.
 
+Aliases:
+
+-   `hakutest cfg`
+
 The `hakutest config` command is used to manage the configuration for Hakutest via the command line interface. It provides functionality for printing and updating configuration fields. This command has three different uses depending on the number of arguments provided.
 
 ### Print the entire config

@@ -8,6 +8,10 @@ description: Hakutest statistics export
 
 Syntax: `hakutest statistics <test-name> [format]`
 
+Aliases:
+
+-   `hakutest stats`
+
 The `hakutest statistics` command is used to export test results statistics to different formats.
 
 -   The first argument `test-name` is the name of the test results folder (i.e. its file name) which statistics you want to export.

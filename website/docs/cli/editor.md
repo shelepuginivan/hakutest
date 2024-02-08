@@ -8,6 +8,10 @@ description: Hakutest CLI test editor
 
 Syntax: `hakutest editor [test-name]`
 
+Aliases:
+
+-   `hakutest e`
+
 The `hakutest editor` command is a CLI test editor. It can create new tests and edit existing tests.
 
 ## Creating new test
