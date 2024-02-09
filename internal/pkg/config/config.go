@@ -106,5 +106,8 @@ func New() Config {
 		panic(err)
 	}
 
+	config.General.TestsDirectory = os.ExpandEnv(config.General.TestsDirectory)
+	config.General.ResultsDirectory = os.ExpandEnv(config.General.ResultsDirectory)
+
 	return config
 }
