@@ -28,7 +28,14 @@ Specifies the folder where students' results are stored.
 Specifies whether the results will be displayed immediately after the response is sent.
 
 -   **Value**: bool (`true` or `false`), show results or not respectively.
--   **Default**: `true`
+-   **Default**: `true`.
+
+### `overwrite_results`
+
+Specifies whether the results are allowed to be overwritten if the same student resubmits the solution again.
+
+-   **Value**: bool (`true` or `false`), allow overwrite or not respectively.
+-   **Default**: `false`.
 
 ## Example
 
@@ -39,5 +46,6 @@ general:
     tests_directory: ./data/tests
     results_directory: ./data/results
     show_results: true
+    overwrite_results: false
 # Other fields...
 ```
