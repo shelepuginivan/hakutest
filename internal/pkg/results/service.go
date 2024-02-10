@@ -132,23 +132,23 @@ func (s ResultsService) GetResultsOfTest(name string) ([]TestResults, error) {
 // Save saves test results in the results directory specified in the configuration.
 // The results are saved in a subdirectory name.
 func (s ResultsService) Save(r TestResults, name string) error {
+	generalConfig := config.New().General
 	testName := strings.TrimSuffix(name, ".json")
-	testResultsDirectory := filepath.Join(config.New().General.ResultsDirectory, testName)
+	testResultsDirectory := filepath.Join(generalConfig.ResultsDirectory, testName)
 	resultsFilePath := filepath.Join(testResultsDirectory, r.Student+".txt")
 
-	if _, err := os.Stat(resultsFilePath); !os.IsNotExist(err) {
+	_, err := os.Stat(resultsFilePath)
+	if !os.IsNotExist(err) && !generalConfig.OverwriteResults {
 		// Test was already submitted by this student
 		return err
 	}
 
-	err := os.MkdirAll(testResultsDirectory, os.ModeDir|os.ModePerm)
-
+	err = os.MkdirAll(testResultsDirectory, os.ModeDir|os.ModePerm)
 	if err != nil && !os.IsExist(err) {
 		return err
 	}
 
 	data, err := yaml.Marshal(r)
-
 	if err != nil {
 		return err
 	}

@@ -13,6 +13,7 @@ type GeneralConfig struct {
 	TestsDirectory   string `yaml:"tests_directory" mapstructure:"tests_directory"`
 	ResultsDirectory string `yaml:"results_directory" mapstructure:"results_directory"`
 	ShowResults      bool   `yaml:"show_results" mapstructure:"show_results"`
+	OverwriteResults bool   `yaml:"overwrite_results" mapstructure:"overwrite_results"`
 }
 
 type ServerConfig struct {
@@ -46,6 +47,7 @@ func Default() Config {
 			TestsDirectory:   testsDirectory,
 			ResultsDirectory: resultsDirectory,
 			ShowResults:      true,
+			OverwriteResults: false,
 		},
 		Server: ServerConfig{
 			Port: 8080,
