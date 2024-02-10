@@ -67,6 +67,7 @@ general:
     tests_directory: ~/.cache/hakutest/tests
     results_directory: ~/.cache/hakutest/results
     show_results: true
+    overwrite_results: false
 server:
     port: 8080
     mode: release
