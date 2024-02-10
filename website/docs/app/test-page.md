@@ -65,6 +65,8 @@ You can choose not to display results to students by specifying a value of `fals
 
 ![Test submission page](./img/test-submitted.webp)
 
+By default the system does not allow results to be overwritten if the same student resubmits the solution. You can allow results to be overwritten by specifying a value of `true` in the `general.overwrite_results` field in the configuration file (see [General Configuration](/docs/configuration/general#overwrite_results)). In this case Hakutest will overwrite the results on resubmission.
+
 ### Expired test
 
 If the test has expired, it will not be available at this URL. Instead of the test, a page will be displayed informing you that the test has expired:
