@@ -1,3 +1,4 @@
+// Package config provides global configuration for Hakutest.
 package config
 
 import (
@@ -9,23 +10,38 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// GeneralConfig represents general configuration parameters.
 type GeneralConfig struct {
-	TestsDirectory   string `yaml:"tests_directory" mapstructure:"tests_directory"`
+	// Directory where tests are stored (environment variables such as $HOME are supported).
+	TestsDirectory string `yaml:"tests_directory" mapstructure:"tests_directory"`
+
+	// Directory where results are stored (environment variables such as $HOME are supported).
 	ResultsDirectory string `yaml:"results_directory" mapstructure:"results_directory"`
-	ShowResults      bool   `yaml:"show_results" mapstructure:"show_results"`
-	OverwriteResults bool   `yaml:"overwrite_results" mapstructure:"overwrite_results"`
+
+	// Specifies whether the results will be displayed immediately after the response is sent.
+	ShowResults bool `yaml:"show_results" mapstructure:"show_results"`
+
+	// Specifies whether the results are allowed to be overwritten if the same student resubmits the solution again.
+	OverwriteResults bool `yaml:"overwrite_results" mapstructure:"overwrite_results"`
 }
 
+// ServerConfig represents server configuration parameters.
 type ServerConfig struct {
-	Port int    `yaml:"port" mapstructure:"port"`
+	// Port on which server is started.
+	Port int `yaml:"port" mapstructure:"port"`
+
+	// Mode in which server is started.
 	Mode string `yaml:"mode" mapstructure:"mode"`
 }
 
+// Config represents Hakutest configuration.
 type Config struct {
-	General GeneralConfig `yaml:"general" mapstructure:"general"`
-	Server  ServerConfig  `yaml:"server" mapstructure:"server"`
+	General GeneralConfig `yaml:"general" mapstructure:"general"` // General configuration.
+	Server  ServerConfig  `yaml:"server" mapstructure:"server"`   // Server configuration.
 }
 
+// getViper returns a configured instance of viper.Viper.
+// It scans the OS-specific configuration directory and the Hakutest executable directory for the configuration file `config.yaml`.
 func getViper() *viper.Viper {
 	v := viper.New()
 
@@ -37,6 +53,7 @@ func getViper() *viper.Viper {
 	return v
 }
 
+// Default returns the default configuration.
 func Default() Config {
 	dataDir := directories.Data()
 	testsDirectory := filepath.Join(dataDir, "tests")
@@ -58,6 +75,7 @@ func Default() Config {
 	return defaultConfig
 }
 
+// createDefaultConfig creates a configuration file in the OS-specific configuration directory.
 func createDefaultConfig() error {
 	configDir := directories.Config()
 	configPath := filepath.Join(configDir, "config.yaml")
@@ -87,6 +105,8 @@ func createDefaultConfig() error {
 	return err
 }
 
+// New returns configuration defined in the configuration file.
+// Fields that are not specified in the configuration file are fallback to default values.
 func New() Config {
 	config := Default()
 
