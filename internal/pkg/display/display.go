@@ -36,10 +36,3 @@ func PrintMap(m map[string]interface{}) {
 		tbl.Print()
 	}
 }
-
-// PrintSlice prints slice values, each value on a new line.
-func PrintSlice(s []interface{}) {
-	for _, v := range s {
-		fmt.Println(v)
-	}
-}
