@@ -95,6 +95,15 @@ func (s ResultsService) GetResultsList() []string {
 	return resultsList
 }
 
+// GetTestResultsDirectory returns the absolute path of the test results directory by its name.
+// It doesn't check whether a test with this name or a results directory associated with it exists.
+func (s ResultsService) GetTestResultsDirectory(name string) string {
+	resultsDirectory := config.Default().General.ResultsDirectory
+	testName := strings.TrimSuffix(name, ".json")
+
+	return filepath.Join(resultsDirectory, testName)
+}
+
 // GetResultsOfTest retrieves all results of the test from the results directory specified in the configuration.
 // The name is the filename of the test.
 func (s ResultsService) GetResultsOfTest(name string) ([]TestResults, error) {
