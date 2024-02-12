@@ -164,3 +164,9 @@ func (s ResultsService) Save(r TestResults, name string) error {
 
 	return os.WriteFile(resultsFilePath, data, 0666)
 }
+
+// Remove removes the directory that stores test solutions.
+// It uses name of the test (i.e. the name of the associated directory).
+func (s ResultsService) Remove(name string) error {
+	return os.RemoveAll(s.GetTestResultsDirectory(name))
+}
