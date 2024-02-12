@@ -105,3 +105,9 @@ func (s TestService) SaveToTestsDirectory(t Test, name string) error {
 
 	return os.WriteFile(testPath, data, 0666)
 }
+
+// Remove removes the file associated with the test by its name.
+// It assumes that the test is stored in the tests directory specified in the configuration.
+func (s TestService) Remove(testName string) error {
+	return os.Remove(s.GetTestPath(testName))
+}
