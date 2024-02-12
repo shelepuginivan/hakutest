@@ -50,5 +50,21 @@
     "sidebar.tutorialSidebar.category.Internationalization.link.generated-index.title": {
         "message": "Интернационализация",
         "description": "The generated-index page title for category Internationalization in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Tests": {
+        "message": "Тесты",
+        "description": "The label for category Tests in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Tests.link.generated-index.title": {
+        "message": "Тесты",
+        "description": "The generated-index page title for category Tests in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Results": {
+        "message": "Результаты",
+        "description": "The label for category Results in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Results.link.generated-index.title": {
+        "message": "Результаты",
+        "description": "The generated-index page title for category Results in sidebar tutorialSidebar"
     }
 }
