@@ -90,6 +90,25 @@ func TestResultsService_CompareAnswers(t *testing.T) {
 	}
 }
 
+func TestResultsService_GetTestResultsDirectory(t *testing.T) {
+	s := NewService()
+	resultsDir := config.New().General.ResultsDirectory
+
+	cases := []struct {
+		name     string
+		expected string
+	}{
+		{name: "a", expected: filepath.Join(resultsDir, "a")},
+		{name: "some", expected: filepath.Join(resultsDir, "some")},
+		{name: "longer name", expected: filepath.Join(resultsDir, "longer name")},
+		{name: "s.json", expected: filepath.Join(resultsDir, "s")},
+	}
+
+	for _, c := range cases {
+		assert.Equal(t, c.expected, s.GetTestResultsDirectory(c.name))
+	}
+}
+
 func TestResultsService_CheckAnswers(t *testing.T) {
 	s := ResultsService{}
 
