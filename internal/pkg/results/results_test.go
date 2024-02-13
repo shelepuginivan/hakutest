@@ -193,3 +193,15 @@ func TestResultsService_GetResultsOfTest(t *testing.T) {
 	assert.Len(t, results, 1)
 	assert.IsType(t, TestResults{}, results[0])
 }
+
+func TestResultsService_Remove(t *testing.T) {
+	subdirName := "__ResultsService.Remove__"
+	resultsSubdir := filepath.Join(config.New().General.ResultsDirectory, subdirName)
+
+	if err := os.Mkdir(resultsSubdir, os.ModeDir|os.ModePerm); err != nil {
+		panic(err)
+	}
+
+	assert.NoError(t, NewService().Remove(subdirName))
+	assert.NoDirExists(t, resultsSubdir)
+}
