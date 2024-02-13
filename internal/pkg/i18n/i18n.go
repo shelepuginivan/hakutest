@@ -27,7 +27,7 @@ type StatsAppI18n struct {
 
 type StatsExcelI18n struct {
 	TestResultsSheet    string `yaml:"test_results_sheet" mapstructure:"test_results_sheet"`
-	TestStatisticsSheet string `yaml:"statistics_sheet" mapstructure:"test_statistics_sheet"`
+	TestStatisticsSheet string `yaml:"statistics_sheet" mapstructure:"statistics_sheet"`
 	HeaderStudent       string `yaml:"header_student" mapstructure:"header_student"`
 	HeaderPoints        string `yaml:"header_points" mapstructure:"header_points"`
 	HeaderPercentage    string `yaml:"header_percentage" mapstructure:"header_percentage"`
