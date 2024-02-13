@@ -201,3 +201,26 @@ func TestTestService_Import(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, test, mockTest)
 }
+
+func TestTestService_Remove(t *testing.T) {
+	s := NewService()
+	testName := "__TestService.Remove__"
+	testPath := filepath.Join(config.New().General.TestsDirectory, testName+".json")
+
+	mockTest := Test{
+		Title: "Mock test",
+	}
+
+	data, err := json.Marshal(mockTest)
+	if err != nil {
+		panic(err)
+	}
+
+	err = os.WriteFile(testPath, data, 0666)
+	if err != nil {
+		panic(err)
+	}
+
+	assert.NoError(t, s.Remove(testName))
+	assert.NoFileExists(t, testPath)
+}
