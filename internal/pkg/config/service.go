@@ -71,6 +71,15 @@ func (s ConfigService) PrintField(field string) error {
 	return nil
 }
 
+// GetField returns the specified field value.
+func (s ConfigService) GetField(field string) any {
+	if err := s.v.ReadInConfig(); err != nil {
+		return nil
+	}
+
+	return s.v.Get(field)
+}
+
 // SetField sets the specified field value.
 func (s ConfigService) SetField(field string, value any) error {
 	if err := s.v.ReadInConfig(); err != nil {

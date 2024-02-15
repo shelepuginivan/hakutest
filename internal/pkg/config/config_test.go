@@ -61,6 +61,16 @@ func TestConfigService_PrintField(t *testing.T) {
 	}
 }
 
+func TestConfigService_GetField(t *testing.T) {
+	c := NewService()
+	viper.SetConfigFile(filepath.Join(directories.Config(), "config.yaml"))
+	viper.ReadInConfig()
+
+	for key, value := range viper.AllSettings() {
+		assert.Equal(t, value, c.GetField(key))
+	}
+}
+
 func TestConfigService_SetField(t *testing.T) {
 	c := NewService()
 	viper.SetConfigFile(filepath.Join(directories.Config(), "config.yaml"))
