@@ -1,0 +1,482 @@
+.TH "HAKUTEST\-I18N" "5" "2024-02-15" "github.com/shelepuginivan/hakutest" "Hakutest Manual"
+
+.nh
+.ad l
+
+.SH "NAME"
+hakutest\-i18n \- hakutest internationalization overview.
+
+.SH "DESCRIPTION"
+This page describes the structure of Hakutest internationalization file.
+
+Internationalization allows to change all static text of Hakutest components.
+
+.SS Internationalization file
+Hakutest configuration is stored in the \fBi18n.yaml\fR file. It can be located in the following directories:
+
+\- $XDG_CONFIG_HOME/hakutest
+.br
+\- Hakutest installation directory
+
+The internationalization file located in the Hakutest installation directory has higher priority.
+
+.SS Default internationalization
+A configuration file with default values can be created by running any of the Hakutest command. This will create a \fBi18n.yaml\fR file in the \fB$XDG_CONFIG_HOME/hakutest\fR directory.
+
+.SS Sections of the internationalization file
+Internationalization is divided into sections as follows:
+
+.PP
+\fIserver\fR
+.RS 4
+Hakutest internationalization for the \fBhakutest-server-applet\fR(1).
+
+\fIstop_title\fR
+.RS 4
+Title of the stop menu entry.
+.RE
+
+\fIstop_tooltip\fR
+.RS 4
+Tooltip of the stop menu entry (Windows and macOS only).
+.RE
+
+\fI\fR
+.RS 4
+.RE
+
+.RE
+
+.PP
+\fIstats\fR
+.RS 4
+Hakutest internationalization for exporting student results and statistics.
+
+\fIapp\fR
+.RS 4
+Specifies the internationalization for the interface of \fBhakutest-statistics-gui\fR(1).
+
+\fIlabel_test\fR
+.RS 4
+Label of the test selection field.
+.RE
+
+\fIlabel_format\fR
+.RS 4
+Label of the format selection field.
+.RE
+
+\fIlabel_directory\fR
+.RS 4
+Label of the export directory selection field.
+.RE
+
+\fIsubmit_text\fR
+.RS 4
+Text of the form submission button.
+.RE
+
+\fIcancel_text\fR
+.RS 4
+Text of the form cancel button
+.RE
+
+\fIselect_text\fR
+.RS 4
+Placeholder of the selection field.
+.RE
+
+\fIsuccess_text\fR
+.RS 4
+Message shown in the notification on success.
+.RE
+
+\fIerror_prefix\fR
+.RS 4
+Prefix of the message shown in the notification. An error itself is appended to it automatically.
+.RE
+
+.RE
+
+\fIexcel\fR
+.RS 4
+Specifies the internationalization for exporting results to an Excel document.
+
+
+\fItest_results_sheet\fR
+.RS 4
+Name of sheet with students' results.
+.RE
+
+\fIstatistics_sheet\fR
+.RS 4
+Name of sheet with test statistics.
+.RE
+
+\fIheader_student\fR
+.RS 4
+Header for the column with student names.
+.RE
+
+\fIheader_points\fR
+.RS 4
+Header for the column with points scored by students.
+.RE
+
+\fIheader_percentage\fR
+.RS 4
+Header for the column with percentage of correct answers.
+.RE
+
+.RE
+
+\fIimage\fR
+.RS 4
+Specifies the internationalization for exporting results to a PNG histogram.
+
+\fItitle\fR
+.RS 4
+Title of the histogram.
+.RE
+
+\fIlabel_x\fR
+.RS 4
+Label for histogram x-axis (Points).
+.RE
+
+\fIlabel_y\fR
+.RS 4
+Label for histogram y-axis (Students).
+.RE
+
+.RE
+
+.RE
+
+.PP
+\fIweb\fR
+.RS 4
+Hakutest web pages internationalization.
+
+\fIeditor\fR
+.RS 4
+Customizes test web editor page static text.
+
+\fIheader\fR
+.RS 4
+Test editor page header.
+.RE
+
+\fIlabel_title\fR
+.RS 4
+Title input label.
+.RE
+
+\fIlabel_description\fR
+.RS 4
+Description input label.
+.RE
+
+\fIlabel_subject\fR
+.RS 4
+Subject input label.
+.RE
+
+\fIlabel_author\fR
+.RS 4
+Author input label.
+.RE
+
+\fIlabel_target\fR
+.RS 4
+Target audience input label.
+.RE
+
+\fIlabel_institution\fR
+.RS 4
+Educational institution input label.
+.RE
+
+\fIlabel_expires_in\fR
+.RS 4
+Expiration time input label.
+.RE
+
+\fIlabel_add_task\fR
+.RS 4
+Text of the button that adds new task.
+.RE
+
+\fIlabel_task_header\fR
+.RS 4
+Header of the task (input group).
+.RE
+
+\fIlabel_task_type\fR
+.RS 4
+Task type input label.
+.RE
+
+\fIlabel_task_type_single\fR
+.RS 4
+Single answer type label.
+.RE
+
+\fIlabel_task_type_multiple\fR
+.RS 4
+Multiple answers type label.
+.RE
+
+\fIlabel_task_type_open\fR
+.RS 4
+Open question type label.
+.RE
+
+\fIlabel_task_text\fR
+.RS 4
+Task text input label.
+.RE
+
+\fIlabel_task_answer\fR
+.RS 4
+Task correct answer input label.
+.RE
+
+\fIlabel_task_options\fR
+.RS 4
+Task answer options input label.
+.RE
+
+\fIlabel_task_add_option\fR
+.RS 4
+Text of the button that adds new answer option.
+.RE
+
+\fIlabel_add_attachment\fR
+.RS 4
+Add attachment checkbox label.
+.RE
+
+\fIlabel_attachment_name\fR
+.RS 4
+Attachment name input label.
+.RE
+
+\fIlabel_attachment_type\fR
+.RS 4
+Attachment type input label.
+.RE
+
+\fIlabel_attachment_type_file\fR
+.RS 4
+File type label.
+.RE
+
+\fIlabel_attachment_type_image\fR
+.RS 4
+Image type label.
+.RE
+
+\fIlabel_attachment_type_video\fR
+.RS 4
+Video type label.
+.RE
+
+\fIlabel_attachment_type_audio\fR
+.RS 4
+Audio type label.
+.RE
+
+\fIlabel_attachment_src\fR
+.RS 4
+Attachment source (i.e. URL) input label.
+.RE
+
+\fIlabel_upload_test_input\fR
+.RS 4
+Test file upload input text.
+.RE
+
+\fIlabel_upload_test_button\fR
+.RS 4
+Test upload button text.
+.RE
+
+\fIlabel_new_test\fR
+.RS 4
+Create new test button text.
+.RE
+
+\fIlabel_download_test\fR
+.RS 4
+Test download button text.
+.RE
+
+.RE
+
+\fIerror\fR
+.RS 4
+Internationalization of the error page.
+
+\fIheader\fR
+.RS 4
+Header of the error page.
+.RE
+
+\fIdetails\fR
+.RS 4
+Error details header (summary).
+.RE
+
+.RE
+
+\fIexpired\fR
+.RS 4
+Internationalization of the expired test page.
+
+\fIheader\fR
+.RS 4
+Header of the expired test page.
+.RE
+
+\fImessage\fR
+.RS 4
+Message with additional information.
+.RE
+
+.RE
+
+\fIsearch\fR
+.RS 4
+Internationalization of the search page.
+
+\fIinput_placeholder\fR
+.RS 4
+Placeholder text of the search input field.
+.RE
+
+\fIsearch_button_label\fR
+.RS 4
+Text of the search button.
+.RE
+
+.RE
+
+\fIsubmitted\fR
+.RS 4
+Internationalization of the submission page.
+
+\fIheader\fR
+.RS 4
+Header of the test submission page.
+.RE
+
+\fImessage\fR
+.RS 4
+Message with additional information.
+.RE
+
+.RE
+
+\fItest\fR
+.RS 4
+Internationalization of the test page.
+
+\fIstudent_name_label\fR
+.RS 4
+Label of student name input.
+.RE
+
+\fIopen_answer_label\fR
+.RS 4
+Label of open question answer input.
+.RE
+
+\fIsubmit_button_label\fR
+.RS 4
+Text of test solution submission button.
+.RE
+
+.RE
+
+.SH "Example"
+.PP
+server:
+    stop_title: Stop Hakutest
+    stop_tooltip: Stop Hakutest server and quit
+.br
+stats:
+    app:
+        label_test: Test
+        label_format: Format
+        label_directory: Export to
+        submit_text: Export
+        cancel_text: Cancel
+        select_text: (Select one)
+        success_text: Statistics exported successfully!
+        error_prefix: 'An error occurred! Detail:'
+    excel:
+        test_results_sheet: Test Results
+        statistics_sheet: Test Statistics
+        header_student: Student
+        header_points: Points
+        header_percentage: '%'
+    image:
+        title: Student Performance
+        label_x: Points
+        label_y: Students
+.br
+web:
+    editor:
+        header: Test Editor
+        label_title: 'Title:'
+        label_description: 'Description:'
+        label_subject: 'Subject:'
+        label_author: 'Author:'
+        label_target: 'Target audience:'
+        label_institution: 'Institution:'
+        label_expires_in: 'Expires in:'
+        label_add_task: + Add task
+        label_task_header: Task
+        label_task_type: 'Type:'
+        label_task_type_single: Single answer
+        label_task_type_multiple: Multiple answers
+        label_task_type_open: Open question
+        label_task_text: 'Text:'
+        label_task_answer: 'Answer:'
+        label_task_options: Answer options
+        label_task_add_option: + Add option
+        label_add_attachment: Add attachment
+        label_attachment_name: 'Name:'
+        label_attachment_type: 'Type:'
+        label_attachment_type_file: File
+        label_attachment_type_image: Image
+        label_attachment_type_video: Video
+        label_attachment_type_audio: Audio
+        label_attachment_src: 'Source (URL):'
+        label_upload_test_input: Upload test file
+        label_upload_test_button: Upload and edit
+        label_new_test: Create new test
+        label_download_test: Download test
+    error:
+        header: An error occurred!
+        details: Details
+    expired:
+        header: Test expired!
+        message: This test is no longer available
+    search:
+        input_placeholder: Search for a test
+        search_button_label: Search
+    submitted:
+        header: Submitted!
+        message: The test results are not displayed according to the system settings
+    test:
+        student_name_label: 'Your name:'
+        open_answer_label: 'Answer:'
+        submit_button_label: Submit
+.RE
+
+
+.SH "SEE ALSO"
+\fBhakutest-app\fR(7), \fBhakutest-server-applet\fR(1), \fBhakutest-statistics-gui\fR(1), \fBhakutest-statistics\fR(1)
+.PP
