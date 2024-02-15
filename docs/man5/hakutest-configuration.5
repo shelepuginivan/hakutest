@@ -1,0 +1,92 @@
+.TH "HAKUTEST\-CONFIGURATION" "5" "2024-02-15" "github.com/shelepuginivan/hakutest" "Hakutest Manual"
+
+.nh
+.ad l
+
+.SH "NAME"
+hakutest\-configuration \- hakutest configuration overview.
+
+.SH "SYNOPSIS"
+hakutest config [\fIfield\fR] [\fIvalue\fR]
+
+.SH "DESCRIPTION"
+This page describes the structure of Hakutest configuration file.
+
+.SS Configuration file
+Hakutest configuration is stored in the \fBconfig.yaml\fR file. It can be located in the following directories:
+
+\- $XDG_CONFIG_HOME/hakutest
+.br
+\- Hakutest installation directory
+
+The configuration file located in the Hakutest installation directory has higher priority.
+
+.SS Default configuration
+A configuration file with default values can be created by running the \fBhakutest-config\fR(1) command. This will create a \fBconfig.yaml\fR file in the \fB$XDG_CONFIG_HOME/hakutest\fR directory.
+
+.SS Sections of the configuration file
+Configuration is divided into sections as follows:
+
+.PP
+\fIgeneral\fR
+.RS 4
+Common Hakutest settings, such as data storage directories.
+
+\fItests_directory\fR (string)
+.RS 4
+Test files storage directory, absolute or relative path, environment variables are supported.
+.RE
+
+\fIresults_directory\fR (string)
+.RS 4
+Test results storage directory, absolute or relative path, environment variables are supported
+.RE
+
+\fIshow_results\fR (bool)
+.RS 4
+Show the results to the student after the submission.
+.RE
+
+\fIoverwrite_results\fR (bool)
+.RS 4
+Allow results to be overwritten if the same student resubmits the solution again.
+.RE
+.RE
+
+.PP
+\fIserver\fR
+.RS 4
+Settings of the Hakutest server.
+
+\fImode\fR (release|debug|test)
+.RS 4
+Mode in which the server will run.
+.RE
+
+\fIport\fR (integer in range 1024 to 65535)
+.RS 4
+Port on which the server will run.
+.RE
+.RE
+
+.RE
+
+.SS Managing configuration.
+You can manage configuration either by editing \fBconfig.yaml\fR file manually or by using the \fBhakutest-config\fR(1) command.
+
+.SH "Example"
+.PP
+general:
+    tests_directory: ./data/tests
+    results_directory: ./data/results
+    show_results: true
+    overwrite_results: false
+.br
+server:
+    port: 8080
+    mode: release
+.RE
+
+
+.SH "SEE ALSO"
+\fBhakutest-app\fR(7), \fBhakutest-config\fR(1)
