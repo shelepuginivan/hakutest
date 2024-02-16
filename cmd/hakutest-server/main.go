@@ -4,10 +4,12 @@ import (
 	"context"
 	"net/http"
 	"os"
+	"path/filepath"
 
 	"github.com/getlantern/systray"
 	"github.com/shelepuginivan/hakutest/internal/app/server"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/directories"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
@@ -35,7 +37,7 @@ func onReady() {
 
 	systray.SetTitle(appName)
 	systray.SetTooltip(appName)
-	systray.SetIcon(getIcon(iconPath))
+	systray.SetIcon(getIcon(filepath.Join(directories.Executable(), iconPath)))
 
 	mStop := systray.AddMenuItem(serverI18n.StopTitle, serverI18n.StopTooltip)
 
