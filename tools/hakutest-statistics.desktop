@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Hakutest Statistics
+Comment=Hakutest Statistics export graphical interface
+Exec=hakutest-statistics
+Icon=hakutest
+Terminal=false
+Type=Application
+Categories=Education;
+Keywords=education;fyne;hakutest;
