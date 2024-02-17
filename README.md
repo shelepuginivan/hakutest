@@ -1,5 +1,5 @@
 <div align="center">
-<img src="./.github/assets/logo.svg" alt="Hakutest">
+<img src="./assets/logo.svg" alt="Hakutest">
 <p>Reliable and efficient educational testing platform.</p>
 </div>
 
