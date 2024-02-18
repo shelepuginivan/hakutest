@@ -9,7 +9,6 @@ import (
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/layout"
 	"github.com/shelepuginivan/hakutest/internal/app/desktop"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
@@ -62,16 +61,12 @@ func main() {
 		appI18n,
 	)
 
-	w.SetContent(container.NewVBox(
-		layout.NewSpacer(),
-		layout.NewSpacer(),
-		layout.NewSpacer(),
+	content := container.New(
+		desktop.NewPaddedLayout(96),
 		headerLabel,
-		layout.NewSpacer(),
 		form,
-		layout.NewSpacer(),
-		layout.NewSpacer(),
-		layout.NewSpacer(),
-	))
+	)
+
+	w.SetContent(content)
 	w.ShowAndRun()
 }
