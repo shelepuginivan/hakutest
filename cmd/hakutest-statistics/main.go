@@ -10,6 +10,7 @@ import (
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
+	"github.com/shelepuginivan/hakutest/internal/app/desktop"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/statistics"
@@ -40,7 +41,7 @@ func main() {
 	headerLabel.TextSize = 36
 	headerLabel.Alignment = fyne.TextAlignCenter
 
-	form := statsExportForm(
+	form := desktop.NewStatsExportForm(
 		w,
 		resultsService.GetResultsList(),
 		formats,

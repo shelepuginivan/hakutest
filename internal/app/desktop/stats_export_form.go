@@ -1,31 +1,15 @@
-package main
+package desktop
 
 import (
 	"errors"
 	"path/filepath"
 
 	"fyne.io/fyne/v2"
-	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/widget"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 )
 
-func chooseDirectoryButton(parent fyne.Window, initialPath string) *widget.Button {
-	button := widget.NewButton(initialPath, func() {})
-
-	directoryDialog := dialog.NewFolderOpen(func(lu fyne.ListableURI, err error) {
-		if err != nil || lu == nil {
-			return
-		}
-
-		button.SetText(lu.Path())
-	}, parent)
-
-	button.OnTapped = directoryDialog.Show
-	return button
-}
-
-func statsExportForm(
+func NewStatsExportForm(
 	parent fyne.Window,
 	tests []string,
 	formats []string,
@@ -35,7 +19,7 @@ func statsExportForm(
 	onError func(err error),
 	appI18n i18n.StatsAppI18n,
 ) *widget.Form {
-	directoryButton := chooseDirectoryButton(parent, initialPath)
+	directoryButton := NewChooseDirectoryButton(parent, initialPath)
 	testSelect := widget.NewSelect(tests, func(_ string) {})
 	formatSelect := widget.NewSelect(formats, func(_ string) {})
 
