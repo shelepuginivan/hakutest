@@ -3,9 +3,9 @@ set -e
 
 DOCUMENTATION_URL="https://hakutest.shelepugin.ru"
 REPOSITORY_URL="https://github.com/shelepuginivan/hakutest"
-DOWNLOAD_URL=""
-ICONS_DOWNLOAD_URL=""
-MAN_DOWNLOAD_URL=""
+DOWNLOAD_URL="https://github.com/shelepuginivan/hakutest/releases/latest/download/hakutest-linux64.tar.gz"
+ICONS_DOWNLOAD_URL="https://raw.githubusercontent.com/shelepuginivan/hakutest/main/assets/hakutest.svg"
+MAN_DOWNLOAD_URL="https://github.com/shelepuginivan/hakutest/releases/latest/download/hakutest-manual.tar.gz"
 
 # init initializes environment variables.
 init() {
