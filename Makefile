@@ -8,7 +8,7 @@ linux:
 	GOARCH=amd64 GOOS=linux CGO_ENABLED=1 go build -trimpath -o ${TARGET_DIR}/linux/${BINARY_NAME}-server ./cmd/hakutest-server
 	GOARCH=amd64 GOOS=linux CGO_ENABLED=1 go build -trimpath -o ${TARGET_DIR}/linux/${BINARY_NAME}-statistics ./cmd/hakutest-statistics
 	cp -r web ${TARGET_DIR}/linux
-	tar -czf ${TARGET_DIR}/${BINARY_NAME}-linux.tar.gz --transform 's/^./${BINARY_NAME}/' -C ${TARGET_DIR}/linux .
+	tar -czf ${TARGET_DIR}/${BINARY_NAME}-linux64.tar.gz --transform 's/^./${BINARY_NAME}/' -C ${TARGET_DIR}/linux .
 	rm -r ${TARGET_DIR}/linux
 
 windows:
@@ -26,7 +26,7 @@ windows:
 mac:
 	GOARCH=amd64 GOOS=darwin go build -trimpath -o ${TARGET_DIR}/mac/${BINARY_NAME} ./cmd/hakutest
 	cp -r web ${TARGET_DIR}/mac
-	tar -czf ${TARGET_DIR}/${BINARY_NAME}-mac.tar.gz --transform 's/^./${BINARY_NAME}/' -C ${TARGET_DIR}/mac .
+	tar -czf ${TARGET_DIR}/${BINARY_NAME}-macos.tar.gz --transform 's/^./${BINARY_NAME}/' -C ${TARGET_DIR}/mac .
 	rm -r ${TARGET_DIR}/mac
 
 manual:
