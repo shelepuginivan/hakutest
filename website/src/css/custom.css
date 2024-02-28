@@ -18,6 +18,22 @@
     --ifm-color-primary-lightest: #54cd4e;
 }
 
+div[class^='announcementBar_'] {
+    font-size: 20px;
+    font-weight: bold;
+
+    --site-announcement-bar-stripe-color1: #fde7f2;
+    --site-announcement-bar-stripe-color2: #d1ecd0;
+
+    background: repeating-linear-gradient(
+        35deg,
+        var(--site-announcement-bar-stripe-color1),
+        var(--site-announcement-bar-stripe-color1) 20px,
+        var(--site-announcement-bar-stripe-color2) 10px,
+        var(--site-announcement-bar-stripe-color2) 40px
+    );
+}
+
 @media screen and (max-width: 650px) {
     .button--secondary {
         font-size: medium;

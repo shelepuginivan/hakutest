@@ -73,6 +73,12 @@ const config: Config = {
 
     themeConfig: {
         image: 'img/hakutest-social-card.jpg',
+        announcementBar: {
+            id: 'announcementBar',
+            content:
+                '✨ <a target="_blank" rel="noopener noreferrer" href="/blog/introducing-hakutest">Hakutest v0.1.0</a> is released! ✨',
+            isCloseable: true,
+        },
         navbar: {
             title: 'Hakutest',
             logo: {
