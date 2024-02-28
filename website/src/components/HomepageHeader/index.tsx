@@ -23,6 +23,12 @@ const HomepageHeader = () => {
                     </Link>
                     <Link
                         className="button button--secondary button--lg"
+                        to="/docs/installation"
+                    >
+                        <Translate>Installation ⚙️</Translate>
+                    </Link>
+                    <Link
+                        className="button button--secondary button--lg"
                         to="/docs/intro"
                     >
                         <Translate>Documentation 📗</Translate>
