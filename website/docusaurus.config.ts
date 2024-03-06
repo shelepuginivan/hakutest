@@ -114,6 +114,30 @@ const config: Config = {
                             label: 'Getting started',
                             to: '/docs/intro',
                         },
+                        {
+                            label: 'Guide',
+                            to: '/docs/category/guide',
+                        },
+                        {
+                            label: 'App',
+                            to: '/docs/category/app',
+                        },
+                        {
+                            label: 'Statistics',
+                            to: '/docs/category/statistics',
+                        },
+                        {
+                            label: 'Configuration',
+                            to: '/docs/category/configuration',
+                        },
+                        {
+                            label: 'Internationalization',
+                            to: '/docs/category/internationalization',
+                        },
+                        {
+                            label: 'CLI',
+                            to: '/docs/category/commands',
+                        },
                     ],
                 },
                 {
@@ -129,14 +153,12 @@ const config: Config = {
                     title: 'More',
                     items: [
                         {
-                            label: 'Blog',
-                            to: '/blog',
+                            label: 'Install Hakutest',
+                            to: '/docs/installation',
                         },
                         {
-                            html: `
-              <a href="https://www.netlify.com" target="_blank" rel="noreferrer noopener" aria-label="Deploys by Netlify">
-                  <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" alt="Deploys by Netlify" width="114" height="51" />
-              </a>`,
+                            label: 'Blog',
+                            to: '/blog',
                         },
                     ],
                 },
