@@ -125,7 +125,7 @@
                         class="input-datetime"
                         name="expiresIn"
                         type="datetime-local"
-                        value="{{ .Test.ExpiresIn.Format "2006-01-02T15:04:05" }}"
+                        value="{{ if not .Test.ExpiresIn.IsZero }}{{ .Test.ExpiresIn.Format "2006-01-02T15:04:05" }}{{ end }}"
                     >
                 </div>
                 
