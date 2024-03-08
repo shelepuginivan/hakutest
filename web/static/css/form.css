@@ -18,6 +18,7 @@
 .input-wrapper > label {
     min-width: 100px;
     width: min-content;
+    font-size: small;
 }
 
 .input-text,
