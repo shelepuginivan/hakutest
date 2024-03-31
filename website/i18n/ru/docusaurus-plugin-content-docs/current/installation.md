@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Windows
 
-1. Скачайте [hakutest-win64.zip](https://github.com/shelepuginivan/hakutest/releases/download/v0.1.0/hakutest-win64.zip).
+1. Скачайте [hakutest-win64.zip](https://github.com/shelepuginivan/hakutest/releases/download/v0.1.1/hakutest-win64.zip).
 2. Распакуйте архив.
 3. Запустите `hakutest-server.exe`.
 
@@ -20,13 +20,13 @@ curl -fsSL https://raw.githubusercontent.com/shelepuginivan/hakutest/main/script
 
 ### Tarball
 
-1. Скачайте [hakutest-linux64.tar.gz](https://github.com/shelepuginivan/hakutest/releases/download/v0.1.0/hakutest-linux64.tar.gz).
+1. Скачайте [hakutest-linux64.tar.gz](https://github.com/shelepuginivan/hakutest/releases/download/v0.1.1/hakutest-linux64.tar.gz).
 2. Распакуйте архив.
 3. Запустите `./hakutest`.
 
 ## macOS
 
-1. Скачайте [hakutest-macos.tar.gz](https://github.com/shelepuginivan/hakutest/releases/download/v0.1.0/hakutest-macos.tar.gz).
+1. Скачайте [hakutest-macos.tar.gz](https://github.com/shelepuginivan/hakutest/releases/download/v0.1.1/hakutest-macos.tar.gz).
 2. Распакуйте архив.
 3. Запустите `./hakutest`.
 
@@ -40,8 +40,8 @@ curl -fsSL https://raw.githubusercontent.com/shelepuginivan/hakutest/main/script
 ## Контрольные суммы SHA256
 
 ```
-b1ae4e41f92bfbae4f2f62a6a64390e1de5a6e4a59546f557b9c6002e96e5582  hakutest-linux64.tar.gz
-eaae8b0763fea51099ecd628e27c7fdb53d93d3f86564020ced1f2a3674a8bde  hakutest-macos.tar.gz
-c2f3412bb302ffc055d179027d9a455943ac2571e988592e92805cc0395756c5  hakutest-manual.tar.gz
-177869f5d4be107ffc5f2933882216a1afb5b829c36fe1c18cdf9a65dc9b30ea  hakutest-win64.zip
+ac3c03abb7995c28de4240ac1cb617d64e2ea48dfeb0a62bf1c81445b1c30b38  hakutest-linux64.tar.gz
+995559196be3005aeca71f5b358dc37f120d7f73030506e636a42abf2dcfe32f  hakutest-macos.tar.gz
+417eb430a839fc567b1ed79d0f4461b99afb9bd0b1cc1048f2688b3863c98136  hakutest-manual.tar.gz
+0e01f36a19517d8a929a9e7f86149648cd175cd2d9164dca639af94e37427def  hakutest-win64.zip
 ```

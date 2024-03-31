@@ -76,7 +76,7 @@ const config: Config = {
         announcementBar: {
             id: 'announcementBar',
             content:
-                '✨ <a target="_blank" rel="noopener noreferrer" href="/blog/introducing-hakutest">Hakutest v0.1.0</a> is released! ✨',
+                '✨ <a target="_blank" rel="noopener noreferrer" href="/docs/installation">Hakutest v0.1.1</a> is released! ✨',
             isCloseable: true,
         },
         navbar: {
