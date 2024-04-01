@@ -50,6 +50,7 @@ web:
     label_task_type_multiple: Несколько вариантов ответа
     label_task_type_open: Открытый вопрос
     label_task_type_single: Один вариант ответа
+    label_task_type_file: Ответ с файлом(ами)
     label_title: "Название:"
     label_upload_test_button: Загрузить и редактировать
     label_upload_test_input: Выберите файл теста
