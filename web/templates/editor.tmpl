@@ -10,6 +10,7 @@
                 ["labelTaskTypeSingle", "{{ .Config.LabelTaskTypeSingle }}"],
                 ["labelTaskTypeMultiple", "{{ .Config.LabelTaskTypeMultiple }}"],
                 ["labelTaskTypeOpen", "{{ .Config.LabelTaskTypeOpen }}"],
+                ["labelTaskTypeFile", "{{ .Config.LabelTaskTypeFile }}"],
                 ["labelTaskText", "{{ .Config.LabelTaskText }}"],
                 ["labelTaskAnswer", "{{ .Config.LabelTaskAnswer }}"],
                 ["labelTaskOptions", "{{ .Config.LabelTaskOptions }}"],
@@ -174,6 +175,15 @@
                                     {{ else }}
                                         <option value="open">
                                             {{ $.Config.LabelTaskTypeOpen }}
+                                        </option>
+                                    {{ end }}
+                                    {{ if eq $task.Type "file" }}
+                                        <option selected value="file">
+                                            {{ $.Config.LabelTaskTypeFile }}
+                                        </option>
+                                    {{ else }}
+                                        <option value="file">
+                                            {{ $.Config.LabelTaskTypeFile }}
                                         </option>
                                     {{ end }}
                                 </select>

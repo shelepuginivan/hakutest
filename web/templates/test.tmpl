@@ -16,7 +16,7 @@
             <h1 class="main-header">{{ .Title }}</h1>
         </header>
         <main class="main">
-            <form method="POST" class="form" autocomplete="off">
+            <form method="POST" class="form" autocomplete="off" enctype="multipart/form-data">
                 <section class="task">
                     <div class="input-wrapper">
                         <label for="student">{{ .Config.StudentNameLabel }}</label>
@@ -109,6 +109,20 @@
                                             class="input-text"
                                             type="text"
                                             name="{{ $task_index }}"
+                                        >
+                                    </div>
+                                {{ else if eq .Type "file" }}
+                                    {{ $input_id := (printf "task-%d" $task_index) }}
+                                    <div class="input-wrapper">
+                                        <label for="{{ $input_id }}">
+                                            {{ $.Config.OpenAnswerLabel }}
+                                        </label>
+                                        <input
+                                            id="{{ $input_id }}"
+                                            class="input-text"
+                                            type="file"
+                                            name="{{ $task_index }}"
+                                            multiple
                                         >
                                     </div>
                                 {{ end }}

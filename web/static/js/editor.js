@@ -28,6 +28,9 @@ const addTask = (taskIndex) => {
                 <option value="open">
                     ${config.get("labelTaskTypeOpen")}
                 </option>
+                <option value="file">
+                    ${config.get("labelTaskTypeFile")}
+                </option>
             </select>
         </div>
         <div class="input-wrapper">
