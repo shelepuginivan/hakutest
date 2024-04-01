@@ -66,9 +66,7 @@ func (co TestController) GetTest(c *gin.Context) {
 }
 
 func (co TestController) SubmitTest(c *gin.Context) {
-	err := c.Request.ParseForm()
-
-	if err != nil {
+	if err := c.Request.ParseMultipartForm(0); err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
 			"Code":   http.StatusUnprocessableEntity,
 			"Config": i18n.New().Web.Error,
@@ -109,7 +107,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 		return
 	}
 
-	results := co.r.CheckAnswers(t, c.Request.PostForm)
+	results := co.r.CheckAnswersWithFiles(name, t, c.Request.MultipartForm.Value, c.Request.MultipartForm.File)
 
 	if err := co.r.Save(results, name); err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
