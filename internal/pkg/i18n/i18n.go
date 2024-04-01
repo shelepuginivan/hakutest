@@ -60,6 +60,7 @@ type WebEditorI18n struct {
 	LabelTaskTypeSingle      string `yaml:"label_task_type_single" mapstructure:"label_task_type_single"`
 	LabelTaskTypeMultiple    string `yaml:"label_task_type_multiple" mapstructure:"label_task_type_multiple"`
 	LabelTaskTypeOpen        string `yaml:"label_task_type_open" mapstructure:"label_task_type_open"`
+	LabelTaskTypeFile        string `yaml:"label_task_type_file" mapstructure:"label_task_type_file"`
 	LabelTaskText            string `yaml:"label_task_text" mapstructure:"label_task_text"`
 	LabelTaskAnswer          string `yaml:"label_task_answer" mapstructure:"label_task_answer"`
 	LabelTaskOptions         string `yaml:"label_task_options" mapstructure:"label_task_options"`
@@ -176,6 +177,7 @@ func Default() I18n {
 				LabelTaskTypeSingle:      "Single answer",
 				LabelTaskTypeMultiple:    "Multiple answers",
 				LabelTaskTypeOpen:        "Open question",
+				LabelTaskTypeFile:        "Answer with file(s)",
 				LabelTaskText:            "Text:",
 				LabelTaskAnswer:          "Answer:",
 				LabelTaskOptions:         "Answer options",
