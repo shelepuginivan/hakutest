@@ -1,6 +1,9 @@
 package results
 
 import (
+	"fmt"
+	"io"
+	"mime/multipart"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -69,6 +72,42 @@ func (s ResultsService) CheckAnswers(t test.Test, answers map[string][]string) T
 	}
 
 	results.Results.Percentage = 100 * results.Results.Points / len(t.Tasks)
+
+	return results
+}
+
+// CheckAnswersWithFiles returns the results of the test, but also saves uploaded files.
+func (s ResultsService) CheckAnswersWithFiles(testName string, t test.Test, answers map[string][]string, files map[string][]*multipart.FileHeader) TestResults {
+	results := s.CheckAnswers(t, answers)
+
+	for i, fileHeaders := range files {
+		index, err := strconv.Atoi(i)
+		if err != nil {
+			continue
+		}
+
+		for fileIndex, file := range fileHeaders {
+			src, err := file.Open()
+			if err != nil {
+				continue
+			}
+			defer src.Close()
+
+			filename := fmt.Sprintf("%s-%s-%d%s", i, results.Student, fileIndex+1, filepath.Ext(file.Filename))
+
+			if err := s.SaveFile(testName, src, filename); err != nil {
+				continue
+			}
+
+			results.Results.Tasks[strconv.Itoa(index+1)] = TaskResult{
+				Answer:  filename,
+				Correct: true,
+			}
+		}
+
+		results.Results.Points += 1
+		results.Results.Percentage = 100 * results.Results.Points / len(t.Tasks)
+	}
 
 	return results
 }
@@ -163,6 +202,25 @@ func (s ResultsService) Save(r TestResults, name string) error {
 	}
 
 	return os.WriteFile(resultsFilePath, data, 0666)
+}
+
+// SaveFile saves file attached to the test solution in the respective results directory.
+func (s ResultsService) SaveFile(testName string, file multipart.File, filename string) error {
+	testResultsDirectory := s.GetTestResultsDirectory(testName)
+
+	err := os.MkdirAll(testResultsDirectory, os.ModeDir|os.ModePerm)
+	if err != nil && !os.IsExist(err) {
+		return err
+	}
+
+	dst, err := os.Create(filepath.Join(testResultsDirectory, filename))
+	if err != nil {
+		return err
+	}
+	defer dst.Close()
+
+	_, err = io.Copy(dst, file)
+	return err
 }
 
 // Remove removes the directory that stores test solutions.
