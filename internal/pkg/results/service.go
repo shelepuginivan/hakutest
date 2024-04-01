@@ -212,7 +212,15 @@ func (s ResultsService) SaveFile(testName string, file multipart.File, filename 
 		return err
 	}
 
-	dst, err := os.Create(filepath.Join(testResultsDirectory, filename))
+	fullpath := filepath.Join(testResultsDirectory, filename)
+
+	_, err = os.Stat(fullpath)
+	if !os.IsNotExist(err) && !config.New().General.OverwriteResults {
+		// Submitted file was already written
+		return err
+	}
+
+	dst, err := os.Create(fullpath)
 	if err != nil {
 		return err
 	}
