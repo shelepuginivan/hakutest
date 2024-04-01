@@ -136,18 +136,18 @@ func (s ResultsService) GetResultsList() []string {
 
 // GetTestResultsDirectory returns the absolute path of the test results directory by its name.
 // It doesn't check whether a test with this name or a results directory associated with it exists.
-func (s ResultsService) GetTestResultsDirectory(name string) string {
-	resultsDirectory := config.Default().General.ResultsDirectory
-	testName := strings.TrimSuffix(name, ".json")
+func (s ResultsService) GetTestResultsDirectory(testName string) string {
+	resultsDirectory := config.New().General.ResultsDirectory
+	name := strings.TrimSuffix(testName, ".json")
 
-	return filepath.Join(resultsDirectory, testName)
+	return filepath.Join(resultsDirectory, name)
 }
 
 // GetResultsOfTest retrieves all results of the test from the results directory specified in the configuration.
 // The name is the filename of the test.
-func (s ResultsService) GetResultsOfTest(name string) ([]TestResults, error) {
+func (s ResultsService) GetResultsOfTest(testName string) ([]TestResults, error) {
 	results := []TestResults{}
-	testResultsDir := filepath.Join(config.New().General.ResultsDirectory, name)
+	testResultsDir := s.GetTestResultsDirectory(testName)
 	entries, err := os.ReadDir(testResultsDir)
 
 	if err != nil {
@@ -179,10 +179,9 @@ func (s ResultsService) GetResultsOfTest(name string) ([]TestResults, error) {
 
 // Save saves test results in the results directory specified in the configuration.
 // The results are saved in a subdirectory name.
-func (s ResultsService) Save(r TestResults, name string) error {
+func (s ResultsService) Save(r TestResults, testName string) error {
 	generalConfig := config.New().General
-	testName := strings.TrimSuffix(name, ".json")
-	testResultsDirectory := filepath.Join(generalConfig.ResultsDirectory, testName)
+	testResultsDirectory := s.GetTestResultsDirectory(testName)
 	resultsFilePath := filepath.Join(testResultsDirectory, r.Student+".txt")
 
 	_, err := os.Stat(resultsFilePath)
@@ -225,6 +224,6 @@ func (s ResultsService) SaveFile(testName string, file multipart.File, filename 
 
 // Remove removes the directory that stores test solutions.
 // It uses name of the test (i.e. the name of the associated directory).
-func (s ResultsService) Remove(name string) error {
-	return os.RemoveAll(s.GetTestResultsDirectory(name))
+func (s ResultsService) Remove(testName string) error {
+	return os.RemoveAll(s.GetTestResultsDirectory(testName))
 }
