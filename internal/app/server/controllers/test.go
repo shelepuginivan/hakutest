@@ -66,7 +66,12 @@ func (co TestController) GetTest(c *gin.Context) {
 }
 
 func (co TestController) SubmitTest(c *gin.Context) {
-	if err := c.Request.ParseMultipartForm(0); err != nil {
+	maxUploadSize := config.New().Server.MaxUploadSize
+
+	// Limit the size of the submitted test form.
+	c.Request.Body = http.MaxBytesReader(c.Writer, c.Request.Body, maxUploadSize)
+
+	if err := c.Request.ParseMultipartForm(maxUploadSize); err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
 			"Code":   http.StatusUnprocessableEntity,
 			"Config": i18n.New().Web.Error,

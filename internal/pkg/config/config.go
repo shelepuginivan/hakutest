@@ -32,6 +32,9 @@ type ServerConfig struct {
 
 	// Mode in which server is started.
 	Mode string `yaml:"mode" mapstructure:"mode"`
+
+	// Max size (in bytes) of the submitted test form.
+	MaxUploadSize int64 `yaml:"max_upload_size" mapstructure:"max_upload_size"`
 }
 
 // Config represents Hakutest configuration.
@@ -67,8 +70,9 @@ func Default() Config {
 			OverwriteResults: false,
 		},
 		Server: ServerConfig{
-			Port: 8080,
-			Mode: "release",
+			Port:          8080,
+			Mode:          "release",
+			MaxUploadSize: 1024 * 1024, // 1 MB
 		},
 	}
 
