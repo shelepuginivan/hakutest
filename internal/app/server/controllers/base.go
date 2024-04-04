@@ -19,9 +19,10 @@ func (co BaseController) I18n() *i18n.I18n {
 
 func (co BaseController) SendErrorResponse(c *gin.Context, code int, err error, detail string) {
 	c.HTML(code, "error.tmpl", gin.H{
-		"Code":   code,
-		"I18n":   i18n.New().Web.Error,
-		"Detail": detail,
-		"Error":  err.Error(),
+		"Language": co.I18n().Language,
+		"Code":     code,
+		"I18n":     co.I18n().Web.Error,
+		"Detail":   detail,
+		"Error":    err.Error(),
 	})
 }

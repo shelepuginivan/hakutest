@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
@@ -19,7 +18,8 @@ func NewSearchController(s *test.TestService) *SearchController {
 
 func (co SearchController) SearchPage(c *gin.Context) {
 	c.HTML(http.StatusOK, "search.tmpl", gin.H{
-		"I18n":     i18n.New().Web.Search,
+		"Language": co.I18n().Language,
+		"I18n":     co.I18n().Web.Search,
 		"TestList": co.s.GetTestList(),
 	})
 }

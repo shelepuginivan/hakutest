@@ -7,7 +7,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
-	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
@@ -41,16 +40,18 @@ func (co TestController) GetTest(c *gin.Context) {
 
 	if t.IsExpired() {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
-			"I18n": i18n.New().Web.Expired,
+			"Language": co.I18n().Language,
+			"I18n":     co.I18n().Web.Expired,
 		})
 
 		return
 	}
 
 	c.HTML(http.StatusOK, "test.tmpl", gin.H{
-		"I18n":  i18n.New().Web.Test,
-		"Title": t.Title,
-		"Tasks": t.Tasks,
+		"Language": co.I18n().Language,
+		"I18n":     co.I18n().Web.Test,
+		"Title":    t.Title,
+		"Tasks":    t.Tasks,
 		"url": func(s string) template.URL {
 			return template.URL(s)
 		},
@@ -89,7 +90,8 @@ func (co TestController) SubmitTest(c *gin.Context) {
 
 	if t.IsExpired() {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
-			"I18n": i18n.New().Web.Expired,
+			"Language": co.I18n().Language,
+			"I18n":     co.I18n().Web.Expired,
 		})
 
 		return
@@ -104,13 +106,15 @@ func (co TestController) SubmitTest(c *gin.Context) {
 
 	if config.New().General.ShowResults {
 		c.HTML(http.StatusCreated, "results.tmpl", gin.H{
-			"Student": results.Student,
-			"Results": results.Results,
+			"Language": co.I18n().Language,
+			"Student":  results.Student,
+			"Results":  results.Results,
 		})
 		return
 	}
 
 	c.HTML(http.StatusCreated, "submitted.tmpl", gin.H{
-		"I18n": i18n.New().Web.Submitted,
+		"Language": co.I18n().Language,
+		"I18n":     co.I18n().Web.Submitted,
 	})
 }

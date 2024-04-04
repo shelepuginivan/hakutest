@@ -9,7 +9,6 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
@@ -23,14 +22,16 @@ func NewEditorController() *EditorController {
 
 func (co EditorController) ChooseTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor_upload.tmpl", gin.H{
-		"I18n": i18n.New().Web.Editor,
+		"Language": co.I18n().Language,
+		"I18n":     co.I18n().Web.Editor,
 	})
 }
 
 func (co EditorController) NewTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
-		"I18n": i18n.New().Web.Editor,
-		"Test": test.Test{},
+		"Language": co.I18n().Language,
+		"I18n":     co.I18n().Web.Editor,
+		"Test":     test.Test{},
 		"incr": func(n int) int {
 			return n + 1
 		},
@@ -76,8 +77,9 @@ func (co EditorController) UploadTest(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
-		"I18n": i18n.New().Web.Editor,
-		"Test": t,
+		"Language": co.I18n().Language,
+		"I18n":     co.I18n().Web.Editor,
+		"Test":     t,
 		"incr": func(n int) int {
 			return n + 1
 		},
