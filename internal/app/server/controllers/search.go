@@ -18,7 +18,7 @@ func NewSearchController(s *test.TestService) *SearchController {
 
 func (co SearchController) SearchPage(c *gin.Context) {
 	c.HTML(http.StatusOK, "search.tmpl", gin.H{
-		"Config":   i18n.New().Web.Search,
+		"I18n":     i18n.New().Web.Search,
 		"TestList": co.s.GetTestList(),
 	})
 }

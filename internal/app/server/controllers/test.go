@@ -36,7 +36,7 @@ func (co TestController) GetTest(c *gin.Context) {
 
 		c.HTML(code, "error.tmpl", gin.H{
 			"Code":   code,
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Detail": detail,
 			"Error":  err.Error(),
 		})
@@ -46,16 +46,16 @@ func (co TestController) GetTest(c *gin.Context) {
 
 	if t.IsExpired() {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
-			"Config": i18n.New().Web.Expired,
+			"I18n": i18n.New().Web.Expired,
 		})
 
 		return
 	}
 
 	c.HTML(http.StatusOK, "test.tmpl", gin.H{
-		"Config": i18n.New().Web.Test,
-		"Title":  t.Title,
-		"Tasks":  t.Tasks,
+		"I18n":  i18n.New().Web.Test,
+		"Title": t.Title,
+		"Tasks": t.Tasks,
 		"url": func(s string) template.URL {
 			return template.URL(s)
 		},
@@ -74,7 +74,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 	if err := c.Request.ParseMultipartForm(maxUploadSize); err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
 			"Code":   http.StatusUnprocessableEntity,
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
 		})
@@ -96,7 +96,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 
 		c.HTML(code, "error.tmpl", gin.H{
 			"Code":   code,
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Detail": detail,
 			"Error":  err.Error(),
 		})
@@ -106,7 +106,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 
 	if t.IsExpired() {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
-			"Config": i18n.New().Web.Expired,
+			"I18n": i18n.New().Web.Expired,
 		})
 
 		return
@@ -117,7 +117,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 	if err := co.r.Save(results, name); err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
 			"Code":   http.StatusBadRequest,
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Detail": "failed to save test results",
 			"Error":  err.Error(),
 		})
@@ -134,6 +134,6 @@ func (co TestController) SubmitTest(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusCreated, "submitted.tmpl", gin.H{
-		"Config": i18n.New().Web.Submitted,
+		"I18n": i18n.New().Web.Submitted,
 	})
 }

@@ -5,24 +5,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script>
             const config = new Map([
-                ["labelTaskHeader",  "{{ .Config.LabelTaskHeader }}"],
-                ["labelTaskType", "{{ .Config.LabelTaskType }}"],
-                ["labelTaskTypeSingle", "{{ .Config.LabelTaskTypeSingle }}"],
-                ["labelTaskTypeMultiple", "{{ .Config.LabelTaskTypeMultiple }}"],
-                ["labelTaskTypeOpen", "{{ .Config.LabelTaskTypeOpen }}"],
-                ["labelTaskTypeFile", "{{ .Config.LabelTaskTypeFile }}"],
-                ["labelTaskText", "{{ .Config.LabelTaskText }}"],
-                ["labelTaskAnswer", "{{ .Config.LabelTaskAnswer }}"],
-                ["labelTaskOptions", "{{ .Config.LabelTaskOptions }}"],
-                ["labelTaskAddOption", "{{ .Config.LabelTaskAddOption }}"],
-                ["labelAddAttachment", "{{ .Config.LabelAddAttachment }}"],
-                ["labelAttachmentType", "{{ .Config.LabelAttachmentType }}"],
-                ["labelAttachmentTypeFile", "{{ .Config.LabelAttachmentTypeFile }}"],
-                ["labelAttachmentTypeImage", "{{ .Config.LabelAttachmentTypeImage }}"],
-                ["labelAttachmentTypeVideo", "{{ .Config.LabelAttachmentTypeVideo }}"],
-                ["labelAttachmentTypeAudio", "{{ .Config.LabelAttachmentTypeAudio }}"],
-                ["labelAttachmentName", "{{ .Config.LabelAttachmentName }}"],
-                ["labelAttachmentSrc", "{{ .Config.LabelAttachmentSrc }}"],
+                ["labelTaskHeader",  "{{ .I18n.LabelTaskHeader }}"],
+                ["labelTaskType", "{{ .I18n.LabelTaskType }}"],
+                ["labelTaskTypeSingle", "{{ .I18n.LabelTaskTypeSingle }}"],
+                ["labelTaskTypeMultiple", "{{ .I18n.LabelTaskTypeMultiple }}"],
+                ["labelTaskTypeOpen", "{{ .I18n.LabelTaskTypeOpen }}"],
+                ["labelTaskTypeFile", "{{ .I18n.LabelTaskTypeFile }}"],
+                ["labelTaskText", "{{ .I18n.LabelTaskText }}"],
+                ["labelTaskAnswer", "{{ .I18n.LabelTaskAnswer }}"],
+                ["labelTaskOptions", "{{ .I18n.LabelTaskOptions }}"],
+                ["labelTaskAddOption", "{{ .I18n.LabelTaskAddOption }}"],
+                ["labelAddAttachment", "{{ .I18n.LabelAddAttachment }}"],
+                ["labelAttachmentType", "{{ .I18n.LabelAttachmentType }}"],
+                ["labelAttachmentTypeFile", "{{ .I18n.LabelAttachmentTypeFile }}"],
+                ["labelAttachmentTypeImage", "{{ .I18n.LabelAttachmentTypeImage }}"],
+                ["labelAttachmentTypeVideo", "{{ .I18n.LabelAttachmentTypeVideo }}"],
+                ["labelAttachmentTypeAudio", "{{ .I18n.LabelAttachmentTypeAudio }}"],
+                ["labelAttachmentName", "{{ .I18n.LabelAttachmentName }}"],
+                ["labelAttachmentSrc", "{{ .I18n.LabelAttachmentSrc }}"],
             ])
         </script>
         <link rel="stylesheet" href="/static/css/fonts.css">
@@ -31,12 +31,12 @@
         <link rel="stylesheet" href="/static/css/form.css">
         <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
         <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
-        <title>{{ .Config.Header }}</title>
+        <title>{{ .I18n.Header }}</title>
     </head>
     <body>
         <header class="header">
             <h1 class="main-header">
-                {{ .Config.Header }}
+                {{ .I18n.Header }}
             </h1>
         </header>
         <main class="main">
@@ -48,7 +48,7 @@
             >
                 <div class="input-wrapper">
                     <label for="title">
-                        {{ .Config.LabelTitle }}
+                        {{ .I18n.LabelTitle }}
                     </label>
                     <input
                         id="title"
@@ -60,7 +60,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="description">
-                        {{ .Config.LabelDescription }}
+                        {{ .I18n.LabelDescription }}
                     </label>
                     <textarea
                         id="description"
@@ -71,7 +71,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="subject">
-                        {{ .Config.LabelSubject }}
+                        {{ .I18n.LabelSubject }}
                     </label>
                     <input
                         id="subject"
@@ -83,7 +83,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="author">
-                        {{ .Config.LabelAuthor }}
+                        {{ .I18n.LabelAuthor }}
                     </label>
                     <input
                         id="author"
@@ -95,7 +95,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="target">
-                        {{ .Config.LabelTarget }}
+                        {{ .I18n.LabelTarget }}
                     </label>
                     <input
                         id="target"
@@ -107,7 +107,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="institution">
-                        {{ .Config.LabelInstitution }}
+                        {{ .I18n.LabelInstitution }}
                     </label>
                     <input
                         id="institution"
@@ -119,7 +119,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="expiresIn">
-                        {{ .Config.LabelExpiresIn }}
+                        {{ .I18n.LabelExpiresIn }}
                     </label>
                     <input
                         id="expiresIn"
@@ -140,10 +140,10 @@
                 <section class="tasks" id="tasks">
                     {{ range $taskIndex, $task := .Test.Tasks }}
                         <fieldset class="test-task task-{{ $taskIndex }}">
-                            <legend>{{ $.Config.LabelTaskHeader }} {{ call $.incr $taskIndex }}</legend>
+                            <legend>{{ $.I18n.LabelTaskHeader }} {{ call $.incr $taskIndex }}</legend>
                             <div class="input-wrapper">
                                 <label for="{{ $taskIndex }}-type">
-                                    {{ $.Config.LabelTaskType }}
+                                    {{ $.I18n.LabelTaskType }}
                                 </label>
                                 <select
                                     id="{{ $taskIndex }}-type"
@@ -152,45 +152,45 @@
                                 >
                                     {{ if eq $task.Type "single" }}
                                         <option selected value="single">
-                                            {{ $.Config.LabelTaskTypeSingle }}
+                                            {{ $.I18n.LabelTaskTypeSingle }}
                                         </option>
                                     {{ else }}
                                         <option value="single">
-                                            {{ $.Config.LabelTaskTypeSingle }}
+                                            {{ $.I18n.LabelTaskTypeSingle }}
                                         </option>
                                     {{ end }}
                                     {{ if eq $task.Type "multiple" }}
                                         <option selected value="multiple">
-                                            {{ $.Config.LabelTaskTypeMultiple }}
+                                            {{ $.I18n.LabelTaskTypeMultiple }}
                                         </option>
                                     {{ else }}
                                         <option value="multiple">
-                                            {{ $.Config.LabelTaskTypeMultiple }}
+                                            {{ $.I18n.LabelTaskTypeMultiple }}
                                         </option>
                                     {{ end }}
                                     {{ if eq $task.Type "open" }}
                                         <option selected value="open">
-                                            {{ $.Config.LabelTaskTypeOpen }}
+                                            {{ $.I18n.LabelTaskTypeOpen }}
                                         </option>
                                     {{ else }}
                                         <option value="open">
-                                            {{ $.Config.LabelTaskTypeOpen }}
+                                            {{ $.I18n.LabelTaskTypeOpen }}
                                         </option>
                                     {{ end }}
                                     {{ if eq $task.Type "file" }}
                                         <option selected value="file">
-                                            {{ $.Config.LabelTaskTypeFile }}
+                                            {{ $.I18n.LabelTaskTypeFile }}
                                         </option>
                                     {{ else }}
                                         <option value="file">
-                                            {{ $.Config.LabelTaskTypeFile }}
+                                            {{ $.I18n.LabelTaskTypeFile }}
                                         </option>
                                     {{ end }}
                                 </select>
                             </div>
                             <div class="input-wrapper">
                                 <label for="{{ $taskIndex }}-text">
-                                    {{ $.Config.LabelTaskText }}
+                                    {{ $.I18n.LabelTaskText }}
                                 </label>
                                 <textarea
                                     id="{{ $taskIndex }}-text"
@@ -200,7 +200,7 @@
                             </div>
                             <div class="input-wrapper">
                                 <label for="{{ $taskIndex }}-answer">
-                                    {{ $.Config.LabelTaskAnswer }}
+                                    {{ $.I18n.LabelTaskAnswer }}
                                 </label>
                                 <input
                                     id="{{ $taskIndex }}-answer"
@@ -212,7 +212,7 @@
                             </div>
 
                             <div class="answer-options-wrapper">
-                                <p>{{ $.Config.LabelTaskOptions }}</p>
+                                <p>{{ $.I18n.LabelTaskOptions }}</p>
                                 <div class="answer-options" id="{{ $taskIndex }}-options">
                                     {{ range $optionIndex, $option := $task.Options }}
                                         <div class="input-wrapper">
@@ -233,7 +233,7 @@
                                     type="button"
                                     onclick="addOption({{ $taskIndex }})"
                                 >
-                                    {{ $.Config.LabelTaskAddOption }}
+                                    {{ $.I18n.LabelTaskAddOption }}
                                 </button>
                             </div>
 
@@ -249,7 +249,7 @@
                                         checked="{{ $hasAttachment }}"
                                     >
                                     <label for="{{ $taskIndex }}-has-attachment">
-                                        {{ $.Config.LabelAddAttachment }}
+                                        {{ $.I18n.LabelAddAttachment }}
                                     </label>
                                 </div>
                                 <div
@@ -260,7 +260,7 @@
                                     {{ if $hasAttachment }}
                                         <div class="input-wrapper">
                                             <label for="{{ $taskIndex }}-attachment-name">
-                                                {{ $.Config.LabelAttachmentName }}
+                                                {{ $.I18n.LabelAttachmentName }}
                                             </label>
                                             <input
                                                 id="{{ $taskIndex }}-attachment-name"
@@ -272,7 +272,7 @@
                                         </div>
                                         <div class="input-wrapper">
                                             <label for="{{ $taskIndex }}-attachment-type">
-                                                {{ $.Config.LabelAttachmentType }}
+                                                {{ $.I18n.LabelAttachmentType }}
                                             </label>
                                             <select
                                                 id="{{ $taskIndex }}-attachment-type"
@@ -282,45 +282,45 @@
                                             >
                                                 {{ if eq $task.Attachment.Type "file" }}
                                                     <option selected value="file">
-                                                        {{ $.Config.LabelAttachmentTypeFile }}
+                                                        {{ $.I18n.LabelAttachmentTypeFile }}
                                                     </option>
                                                 {{ else }}
                                                     <option value="file">
-                                                        {{ $.Config.LabelAttachmentTypeFile }}
+                                                        {{ $.I18n.LabelAttachmentTypeFile }}
                                                     </option>
                                                 {{ end }}
                                                 {{ if eq $task.Attachment.Type "image" }}
                                                     <option selected value="image">
-                                                        {{ $.Config.LabelAttachmentTypeImage }}
+                                                        {{ $.I18n.LabelAttachmentTypeImage }}
                                                     </option>
                                                 {{ else }}
                                                     <option value="image">
-                                                        {{ $.Config.LabelAttachmentTypeImage }}
+                                                        {{ $.I18n.LabelAttachmentTypeImage }}
                                                     </option>
                                                 {{ end }}
                                                 {{ if eq $task.Attachment.Type "video" }}
                                                     <option selected value="video">
-                                                        {{ $.Config.LabelAttachmentTypeVideo }}
+                                                        {{ $.I18n.LabelAttachmentTypeVideo }}
                                                     </option>
                                                 {{ else }}
                                                     <option value="video">
-                                                        {{ $.Config.LabelAttachmentTypeVideo }}
+                                                        {{ $.I18n.LabelAttachmentTypeVideo }}
                                                     </option>
                                                 {{ end }}
                                                 {{ if eq $task.Attachment.Type "audio" }}
                                                     <option selected value="audio">
-                                                        {{ $.Config.LabelAttachmentTypeAudio }}
+                                                        {{ $.I18n.LabelAttachmentTypeAudio }}
                                                     </option>
                                                 {{ else }}
                                                     <option value="audio">
-                                                        {{ $.Config.LabelAttachmentTypeAudio }}
+                                                        {{ $.I18n.LabelAttachmentTypeAudio }}
                                                     </option>
                                                 {{ end }}
                                             </select>
                                         </div>
                                         <div class="input-wrapper">
                                             <label for="{{ $taskIndex }}-attachment-src">
-                                                {{ $.Config.LabelAttachmentSrc }}
+                                                {{ $.I18n.LabelAttachmentSrc }}
                                             </label>
                                             <input
                                                 id="{{ $taskIndex }}-attachment-src"
@@ -342,11 +342,11 @@
                     class="button-add-task"
                     type="button"
                 >
-                    {{ .Config.LabelAddTask }}
+                    {{ .I18n.LabelAddTask }}
                 </button>
 
                 <button class="button" type="submit">
-                    {{ .Config.LabelDownloadTest }}
+                    {{ .I18n.LabelDownloadTest }}
                 </button>
             </form>
         </main>

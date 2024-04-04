@@ -19,7 +19,7 @@
             <form method="POST" class="form" autocomplete="off" enctype="multipart/form-data">
                 <section class="task">
                     <div class="input-wrapper">
-                        <label for="student">{{ .Config.StudentNameLabel }}</label>
+                        <label for="student">{{ .I18n.StudentNameLabel }}</label>
                         <input
                             id="student"
                             class="input-text"
@@ -102,7 +102,7 @@
                                     {{ $input_id := (printf "task-%d" $task_index) }}
                                     <div class="input-wrapper">
                                         <label for="{{ $input_id }}">
-                                            {{ $.Config.OpenAnswerLabel }}
+                                            {{ $.I18n.OpenAnswerLabel }}
                                         </label>
                                         <input
                                             id="{{ $input_id }}"
@@ -115,7 +115,7 @@
                                     {{ $input_id := (printf "task-%d" $task_index) }}
                                     <div class="input-wrapper">
                                         <label for="{{ $input_id }}">
-                                            {{ $.Config.OpenAnswerLabel }}
+                                            {{ $.I18n.OpenAnswerLabel }}
                                         </label>
                                         <input
                                             id="{{ $input_id }}"
@@ -131,7 +131,7 @@
                     {{ end }}
                 {{ end }}
                 <button class="button" type="submit">
-                    {{ .Config.SubmitButtonLabel }}
+                    {{ .I18n.SubmitButtonLabel }}
                 </button>
             </form>
         </main>

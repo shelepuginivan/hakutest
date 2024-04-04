@@ -22,10 +22,10 @@
                         id="search-input"
                         class="input-text"
                         name="q"
-                        placeholder="{{ .Config.InputPlaceholder }}"
+                        placeholder="{{ .I18n.InputPlaceholder }}"
                         type="search"
                         list="test-list"
-                        aria-label="{{ .Config.InputPlaceholder }}"
+                        aria-label="{{ .I18n.InputPlaceholder }}"
                         autofocus
                     >
                     <datalist id="test-list">
@@ -33,7 +33,7 @@
                             <option value="{{ . }}"></option>
                         {{ end }}
                     </datalist>
-                    <button class="button">{{ .Config.SearchButtonLabel }}</button>
+                    <button class="button">{{ .I18n.SearchButtonLabel }}</button>
                 </form>
             </main>
         </div>

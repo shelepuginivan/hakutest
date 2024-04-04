@@ -21,14 +21,14 @@ func NewEditorController() *EditorController {
 
 func (co EditorController) ChooseTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor_upload.tmpl", gin.H{
-		"Config": i18n.New().Web.Editor,
+		"I18n": i18n.New().Web.Editor,
 	})
 }
 
 func (co EditorController) NewTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
-		"Config": i18n.New().Web.Editor,
-		"Test":   test.Test{},
+		"I18n": i18n.New().Web.Editor,
+		"Test": test.Test{},
 		"incr": func(n int) int {
 			return n + 1
 		},
@@ -41,7 +41,7 @@ func (co EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
@@ -54,7 +54,7 @@ func (co EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
@@ -67,7 +67,7 @@ func (co EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to open uploaded file",
 			"Error":  err.Error(),
@@ -82,7 +82,7 @@ func (co EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to read uploaded file",
 			"Error":  err.Error(),
@@ -95,7 +95,7 @@ func (co EditorController) UploadTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse test",
 			"Error":  err.Error(),
@@ -105,8 +105,8 @@ func (co EditorController) UploadTest(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
-		"Config": i18n.New().Web.Editor,
-		"Test":   t,
+		"I18n": i18n.New().Web.Editor,
+		"Test": t,
 		"incr": func(n int) int {
 			return n + 1
 		},
@@ -119,7 +119,7 @@ func (co EditorController) CreateTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Code":   http.StatusUnprocessableEntity,
 			"Detail": "failed to parse form",
 			"Error":  err.Error(),
@@ -173,7 +173,7 @@ func (co EditorController) CreateTest(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Code":   http.StatusBadRequest,
 			"Detail": "failed to create a test file",
 			"Error":  err.Error(),
@@ -188,7 +188,7 @@ func (co EditorController) CreateTest(c *gin.Context) {
 
 	if _, err := c.Writer.Write(data); err != nil {
 		c.HTML(http.StatusInternalServerError, "error.tmpl", gin.H{
-			"Config": i18n.New().Web.Error,
+			"I18n":   i18n.New().Web.Error,
 			"Code":   http.StatusInternalServerError,
 			"Detail": "failed to write response data",
 			"Error":  err.Error(),
