@@ -13,7 +13,9 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
-type EditorController struct{}
+type EditorController struct {
+	BaseController
+}
 
 func NewEditorController() *EditorController {
 	return &EditorController{}
@@ -40,67 +42,36 @@ func (co EditorController) UploadTest(c *gin.Context) {
 	err := c.Request.ParseForm()
 
 	if err != nil {
-		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"I18n":   i18n.New().Web.Error,
-			"Code":   http.StatusUnprocessableEntity,
-			"Detail": "failed to parse form",
-			"Error":  err.Error(),
-		})
-
+		co.SendErrorResponse(c, http.StatusUnprocessableEntity, err, "failed to parse form")
 		return
 	}
 
 	file, err := c.FormFile("file")
 
 	if err != nil {
-		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"I18n":   i18n.New().Web.Error,
-			"Code":   http.StatusUnprocessableEntity,
-			"Detail": "failed to parse form",
-			"Error":  err.Error(),
-		})
-
+		co.SendErrorResponse(c, http.StatusUnprocessableEntity, err, "failed to parse form")
 		return
 	}
 
 	uploadedFile, err := file.Open()
 
 	if err != nil {
-		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"I18n":   i18n.New().Web.Error,
-			"Code":   http.StatusUnprocessableEntity,
-			"Detail": "failed to open uploaded file",
-			"Error":  err.Error(),
-		})
-
+		co.SendErrorResponse(c, http.StatusUnprocessableEntity, err, "failed to open uploaded file")
 		return
 	}
-
 	defer uploadedFile.Close()
 
 	data, err := io.ReadAll(uploadedFile)
 
 	if err != nil {
-		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"I18n":   i18n.New().Web.Error,
-			"Code":   http.StatusUnprocessableEntity,
-			"Detail": "failed to read uploaded file",
-			"Error":  err.Error(),
-		})
-
+		co.SendErrorResponse(c, http.StatusUnprocessableEntity, err, "failed to read uploaded file")
 		return
 	}
 
 	err = json.Unmarshal(data, &t)
 
 	if err != nil {
-		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"I18n":   i18n.New().Web.Error,
-			"Code":   http.StatusUnprocessableEntity,
-			"Detail": "failed to parse test",
-			"Error":  err.Error(),
-		})
-
+		co.SendErrorResponse(c, http.StatusUnprocessableEntity, err, "failed to parse test")
 		return
 	}
 
@@ -118,13 +89,7 @@ func (co EditorController) CreateTest(c *gin.Context) {
 	err := c.Request.ParseMultipartForm(1000)
 
 	if err != nil {
-		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"I18n":   i18n.New().Web.Error,
-			"Code":   http.StatusUnprocessableEntity,
-			"Detail": "failed to parse form",
-			"Error":  err.Error(),
-		})
-
+		co.SendErrorResponse(c, http.StatusUnprocessableEntity, err, "failed to parse form")
 		return
 	}
 
@@ -172,13 +137,7 @@ func (co EditorController) CreateTest(c *gin.Context) {
 	data, err := json.Marshal(t)
 
 	if err != nil {
-		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
-			"I18n":   i18n.New().Web.Error,
-			"Code":   http.StatusBadRequest,
-			"Detail": "failed to create a test file",
-			"Error":  err.Error(),
-		})
-
+		co.SendErrorResponse(c, http.StatusBadRequest, err, "failed to create a test file")
 		return
 	}
 
@@ -187,11 +146,6 @@ func (co EditorController) CreateTest(c *gin.Context) {
 	c.Status(http.StatusCreated)
 
 	if _, err := c.Writer.Write(data); err != nil {
-		c.HTML(http.StatusInternalServerError, "error.tmpl", gin.H{
-			"I18n":   i18n.New().Web.Error,
-			"Code":   http.StatusInternalServerError,
-			"Detail": "failed to write response data",
-			"Error":  err.Error(),
-		})
+		co.SendErrorResponse(c, http.StatusInternalServerError, err, "failed to write response data")
 	}
 }

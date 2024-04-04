@@ -9,6 +9,7 @@ import (
 )
 
 type SearchController struct {
+	BaseController
 	s *test.TestService
 }
 

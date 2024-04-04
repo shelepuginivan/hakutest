@@ -13,6 +13,7 @@ import (
 )
 
 type TestController struct {
+	BaseController
 	s *test.TestService
 	r *results.ResultsService
 }
@@ -34,13 +35,7 @@ func (co TestController) GetTest(c *gin.Context) {
 			detail = "test file does not exist"
 		}
 
-		c.HTML(code, "error.tmpl", gin.H{
-			"Code":   code,
-			"I18n":   i18n.New().Web.Error,
-			"Detail": detail,
-			"Error":  err.Error(),
-		})
-
+		co.SendErrorResponse(c, code, err, detail)
 		return
 	}
 
@@ -72,13 +67,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 	c.Request.Body = http.MaxBytesReader(c.Writer, c.Request.Body, maxUploadSize)
 
 	if err := c.Request.ParseMultipartForm(maxUploadSize); err != nil {
-		c.HTML(http.StatusUnprocessableEntity, "error.tmpl", gin.H{
-			"Code":   http.StatusUnprocessableEntity,
-			"I18n":   i18n.New().Web.Error,
-			"Detail": "failed to parse form",
-			"Error":  err.Error(),
-		})
-
+		co.SendErrorResponse(c, http.StatusUnprocessableEntity, err, "failed to parse form")
 		return
 	}
 
@@ -94,13 +83,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 			detail = "test file does not exist"
 		}
 
-		c.HTML(code, "error.tmpl", gin.H{
-			"Code":   code,
-			"I18n":   i18n.New().Web.Error,
-			"Detail": detail,
-			"Error":  err.Error(),
-		})
-
+		co.SendErrorResponse(c, code, err, detail)
 		return
 	}
 
@@ -115,13 +98,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 	results := co.r.CheckAnswersWithFiles(name, t, c.Request.MultipartForm.Value, c.Request.MultipartForm.File)
 
 	if err := co.r.Save(results, name); err != nil {
-		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{
-			"Code":   http.StatusBadRequest,
-			"I18n":   i18n.New().Web.Error,
-			"Detail": "failed to save test results",
-			"Error":  err.Error(),
-		})
-
+		co.SendErrorResponse(c, http.StatusBadRequest, err, "failed to save test results")
 		return
 	}
 
