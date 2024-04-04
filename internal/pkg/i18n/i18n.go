@@ -132,8 +132,9 @@ func getViper() *viper.Viper {
 	return v
 }
 
-func Default() I18n {
-	return I18n{
+func Default() *I18n {
+	return &I18n{
+		Language: "en",
 		Server: ServerI18n{
 			StopTitle:   "Stop Hakutest",
 			StopTooltip: "Stop Hakutest server and quit",
@@ -250,7 +251,7 @@ func createDefaultI18n() error {
 	return err
 }
 
-func New() I18n {
+func New() *I18n {
 	i18n := Default()
 
 	v := getViper()
