@@ -115,6 +115,7 @@ type WebI18n struct {
 }
 
 type I18n struct {
+	Language   string     `yaml:"lang" mapstructure:"lang"`
 	Server     ServerI18n `yaml:"server" mapstructure:"server"`
 	Statistics StatsI18n  `yaml:"stats" mapstructure:"stats"`
 	Web        WebI18n    `yaml:"web" mapstructure:"web"`
