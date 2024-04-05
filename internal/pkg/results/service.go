@@ -93,9 +93,9 @@ func (s ResultsService) CheckAnswersWithFiles(testName string, t test.Test, answ
 			}
 			defer src.Close()
 
-			filename := fmt.Sprintf("%s-%s-%d%s", i, results.Student, fileIndex+1, filepath.Ext(file.Filename))
+			filename := fmt.Sprintf("%s-%d%s", i, fileIndex+1, filepath.Ext(file.Filename))
 
-			if err := s.SaveFile(testName, src, filename); err != nil {
+			if err := s.SaveSubmittedFile(src, testName, results.Student, filename); err != nil {
 				continue
 			}
 
@@ -203,16 +203,18 @@ func (s ResultsService) Save(r TestResults, testName string) error {
 	return os.WriteFile(resultsFilePath, data, 0666)
 }
 
-// SaveFile saves file attached to the test solution in the respective results directory.
-func (s ResultsService) SaveFile(testName string, file multipart.File, filename string) error {
+// SaveSubmittedFile saves file attached to the test solution in the respective results directory.
+func (s ResultsService) SaveSubmittedFile(file multipart.File, testName, student, filename string) error {
 	testResultsDirectory := s.GetTestResultsDirectory(testName)
 
-	err := os.MkdirAll(testResultsDirectory, os.ModeDir|os.ModePerm)
+	studentSubmittedFilesDir := filepath.Join(testResultsDirectory, strings.ReplaceAll(student, "/", ""))
+
+	err := os.MkdirAll(studentSubmittedFilesDir, os.ModeDir|os.ModePerm)
 	if err != nil && !os.IsExist(err) {
 		return err
 	}
 
-	fullpath := filepath.Join(testResultsDirectory, filename)
+	fullpath := filepath.Join(studentSubmittedFilesDir, filename)
 
 	_, err = os.Stat(fullpath)
 	if !os.IsNotExist(err) && !config.New().General.OverwriteResults {
