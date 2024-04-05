@@ -11,16 +11,20 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
+// TestController is a controller that handles `/:test` requests.
 type TestController struct {
 	BaseController
 	s *test.TestService
 	r *results.ResultsService
 }
 
+// NewTestController returns a new instance of TestController.
 func NewTestController(s *test.TestService, r *results.ResultsService) *TestController {
 	return &TestController{s: s, r: r}
 }
 
+// GetTest handles `GET /:test` requests.
+// It renders a page of the respective test.
 func (co TestController) GetTest(c *gin.Context) {
 	name := c.Param("test")
 	t, err := co.s.GetTestByName(name)
@@ -61,6 +65,10 @@ func (co TestController) GetTest(c *gin.Context) {
 	})
 }
 
+// SubmitTest handles `POST /:test` requests.
+// It performs a check of the submitted solution.
+// Depending on the configuration, it renders either the result or the
+// submission page.
 func (co TestController) SubmitTest(c *gin.Context) {
 	maxUploadSize := config.New().Server.MaxUploadSize
 

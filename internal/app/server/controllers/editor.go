@@ -12,14 +12,18 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
+// EditorController is a controller that handles `/editor` requests.
 type EditorController struct {
 	BaseController
 }
 
+// NewEditorController returns a new instance of EditorController.
 func NewEditorController() *EditorController {
 	return &EditorController{}
 }
 
+// ChooseTest handles `GET /editor/upload` requests.
+// It renders test upload page that allows to choose the test to edit.
 func (co EditorController) ChooseTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor_upload.tmpl", gin.H{
 		"Language": co.I18n().Language,
@@ -27,6 +31,8 @@ func (co EditorController) ChooseTest(c *gin.Context) {
 	})
 }
 
+// NewTest handles `GET /editor/edit` requests.
+// It is used to start creating new test.
 func (co EditorController) NewTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
 		"Language": co.I18n().Language,
@@ -38,6 +44,9 @@ func (co EditorController) NewTest(c *gin.Context) {
 	})
 }
 
+// UploadTest handles `POST /editor/edit` requests.
+// It parses the uploaded test and renders the editor page that contains values
+// of the uploaded test, thus allowing to edit it.
 func (co EditorController) UploadTest(c *gin.Context) {
 	t := test.Test{}
 	err := c.Request.ParseForm()
@@ -86,6 +95,8 @@ func (co EditorController) UploadTest(c *gin.Context) {
 	})
 }
 
+// CreateTest handles `POST /editor/create` requests.
+// It creates a new test and sends it as an attachment.
 func (co EditorController) CreateTest(c *gin.Context) {
 	t := test.Test{}
 	err := c.Request.ParseMultipartForm(1000)
