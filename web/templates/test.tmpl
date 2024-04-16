@@ -58,6 +58,7 @@
                                     </audio>
                                 {{ else if eq .Attachment.Type "file" }}
                                     <a
+                                        target="_blank"
                                         href="{{ call $.url .Attachment.Src }}"
                                         download="{{ .Attachment.Name }}"
                                     >
