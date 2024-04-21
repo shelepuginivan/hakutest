@@ -19,6 +19,6 @@ var serverCmd = &cobra.Command{
 	Short:   "Start Hakutest server",
 	Long:    "Start Hakutest server",
 	Args:    cobra.NoArgs,
-	RunE:    server.Cmd(server.NewRouter(test.NewService(), results.NewService())),
+	RunE:    server.Cmd(server.NewEngine(test.NewService(), results.NewService())),
 	Aliases: []string{"srv"},
 }

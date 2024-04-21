@@ -42,7 +42,7 @@ func onReady() {
 	mStop := systray.AddMenuItem(serverI18n.StopTitle, serverI18n.StopTooltip)
 
 	port := config.New().Server.Port
-	r := server.NewRouter(test.NewService(), results.NewService())
+	r := server.NewEngine(test.NewService(), results.NewService())
 	srv := server.NewServer(r, port)
 
 	go func() {

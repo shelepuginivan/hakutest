@@ -15,7 +15,7 @@ func TestIndexRoute(t *testing.T) {
 	testService := test.NewService()
 	resultsService := results.NewService()
 
-	r := NewRouter(testService, resultsService)
+	r := NewEngine(testService, resultsService)
 	w := httptest.NewRecorder()
 	req, _ := http.NewRequest(http.MethodGet, "/", http.NoBody)
 	r.ServeHTTP(w, req)
@@ -30,7 +30,7 @@ func TestEditorUpload(t *testing.T) {
 	testService := test.NewService()
 	resultsService := results.NewService()
 
-	r := NewRouter(testService, resultsService)
+	r := NewEngine(testService, resultsService)
 	w := httptest.NewRecorder()
 	req, _ := http.NewRequest(http.MethodGet, "/editor/upload", http.NoBody)
 	r.ServeHTTP(w, req)
@@ -45,7 +45,7 @@ func TestEditorEdit(t *testing.T) {
 	testService := test.NewService()
 	resultsService := results.NewService()
 
-	r := NewRouter(testService, resultsService)
+	r := NewEngine(testService, resultsService)
 	w := httptest.NewRecorder()
 	req, _ := http.NewRequest(http.MethodGet, "/editor/edit", http.NoBody)
 	r.ServeHTTP(w, req)
