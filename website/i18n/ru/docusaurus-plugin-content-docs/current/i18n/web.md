@@ -29,6 +29,7 @@ description: Интернационализация веб-интерфейса 
 -   `label_task_type_single` - Подпись типа задания с одним вариантом ответа.
 -   `label_task_type_multiple` - Подпись типа задания с несколькими вариантами ответа.
 -   `label_task_type_open` - Подпись типа задания с открытым ответом.
+-   `label_task_type_file` - Подпись типа задания с загрузкой файла.
 -   `label_task_text` - Подпись поля ввода текста задания.
 -   `label_task_answer` - Подпись поля ввода правильного ответа на задание.
 -   `label_task_options` - Подпись поля ввода вариантов ответа.
@@ -143,6 +144,7 @@ web:
         label_task_type_single: Один вариант ответа
         label_task_type_multiple: Несколько вариантов ответа
         label_task_type_open: Открытый вопрос
+        label_task_type_file: Ответ с файлом(ами)
         label_task_text: 'Текст:'
         label_task_answer: 'Ответ:'
         label_task_options: Варианты ответов
