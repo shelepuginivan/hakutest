@@ -23,6 +23,13 @@ Specifies the mode in which the Hakutest server will run.
 -   **Value**: `'release'`, `'debug'` or `'test'`. Any other string will fallback to `'release'`.
 -   **Default**: `'release'`.
 
+### `max_upload_size`
+
+Sets the limit of the upload file for the file task type.
+
+-   **Value**: integer, max file size in bytes.
+-   **Default**: `1048576` (1 MB).
+
 ## Example
 
 Example of server configuration:
@@ -31,5 +38,6 @@ Example of server configuration:
 server:
     port: 8080
     mode: release
+    max_upload_size: 1048576
 # Other fields...
 ```
