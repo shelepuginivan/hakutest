@@ -69,6 +69,7 @@ Hakutest предоставляет возможности для интерна
 Ниже представлены настройки интернационализации Hakutest по умолчанию:
 
 ```yaml title="i18n.yaml"
+lang: en
 server:
     stop_title: Stop Hakutest
     stop_tooltip: Stop Hakutest server and quit

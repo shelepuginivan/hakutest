@@ -1,3 +1,4 @@
+lang: ru
 server:
     stop_title: Остановить Hakutest
     stop_tooltip: Остановить сервер Hakutest и выйти
