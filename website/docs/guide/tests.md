@@ -32,6 +32,7 @@ The test tasks contain the following information:
     -   Single answer - the student can choose one answer from the given options.
     -   Multiple answers - the student can choose several answers from the given options.
     -   Open question - the student must write the answer in the input field.
+    -   File - the student attaches file(s) as an answer.
 -   Task text (usually terms of the task)
 -   Answer options from which the student can choose an answer
 -   Correct answer to the task
@@ -86,7 +87,18 @@ The form of the correct answer differs depending on the type of task.
         In this case, the correct answer is a string "-5".
     </TabItem>
 
+    <TabItem value="file" label="File">
+        Correct answer is not checked. Instead, Hakutest checks whether file was uploaded.
+    </TabItem>
 </Tabs>
+
+:::
+
+:::info
+
+To prevent accidental or deliberate uploading of too large files, Hakutest allows you to configure the maximum size of files to be uploaded. In case uploaded file is larger than the limit, Hakutest resets the connection.
+
+See [`server.max_upload_size`](/docs/configuration/server#max_upload_size) for more details.
 
 :::
 
