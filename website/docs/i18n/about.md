@@ -101,6 +101,7 @@ web:
         label_task_type_single: Single answer
         label_task_type_multiple: Multiple answers
         label_task_type_open: Open question
+        label_task_type_file: Answer with file(s)
         label_task_text: 'Text:'
         label_task_answer: 'Answer:'
         label_task_options: Answer options
