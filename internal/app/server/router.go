@@ -1,21 +1,24 @@
 package server
 
 import (
-	"path/filepath"
+	"html/template"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/app/server/controllers"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
-	"github.com/shelepuginivan/hakutest/internal/pkg/directories"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
+	"github.com/shelepuginivan/hakutest/web"
 )
 
-func loadStaticAndTemplates(router *gin.Engine) {
-	exePath := directories.Executable()
+func registerStatic(e *gin.Engine) {
+	e.StaticFS("/static", http.FS(web.Static))
+}
 
-	router.LoadHTMLGlob(filepath.Join(exePath, "web/templates/*"))
-	router.Static("/static", filepath.Join(exePath, "web/static"))
+func registerTemplates(e *gin.Engine) {
+	tmpl := template.Must(template.ParseFS(web.Templates, "templates/*.tmpl"))
+	e.SetHTMLTemplate(tmpl)
 }
 
 func setMode(mode string) {
@@ -33,7 +36,10 @@ func NewRouter(t *test.TestService, r *results.ResultsService) *gin.Engine {
 	setMode(config.New().Server.Mode)
 
 	router := gin.New()
-	loadStaticAndTemplates(router)
+
+	registerStatic(router)
+	registerTemplates(router)
+
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 
