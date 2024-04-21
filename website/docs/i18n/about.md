@@ -62,6 +62,7 @@ The internationalization file located in the Hakutest installation directory has
 Default settings of the Hakutest internationalization are as follows:
 
 ```yaml title="i18n.yaml"
+lang: en
 server:
     stop_title: Stop Hakutest
     stop_tooltip: Stop Hakutest server and quit
