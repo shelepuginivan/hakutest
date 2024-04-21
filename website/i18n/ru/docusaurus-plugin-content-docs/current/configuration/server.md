@@ -24,6 +24,13 @@ Specifies the mode in which the Hakutest server will run.
 -   **Значение**: `'release'`, `'debug'` или `'test'`. Любое другое значение возвращается к `'release'`.
 -   **По умолчанию**: `'release'`.
 
+### `max_upload_size`
+
+Задаёт лимит (байт) для размера загружаемых файлов.
+
+-   **Значение**: целое число, максимальный размер (байт).
+-   **По умолчанию**: `1048576` (1 Мб).
+
 ## Пример
 
 Пример секции `server` конфигурационного файла.
@@ -32,5 +39,6 @@ Specifies the mode in which the Hakutest server will run.
 server:
     port: 8080
     mode: release
+    max_upload_size: 1048576
 # Остальные поля...
 ```

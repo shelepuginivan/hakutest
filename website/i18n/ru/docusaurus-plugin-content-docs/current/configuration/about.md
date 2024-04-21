@@ -71,4 +71,5 @@ general:
 server:
     port: 8080
     mode: release
+    max_upload_size: 1048576
 ```
