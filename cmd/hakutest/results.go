@@ -3,7 +3,8 @@ package main
 import "github.com/spf13/cobra"
 
 func init() {
-	rootCmd.AddCommand(resultsCmd)
+	resultsCmd.AddCommand(resultsListCmd)
+	resultsCmd.AddCommand(resultsRemoveCmd)
 }
 
 var resultsCmd = &cobra.Command{

@@ -6,20 +6,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(statisticsCmd)
-}
-
-var statisticsCmd = &cobra.Command{
-	Use:       "statistics <test> [format]",
-	Short:     "Test results statistics",
-	Long:      "Export test results statistics",
-	Args:      cobra.RangeArgs(1, 2),
-	ValidArgs: []string{statistics.FormatExcel, statistics.FormatImage, statistics.FormatTable},
-	RunE:      statisticsCommand,
-	Aliases:   []string{"stats"},
-}
-
 func statisticsCommand(cmd *cobra.Command, args []string) error {
 	testName := args[0]
 	r := results.NewService(app)
@@ -30,4 +16,14 @@ func statisticsCommand(cmd *cobra.Command, args []string) error {
 	}
 
 	return s.Export(testName, testName, args[1])
+}
+
+var statisticsCmd = &cobra.Command{
+	Use:       "statistics <test> [format]",
+	Short:     "Test results statistics",
+	Long:      "Export test results statistics",
+	Args:      cobra.RangeArgs(1, 2),
+	ValidArgs: []string{statistics.FormatExcel, statistics.FormatImage, statistics.FormatTable},
+	RunE:      statisticsCommand,
+	Aliases:   []string{"stats"},
 }

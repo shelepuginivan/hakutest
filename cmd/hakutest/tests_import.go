@@ -5,8 +5,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	testsCmd.AddCommand(importCmd)
+func importCommand(cmd *cobra.Command, args []string) error {
+	return test.NewService(app).Import(args[0])
 }
 
 var importCmd = &cobra.Command{
@@ -15,8 +15,4 @@ var importCmd = &cobra.Command{
 	Long:  "Import hakutest test files",
 	Args:  cobra.ExactArgs(1),
 	RunE:  importCommand,
-}
-
-func importCommand(cmd *cobra.Command, args []string) error {
-	return test.NewService(app).Import(args[0])
 }

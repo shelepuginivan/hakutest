@@ -5,8 +5,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	resultsCmd.AddCommand(resultsRemoveCmd)
+func resultsRemoveCommand(cmd *cobra.Command, args []string) error {
+	return results.NewService(app).Remove(args[0])
 }
 
 var resultsRemoveCmd = &cobra.Command{
@@ -14,8 +14,4 @@ var resultsRemoveCmd = &cobra.Command{
 	Short:   "Remove a test by its name",
 	RunE:    resultsRemoveCommand,
 	Aliases: []string{"rm"},
-}
-
-func resultsRemoveCommand(cmd *cobra.Command, args []string) error {
-	return results.NewService(app).Remove(args[0])
 }

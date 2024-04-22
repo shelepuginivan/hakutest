@@ -7,8 +7,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	testsCmd.AddCommand(testsListCmd)
+func testsListCommand(cmd *cobra.Command, args []string) {
+	for _, test := range test.NewService(app).GetTestList() {
+		fmt.Println(test)
+	}
 }
 
 var testsListCmd = &cobra.Command{
@@ -16,10 +18,4 @@ var testsListCmd = &cobra.Command{
 	Short:   "list available tests",
 	Run:     testsListCommand,
 	Aliases: []string{"ls"},
-}
-
-func testsListCommand(cmd *cobra.Command, args []string) {
-	for _, test := range test.NewService(app).GetTestList() {
-		fmt.Println(test)
-	}
 }

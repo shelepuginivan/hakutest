@@ -5,19 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(configCmd)
-}
-
-var configCmd = &cobra.Command{
-	Use:     "config [field] [value]",
-	Short:   "Manage the configuration settings",
-	Long:    "Manage hakutest configuration settings",
-	Args:    cobra.RangeArgs(0, 2),
-	RunE:    configCommand(config.NewService()),
-	Aliases: []string{"cfg"},
-}
-
 func configCommand(c *config.ConfigService) func(*cobra.Command, []string) error {
 	return func(cmd *cobra.Command, args []string) error {
 		if len(args) == 0 {
@@ -30,4 +17,13 @@ func configCommand(c *config.ConfigService) func(*cobra.Command, []string) error
 
 		return c.SetField(args[0], args[1])
 	}
+}
+
+var configCmd = &cobra.Command{
+	Use:     "config [field] [value]",
+	Short:   "Manage the configuration settings",
+	Long:    "Manage hakutest configuration settings",
+	Args:    cobra.RangeArgs(0, 2),
+	RunE:    configCommand(config.NewService()),
+	Aliases: []string{"cfg"},
 }

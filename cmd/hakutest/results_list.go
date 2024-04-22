@@ -7,8 +7,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	resultsCmd.AddCommand(resultsListCmd)
+func resultsListCommand(cmd *cobra.Command, args []string) {
+	for _, result := range results.NewService(app).GetResultsList() {
+		fmt.Println(result)
+	}
 }
 
 var resultsListCmd = &cobra.Command{
@@ -16,10 +18,4 @@ var resultsListCmd = &cobra.Command{
 	Short:   "list available results",
 	Run:     resultsListCommand,
 	Aliases: []string{"ls"},
-}
-
-func resultsListCommand(cmd *cobra.Command, args []string) {
-	for _, result := range results.NewService(app).GetResultsList() {
-		fmt.Println(result)
-	}
 }

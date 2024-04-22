@@ -5,7 +5,9 @@ import (
 )
 
 func init() {
-	rootCmd.AddCommand(testsCmd)
+	testsCmd.AddCommand(importCmd)
+	testsCmd.AddCommand(testsListCmd)
+	testsCmd.AddCommand(testsRemoveCmd)
 }
 
 var testsCmd = &cobra.Command{
