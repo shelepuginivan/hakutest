@@ -4,9 +4,11 @@ go 1.22.1
 
 require (
 	fyne.io/fyne/v2 v2.4.4
+	github.com/adrg/xdg v0.4.0
 	github.com/fatih/color v1.16.0
 	github.com/getlantern/systray v1.2.2
 	github.com/gin-gonic/gin v1.9.1
+	github.com/gotk3/gotk3 v0.6.3
 	github.com/rodaine/table v1.1.1
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.2
