@@ -111,7 +111,7 @@ func createDefaultConfig() error {
 
 // New returns configuration defined in the configuration file.
 // Fields that are not specified in the configuration file are fallback to default values.
-func New() Config {
+func New() *Config {
 	config := Default()
 
 	v := getViper()
@@ -135,5 +135,5 @@ func New() Config {
 	config.General.TestsDirectory = os.ExpandEnv(config.General.TestsDirectory)
 	config.General.ResultsDirectory = os.ExpandEnv(config.General.ResultsDirectory)
 
-	return config
+	return &config
 }
