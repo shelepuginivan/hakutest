@@ -10,6 +10,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/shelepuginivan/hakutest/internal/pkg/application"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/stretchr/testify/assert"
 )
@@ -80,7 +81,7 @@ func TestTest_Sha256Sum(t *testing.T) {
 }
 
 func TestTestService_GetTestPath(t *testing.T) {
-	s := NewService()
+	s := NewService(application.New())
 	testDir := config.New().General.TestsDirectory
 
 	cases := []struct {
@@ -101,7 +102,7 @@ func TestTestService_GetTestPath(t *testing.T) {
 
 func TestTestService_GetTestByName(t *testing.T) {
 	// get test created in setup function
-	test, err := NewService().GetTestByName("__test__")
+	test, err := NewService(application.New()).GetTestByName("__test__")
 
 	assert.NoError(t, err)
 	assert.Equal(t, "Mock test", test.Title)
@@ -135,14 +136,14 @@ func TestTestService_GetTestByPath(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	test, err := NewService().GetTestByPath(testPath)
+	test, err := NewService(application.New()).GetTestByPath(testPath)
 
 	assert.NoError(t, err)
 	assert.Equal(t, test, mockTest)
 }
 
 func TestTestService_GetTestList(t *testing.T) {
-	testList := NewService().GetTestList()
+	testList := NewService(application.New()).GetTestList()
 
 	assert.GreaterOrEqual(t, len(testList), 1)
 	assert.Contains(t, testList, "__test__")
@@ -156,11 +157,11 @@ func TestTestService_SaveToTestsDirectory(t *testing.T) {
 		Institution: "TestTestService_SaveToTestsDirectory",
 	}
 
-	err := NewService().SaveToTestsDirectory(mockTest, "__mock_test__")
+	err := NewService(application.New()).SaveToTestsDirectory(mockTest, "__mock_test__")
 
 	assert.NoError(t, err)
 
-	test, err := NewService().GetTestByName("__mock_test__")
+	test, err := NewService(application.New()).GetTestByName("__mock_test__")
 
 	assert.NoError(t, err)
 	assert.Equal(t, test, mockTest)
@@ -194,16 +195,16 @@ func TestTestService_Import(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	assert.NoError(t, NewService().Import(testPath))
+	assert.NoError(t, NewService(application.New()).Import(testPath))
 
-	test, err := NewService().GetTestByName(filepath.Base(testPath))
+	test, err := NewService(application.New()).GetTestByName(filepath.Base(testPath))
 
 	assert.NoError(t, err)
 	assert.Equal(t, test, mockTest)
 }
 
 func TestTestService_Remove(t *testing.T) {
-	s := NewService()
+	s := NewService(application.New())
 	testName := "__TestService.Remove__"
 	testPath := filepath.Join(config.New().General.TestsDirectory, testName+".json")
 

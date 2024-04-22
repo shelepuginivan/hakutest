@@ -6,15 +6,17 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/application"
 )
 
 // TestService is a struct that provides methods for manipulating Test structures.
-type TestService struct{}
+type TestService struct {
+	app *application.App
+}
 
 // NewService returns a TestService instance.
-func NewService() *TestService {
-	return &TestService{}
+func NewService(app *application.App) *TestService {
+	return &TestService{app: app}
 }
 
 // GetTestByName retrieves the Test from the directory specified in the configuration by the test name.
@@ -48,10 +50,9 @@ func (s TestService) GetTestByPath(path string) (Test, error) {
 
 // GetTestList retrieves a list of test names from the tests directory specified in the configuration.
 func (s TestService) GetTestList() []string {
-	testsDirectory := config.New().General.TestsDirectory
 	testList := []string{}
 
-	entries, err := os.ReadDir(testsDirectory)
+	entries, err := os.ReadDir(s.app.Config.General.TestsDirectory)
 
 	if err != nil {
 		return testList
@@ -72,13 +73,11 @@ func (s TestService) GetTestList() []string {
 // It assumes that the test is stored in the tests directory specified in the configuration.
 // It doesn't check whether a test with this name exists.
 func (s TestService) GetTestPath(name string) string {
-	testsDirectory := config.New().General.TestsDirectory
-
 	if !strings.HasSuffix(name, ".json") {
 		name += ".json"
 	}
 
-	return filepath.Join(testsDirectory, name)
+	return filepath.Join(s.app.Config.General.TestsDirectory, name)
 }
 
 // Import copies the test file saved by path to the tests directory defined in the configuration.
