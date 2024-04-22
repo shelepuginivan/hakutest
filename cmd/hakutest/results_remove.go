@@ -12,12 +12,10 @@ func init() {
 var resultsRemoveCmd = &cobra.Command{
 	Use:     "remove <results>",
 	Short:   "Remove a test by its name",
-	RunE:    resultsRemoveCommand(results.NewService()),
+	RunE:    resultsRemoveCommand,
 	Aliases: []string{"rm"},
 }
 
-func resultsRemoveCommand(r *results.ResultsService) func(*cobra.Command, []string) error {
-	return func(cmd *cobra.Command, args []string) error {
-		return r.Remove(args[0])
-	}
+func resultsRemoveCommand(cmd *cobra.Command, args []string) error {
+	return results.NewService(app).Remove(args[0])
 }

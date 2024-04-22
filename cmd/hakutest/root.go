@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/shelepuginivan/hakutest/internal/pkg/application"
 	"github.com/spf13/cobra"
 )
 
-var rootCmd = &cobra.Command{
-	Use:   "hakutest",
-	Short: "Reliable and efficient educational testing platform",
-	Long:  "Reliable and efficient educational testing platform",
+var app *application.App
+
+func init() {
+	app = application.New()
 }
 
 func Execute() {
@@ -18,4 +19,10 @@ func Execute() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+}
+
+var rootCmd = &cobra.Command{
+	Use:   "hakutest",
+	Short: "Reliable and efficient educational testing platform",
+	Long:  "Reliable and efficient educational testing platform",
 }

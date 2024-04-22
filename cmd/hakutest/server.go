@@ -3,8 +3,6 @@ package main
 import (
 	"github.com/shelepuginivan/hakutest/internal/app/server"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
-	"github.com/shelepuginivan/hakutest/internal/pkg/results"
-	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +17,11 @@ var serverCmd = &cobra.Command{
 	Short:   "Start Hakutest server",
 	Long:    "Start Hakutest server",
 	Args:    cobra.NoArgs,
-	RunE:    server.Cmd(server.NewEngine(test.NewService(), results.NewService())),
+	RunE:    serverCommand,
 	Aliases: []string{"srv"},
+}
+
+func serverCommand(cmd *cobra.Command, args []string) error {
+	srv := server.New(app)
+	return srv.ListenAndServe()
 }

@@ -14,14 +14,12 @@ func init() {
 var resultsListCmd = &cobra.Command{
 	Use:     "list",
 	Short:   "list available results",
-	Run:     resultsListCommand(results.NewService()),
+	Run:     resultsListCommand,
 	Aliases: []string{"ls"},
 }
 
-func resultsListCommand(r *results.ResultsService) func(*cobra.Command, []string) {
-	return func(cmd *cobra.Command, args []string) {
-		for _, result := range r.GetResultsList() {
-			fmt.Println(result)
-		}
+func resultsListCommand(cmd *cobra.Command, args []string) {
+	for _, result := range results.NewService(app).GetResultsList() {
+		fmt.Println(result)
 	}
 }

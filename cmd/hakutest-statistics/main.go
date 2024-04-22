@@ -10,6 +10,7 @@ import (
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"github.com/shelepuginivan/hakutest/internal/app/desktop"
+	"github.com/shelepuginivan/hakutest/internal/pkg/application"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/statistics"
@@ -25,7 +26,7 @@ func main() {
 	w := a.NewWindow(appName)
 
 	appI18n := i18n.New().Statistics.App
-	resultsService := results.NewService()
+	resultsService := results.NewService(application.New())
 	statsService := statistics.NewService(resultsService)
 
 	formats := []string{statistics.FormatExcel, statistics.FormatImage}

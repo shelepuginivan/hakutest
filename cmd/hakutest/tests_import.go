@@ -14,11 +14,9 @@ var importCmd = &cobra.Command{
 	Short: "Import test file",
 	Long:  "Import hakutest test files",
 	Args:  cobra.ExactArgs(1),
-	RunE:  importCommand(test.NewService()),
+	RunE:  importCommand,
 }
 
-func importCommand(s *test.TestService) func(*cobra.Command, []string) error {
-	return func(cmd *cobra.Command, args []string) error {
-		return s.Import(args[0])
-	}
+func importCommand(cmd *cobra.Command, args []string) error {
+	return test.NewService(app).Import(args[0])
 }
