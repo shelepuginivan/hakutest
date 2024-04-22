@@ -4,6 +4,7 @@
 general:
     # tests_directory:
     # results_directory:
+    lang: en
     show_results: true
     overwrite_results: false
 server:
