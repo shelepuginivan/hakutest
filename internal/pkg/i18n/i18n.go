@@ -1,13 +1,31 @@
 package i18n
 
 import (
-	"os"
-	"path/filepath"
+	"embed"
+	"fmt"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/directories"
-	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
 )
+
+//go:embed translations
+var translations embed.FS
+
+func New(lang string) *I18n {
+	data, err := translations.ReadFile(fmt.Sprintf("translations/%s.yaml", lang))
+
+	if err != nil {
+		data, err = translations.ReadFile("translations/en.yaml")
+
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	var i18n I18n
+	yaml.Unmarshal(data, &i18n)
+
+	return &i18n
+}
 
 type ServerI18n struct {
 	StopTitle   string `yaml:"stop_title" mapstructure:"stop_title"`
@@ -121,17 +139,6 @@ type I18n struct {
 	Web        WebI18n    `yaml:"web" mapstructure:"web"`
 }
 
-func getViper() *viper.Viper {
-	v := viper.New()
-
-	v.AddConfigPath(directories.Executable())
-	v.AddConfigPath(directories.Config())
-	v.SetConfigType("yaml")
-	v.SetConfigName("i18n")
-
-	return v
-}
-
 func Default() *I18n {
 	return &I18n{
 		Language: "en",
@@ -220,57 +227,4 @@ func Default() *I18n {
 			},
 		},
 	}
-}
-
-func createDefaultI18n() error {
-	configDir := directories.Config()
-	configPath := filepath.Join(configDir, "i18n.yaml")
-
-	err := os.MkdirAll(configDir, os.ModeDir|os.ModePerm)
-
-	if err != nil {
-		return err
-	}
-
-	file, err := os.Create(configPath)
-
-	if err != nil {
-		return err
-	}
-
-	defer file.Close()
-
-	data, err := yaml.Marshal(Default())
-
-	if err != nil {
-		data = []byte{}
-	}
-
-	_, err = file.Write(data)
-
-	return err
-}
-
-func New() *I18n {
-	i18n := Default()
-
-	v := getViper()
-	v.SetDefault("stats", i18n.Statistics)
-	v.SetDefault("web", i18n.Web)
-
-	if err := v.ReadInConfig(); err != nil {
-		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
-			panic(err)
-		}
-
-		if err := createDefaultI18n(); err != nil {
-			panic(err)
-		}
-	}
-
-	if err := v.Unmarshal(&i18n); err != nil {
-		panic(err)
-	}
-
-	return i18n
 }
