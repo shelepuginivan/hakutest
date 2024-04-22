@@ -23,7 +23,10 @@ type StatisticsService struct {
 
 // NewService returns a StatisticsService instance.
 func NewService(app *application.App, r *results.ResultsService) *StatisticsService {
-	return &StatisticsService{r: r}
+	return &StatisticsService{
+		app: app,
+		r:   r,
+	}
 }
 
 // Export retrieves statistics of the test and exports in to a specified format.
