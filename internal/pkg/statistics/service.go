@@ -8,11 +8,12 @@ import (
 
 // StatisticsService is a struct that provides methods for manipulating Statistics structures.
 type StatisticsService struct {
-	r *results.ResultsService
+	app *application.App
+	r   *results.ResultsService
 }
 
 // NewService returns a StatisticsService instance.
-func NewService(r *results.ResultsService) *StatisticsService {
+func NewService(app *application.App, r *results.ResultsService) *StatisticsService {
 	return &StatisticsService{r: r}
 }
 
