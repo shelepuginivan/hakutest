@@ -14,8 +14,10 @@ type App struct {
 
 // New returns a new instance of App.
 func New() *App {
+	cfg := config.New()
+
 	return &App{
-		Config: config.New(),
-		I18n:   i18n.New(),
+		Config: cfg,
+		I18n:   i18n.New(cfg.General.Language),
 	}
 }

@@ -6,12 +6,15 @@ import (
 	"path/filepath"
 
 	"github.com/shelepuginivan/hakutest/internal/pkg/directories"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
 )
 
 // GeneralConfig represents general configuration parameters.
 type GeneralConfig struct {
+	Language string `yaml:"lang" mapstructure:"lang"`
+
 	// Directory where tests are stored (environment variables such as $HOME are supported).
 	TestsDirectory string `yaml:"tests_directory" mapstructure:"tests_directory"`
 
@@ -64,6 +67,7 @@ func Default() Config {
 
 	defaultConfig := Config{
 		General: GeneralConfig{
+			Language:         i18n.LanguageEn,
 			TestsDirectory:   testsDirectory,
 			ResultsDirectory: resultsDirectory,
 			ShowResults:      true,
