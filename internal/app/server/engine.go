@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/app/server/controllers"
-	"github.com/shelepuginivan/hakutest/internal/pkg/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/application"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"github.com/shelepuginivan/hakutest/web"
@@ -32,8 +32,8 @@ func setMode(mode string) {
 	}
 }
 
-func NewEngine(t *test.TestService, r *results.ResultsService) *gin.Engine {
-	setMode(config.New().Server.Mode)
+func NewEngine(app *application.App) *gin.Engine {
+	setMode(app.Config.Server.Mode)
 
 	engine := gin.New()
 
@@ -43,9 +43,12 @@ func NewEngine(t *test.TestService, r *results.ResultsService) *gin.Engine {
 	engine.Use(gin.Logger())
 	engine.Use(gin.Recovery())
 
-	editor := controllers.NewEditorController()
-	search := controllers.NewSearchController(t)
-	test := controllers.NewTestController(t, r)
+	testService := test.NewService(app)
+	resultsService := results.NewService(app)
+
+	editor := controllers.NewEditorController(app)
+	search := controllers.NewSearchController(app, testService)
+	test := controllers.NewTestController(app, testService, resultsService)
 
 	engine.GET("/", search.SearchPage)
 	engine.GET("/editor/upload", editor.ChooseTest)
