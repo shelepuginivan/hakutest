@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/shelepuginivan/hakutest/internal/pkg/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/application"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
@@ -19,8 +19,12 @@ type TestController struct {
 }
 
 // NewTestController returns a new instance of TestController.
-func NewTestController(s *test.TestService, r *results.ResultsService) *TestController {
-	return &TestController{s: s, r: r}
+func NewTestController(app *application.App, s *test.TestService, r *results.ResultsService) *TestController {
+	return &TestController{
+		s:              s,
+		r:              r,
+		BaseController: BaseController{app: app},
+	}
 }
 
 // GetTest handles `GET /:test` requests.
@@ -44,16 +48,16 @@ func (co TestController) GetTest(c *gin.Context) {
 
 	if t.IsExpired() {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
-			"Language": co.I18n().Language,
-			"I18n":     co.I18n().Web.Expired,
+			"Language": co.app.I18n.Language,
+			"I18n":     co.app.I18n.Web.Expired,
 		})
 
 		return
 	}
 
 	c.HTML(http.StatusOK, "test.tmpl", gin.H{
-		"Language": co.I18n().Language,
-		"I18n":     co.I18n().Web.Test,
+		"Language": co.app.I18n.Language,
+		"I18n":     co.app.I18n.Web.Test,
 		"Title":    t.Title,
 		"Tasks":    t.Tasks,
 		"url": func(s string) template.URL {
@@ -70,12 +74,10 @@ func (co TestController) GetTest(c *gin.Context) {
 // Depending on the configuration, it renders either the result or the
 // submission page.
 func (co TestController) SubmitTest(c *gin.Context) {
-	maxUploadSize := config.New().Server.MaxUploadSize
-
 	// Limit the size of the submitted test form.
-	c.Request.Body = http.MaxBytesReader(c.Writer, c.Request.Body, maxUploadSize)
+	c.Request.Body = http.MaxBytesReader(c.Writer, c.Request.Body, co.app.Config.Server.MaxUploadSize)
 
-	if err := c.Request.ParseMultipartForm(maxUploadSize); err != nil {
+	if err := c.Request.ParseMultipartForm(co.app.Config.Server.MaxUploadSize); err != nil {
 		co.SendErrorResponse(c, http.StatusUnprocessableEntity, err, "failed to parse form")
 		return
 	}
@@ -98,8 +100,8 @@ func (co TestController) SubmitTest(c *gin.Context) {
 
 	if t.IsExpired() {
 		c.HTML(http.StatusGone, "expired.tmpl", gin.H{
-			"Language": co.I18n().Language,
-			"I18n":     co.I18n().Web.Expired,
+			"Language": co.app.I18n.Language,
+			"I18n":     co.app.I18n.Web.Expired,
 		})
 
 		return
@@ -112,9 +114,9 @@ func (co TestController) SubmitTest(c *gin.Context) {
 		return
 	}
 
-	if config.New().General.ShowResults {
+	if co.app.Config.General.ShowResults {
 		c.HTML(http.StatusCreated, "results.tmpl", gin.H{
-			"Language": co.I18n().Language,
+			"Language": co.app.I18n.Language,
 			"Student":  results.Student,
 			"Results":  results.Results,
 		})
@@ -122,7 +124,7 @@ func (co TestController) SubmitTest(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusCreated, "submitted.tmpl", gin.H{
-		"Language": co.I18n().Language,
-		"I18n":     co.I18n().Web.Submitted,
+		"Language": co.app.I18n.Language,
+		"I18n":     co.app.I18n.Web.Submitted,
 	})
 }

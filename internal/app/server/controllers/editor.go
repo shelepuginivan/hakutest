@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/shelepuginivan/hakutest/internal/pkg/application"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
@@ -18,16 +19,18 @@ type EditorController struct {
 }
 
 // NewEditorController returns a new instance of EditorController.
-func NewEditorController() *EditorController {
-	return &EditorController{}
+func NewEditorController(app *application.App) *EditorController {
+	return &EditorController{
+		BaseController{app: app},
+	}
 }
 
 // ChooseTest handles `GET /editor/upload` requests.
 // It renders test upload page that allows to choose the test to edit.
 func (co EditorController) ChooseTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor_upload.tmpl", gin.H{
-		"Language": co.I18n().Language,
-		"I18n":     co.I18n().Web.Editor,
+		"Language": co.app.I18n.Language,
+		"I18n":     co.app.I18n.Web.Editor,
 	})
 }
 
@@ -35,8 +38,8 @@ func (co EditorController) ChooseTest(c *gin.Context) {
 // It is used to start creating new test.
 func (co EditorController) NewTest(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
-		"Language": co.I18n().Language,
-		"I18n":     co.I18n().Web.Editor,
+		"Language": co.app.I18n.Language,
+		"I18n":     co.app.I18n.Web.Editor,
 		"Test":     test.Test{},
 		"incr": func(n int) int {
 			return n + 1
@@ -86,8 +89,8 @@ func (co EditorController) UploadTest(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "editor.tmpl", gin.H{
-		"Language": co.I18n().Language,
-		"I18n":     co.I18n().Web.Editor,
+		"Language": co.app.I18n.Language,
+		"I18n":     co.app.I18n.Web.Editor,
 		"Test":     t,
 		"incr": func(n int) int {
 			return n + 1
