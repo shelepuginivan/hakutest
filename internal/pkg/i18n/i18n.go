@@ -3,6 +3,7 @@ package i18n
 import (
 	"embed"
 	"fmt"
+	"slices"
 
 	"gopkg.in/yaml.v3"
 )
@@ -11,18 +12,20 @@ import (
 var translations embed.FS
 
 func New(lang string) *I18n {
-	data, err := translations.ReadFile(fmt.Sprintf("translations/%s.yaml", lang))
+	var i18n I18n
 
-	if err != nil {
-		data, err = translations.ReadFile("translations/en.yaml")
-
-		if err != nil {
-			panic(err)
-		}
+	if !slices.Contains(AvailableLanguages, lang) {
+		lang = LanguageEn
 	}
 
-	var i18n I18n
-	yaml.Unmarshal(data, &i18n)
+	data, err := translations.ReadFile(fmt.Sprintf("translations/%s.yaml", lang))
+	if err != nil {
+		panic(err)
+	}
+
+	if err := yaml.Unmarshal(data, &i18n); err != nil {
+		panic(err)
+	}
 
 	return &i18n
 }
