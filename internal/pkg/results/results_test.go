@@ -6,6 +6,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/shelepuginivan/hakutest/internal/pkg/application"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"github.com/stretchr/testify/assert"
@@ -18,6 +19,7 @@ func TestMain(m *testing.M) {
 
 func setup() func() {
 	generalConfig := config.New().General
+	app := application.New()
 	testName := "__mock__"
 	mockResultsDir := filepath.Join(generalConfig.ResultsDirectory, testName)
 
@@ -31,7 +33,7 @@ func setup() func() {
 		},
 	}
 
-	err := test.NewService().SaveToTestsDirectory(mockTest, testName)
+	err := test.NewService(app).SaveToTestsDirectory(mockTest, testName)
 	if err != nil {
 		panic(err)
 	}
@@ -62,7 +64,7 @@ func setup() func() {
 }
 
 func TestResultsService_CompareAnswers(t *testing.T) {
-	service := NewService()
+	service := NewService(application.New())
 	cases := []struct {
 		a        string
 		b        string
@@ -91,7 +93,7 @@ func TestResultsService_CompareAnswers(t *testing.T) {
 }
 
 func TestResultsService_GetTestResultsDirectory(t *testing.T) {
-	s := NewService()
+	s := NewService(application.New())
 	resultsDir := config.New().General.ResultsDirectory
 
 	cases := []struct {
@@ -156,7 +158,7 @@ func TestResultsService_CheckAnswers(t *testing.T) {
 }
 
 func TestResultsService_GetResultsList(t *testing.T) {
-	list := NewService().GetResultsList()
+	list := NewService(application.New()).GetResultsList()
 
 	assert.GreaterOrEqual(t, len(list), 1)
 	assert.Contains(t, list, "__mock__")
@@ -183,11 +185,11 @@ func TestResultsService_Save(t *testing.T) {
 		},
 	}
 
-	assert.NoError(t, NewService().Save(mockResults, "__mock__"))
+	assert.NoError(t, NewService(application.New()).Save(mockResults, "__mock__"))
 }
 
 func TestResultsService_GetResultsOfTest(t *testing.T) {
-	results, err := NewService().GetResultsOfTest("__mock__")
+	results, err := NewService(application.New()).GetResultsOfTest("__mock__")
 
 	assert.NoError(t, err)
 	assert.Len(t, results, 1)
@@ -202,6 +204,6 @@ func TestResultsService_Remove(t *testing.T) {
 		panic(err)
 	}
 
-	assert.NoError(t, NewService().Remove(subdirName))
+	assert.NoError(t, NewService(application.New()).Remove(subdirName))
 	assert.NoDirExists(t, resultsSubdir)
 }

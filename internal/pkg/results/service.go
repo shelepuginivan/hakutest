@@ -10,17 +10,19 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/application"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"gopkg.in/yaml.v3"
 )
 
 // ResultsService is a struct that provides methods for manipulating Result structures.
-type ResultsService struct{}
+type ResultsService struct {
+	app *application.App
+}
 
 // NewService returns a ResultsService instance.
-func NewService() *ResultsService {
-	return &ResultsService{}
+func NewService(app *application.App) *ResultsService {
+	return &ResultsService{app: app}
 }
 
 // CompareAnswers reports whether answers match.
@@ -114,10 +116,9 @@ func (s ResultsService) CheckAnswersWithFiles(testName string, t test.Test, answ
 
 // GetResultsList retrieves a list of results names from the results directory specified in the configuration.
 func (s ResultsService) GetResultsList() []string {
-	resultsDirectory := config.New().General.ResultsDirectory
 	resultsList := []string{}
 
-	entries, err := os.ReadDir(resultsDirectory)
+	entries, err := os.ReadDir(s.app.Config.General.ResultsDirectory)
 
 	if err != nil {
 		return resultsList
@@ -137,10 +138,9 @@ func (s ResultsService) GetResultsList() []string {
 // GetTestResultsDirectory returns the absolute path of the test results directory by its name.
 // It doesn't check whether a test with this name or a results directory associated with it exists.
 func (s ResultsService) GetTestResultsDirectory(testName string) string {
-	resultsDirectory := config.New().General.ResultsDirectory
 	name := strings.TrimSuffix(testName, ".json")
 
-	return filepath.Join(resultsDirectory, name)
+	return filepath.Join(s.app.Config.General.ResultsDirectory, name)
 }
 
 // GetResultsOfTest retrieves all results of the test from the results directory specified in the configuration.
@@ -180,12 +180,11 @@ func (s ResultsService) GetResultsOfTest(testName string) ([]TestResults, error)
 // Save saves test results in the results directory specified in the configuration.
 // The results are saved in a subdirectory name.
 func (s ResultsService) Save(r TestResults, testName string) error {
-	generalConfig := config.New().General
 	testResultsDirectory := s.GetTestResultsDirectory(testName)
 	resultsFilePath := filepath.Join(testResultsDirectory, r.Student+".txt")
 
 	_, err := os.Stat(resultsFilePath)
-	if !os.IsNotExist(err) && !generalConfig.OverwriteResults {
+	if !os.IsNotExist(err) && !s.app.Config.General.OverwriteResults {
 		// Test was already submitted by this student
 		return err
 	}
@@ -217,7 +216,7 @@ func (s ResultsService) SaveSubmittedFile(file multipart.File, testName, student
 	fullpath := filepath.Join(studentSubmittedFilesDir, filename)
 
 	_, err = os.Stat(fullpath)
-	if !os.IsNotExist(err) && !config.New().General.OverwriteResults {
+	if !os.IsNotExist(err) && !s.app.Config.General.OverwriteResults {
 		// Submitted file was already written
 		return err
 	}
