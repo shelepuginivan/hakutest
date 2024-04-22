@@ -2,9 +2,11 @@ package config
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/shelepuginivan/hakutest/internal/pkg/display"
 	"github.com/spf13/viper"
+	"gopkg.in/yaml.v3"
 )
 
 // options for ConfigService.
@@ -88,4 +90,25 @@ func (s ConfigService) SetField(field string, value any) error {
 
 	s.v.Set(field, value)
 	return s.v.WriteConfig()
+}
+
+// WriteConfig writes config cfg in a currectly used config file.
+func (s ConfigService) WriteConfig(cfg *Config) error {
+	data, err := yaml.Marshal(cfg)
+	if err != nil {
+		return err
+	}
+
+	if err := s.v.ReadInConfig(); err != nil {
+		return err
+	}
+
+	file, err := os.OpenFile(s.v.ConfigFileUsed(), os.O_WRONLY|os.O_TRUNC, 0644)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	_, err = file.Write(data)
+	return err
 }
