@@ -1,11 +1,10 @@
-package components
+package desktop
 
 import (
 	"fmt"
 	"time"
 
 	"github.com/gotk3/gotk3/gtk"
-	"github.com/shelepuginivan/hakutest/internal/app/desktop"
 )
 
 func (b Builder) NewStatsForm(
@@ -14,8 +13,8 @@ func (b Builder) NewStatsForm(
 ) *gtk.Box {
 	formBox := b.NewBaseForm()
 
-	resultLabel := desktop.Must(gtk.LabelNew(b.app.I18n.Statistics.App.LabelTest))
-	resultComboBox := desktop.Must(gtk.ComboBoxTextNew())
+	resultLabel := Must(gtk.LabelNew(b.app.I18n.Statistics.App.LabelTest))
+	resultComboBox := Must(gtk.ComboBoxTextNew())
 
 	for _, result := range results {
 		resultComboBox.AppendText(result)
@@ -23,8 +22,8 @@ func (b Builder) NewStatsForm(
 
 	resultComboBox.SetActive(0)
 
-	formatLabel := desktop.Must(gtk.LabelNew(b.app.I18n.Statistics.App.LabelFormat))
-	formatComboBox := desktop.Must(gtk.ComboBoxTextNew())
+	formatLabel := Must(gtk.LabelNew(b.app.I18n.Statistics.App.LabelFormat))
+	formatComboBox := Must(gtk.ComboBoxTextNew())
 
 	for _, format := range formats {
 		formatComboBox.AppendText(format)
@@ -32,8 +31,8 @@ func (b Builder) NewStatsForm(
 
 	formatComboBox.SetActive(0)
 
-	submitButton := desktop.Must(gtk.ButtonNewWithLabel(b.app.I18n.Statistics.App.SubmitText))
-	submitResult := desktop.Must(gtk.LabelNew(""))
+	submitButton := Must(gtk.ButtonNewWithLabel(b.app.I18n.Statistics.App.SubmitText))
+	submitResult := Must(gtk.LabelNew(""))
 
 	submitButton.Connect("clicked", func() {
 		result := resultComboBox.GetActiveText()

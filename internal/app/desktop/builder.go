@@ -1,4 +1,4 @@
-package components
+package desktop
 
 import (
 	"github.com/gotk3/gotk3/gtk"

@@ -1,4 +1,4 @@
-package components
+package desktop
 
 import (
 	"log"
@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/gotk3/gotk3/gtk"
-	"github.com/shelepuginivan/hakutest/internal/app/desktop"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 )
@@ -14,7 +13,7 @@ import (
 func (b Builder) NewConfigForm(onSubmit func(cfg *config.Config) error) *gtk.Box {
 	formBox := b.NewBaseForm()
 
-	langComboBox := desktop.Must(gtk.ComboBoxTextNew())
+	langComboBox := Must(gtk.ComboBoxTextNew())
 
 	for langCode, lang := range i18n.LanguageCodeMap {
 		langComboBox.Append(langCode, lang)
@@ -22,49 +21,49 @@ func (b Builder) NewConfigForm(onSubmit func(cfg *config.Config) error) *gtk.Box
 
 	langComboBox.SetActiveID(b.app.Config.General.Language)
 
-	testsDirectoryEntry := desktop.Must(gtk.EntryNew())
+	testsDirectoryEntry := Must(gtk.EntryNew())
 	testsDirectoryEntry.SetText(b.app.Config.General.TestsDirectory)
 
-	resultsDirectoryEntry := desktop.Must(gtk.EntryNew())
+	resultsDirectoryEntry := Must(gtk.EntryNew())
 	resultsDirectoryEntry.SetText(b.app.Config.General.ResultsDirectory)
 
-	showResultsCheckButton := desktop.Must(gtk.CheckButtonNew())
+	showResultsCheckButton := Must(gtk.CheckButtonNew())
 	showResultsCheckButton.SetActive(b.app.Config.General.ShowResults)
 
-	overwriteResultsCheckButton := desktop.Must(gtk.CheckButtonNew())
+	overwriteResultsCheckButton := Must(gtk.CheckButtonNew())
 	overwriteResultsCheckButton.SetActive(b.app.Config.General.OverwriteResults)
 
 	generalConfigGroup := b.NewInputGroup(
-		desktop.Must(gtk.LabelNew("General")),
+		Must(gtk.LabelNew("General")),
 		b.NewInput(
-			desktop.Must(gtk.LabelNew("Language")),
+			Must(gtk.LabelNew("Language")),
 			langComboBox,
 		),
 		b.NewInput(
-			desktop.Must(gtk.LabelNew("Show results")),
+			Must(gtk.LabelNew("Show results")),
 			showResultsCheckButton,
 		),
 		b.NewInput(
-			desktop.Must(gtk.LabelNew("Overwrite results")),
+			Must(gtk.LabelNew("Overwrite results")),
 			overwriteResultsCheckButton,
 		),
 		b.NewInput(
-			desktop.Must(gtk.LabelNew("Tests directory")),
+			Must(gtk.LabelNew("Tests directory")),
 			testsDirectoryEntry,
 		),
 		b.NewInput(
-			desktop.Must(gtk.LabelNew("Results directory")),
+			Must(gtk.LabelNew("Results directory")),
 			resultsDirectoryEntry,
 		),
 	)
 
-	portSpinButton := desktop.Must(gtk.SpinButtonNewWithRange(1024, 65535, 1))
+	portSpinButton := Must(gtk.SpinButtonNewWithRange(1024, 65535, 1))
 	portSpinButton.SetValue(float64(b.app.Config.Server.Port))
 
-	maxUploadSizeSpinButton := desktop.Must(gtk.SpinButtonNewWithRange(0, math.MaxInt64, 1))
+	maxUploadSizeSpinButton := Must(gtk.SpinButtonNewWithRange(0, math.MaxInt64, 1))
 	maxUploadSizeSpinButton.SetValue(float64(b.app.Config.Server.MaxUploadSize))
 
-	serverModeComboBox := desktop.Must(gtk.ComboBoxTextNew())
+	serverModeComboBox := Must(gtk.ComboBoxTextNew())
 
 	for modeId, modeName := range config.ServerModeMap {
 		serverModeComboBox.Append(modeId, modeName)
@@ -73,30 +72,30 @@ func (b Builder) NewConfigForm(onSubmit func(cfg *config.Config) error) *gtk.Box
 	serverModeComboBox.SetActiveID(b.app.Config.Server.Mode)
 
 	serverConfigGroup := b.NewInputGroup(
-		desktop.Must(gtk.LabelNew("Server")),
+		Must(gtk.LabelNew("Server")),
 		b.NewInput(
-			desktop.Must(gtk.LabelNew("Port")),
+			Must(gtk.LabelNew("Port")),
 			portSpinButton,
 		),
 		b.NewInput(
-			desktop.Must(gtk.LabelNew("Max upload size (bytes)")),
+			Must(gtk.LabelNew("Max upload size (bytes)")),
 			maxUploadSizeSpinButton,
 		),
 		b.NewInput(
-			desktop.Must(gtk.LabelNew("Mode")),
+			Must(gtk.LabelNew("Mode")),
 			serverModeComboBox,
 		),
 	)
 
-	submitButton := desktop.Must(gtk.ButtonNewWithLabel("Save config"))
-	submitResult := desktop.Must(gtk.LabelNew(""))
+	submitButton := Must(gtk.ButtonNewWithLabel("Save config"))
+	submitResult := Must(gtk.LabelNew(""))
 
 	submitButton.Connect("clicked", func() {
 		cfg := config.Config{
 			General: config.GeneralConfig{
 				Language:         langComboBox.GetActiveID(),
-				TestsDirectory:   desktop.Must(testsDirectoryEntry.GetText()),
-				ResultsDirectory: desktop.Must(resultsDirectoryEntry.GetText()),
+				TestsDirectory:   Must(testsDirectoryEntry.GetText()),
+				ResultsDirectory: Must(resultsDirectoryEntry.GetText()),
 				ShowResults:      showResultsCheckButton.GetActive(),
 				OverwriteResults: overwriteResultsCheckButton.GetActive(),
 			},
