@@ -13,7 +13,8 @@ import (
 type ComponentListItem[T gtk.IWidget] struct {
 	*gtk.Box
 
-	w T
+	removeButton *gtk.Button
+	widget       T
 }
 
 // ComponentList is a GTK component based on Gtk.Box.
@@ -93,25 +94,32 @@ func (cl *ComponentList[T]) AddComponent(w T) error {
 		return err
 	}
 
-	removeButton, err := gtk.ButtonNewWithLabel(cl.removeButtonLabel)
+	box.removeButton, err = gtk.ButtonNewWithLabel(cl.removeButtonLabel)
 	if err != nil {
 		return err
 	}
 
-	box.w = w
+	box.widget = w
 
-	box.PackStart(box.w, true, true, 4)
-	box.PackStart(removeButton, false, false, 4)
+	box.PackStart(box.widget, true, true, 4)
+	box.PackStart(box.removeButton, false, false, 4)
 
 	listItem := cl.list.PushBack(box)
 
-	removeButton.Connect("clicked", func() {
+	box.removeButton.Connect("clicked", func() {
 		box.Destroy()
 		cl.list.Remove(listItem)
 	})
 
 	cl.componentBox.PackStart(box, false, false, 4)
-	cl.componentBox.ShowAll()
+
+	for i := cl.list.Front(); i != nil; i = i.Next() {
+		if box, ok := i.Value.(*ComponentListItem[T]); ok {
+			box.Show()
+			box.removeButton.Show()
+			box.widget.ToWidget().Show()
+		}
+	}
 
 	return nil
 }
@@ -120,7 +128,7 @@ func (cl *ComponentList[T]) AddComponent(w T) error {
 func (cl ComponentList[T]) ForEach(cb func(w T)) {
 	for i := cl.list.Front(); i != nil; i = i.Next() {
 		if box, ok := i.Value.(*ComponentListItem[T]); ok {
-			cb(box.w)
+			cb(box.widget)
 		}
 	}
 }

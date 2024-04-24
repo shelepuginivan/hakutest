@@ -41,6 +41,10 @@ func (lst EntryListSingle) NewEntryListSingleItem(v *EntryListSingleValue) (*Ent
 		return nil, err
 	}
 
+	item.Connect("show", func(i *gtk.Box) {
+		i.ShowAll()
+	})
+
 	item.radio, err = gtk.RadioButtonNewFromWidget(lst.baseRadio)
 	if err != nil {
 		return nil, err

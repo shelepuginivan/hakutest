@@ -64,6 +64,7 @@ func (b Builder) NewTaskInput() *TaskInput {
 	})
 
 	ti.Connect("show", func() {
+		box.ShowAll()
 		ti.SetType(ti.typeComboBox.GetActiveID())
 		ti.attachmentInput.SetVisible(ti.hasAttachmentCheckButton.GetActive())
 	})

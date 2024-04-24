@@ -40,6 +40,10 @@ func (lst EntryListMultiple) NewEntryListMultipleItem(v *EntryListMultipleValue)
 		return nil, err
 	}
 
+	item.Connect("show", func(i *gtk.Box) {
+		i.ShowAll()
+	})
+
 	item.check, err = gtk.CheckButtonNew()
 	if err != nil {
 		return nil, err
