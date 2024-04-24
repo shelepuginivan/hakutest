@@ -1,7 +1,8 @@
-package components
+package desktop
 
 import (
 	"github.com/gotk3/gotk3/gtk"
+	"github.com/shelepuginivan/hakutest/internal/app/desktop/components"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
@@ -12,77 +13,53 @@ type AttachmentInput struct {
 
 	nameEntry        *gtk.Entry
 	typeComboBox     *gtk.ComboBoxText
-	attachmentSource *AttachmentSource
+	attachmentSource *components.AttachmentSource
 }
 
 // NewAttachmentInput returns a new instance of AttachmentInput.
-func NewAttachmentInput(
-	label,
-	nameLabel,
-	typeLabel,
-	modeFileLabel,
-	modeUrlLabel,
-	dialogTitle,
-	dialogOpenButtonText,
-	dialogCancelButtonText string,
-	typeMap map[string]string,
-) (*AttachmentInput, error) {
-	var err error
+func (b Builder) NewAttachmentInput() *AttachmentInput {
+	ai := AttachmentInput{
+		Frame: Must(gtk.FrameNew("")),
 
-	ai := AttachmentInput{}
-
-	ai.Frame, err = gtk.FrameNew(label)
-	if err != nil {
-		return nil, err
+		nameEntry:    Must(gtk.EntryNew()),
+		typeComboBox: Must(gtk.ComboBoxTextNew()),
+		attachmentSource: Must(components.NewAttachmentSource(
+			"Choose file",
+			"Enter URL",
+			"Open file",
+			"Open",
+			"Cancel",
+		)),
 	}
 
-	box, err := gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 4)
-	if err != nil {
-		return nil, err
-	}
+	box := Must(gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 4))
 
-	ai.nameEntry, err = gtk.EntryNew()
-	if err != nil {
-		return nil, err
-	}
+	nameInput := Must(components.NewInput("Name", ai.nameEntry))
 
-	nameInput, err := NewInput(nameLabel, ai.nameEntry)
-	if err != nil {
-		return nil, err
-	}
-
-	ai.typeComboBox, err = gtk.ComboBoxTextNew()
-	if err != nil {
-		return nil, err
+	typeMap := map[string]string{
+		test.AttachmentFile:  "File",
+		test.AttachmentImage: "Image",
+		test.AttachmentAudio: "Audio",
+		test.AttachmentVideo: "Video",
 	}
 
 	for id, typeText := range typeMap {
 		ai.typeComboBox.Append(id, typeText)
 	}
 
-	typeInput, err := NewInput(typeLabel, ai.typeComboBox)
-	if err != nil {
-		return nil, err
-	}
+	ai.typeComboBox.SetActiveID(test.AttachmentFile)
 
-	ai.attachmentSource, err = NewAttachmentSource(
-		modeFileLabel,
-		modeUrlLabel,
-		dialogTitle,
-		dialogOpenButtonText,
-		dialogCancelButtonText,
-	)
-	if err != nil {
-		return nil, err
-	}
+	typeInput := Must(components.NewInput("Type", ai.typeComboBox))
 
 	box.PackStart(nameInput, false, false, 4)
 	box.PackStart(typeInput, false, false, 4)
 	box.PackStart(ai.attachmentSource, false, false, 4)
+	box.SetMarginStart(8)
+	box.SetMarginEnd(8)
 
 	ai.Add(box)
 
-	return &ai, err
+	return &ai
 }
 
 // GetAttachment returns the configured attachment.
