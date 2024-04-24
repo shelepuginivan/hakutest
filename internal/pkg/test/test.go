@@ -17,11 +17,11 @@ type Attachment struct {
 
 // Task represents a Test task with a type, text, attachment, options, and answer.
 type Task struct {
-	Type       string     `json:"type"`       // Type of the task.
-	Text       string     `json:"text"`       // Text of the task, usually its terms.
-	Attachment Attachment `json:"attachment"` // Attachment to the task.
-	Options    []string   `json:"options"`    // Answer options of the task.
-	Answer     string     `json:"answer"`     // Correct answer of the task.
+	Type       string      `json:"type"`       // Type of the task.
+	Text       string      `json:"text"`       // Text of the task, usually its terms.
+	Attachment *Attachment `json:"attachment"` // Attachment to the task.
+	Options    []string    `json:"options"`    // Answer options of the task.
+	Answer     string      `json:"answer"`     // Correct answer of the task.
 }
 
 // Test represents a test with a title, target, description, subject, author, institution, creation date, expiration date, and tasks.
@@ -34,7 +34,7 @@ type Test struct {
 	Institution string    `json:"institution"` // Institution associated with the test.
 	CreatedAt   time.Time `json:"createdAt"`   // Creation time of the test.
 	ExpiresIn   time.Time `json:"expiresIn"`   // Expiration time of the test.
-	Tasks       []Task    `json:"tasks"`       // Tasks of the test.
+	Tasks       []*Task   `json:"tasks"`       // Tasks of the test.
 }
 
 // IsExpired reports whether the test is expired.

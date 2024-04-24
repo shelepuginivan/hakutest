@@ -30,17 +30,19 @@
                     </div>
                 </section>
                 {{ range $task_index, $task := .Tasks }}
-                    {{ with $task }}
+                    {{ if ne $task nil }}
+                        {{ with $task }}
                         <fieldset class="task">
                             <div class="task-text">{{ .Text }}</div>
-                            <div class="attachment">
-                                {{ if eq .Attachment.Type "image" }}
+                                {{ if ne .Attachment nil }}
+                                    <div class="attachment">
+                                    {{ if eq .Attachment.Type "image" }}
                                     <img
                                         src="{{ call $.url .Attachment.Src }}"
                                         alt="{{ .Attachment.Name }}"
                                         loading="lazy"
                                     >
-                                {{ else if eq .Attachment.Type "video" }}
+                                    {{ else if eq .Attachment.Type "video" }}
                                     <video
                                         controls
                                         preload="metadata"
@@ -48,7 +50,7 @@
                                     >
                                         <source src="{{ call $.url .Attachment.Src }}">
                                     </video>
-                                {{ else if eq .Attachment.Type "audio" }}
+                                    {{ else if eq .Attachment.Type "audio" }}
                                     <audio
                                         controls
                                         preload="metadata"
@@ -56,7 +58,7 @@
                                     >
                                         <source src="{{ call $.url .Attachment.Src }}">
                                     </audio>
-                                {{ else if eq .Attachment.Type "file" }}
+                                    {{ else if eq .Attachment.Type "file" }}
                                     <a
                                         target="_blank"
                                         href="{{ call $.url .Attachment.Src }}"
@@ -64,6 +66,7 @@
                                     >
                                         {{ .Attachment.Name }}
                                     </a>
+                                    {{ end }}
                                 {{ end }}
                             </div>
                             <div>
@@ -129,6 +132,7 @@
                                 {{ end }}
                             </div>
                         </fieldset>
+                        {{ end }}
                     {{ end }}
                 {{ end }}
                 <button class="button" type="submit">

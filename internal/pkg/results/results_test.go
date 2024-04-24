@@ -26,7 +26,7 @@ func setup() func() {
 	mockTest := test.Test{
 		Title:  "Mock test",
 		Author: "John Doe",
-		Tasks: []test.Task{
+		Tasks: []*test.Task{
 			{Answer: "A"},
 			{Answer: "B"},
 			{Answer: "C"},
@@ -117,7 +117,7 @@ func TestResultsService_CheckAnswers(t *testing.T) {
 	mockTest := test.Test{
 		Title:  "Mock Test",
 		Author: "John Doe",
-		Tasks: []test.Task{
+		Tasks: []*test.Task{
 			{Answer: "A"},
 			{Answer: "B"},
 			{Answer: "C"},

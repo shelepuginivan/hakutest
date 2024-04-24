@@ -130,7 +130,7 @@ func (co EditorController) CreateTest(c *gin.Context) {
 	}
 
 	for i := 0; i < numberOfTasks; i++ {
-		task := test.Task{}
+		task := &test.Task{}
 
 		task.Type = c.Request.Form.Get(fmt.Sprintf("%d-type", i))
 		task.Text = c.Request.Form.Get(fmt.Sprintf("%d-text", i))
@@ -138,7 +138,7 @@ func (co EditorController) CreateTest(c *gin.Context) {
 		task.Options = c.PostFormArray(fmt.Sprintf("%d-options", i))
 
 		if c.Request.Form.Get(fmt.Sprintf("%d-has-attachment", i)) == "on" {
-			attachment := test.Attachment{}
+			attachment := &test.Attachment{}
 
 			attachment.Type = c.Request.Form.Get(fmt.Sprintf("%d-attachment-type", i))
 			attachment.Name = c.Request.Form.Get(fmt.Sprintf("%d-attachment-name", i))
