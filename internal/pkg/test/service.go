@@ -20,8 +20,8 @@ func NewService(app *application.App) *TestService {
 }
 
 // GetTestByName retrieves the Test from the directory specified in the configuration by the test name.
-func (s TestService) GetTestByName(name string) (Test, error) {
-	test := Test{}
+func (s TestService) GetTestByName(name string) (*Test, error) {
+	test := &Test{}
 	testPath := s.GetTestPath(name)
 	testFile, err := os.ReadFile(testPath)
 
@@ -35,8 +35,8 @@ func (s TestService) GetTestByName(name string) (Test, error) {
 }
 
 // GetTestByPath retrieves the Test by its file path.
-func (s TestService) GetTestByPath(path string) (Test, error) {
-	test := Test{}
+func (s TestService) GetTestByPath(path string) (*Test, error) {
+	test := &Test{}
 	testFile, err := os.ReadFile(path)
 
 	if err != nil {
@@ -94,7 +94,7 @@ func (s TestService) Import(path string) error {
 
 // SaveToTestsDirectory saves the Test as a JSON file in the tests directory specified in the configuration.
 // The name is used as a filename.
-func (s TestService) SaveToTestsDirectory(t Test, name string) error {
+func (s TestService) SaveToTestsDirectory(t *Test, name string) error {
 	testPath := s.GetTestPath(name)
 	data, err := json.Marshal(t)
 

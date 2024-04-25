@@ -150,7 +150,7 @@ func TestTestService_GetTestList(t *testing.T) {
 }
 
 func TestTestService_SaveToTestsDirectory(t *testing.T) {
-	mockTest := Test{
+	mockTest := &Test{
 		Title:       "Mock test",
 		Author:      "John Doe",
 		Target:      "Assert",

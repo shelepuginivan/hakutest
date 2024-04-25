@@ -23,7 +23,7 @@ func setup() func() {
 	testName := "__mock__"
 	mockResultsDir := filepath.Join(generalConfig.ResultsDirectory, testName)
 
-	mockTest := test.Test{
+	mockTest := &test.Test{
 		Title:  "Mock test",
 		Author: "John Doe",
 		Tasks: []*test.Task{
@@ -114,7 +114,7 @@ func TestResultsService_GetTestResultsDirectory(t *testing.T) {
 func TestResultsService_CheckAnswers(t *testing.T) {
 	s := ResultsService{}
 
-	mockTest := test.Test{
+	mockTest := &test.Test{
 		Title:  "Mock Test",
 		Author: "John Doe",
 		Tasks: []*test.Task{

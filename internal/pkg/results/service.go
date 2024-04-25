@@ -32,7 +32,7 @@ func (s ResultsService) CompareAnswers(received, expected string) bool {
 }
 
 // CheckAnswers returns the results of the test.
-func (s ResultsService) CheckAnswers(t test.Test, answers map[string][]string) TestResults {
+func (s ResultsService) CheckAnswers(t *test.Test, answers map[string][]string) TestResults {
 	submittedAt := time.Now()
 	student := strings.Join(answers["student"], "")
 
@@ -79,7 +79,7 @@ func (s ResultsService) CheckAnswers(t test.Test, answers map[string][]string) T
 }
 
 // CheckAnswersWithFiles returns the results of the test, but also saves uploaded files.
-func (s ResultsService) CheckAnswersWithFiles(testName string, t test.Test, answers map[string][]string, files map[string][]*multipart.FileHeader) TestResults {
+func (s ResultsService) CheckAnswersWithFiles(testName string, t *test.Test, answers map[string][]string, files map[string][]*multipart.FileHeader) TestResults {
 	results := s.CheckAnswers(t, answers)
 
 	for i, fileHeaders := range files {
