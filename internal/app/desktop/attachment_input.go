@@ -26,6 +26,7 @@ func (b Builder) NewAttachmentInput() *AttachmentInput {
 		attachmentSource: Must(components.NewAttachmentSource(
 			"Choose file",
 			"Enter URL",
+			"Source is loaded",
 			"Open file",
 			"Open",
 			"Cancel",
@@ -83,5 +84,5 @@ func (ai AttachmentInput) GetAttachment() (*test.Attachment, error) {
 func (ai *AttachmentInput) SetAttachment(attachment *test.Attachment) {
 	ai.nameEntry.SetText(attachment.Name)
 	ai.typeComboBox.SetActiveID(attachment.Type)
-	ai.attachmentSource.SetUrl(attachment.Src)
+	ai.attachmentSource.SetSource(attachment.Src)
 }

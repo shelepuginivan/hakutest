@@ -10,38 +10,65 @@ import (
 	"github.com/gotk3/gotk3/gtk"
 )
 
+type AttachmentMode = string
+
+const (
+	AttachmentSourceModeLoaded AttachmentMode = "loaded"
+	AttachmentSourceModeFile   AttachmentMode = "file"
+	AttachmentSourceModeURL    AttachmentMode = "url"
+)
+
 // AttachmentSource is a GTK components based on Gtk.Box.
 // It allows to select attachment source either from local file or from the
 // URL.
 type AttachmentSource struct {
 	*gtk.Box
 
-	isFile     bool
-	fileButton *gtk.FileChooserButton
-	urlEntry   *gtk.Entry
+	mode         AttachmentMode
+	loadedSource string
+
+	stack *gtk.Stack
+
+	loadedLabel *gtk.Label
+	fileButton  *gtk.FileChooserButton
+	urlEntry    *gtk.Entry
+
+	baseRadio     *gtk.RadioButton
+	modeUrlRadio  *gtk.RadioButton
+	modeFileRadio *gtk.RadioButton
 }
 
 // NewAttachmentSource returns a new instance of AttachmentSource.
 func NewAttachmentSource(
 	modeFileLabel,
 	modeUrlLabel,
+	modeLoadedLabel,
 	dialogTitle,
 	dialogOpenButtonText,
-	dialogCancelButtonText string) (*AttachmentSource, error) {
+	dialogCancelButtonText string,
+) (*AttachmentSource, error) {
 	var err error
 
-	as := AttachmentSource{}
+	as := &AttachmentSource{
+		mode: AttachmentSourceModeURL,
+	}
+
 	as.Box, err = gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 4)
 	if err != nil {
 		return nil, err
 	}
 
-	modeUrlRadio, err := gtk.RadioButtonNewWithLabel(nil, modeUrlLabel)
+	as.baseRadio, err = gtk.RadioButtonNew(nil)
 	if err != nil {
 		return nil, err
 	}
 
-	modeFileRadio, err := gtk.RadioButtonNewWithLabelFromWidget(modeUrlRadio, modeFileLabel)
+	as.modeUrlRadio, err = gtk.RadioButtonNewWithLabelFromWidget(as.baseRadio, modeUrlLabel)
+	if err != nil {
+		return nil, err
+	}
+
+	as.modeFileRadio, err = gtk.RadioButtonNewWithLabelFromWidget(as.baseRadio, modeFileLabel)
 	if err != nil {
 		return nil, err
 	}
@@ -66,39 +93,50 @@ func NewAttachmentSource(
 		return nil, err
 	}
 
-	modeUrlRadio.Connect("toggled", func() {
-		as.isFile = modeFileRadio.GetActive()
-		as.fileButton.SetVisible(as.isFile)
-		as.urlEntry.SetVisible(!as.isFile)
+	as.loadedLabel, err = gtk.LabelNew(modeLoadedLabel)
+	if err != nil {
+		return nil, err
+	}
+
+	as.stack, err = gtk.StackNew()
+	if err != nil {
+		return nil, err
+	}
+
+	as.stack.AddNamed(as.urlEntry, AttachmentSourceModeURL)
+	as.stack.AddNamed(as.fileButton, AttachmentSourceModeFile)
+	as.stack.AddNamed(as.loadedLabel, AttachmentSourceModeLoaded)
+
+	as.modeFileRadio.Connect("toggled", func(w *gtk.RadioButton) {
+		if w.GetActive() {
+			as.SetMode(AttachmentSourceModeFile)
+		}
+	})
+
+	as.modeUrlRadio.Connect("toggled", func(w *gtk.RadioButton) {
+		if w.GetActive() {
+			as.SetMode(AttachmentSourceModeURL)
+		}
 	})
 
 	as.Connect("show", func() {
-		as.fileButton.SetVisible(as.isFile)
-		as.urlEntry.SetVisible(!as.isFile)
+		as.SetMode(as.mode)
 	})
 
-	as.PackStart(modeUrlRadio, false, false, 4)
-	as.PackStart(modeFileRadio, false, false, 4)
-	as.PackStart(as.urlEntry, false, false, 4)
-	as.PackStart(as.fileButton, false, false, 4)
+	as.PackStart(as.modeUrlRadio, false, false, 4)
+	as.PackStart(as.modeFileRadio, false, false, 4)
+	as.PackStart(as.stack, false, false, 4)
 
-	return &as, nil
+	return as, nil
 }
 
-// SetModeFile sets mode of the AttachmentSource to file.
-// It hides the URL entry and shows the file chooser button.
-func (as *AttachmentSource) SetModeFile() {
-	as.isFile = true
-	as.fileButton.Show()
-	as.urlEntry.Hide()
-}
+func (as *AttachmentSource) SetMode(mode AttachmentMode) {
+	as.mode = mode
+	as.baseRadio.SetActive(mode == AttachmentSourceModeLoaded)
+	as.modeFileRadio.SetActive(mode == AttachmentSourceModeFile)
+	as.modeUrlRadio.SetActive(mode == AttachmentSourceModeURL)
 
-// SetModeUrl sets mode of the AttachmentSource to URL.
-// It hides the file chooser button and shows the URL entry.
-func (as *AttachmentSource) SetModeUrl() {
-	as.isFile = false
-	as.fileButton.Hide()
-	as.urlEntry.Show()
+	as.stack.SetVisibleChildName(mode)
 }
 
 // GetSource returns the entered source.
@@ -106,27 +144,39 @@ func (as *AttachmentSource) SetModeUrl() {
 // If mode is set to file, it encodes the file to base64 URL.
 // If mode is set to URL, it returns the entered URL.
 func (as *AttachmentSource) GetSource() (string, error) {
-	if as.isFile {
-		path := as.fileButton.GetFilename()
-
-		fileBytes, err := os.ReadFile(path)
-		if err != nil {
-			return "", err
-		}
-
-		mimeType := mime.TypeByExtension(path)
-		base64Content := base64.StdEncoding.EncodeToString(fileBytes)
-
-		base64URL := fmt.Sprintf("data:%s;base64,%s", mimeType, base64Content)
-		encodedBase64URL := url.PathEscape(base64URL)
-
-		return encodedBase64URL, nil
+	if as.mode == AttachmentSourceModeLoaded {
+		return as.loadedSource, nil
 	}
 
-	return as.urlEntry.GetText()
+	if as.mode == AttachmentSourceModeURL {
+		return as.urlEntry.GetText()
+	}
+
+	path := as.fileButton.GetFilename()
+
+	fileBytes, err := os.ReadFile(path)
+	if err != nil {
+		return "", err
+	}
+
+	mimeType := mime.TypeByExtension(path)
+	base64Content := base64.StdEncoding.EncodeToString(fileBytes)
+
+	base64URL := fmt.Sprintf("data:%s;base64,%s", mimeType, base64Content)
+	encodedBase64URL := url.PathEscape(base64URL)
+
+	return encodedBase64URL, nil
 }
 
-// SetUrl sets the URL of the AttachmentSource.
-func (as *AttachmentSource) SetUrl(url string) {
-	as.urlEntry.SetText(url)
+// SetSource sets the URL of the AttachmentSource.
+func (as *AttachmentSource) SetSource(src string) {
+	_, err := url.ParseRequestURI(src)
+	if err != nil {
+		as.SetMode(AttachmentSourceModeLoaded)
+		as.loadedSource = src
+		return
+	}
+
+	as.SetMode(AttachmentSourceModeURL)
+	as.urlEntry.SetText(src)
 }
