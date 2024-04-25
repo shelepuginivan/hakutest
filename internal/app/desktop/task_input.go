@@ -120,9 +120,11 @@ func (ti TaskInput) GetTask() (*test.Task, error) {
 		return task, err
 	}
 
-	task.Attachment, err = ti.attachmentInput.GetAttachment()
-	if err != nil {
-		return task, err
+	if ti.hasAttachmentCheckButton.GetActive() {
+		task.Attachment, err = ti.attachmentInput.GetAttachment()
+		if err != nil {
+			return task, err
+		}
 	}
 
 	switch task.Type {
