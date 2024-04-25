@@ -1,64 +1,66 @@
 package desktop
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/gotk3/gotk3/gtk"
+	"github.com/shelepuginivan/hakutest/internal/app/desktop/components"
+	"github.com/shelepuginivan/hakutest/internal/app/desktop/layouts"
 )
 
 func (b Builder) NewStatsForm(
 	results, formats []string,
 	onSubmit func(result, format string) error,
 ) *gtk.Box {
-	formBox := b.NewBaseForm()
+	box := Must(layouts.NewForm())
 
-	resultLabel := Must(gtk.LabelNew(b.app.I18n.Statistics.App.LabelTest))
-	resultComboBox := Must(gtk.ComboBoxTextNew())
+	inputsBox := Must(layouts.NewContainer())
+	submitBox := Must(gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 8))
 
-	for _, result := range results {
-		resultComboBox.AppendText(result)
+	heading := Must(components.NewHeadingH1("Export statistics"))
+
+	resultsComboBox := Must(gtk.ComboBoxTextNew())
+	for _, r := range results {
+		resultsComboBox.Append(r, r)
 	}
+	resultsComboBox.SetActive(0)
+	resultsInput := Must(components.NewInput("Test", resultsComboBox))
 
-	resultComboBox.SetActive(0)
-
-	formatLabel := Must(gtk.LabelNew(b.app.I18n.Statistics.App.LabelFormat))
-	formatComboBox := Must(gtk.ComboBoxTextNew())
-
-	for _, format := range formats {
-		formatComboBox.AppendText(format)
+	formatsComboBox := Must(gtk.ComboBoxTextNew())
+	for _, f := range formats {
+		formatsComboBox.Append(f, f)
 	}
-
-	formatComboBox.SetActive(0)
+	formatsComboBox.SetActive(0)
+	formatsInput := Must(components.NewInput("Format", formatsComboBox))
 
 	submitButton := Must(gtk.ButtonNewWithLabel(b.app.I18n.Statistics.App.SubmitText))
 	submitResult := Must(gtk.LabelNew(""))
 
 	submitButton.Connect("clicked", func() {
-		result := resultComboBox.GetActiveText()
-		format := formatComboBox.GetActiveText()
-
-		err := onSubmit(result, format)
-
-		if err != nil {
-			submitResult.SetText(fmt.Sprintf(
-				"%s %s",
-				b.app.I18n.Statistics.App.ErrorPrefix,
-				err.Error(),
-			))
-		} else {
-			submitResult.SetText(b.app.I18n.Statistics.App.SuccessText)
-		}
-
-		time.AfterFunc(time.Second*4, func() {
+		defer time.AfterFunc(time.Second*4, func() {
 			submitResult.SetText("")
 		})
+
+		result := resultsComboBox.GetActiveID()
+		format := formatsComboBox.GetActiveID()
+
+		if err := onSubmit(result, format); err != nil {
+			submitResult.SetText("An error occurred!")
+			return
+		}
+
+		submitResult.SetText("Statistics exported to Downloads")
 	})
 
-	formBox.PackStart(b.NewInput(resultLabel, resultComboBox), false, false, 16)
-	formBox.PackStart(b.NewInput(formatLabel, formatComboBox), false, false, 16)
-	formBox.PackStart(submitButton, false, false, 4)
-	formBox.PackStart(submitResult, false, false, 4)
+	inputsBox.PackStart(resultsInput, false, false, 0)
+	inputsBox.PackStart(formatsInput, false, false, 0)
 
-	return formBox
+	submitBox.PackStart(submitButton, false, false, 0)
+	submitBox.PackStart(submitResult, false, false, 0)
+
+	box.PackStart(heading, false, false, 0)
+	box.PackStart(inputsBox, false, false, 0)
+	box.PackStart(submitBox, false, false, 0)
+
+	return box
 }

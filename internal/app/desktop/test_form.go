@@ -5,6 +5,7 @@ import (
 
 	"github.com/gotk3/gotk3/gtk"
 	"github.com/shelepuginivan/hakutest/internal/app/desktop/components"
+	"github.com/shelepuginivan/hakutest/internal/app/desktop/layouts"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
@@ -30,7 +31,7 @@ func (b Builder) NewTestForm(
 	onCancel func(),
 ) *TestForm {
 	form := &TestForm{
-		Box: b.NewBaseForm(),
+		Box: Must(layouts.NewForm()),
 
 		titleEntry:          Must(gtk.EntryNew()),
 		descriptionTextView: Must(gtk.TextViewNew()),
@@ -45,12 +46,12 @@ func (b Builder) NewTestForm(
 
 	form.Connect("show", form.expiresAtInput.Hide)
 
+	cancelBox := Must(gtk.BoxNew(gtk.ORIENTATION_HORIZONTAL, 0))
+	inputsBox := Must(layouts.NewContainer())
+	submitBox := Must(gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 8))
+
 	cancelButton := Must(gtk.ButtonNewWithLabel("Close"))
 	cancelButton.Connect("clicked", onCancel)
-
-	cancelButtonBox := Must(gtk.BoxNew(gtk.ORIENTATION_HORIZONTAL, 0))
-	cancelButtonBox.SetHAlign(gtk.ALIGN_END)
-	cancelButtonBox.PackStart(cancelButton, false, false, 0)
 
 	titleInput := Must(components.NewInput("Title", form.titleEntry))
 	descriptionInput := Must(components.NewInput("Description", form.descriptionTextView))
@@ -64,40 +65,46 @@ func (b Builder) NewTestForm(
 	})
 
 	submitButton := Must(gtk.ButtonNewWithLabel("Save"))
-	submitResultLabel := Must(gtk.LabelNew(""))
+	submitLabel := Must(gtk.LabelNew(""))
 
 	submitButton.Connect("clicked", func() {
 		defer time.AfterFunc(time.Second*4, func() {
-			submitResultLabel.SetText("")
+			submitLabel.SetText("")
 		})
 
 		test, err := form.GetTest()
 		if err != nil {
-			submitResultLabel.SetText("An error occurred!")
+			submitLabel.SetText("An error occurred!")
 			return
 		}
 
 		if err = onSubmit(test); err != nil {
-			submitResultLabel.SetText("An error occurred!")
+			submitLabel.SetText("An error occurred!")
 			return
 		}
 
-		submitResultLabel.SetText("Test saved to the tests directory")
+		submitLabel.SetText("Test saved to the tests directory")
 	})
 
-	form.PackStart(cancelButtonBox, false, false, 24)
-	form.PackStart(titleInput, false, false, 8)
-	form.PackStart(descriptionInput, false, false, 8)
-	form.PackStart(subjectInput, false, false, 8)
-	form.PackStart(authorInput, false, false, 8)
-	form.PackStart(targetAudienceInput, false, false, 8)
-	form.PackStart(institutionInput, false, false, 8)
-	form.PackStart(form.expiresAtCheck, false, false, 8)
-	form.PackStart(form.expiresAtInput, false, false, 8)
-	form.PackStart(Must(gtk.SeparatorNew(gtk.ORIENTATION_HORIZONTAL)), false, false, 16)
-	form.PackStart(form.taskList, false, false, 8)
-	form.PackStart(submitButton, false, false, 24)
-	form.PackStart(submitResultLabel, false, false, 8)
+	cancelBox.SetHAlign(gtk.ALIGN_END)
+	cancelBox.PackStart(cancelButton, false, false, 0)
+
+	inputsBox.PackStart(titleInput, false, false, 0)
+	inputsBox.PackStart(descriptionInput, false, false, 0)
+	inputsBox.PackStart(subjectInput, false, false, 0)
+	inputsBox.PackStart(authorInput, false, false, 0)
+	inputsBox.PackStart(targetAudienceInput, false, false, 0)
+	inputsBox.PackStart(institutionInput, false, false, 0)
+	inputsBox.PackStart(form.expiresAtCheck, false, false, 0)
+	inputsBox.PackStart(form.expiresAtInput, false, false, 0)
+
+	submitBox.PackStart(submitButton, false, false, 0)
+	submitBox.PackStart(submitLabel, false, false, 0)
+
+	form.PackStart(cancelBox, false, false, 0)
+	form.PackStart(inputsBox, false, false, 0)
+	form.PackStart(form.taskList, false, false, 0)
+	form.PackStart(submitBox, false, false, 0)
 
 	return form
 }
