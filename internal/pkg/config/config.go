@@ -42,8 +42,8 @@ type ServerConfig struct {
 
 // Config represents Hakutest configuration.
 type Config struct {
-	General GeneralConfig `yaml:"general" mapstructure:"general"` // General configuration.
-	Server  ServerConfig  `yaml:"server" mapstructure:"server"`   // Server configuration.
+	General *GeneralConfig `yaml:"general" mapstructure:"general"` // General configuration.
+	Server  *ServerConfig  `yaml:"server" mapstructure:"server"`   // Server configuration.
 }
 
 // getViper returns a configured instance of viper.Viper.
@@ -66,14 +66,14 @@ func Default() Config {
 	resultsDirectory := filepath.Join(dataDir, "results")
 
 	defaultConfig := Config{
-		General: GeneralConfig{
+		General: &GeneralConfig{
 			Language:         i18n.LanguageEn,
 			TestsDirectory:   testsDirectory,
 			ResultsDirectory: resultsDirectory,
 			ShowResults:      true,
 			OverwriteResults: false,
 		},
-		Server: ServerConfig{
+		Server: &ServerConfig{
 			Port:          8080,
 			Mode:          "release",
 			MaxUploadSize: 1024 * 1024, // 1 MB
