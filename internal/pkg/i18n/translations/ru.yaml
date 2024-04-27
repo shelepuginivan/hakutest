@@ -1,4 +1,15 @@
 lang: ru
+gtk:
+  server:
+    title: "Сервер Hakutest"
+    label_idle: "Сервер не запущен"
+    label_running: "Сервер запущен на порту :%d"
+    label_error: "Произошла ошибка: %s"
+    button_start: "Запустить сервер"
+    button_stop: "Остановить сервер"
+  editor: TODO
+  stats: TODO
+  config: TODO
 server:
   stop_title: Остановить Hakutest
   stop_tooltip: Остановить сервер Hakutest и выйти

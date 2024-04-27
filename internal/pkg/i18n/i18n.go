@@ -30,6 +30,19 @@ func New(lang string) *I18n {
 	return &i18n
 }
 
+type GtkServerI18n struct {
+	Title        string `yaml:"title"`
+	LabelIdle    string `yaml:"label_idle"`
+	LabelRunning string `yaml:"label_running"`
+	LabelError   string `yaml:"label_error"`
+	ButtonStart  string `yaml:"button_start"`
+	ButtonStop   string `yaml:"button_stop"`
+}
+
+type GtkI18n struct {
+	Server *GtkServerI18n `yaml:"server"`
+}
+
 type ServerI18n struct {
 	StopTitle   string `yaml:"stop_title" mapstructure:"stop_title"`
 	StopTooltip string `yaml:"stop_tooltip" mapstructure:"stop_tooltip"`
@@ -137,6 +150,7 @@ type WebI18n struct {
 
 type I18n struct {
 	Language   string     `yaml:"lang" mapstructure:"lang"`
+	Gtk        *GtkI18n   `yaml:"gtk"`
 	Server     ServerI18n `yaml:"server" mapstructure:"server"`
 	Statistics StatsI18n  `yaml:"stats" mapstructure:"stats"`
 	Web        WebI18n    `yaml:"web" mapstructure:"web"`

@@ -1,4 +1,15 @@
 lang: en
+gtk:
+  server:
+    title: "Hakutest Server"
+    label_idle: "Server is not running"
+    label_running: "Server is running on port :%d"
+    label_error: "An error occurred: %s"
+    button_start: "Start server"
+    button_stop: "Stop server"
+  editor: TODO
+  stats: TODO
+  config: TODO
 server:
     stop_title: Stop Hakutest
     stop_tooltip: Stop Hakutest server and quit
