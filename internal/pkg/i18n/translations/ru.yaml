@@ -8,7 +8,13 @@ gtk:
     button_start: "Запустить сервер"
     button_stop: "Остановить сервер"
   editor: TODO
-  stats: TODO
+  stats:
+    title: "Экспорт статистики"
+    label_success: "Статистика эксортирована в Загрузки"
+    label_error: "Произошла ошибка: %s"
+    input_test: "Тест"
+    input_format: "Формат"
+    button_export: "Экспортировать"
   config: TODO
 server:
   stop_title: Остановить Hakutest

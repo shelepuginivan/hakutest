@@ -39,8 +39,18 @@ type GtkServerI18n struct {
 	ButtonStop   string `yaml:"button_stop"`
 }
 
+type GtkStatsI18n struct {
+	Title        string `yaml:"title"`
+	LabelSuccess string `yaml:"label_success"`
+	LabelError   string `yaml:"label_error"`
+	InputTest    string `yaml:"input_test"`
+	InputFormat  string `yaml:"input_format"`
+	ButtonExport string `yaml:"button_export"`
+}
+
 type GtkI18n struct {
 	Server *GtkServerI18n `yaml:"server"`
+	Stats  *GtkStatsI18n  `yaml:"stats"`
 }
 
 type ServerI18n struct {
