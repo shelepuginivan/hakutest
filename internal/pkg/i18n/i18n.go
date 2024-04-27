@@ -39,6 +39,29 @@ type GtkServerI18n struct {
 	ButtonStop   string `yaml:"button_stop"`
 }
 
+type GtkEditorAttachmentI18n struct {
+	InputName              string `yaml:"input_name"`
+	InputType              string `yaml:"input_type"`
+	LabelTypeFile          string `yaml:"label_type_file"`
+	LabelTypeAudio         string `yaml:"label_type_audio"`
+	LabelTypeImage         string `yaml:"label_type_image"`
+	LabelTypeVideo         string `yaml:"label_type_video"`
+	LabelModeUrl           string `yaml:"label_mode_url"`
+	LabelModeFile          string `yaml:"label_mode_file"`
+	LabelModeLoaded        string `yaml:"label_mode_loaded"`
+	FileDialogTitle        string `yaml:"file_dialog_title"`
+	FileDialogButtonOpen   string `yaml:"file_dialog_button_open"`
+	FileDialogButtonCancel string `yaml:"file_dialog_button_cancel"`
+}
+
+type GtkEditorTaskI18n struct {
+	Attachment *GtkEditorAttachmentI18n `yaml:"attachment"`
+}
+
+type GtkEditorI18n struct {
+	Task *GtkEditorTaskI18n `yaml:"task"`
+}
+
 type GtkStatsI18n struct {
 	Title        string `yaml:"title"`
 	LabelSuccess string `yaml:"label_success"`
@@ -79,6 +102,7 @@ type GtkConfigI18n struct {
 
 type GtkI18n struct {
 	Server *GtkServerI18n `yaml:"server"`
+	Editor *GtkEditorI18n `yaml:"editor"`
 	Stats  *GtkStatsI18n  `yaml:"stats"`
 	Config *GtkConfigI18n `yaml:"config"`
 }

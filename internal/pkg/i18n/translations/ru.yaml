@@ -7,7 +7,21 @@ gtk:
     label_error: "Произошла ошибка: %s"
     button_start: "Запустить сервер"
     button_stop: "Остановить сервер"
-  editor: TODO
+  editor:
+    task:
+      attachment:
+        input_name: "Название"
+        input_type: "Тип"
+        label_type_file: "Файл"
+        label_type_audio: "Аудио"
+        label_type_image: "Изображение"
+        label_type_video: "Видео"
+        label_mode_url: "Введите URL"
+        label_mode_file: "Выберите файл"
+        label_mode_loaded: "Файл прикреплён"
+        file_dialog_title: "Выбрать файл"
+        file_dialog_button_open: "Открыть"
+        file_dialog_button_cancel: "Отмена"
   stats:
     title: "Экспорт статистики"
     label_success: "Статистика эксортирована в Загрузки"

@@ -3,6 +3,7 @@ package desktop
 import (
 	"github.com/gotk3/gotk3/gtk"
 	"github.com/shelepuginivan/hakutest/internal/app/desktop/components"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
@@ -11,6 +12,7 @@ import (
 type AttachmentInput struct {
 	*gtk.Frame
 
+	i18n             *i18n.GtkEditorAttachmentI18n
 	nameEntry        *gtk.Entry
 	typeComboBox     *gtk.ComboBoxText
 	attachmentSource *components.AttachmentSource
@@ -21,27 +23,29 @@ func (b Builder) NewAttachmentInput() *AttachmentInput {
 	ai := AttachmentInput{
 		Frame: Must(gtk.FrameNew("")),
 
+		i18n:         b.app.I18n.Gtk.Editor.Task.Attachment,
 		nameEntry:    Must(gtk.EntryNew()),
 		typeComboBox: Must(gtk.ComboBoxTextNew()),
-		attachmentSource: Must(components.NewAttachmentSource(
-			"Choose file",
-			"Enter URL",
-			"Source is loaded",
-			"Open file",
-			"Open",
-			"Cancel",
-		)),
 	}
+
+	ai.attachmentSource = Must(components.NewAttachmentSource(
+		ai.i18n.LabelModeFile,
+		ai.i18n.LabelModeUrl,
+		ai.i18n.LabelModeLoaded,
+		ai.i18n.FileDialogTitle,
+		ai.i18n.FileDialogButtonOpen,
+		ai.i18n.FileDialogButtonCancel,
+	))
 
 	box := Must(gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 4))
 
-	nameInput := Must(components.NewInput("Name", ai.nameEntry))
+	nameInput := Must(components.NewInput(ai.i18n.InputName, ai.nameEntry))
 
 	typeMap := map[string]string{
-		test.AttachmentFile:  "File",
-		test.AttachmentImage: "Image",
-		test.AttachmentAudio: "Audio",
-		test.AttachmentVideo: "Video",
+		test.AttachmentFile:  ai.i18n.LabelTypeFile,
+		test.AttachmentImage: ai.i18n.LabelTypeImage,
+		test.AttachmentAudio: ai.i18n.LabelTypeAudio,
+		test.AttachmentVideo: ai.i18n.LabelTypeVideo,
 	}
 
 	for id, typeText := range typeMap {
@@ -50,7 +54,7 @@ func (b Builder) NewAttachmentInput() *AttachmentInput {
 
 	ai.typeComboBox.SetActiveID(test.AttachmentFile)
 
-	typeInput := Must(components.NewInput("Type", ai.typeComboBox))
+	typeInput := Must(components.NewInput(ai.i18n.InputType, ai.typeComboBox))
 
 	box.PackStart(nameInput, false, false, 4)
 	box.PackStart(typeInput, false, false, 4)

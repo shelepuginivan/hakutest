@@ -7,7 +7,21 @@ gtk:
     label_error: "An error occurred: %s"
     button_start: "Start server"
     button_stop: "Stop server"
-  editor: TODO
+  editor:
+    task:
+      attachment:
+        input_name: "Name"
+        input_type: "Type"
+        label_type_file: "File"
+        label_type_audio: "Audio"
+        label_type_image: "Image"
+        label_type_video: "Video"
+        label_mode_url: "Enter URL"
+        label_mode_file: "Choose a file"
+        label_mode_loaded: "A file is attached"
+        file_dialog_title: "Open file"
+        file_dialog_button_open: "Open"
+        file_dialog_button_cancel: "Cancel"
   stats:
     title: "Export statistics"
     label_success: "Statistics exported to Downloads"
