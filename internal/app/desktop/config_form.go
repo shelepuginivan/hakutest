@@ -35,25 +35,35 @@ func (b Builder) NewConfigGeneralContainer() *ConfigGeneralContainer {
 		resultsDirectoryEntry: Must(gtk.EntryNew()),
 	}
 
-	heading := Must(components.NewHeadingH2("General"))
+	heading := Must(components.NewHeadingH2(c.i18n.Title))
 	heading.SetHAlign(gtk.ALIGN_START)
 
 	for _, lang := range i18n.AvailableLanguages {
 		c.langComboBox.Append(lang, i18n.LanguageCodeMap[lang])
 	}
 	c.langComboBox.SetActiveID(b.app.Config.General.Language)
-	langInput := Must(components.NewInput("Language", c.langComboBox))
+	langInput := Must(components.NewInput(c.i18n.InputLang, c.langComboBox))
 
 	c.testsDirectoryEntry.SetText(b.app.Config.General.TestsDirectory)
-	testsDirectoryInput := Must(components.NewInput("Tests directory", c.testsDirectoryEntry))
+	testsDirectoryInput := Must(components.NewInput(
+		c.i18n.InputTestsDirectory,
+		c.testsDirectoryEntry,
+	))
+	testsDirectoryInput.SetTooltipText(c.i18n.InputTestsDirectoryTooltip)
 
 	c.resultsDirectoryEntry.SetText(b.app.Config.General.ResultsDirectory)
-	resultsDirectoryInput := Must(components.NewInput("Results directory", c.resultsDirectoryEntry))
+	resultsDirectoryInput := Must(components.NewInput(
+		c.i18n.InputResultsDirectory,
+		c.resultsDirectoryEntry,
+	))
+	resultsDirectoryInput.SetTooltipText(c.i18n.InputResultsDirectoryTooltip)
 
-	c.showResultsCheck = Must(gtk.CheckButtonNewWithLabel("Show results"))
+	c.showResultsCheck = Must(gtk.CheckButtonNewWithLabel(c.i18n.InputShowResults))
+	c.showResultsCheck.SetTooltipText(c.i18n.InputShowResultsTooltip)
 	c.showResultsCheck.SetActive(b.app.Config.General.ShowResults)
 
-	c.overwriteResultsCheck = Must(gtk.CheckButtonNewWithLabel("Overwrite results"))
+	c.overwriteResultsCheck = Must(gtk.CheckButtonNewWithLabel(c.i18n.InputOverwriteResults))
+	c.overwriteResultsCheck.SetTooltipText(c.i18n.InputOverwriteResultsTooltip)
 	c.overwriteResultsCheck.SetActive(b.app.Config.General.OverwriteResults)
 
 	c.PackStart(heading, false, false, 20)
@@ -104,26 +114,32 @@ func (b Builder) NewConfigServerContainer() *ConfigServerContainer {
 	c := &ConfigServerContainer{
 		Box: Must(layouts.NewContainer()),
 
-		i18n:              b.app.I18n.Gtk.Server,
+		i18n:              b.app.I18n.Gtk.Config.Server,
 		portSpin:          Must(gtk.SpinButtonNewWithRange(1024, 65535, 1)),
 		maxUploadSizeSpin: Must(gtk.SpinButtonNewWithRange(0, math.MaxInt64, 1)),
 		modeComboBox:      Must(gtk.ComboBoxTextNew()),
 	}
 
-	heading := Must(components.NewHeadingH2("Server"))
+	heading := Must(components.NewHeadingH2(c.i18n.Title))
 	heading.SetHAlign(gtk.ALIGN_START)
 
 	c.portSpin.SetValue(float64(b.app.Config.Server.Port))
-	portInput := Must(components.NewInput("Port", c.portSpin))
+	portInput := Must(components.NewInput(c.i18n.InputPort, c.portSpin))
+	portInput.SetTooltipText(c.i18n.InputPortTooltip)
 
 	c.maxUploadSizeSpin.SetValue(float64(b.app.Config.Server.MaxUploadSize))
-	maxUploadSizeInput := Must(components.NewInput("Max upload size (bytes)", c.maxUploadSizeSpin))
+	maxUploadSizeInput := Must(components.NewInput(
+		c.i18n.InputMaxUploadSize,
+		c.maxUploadSizeSpin,
+	))
+	maxUploadSizeInput.SetTooltipText(c.i18n.InputMaxUploadSizeTooltip)
 
 	for modeId, modeName := range config.ServerModeMap {
 		c.modeComboBox.Append(modeId, modeName)
 	}
 	c.modeComboBox.SetActiveID(b.app.Config.Server.Mode)
-	serverModeInput := Must(components.NewInput("Mode", c.modeComboBox))
+	serverModeInput := Must(components.NewInput(c.i18n.InputMode, c.modeComboBox))
+	serverModeInput.SetTooltipText(c.i18n.InputModeTooltip)
 
 	c.PackStart(heading, false, false, 20)
 	c.PackStart(portInput, false, false, 0)
@@ -152,13 +168,13 @@ type ConfigForm struct {
 
 // NewConfigForm returns a new instance of ConfigForm.
 func (b Builder) NewConfigForm(onSubmit func(cfg *config.Config) error) *ConfigForm {
-	box := &ConfigForm{
+	form := &ConfigForm{
 		Box: Must(layouts.NewForm()),
 
 		i18n: b.app.I18n.Gtk.Config,
 	}
 
-	heading := Must(components.NewHeadingH1("Configuration"))
+	heading := Must(components.NewHeadingH1(form.i18n.Title))
 	general := b.NewConfigGeneralContainer()
 	server := b.NewConfigServerContainer()
 	submitBox := Must(gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 8))
@@ -193,10 +209,10 @@ func (b Builder) NewConfigForm(onSubmit func(cfg *config.Config) error) *ConfigF
 	submitBox.PackStart(submitButton, false, false, 0)
 	submitBox.PackStart(submitResult, false, false, 0)
 
-	box.PackStart(heading, false, false, 0)
-	box.PackStart(general, false, false, 0)
-	box.PackStart(server, false, false, 0)
-	box.PackStart(submitBox, false, false, 0)
+	form.PackStart(heading, false, false, 0)
+	form.PackStart(general, false, false, 0)
+	form.PackStart(server, false, false, 0)
+	form.PackStart(submitBox, false, false, 0)
 
-	return box
+	return form
 }

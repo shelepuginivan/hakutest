@@ -48,9 +48,39 @@ type GtkStatsI18n struct {
 	ButtonExport string `yaml:"button_export"`
 }
 
+type GtkConfigGeneralI18n struct {
+	Title                        string `yaml:"title"`
+	InputLang                    string `yaml:"input_lang"`
+	InputTestsDirectory          string `yaml:"input_tests_directory"`
+	InputTestsDirectoryTooltip   string `yaml:"input_tests_directory_tooltip"`
+	InputResultsDirectory        string `yaml:"input_results_directory"`
+	InputResultsDirectoryTooltip string `yaml:"input_results_directory_tooltip"`
+	InputShowResults             string `yaml:"input_show_results"`
+	InputShowResultsTooltip      string `yaml:"input_show_results_tooltip"`
+	InputOverwriteResults        string `yaml:"input_overwrite_results"`
+	InputOverwriteResultsTooltip string `yaml:"input_overwrite_results_tooltip"`
+}
+
+type GtkConfigServerI18n struct {
+	Title                     string `yaml:"title"`
+	InputPort                 string `yaml:"input_port"`
+	InputPortTooltip          string `yaml:"input_port_tooltip"`
+	InputMaxUploadSize        string `yaml:"input_max_upload_size"`
+	InputMaxUploadSizeTooltip string `yaml:"input_max_upload_size_tooltip"`
+	InputMode                 string `yaml:"input_mode"`
+	InputModeTooltip          string `yaml:"input_mode_tooltip"`
+}
+
+type GtkConfigI18n struct {
+	Title   string                `yaml:"title"`
+	General *GtkConfigGeneralI18n `yaml:"general"`
+	Server  *GtkConfigServerI18n  `yaml:"server"`
+}
+
 type GtkI18n struct {
 	Server *GtkServerI18n `yaml:"server"`
 	Stats  *GtkStatsI18n  `yaml:"stats"`
+	Config *GtkConfigI18n `yaml:"config"`
 }
 
 type ServerI18n struct {

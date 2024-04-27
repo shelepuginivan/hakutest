@@ -15,7 +15,27 @@ gtk:
     input_test: "Тест"
     input_format: "Формат"
     button_export: "Экспортировать"
-  config: TODO
+  config:
+    title: "Настройки"
+    general:
+      title: "Основные"
+      input_lang: "Язык"
+      input_tests_directory: "Директория тестов"
+      input_tests_directory_tooltip: "Директория, в которой хранятся тесты"
+      input_results_directory: "Директория результатов"
+      input_results_directory_tooltip: "Директория, в которой хранятся результаты тестов"
+      input_show_results: "Показывать результаты"
+      input_show_results_tooltip: "Показывать ученику результаты тестирования сразу после отправки ответов"
+      input_overwrite_results: "Перезаписывать результаты"
+      input_overwrite_results_tooltip: "Разрешить перезапись при повторной отправке ответов тем же учеником"
+    server:
+      title: "Сервер"
+      input_port: "Порт"
+      input_port_tooltip: "Порт, на котором сервер будет запущен"
+      input_max_upload_size: "Максимальный размер загружаемых файлов (байт)"
+      input_max_upload_size_tooltip: "Лимит для размера файлов, загружаемых как ответ на задание"
+      input_mode: "Режим"
+      input_mode_tooltip: "Режим, в котором сервер будет запущен"
 server:
   stop_title: Остановить Hakutest
   stop_tooltip: Остановить сервер Hakutest и выйти

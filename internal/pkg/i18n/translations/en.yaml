@@ -15,7 +15,27 @@ gtk:
     input_test: "Test"
     input_format: "Format"
     button_export: "Export"
-  config: TODO
+  config:
+    title: "Settings"
+    general:
+      title: "General"
+      input_lang: "Language"
+      input_tests_directory: "Tests directory"
+      input_tests_directory_tooltip: "Directory where the tests are stored"
+      input_results_directory: "Results directory"
+      input_results_directory_tooltip: "Directory where results of the tests are stored"
+      input_show_results: "Show results"
+      input_show_results_tooltip: "Display test results immediately after the answers are sent"
+      input_overwrite_results: "Overwrite results"
+      input_overwrite_results_tooltip: "Allow results to be overwritten if the same student resubmits test answers"
+    server:
+      title: "Server"
+      input_port: "Port"
+      input_port_tooltip: "Port on which server will run"
+      input_max_upload_size: "Max upload size (bytes)"
+      input_max_upload_size_tooltip: "The maximum file size that can be sent as a task answer"
+      input_mode: "Mode"
+      input_mode_tooltip: "The mode in which the server will run"
 server:
     stop_title: Stop Hakutest
     stop_tooltip: Stop Hakutest server and quit
