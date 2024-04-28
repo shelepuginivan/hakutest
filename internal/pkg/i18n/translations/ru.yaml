@@ -68,6 +68,9 @@ gtk:
   config:
     title: "Настройки"
     notebook_label: "Настройки"
+    button_save: "Сохранить"
+    label_success: "Конфигурация сохранена"
+    label_error: "Произошла ошибка: %s"
     general:
       title: "Основные"
       input_lang: "Язык"

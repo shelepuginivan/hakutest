@@ -1,6 +1,7 @@
 package desktop
 
 import (
+	"fmt"
 	"math"
 	"time"
 
@@ -179,7 +180,7 @@ func (b Builder) NewConfigForm(onSubmit func(cfg *config.Config) error) *ConfigF
 	server := b.NewConfigServerContainer()
 	submitBox := Must(gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 8))
 
-	submitButton := Must(gtk.ButtonNewWithLabel("Save config"))
+	submitButton := Must(gtk.ButtonNewWithLabel(form.i18n.ButtonSave))
 	submitResult := Must(gtk.LabelNew(""))
 
 	submitButton.Connect("clicked", func() {
@@ -192,18 +193,24 @@ func (b Builder) NewConfigForm(onSubmit func(cfg *config.Config) error) *ConfigF
 
 		cfg.General, err = general.GetValues()
 		if err != nil {
-			submitResult.SetText("An error occurred!")
+			submitResult.SetText(fmt.Sprintf(
+				form.i18n.LabelError,
+				err.Error(),
+			))
 			return
 		}
 
 		cfg.Server = server.GetValues()
 
 		if err := onSubmit(cfg); err != nil {
-			submitResult.SetText("An error occurred!")
+			submitResult.SetText(fmt.Sprintf(
+				form.i18n.LabelError,
+				err.Error(),
+			))
 			return
 		}
 
-		submitResult.SetText("Saved config")
+		submitResult.SetText(form.i18n.LabelSuccess)
 	})
 
 	submitBox.PackStart(submitButton, false, false, 0)

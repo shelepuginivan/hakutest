@@ -68,6 +68,9 @@ gtk:
   config:
     title: "Settings"
     notebook_label: "Settings"
+    button_save: "Save"
+    label_success: "Configuration saved"
+    label_error: "An error occurred: %s"
     general:
       title: "General"
       input_lang: "Language"

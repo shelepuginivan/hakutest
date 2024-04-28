@@ -142,6 +142,9 @@ type GtkConfigServerI18n struct {
 type GtkConfigI18n struct {
 	Title         string                `yaml:"title"`
 	NotebookLabel string                `yaml:"notebook_label"`
+	ButtonSave    string                `yaml:"button_save"`
+	LabelSuccess  string                `yaml:"label_success"`
+	LabelError    string                `yaml:"label_error"`
 	General       *GtkConfigGeneralI18n `yaml:"general"`
 	Server        *GtkConfigServerI18n  `yaml:"server"`
 }
