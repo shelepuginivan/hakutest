@@ -22,6 +22,8 @@ gtk:
         file_dialog_title: "Выбрать файл"
         file_dialog_button_open: "Открыть"
         file_dialog_button_cancel: "Отмена"
+      list:
+        button_add: "+ Добавить задание"
   stats:
     title: "Экспорт статистики"
     label_success: "Статистика эксортирована в Загрузки"

@@ -54,8 +54,13 @@ type GtkEditorAttachmentI18n struct {
 	FileDialogButtonCancel string `yaml:"file_dialog_button_cancel"`
 }
 
+type GtkEditorTaskListI18n struct {
+	ButtonAdd string `yaml:"button_add"`
+}
+
 type GtkEditorTaskI18n struct {
 	Attachment *GtkEditorAttachmentI18n `yaml:"attachment"`
+	List       *GtkEditorTaskListI18n   `yaml:"list"`
 }
 
 type GtkEditorI18n struct {

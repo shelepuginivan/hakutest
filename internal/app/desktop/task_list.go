@@ -2,6 +2,7 @@ package desktop
 
 import (
 	"github.com/shelepuginivan/hakutest/internal/app/desktop/components"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
@@ -10,17 +11,20 @@ import (
 type TaskList struct {
 	*components.ComponentList[*TaskInput]
 
-	b *Builder
+	i18n *i18n.GtkEditorTaskListI18n
+	b    *Builder
 }
 
 // NewTaskList returns a new instance of TaskList.
 func (b Builder) NewTaskList() *TaskList {
 	tl := &TaskList{
-		ComponentList: Must(components.NewComponentList("Add task", "-", func() (*TaskInput, error) {
-			return b.NewTaskInput(), nil
-		})),
-		b: &b,
+		i18n: b.app.I18n.Gtk.Editor.Task.List,
+		b:    &b,
 	}
+
+	tl.ComponentList = Must(components.NewComponentList(tl.i18n.ButtonAdd, "-", func() (*TaskInput, error) {
+		return b.NewTaskInput(), nil
+	}))
 
 	return tl
 }

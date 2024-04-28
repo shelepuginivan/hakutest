@@ -22,6 +22,8 @@ gtk:
         file_dialog_title: "Open file"
         file_dialog_button_open: "Open"
         file_dialog_button_cancel: "Cancel"
+      list:
+        button_add: "+ Add task"
   stats:
     title: "Export statistics"
     label_success: "Statistics exported to Downloads"
