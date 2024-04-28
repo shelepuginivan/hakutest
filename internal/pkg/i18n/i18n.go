@@ -53,6 +53,14 @@ type GtkEditorFormI18n struct {
 	LabelError       string `yaml:"label_error"`
 }
 
+type GtkEditorMenuI18n struct {
+	Title        string `yaml:"title"`
+	SidebarLabel string `yaml:"sidebar_label"`
+	InputTest    string `yaml:"input_test"`
+	ButtonOpen   string `yaml:"button_open"`
+	ButtonCreate string `yaml:"button_create"`
+}
+
 type GtkEditorAttachmentI18n struct {
 	CheckInclude           string `yaml:"check_include"`
 	InputName              string `yaml:"input_name"`
@@ -91,6 +99,7 @@ type GtkEditorTaskI18n struct {
 
 type GtkEditorI18n struct {
 	Form *GtkEditorFormI18n `yaml:"form"`
+	Menu *GtkEditorMenuI18n `yaml:"menu"`
 	Task *GtkEditorTaskI18n `yaml:"task"`
 }
 

@@ -20,6 +20,12 @@ gtk:
       button_save: "Сохранить тест"
       label_success: "Тест сохранён в директорию тестов"
       label_error: "Произошла ошибка: %s"
+    menu:
+      title: "Редактор тестов"
+      sidebar_label: "Меню"
+      input_test: "Выберите тест"
+      button_open: "Открыть"
+      button_create: "Создать новый тест"
     task:
       input_type: "Тип"
       label_type_single: "Один вариант ответа"

@@ -20,6 +20,12 @@ gtk:
       button_save: "Save test"
       label_success: "Test saved to tests directory"
       label_error: "An error occurred: %s"
+    menu:
+      title: "Test editor"
+      sidebar_label: "Menu"
+      input_test: "Choose test"
+      button_open: "Open"
+      button_create: "Create new test"
     task:
       input_type: "Type"
       label_type_single: "Single answer"
