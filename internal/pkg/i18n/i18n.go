@@ -39,6 +39,20 @@ type GtkServerI18n struct {
 	ButtonStop   string `yaml:"button_stop"`
 }
 
+type GtkEditorFormI18n struct {
+	InputTitle       string `yaml:"input_title"`
+	InputDescription string `yaml:"input_description"`
+	InputSubject     string `yaml:"input_subject"`
+	InputAuthor      string `yaml:"input_author"`
+	InputTarget      string `yaml:"input_target"`
+	InputInstitution string `yaml:"input_institution"`
+	CheckExpiresAt   string `yaml:"check_expires_at"`
+	ButtonClose      string `yaml:"button_close"`
+	ButtonSave       string `yaml:"button_save"`
+	LabelSuccess     string `yaml:"label_success"`
+	LabelError       string `yaml:"label_error"`
+}
+
 type GtkEditorAttachmentI18n struct {
 	CheckInclude           string `yaml:"check_include"`
 	InputName              string `yaml:"input_name"`
@@ -76,6 +90,7 @@ type GtkEditorTaskI18n struct {
 }
 
 type GtkEditorI18n struct {
+	Form *GtkEditorFormI18n `yaml:"form"`
 	Task *GtkEditorTaskI18n `yaml:"task"`
 }
 

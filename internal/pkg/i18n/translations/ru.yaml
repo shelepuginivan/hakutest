@@ -8,6 +8,18 @@ gtk:
     button_start: "Запустить сервер"
     button_stop: "Остановить сервер"
   editor:
+    form:
+      input_title: "Название"
+      input_description: "Описание"
+      input_subject: "Тема"
+      input_author: "Автор"
+      input_target: "Целевая аудитория"
+      input_institution: "Уч. заведение"
+      check_expires_at: "Доступен до"
+      button_close: "Закрыть"
+      button_save: "Сохранить тест"
+      label_success: "Тест сохранён в директорию тестов"
+      label_error: "Произошла ошибка: %s"
     task:
       input_type: "Тип"
       label_type_single: "Один вариант ответа"

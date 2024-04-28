@@ -8,6 +8,18 @@ gtk:
     button_start: "Start server"
     button_stop: "Stop server"
   editor:
+    form:
+      input_title: "Title"
+      input_description: "Description"
+      input_subject: "Subject"
+      input_author: "Author"
+      input_target: "Target audience"
+      input_institution: "Institution"
+      check_expires_at: "Expires at"
+      button_close: "Close"
+      button_save: "Save test"
+      label_success: "Test saved to tests directory"
+      label_error: "An error occurred: %s"
     task:
       input_type: "Type"
       label_type_single: "Single answer"

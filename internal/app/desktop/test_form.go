@@ -1,11 +1,13 @@
 package desktop
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/gotk3/gotk3/gtk"
 	"github.com/shelepuginivan/hakutest/internal/app/desktop/components"
 	"github.com/shelepuginivan/hakutest/internal/app/desktop/layouts"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
@@ -14,6 +16,7 @@ import (
 type TestForm struct {
 	*gtk.Box
 
+	i18n                *i18n.GtkEditorFormI18n
 	titleEntry          *gtk.Entry
 	descriptionTextView *gtk.TextView
 	subjectEntry        *gtk.Entry
@@ -33,13 +36,13 @@ func (b Builder) NewTestForm(
 	form := &TestForm{
 		Box: Must(layouts.NewForm()),
 
+		i18n:                b.app.I18n.Gtk.Editor.Form,
 		titleEntry:          Must(gtk.EntryNew()),
 		descriptionTextView: Must(gtk.TextViewNew()),
 		subjectEntry:        Must(gtk.EntryNew()),
 		authorEntry:         Must(gtk.EntryNew()),
 		targetAudienceEntry: Must(gtk.EntryNew()),
 		institutionEntry:    Must(gtk.EntryNew()),
-		expiresAtCheck:      Must(gtk.CheckButtonNewWithLabel("Expires at")),
 		expiresAtInput:      Must(components.NewDatetimePicker()),
 		taskList:            b.NewTaskList(),
 	}
@@ -50,21 +53,31 @@ func (b Builder) NewTestForm(
 	inputsBox := Must(layouts.NewContainer())
 	submitBox := Must(gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 8))
 
-	cancelButton := Must(gtk.ButtonNewWithLabel("Close"))
+	cancelButton := Must(gtk.ButtonNewWithLabel(form.i18n.ButtonClose))
 	cancelButton.Connect("clicked", onCancel)
 
-	titleInput := Must(components.NewInput("Title", form.titleEntry))
-	descriptionInput := Must(components.NewInput("Description", form.descriptionTextView))
-	subjectInput := Must(components.NewInput("Subject", form.subjectEntry))
-	authorInput := Must(components.NewInput("Author", form.authorEntry))
-	targetAudienceInput := Must(components.NewInput("Target Audience", form.targetAudienceEntry))
-	institutionInput := Must(components.NewInput("Institution", form.institutionEntry))
+	titleInput := Must(components.NewInput(form.i18n.InputTitle, form.titleEntry))
+	descriptionInput := Must(components.NewInput(
+		form.i18n.InputDescription,
+		form.descriptionTextView,
+	))
+	subjectInput := Must(components.NewInput(form.i18n.InputSubject, form.subjectEntry))
+	authorInput := Must(components.NewInput(form.i18n.InputAuthor, form.authorEntry))
+	targetAudienceInput := Must(components.NewInput(
+		form.i18n.InputTarget,
+		form.targetAudienceEntry,
+	))
+	institutionInput := Must(components.NewInput(
+		form.i18n.InputInstitution,
+		form.institutionEntry,
+	))
 
+	form.expiresAtCheck = Must(gtk.CheckButtonNewWithLabel(form.i18n.CheckExpiresAt))
 	form.expiresAtCheck.Connect("clicked", func(w *gtk.CheckButton) {
 		form.expiresAtInput.SetVisible(w.GetActive())
 	})
 
-	submitButton := Must(gtk.ButtonNewWithLabel("Save"))
+	submitButton := Must(gtk.ButtonNewWithLabel(form.i18n.ButtonSave))
 	submitLabel := Must(gtk.LabelNew(""))
 
 	submitButton.Connect("clicked", func() {
@@ -74,16 +87,22 @@ func (b Builder) NewTestForm(
 
 		test, err := form.GetTest()
 		if err != nil {
-			submitLabel.SetText("An error occurred!")
+			submitLabel.SetText(fmt.Sprintf(
+				form.i18n.LabelError,
+				err.Error(),
+			))
 			return
 		}
 
 		if err = onSubmit(test); err != nil {
-			submitLabel.SetText("An error occurred!")
+			submitLabel.SetText(fmt.Sprintf(
+				form.i18n.LabelError,
+				err.Error(),
+			))
 			return
 		}
 
-		submitLabel.SetText("Test saved to the tests directory")
+		submitLabel.SetText(form.i18n.LabelSuccess)
 	})
 
 	cancelBox.SetHAlign(gtk.ALIGN_END)
