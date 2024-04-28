@@ -2,12 +2,14 @@ lang: en
 gtk:
   server:
     title: "Hakutest Server"
+    notebook_label: "Server"
     label_idle: "Server is not running"
     label_running: "Server is running on port :%d"
     label_error: "An error occurred: %s"
     button_start: "Start server"
     button_stop: "Stop server"
   editor:
+    notebook_label: "Editor"
     new_test_label: "New #%d"
     form:
       input_title: "Title"
@@ -57,6 +59,7 @@ gtk:
         button_add: "+ Add task"
   stats:
     title: "Export statistics"
+    notebook_label: "Statistics"
     label_success: "Statistics exported to Downloads"
     label_error: "An error occurred: %s"
     input_test: "Test"
@@ -64,6 +67,7 @@ gtk:
     button_export: "Export"
   config:
     title: "Settings"
+    notebook_label: "Settings"
     general:
       title: "General"
       input_lang: "Language"

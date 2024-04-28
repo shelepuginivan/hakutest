@@ -57,19 +57,19 @@ func setupWindow(app *application.App, g *gtk.Application) *gtk.ApplicationWindo
 	nb := desktop.Must(layouts.NewNotebook(
 		layouts.NotebookPage{
 			Child: serverForm,
-			Label: desktop.Must(gtk.LabelNew("Server")),
+			Label: desktop.Must(gtk.LabelNew(app.I18n.Gtk.Server.NotebookLabel)),
 		},
 		layouts.NotebookPage{
 			Child: editor,
-			Label: desktop.Must(gtk.LabelNew("Test Editor")),
+			Label: desktop.Must(gtk.LabelNew(app.I18n.Gtk.Editor.NotebookLabel)),
 		},
 		layouts.NotebookPage{
 			Child: statsForm,
-			Label: desktop.Must(gtk.LabelNew("Statistics")),
+			Label: desktop.Must(gtk.LabelNew(app.I18n.Gtk.Stats.NotebookLabel)),
 		},
 		layouts.NotebookPage{
 			Child: configForm,
-			Label: desktop.Must(gtk.LabelNew("Config")),
+			Label: desktop.Must(gtk.LabelNew(app.I18n.Gtk.Config.NotebookLabel)),
 		},
 	))
 

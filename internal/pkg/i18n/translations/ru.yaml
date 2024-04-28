@@ -2,12 +2,14 @@ lang: ru
 gtk:
   server:
     title: "Сервер Hakutest"
+    notebook_label: "Сервер"
     label_idle: "Сервер не запущен"
     label_running: "Сервер запущен на порту :%d"
     label_error: "Произошла ошибка: %s"
     button_start: "Запустить сервер"
     button_stop: "Остановить сервер"
   editor:
+    notebook_label: "Редактор"
     new_test_label: "Новый #%d"
     form:
       input_title: "Название"
@@ -57,6 +59,7 @@ gtk:
         button_add: "+ Добавить задание"
   stats:
     title: "Экспорт статистики"
+    notebook_label: "Статистика"
     label_success: "Статистика эксортирована в Загрузки"
     label_error: "Произошла ошибка: %s"
     input_test: "Тест"
@@ -64,6 +67,7 @@ gtk:
     button_export: "Экспортировать"
   config:
     title: "Настройки"
+    notebook_label: "Настройки"
     general:
       title: "Основные"
       input_lang: "Язык"

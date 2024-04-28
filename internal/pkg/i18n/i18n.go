@@ -31,12 +31,13 @@ func New(lang string) *I18n {
 }
 
 type GtkServerI18n struct {
-	Title        string `yaml:"title"`
-	LabelIdle    string `yaml:"label_idle"`
-	LabelRunning string `yaml:"label_running"`
-	LabelError   string `yaml:"label_error"`
-	ButtonStart  string `yaml:"button_start"`
-	ButtonStop   string `yaml:"button_stop"`
+	Title         string `yaml:"title"`
+	NotebookLabel string `yaml:"notebook_label"`
+	LabelIdle     string `yaml:"label_idle"`
+	LabelRunning  string `yaml:"label_running"`
+	LabelError    string `yaml:"label_error"`
+	ButtonStart   string `yaml:"button_start"`
+	ButtonStop    string `yaml:"button_stop"`
 }
 
 type GtkEditorFormI18n struct {
@@ -98,19 +99,21 @@ type GtkEditorTaskI18n struct {
 }
 
 type GtkEditorI18n struct {
-	NewTestLabel string             `yaml:"new_test_label"`
-	Form         *GtkEditorFormI18n `yaml:"form"`
-	Menu         *GtkEditorMenuI18n `yaml:"menu"`
-	Task         *GtkEditorTaskI18n `yaml:"task"`
+	NotebookLabel string             `yaml:"notebook_label"`
+	NewTestLabel  string             `yaml:"new_test_label"`
+	Form          *GtkEditorFormI18n `yaml:"form"`
+	Menu          *GtkEditorMenuI18n `yaml:"menu"`
+	Task          *GtkEditorTaskI18n `yaml:"task"`
 }
 
 type GtkStatsI18n struct {
-	Title        string `yaml:"title"`
-	LabelSuccess string `yaml:"label_success"`
-	LabelError   string `yaml:"label_error"`
-	InputTest    string `yaml:"input_test"`
-	InputFormat  string `yaml:"input_format"`
-	ButtonExport string `yaml:"button_export"`
+	Title         string `yaml:"title"`
+	NotebookLabel string `yaml:"notebook_label"`
+	LabelSuccess  string `yaml:"label_success"`
+	LabelError    string `yaml:"label_error"`
+	InputTest     string `yaml:"input_test"`
+	InputFormat   string `yaml:"input_format"`
+	ButtonExport  string `yaml:"button_export"`
 }
 
 type GtkConfigGeneralI18n struct {
@@ -137,9 +140,10 @@ type GtkConfigServerI18n struct {
 }
 
 type GtkConfigI18n struct {
-	Title   string                `yaml:"title"`
-	General *GtkConfigGeneralI18n `yaml:"general"`
-	Server  *GtkConfigServerI18n  `yaml:"server"`
+	Title         string                `yaml:"title"`
+	NotebookLabel string                `yaml:"notebook_label"`
+	General       *GtkConfigGeneralI18n `yaml:"general"`
+	Server        *GtkConfigServerI18n  `yaml:"server"`
 }
 
 type GtkI18n struct {
