@@ -9,7 +9,19 @@ gtk:
     button_stop: "Stop server"
   editor:
     task:
+      input_type: "Type"
+      label_type_single: "Single answer"
+      label_type_multiple: "Multiple answers"
+      label_type_open: "Open question"
+      label_type_file: "Answer with file(s)"
+      input_text: "Text"
+      input_answer: "Correct answer"
+      answer_options_single_label: "Answer options"
+      answer_options_single_button_add: "+ Add"
+      answer_options_multiple_label: "Answer options"
+      answer_options_multiple_button_add: "+ Add"
       attachment:
+        check_include: "Include attachment"
         input_name: "Name"
         input_type: "Type"
         label_type_file: "File"

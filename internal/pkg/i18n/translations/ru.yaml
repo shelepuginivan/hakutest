@@ -9,7 +9,19 @@ gtk:
     button_stop: "Остановить сервер"
   editor:
     task:
+      input_type: "Тип"
+      label_type_single: "Один вариант ответа"
+      label_type_multiple: "Несколько вариантов ответа"
+      label_type_open: "Открытый вопрос"
+      label_type_file: "Ответ с файлом(ами)"
+      input_text: "Текст"
+      input_answer: "Правильный ответ"
+      answer_options_single_label: "Варианты ответов"
+      answer_options_single_button_add: "+ Добавить"
+      answer_options_multiple_label: "Варианты ответов"
+      answer_options_multiple_button_add: "+ Добавить"
       attachment:
+        check_include: "Добавить вложение"
         input_name: "Название"
         input_type: "Тип"
         label_type_file: "Файл"

@@ -7,6 +7,7 @@ import (
 
 	"github.com/gotk3/gotk3/gtk"
 	"github.com/shelepuginivan/hakutest/internal/app/desktop/components"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
@@ -15,6 +16,7 @@ import (
 type TaskInput struct {
 	*gtk.Frame
 
+	i18n                     *i18n.GtkEditorTaskI18n
 	typeComboBox             *gtk.ComboBoxText
 	textView                 *gtk.TextView
 	answerEntry              *gtk.Entry
@@ -28,32 +30,42 @@ type TaskInput struct {
 // NewTaskInput returns a new instance of TaskInput.
 func (b Builder) NewTaskInput() *TaskInput {
 	ti := TaskInput{
-		Frame: Must(gtk.FrameNew("Task")),
+		Frame: Must(gtk.FrameNew("")),
 
-		typeComboBox:             Must(gtk.ComboBoxTextNew()),
-		textView:                 Must(gtk.TextViewNew()),
-		answerEntry:              Must(gtk.EntryNew()),
-		answerOptionsSingle:      Must(components.NewEntryListSingle("Options", "+ Add answer", "-")),
-		answerOptionsMultiple:    Must(components.NewEntryListMultiple("Options", "+ Add answer", "-")),
-		hasAttachmentCheckButton: Must(gtk.CheckButtonNewWithLabel("Include attachment")),
-		attachmentInput:          b.NewAttachmentInput(),
+		i18n:            b.app.I18n.Gtk.Editor.Task,
+		typeComboBox:    Must(gtk.ComboBoxTextNew()),
+		textView:        Must(gtk.TextViewNew()),
+		answerEntry:     Must(gtk.EntryNew()),
+		attachmentInput: b.NewAttachmentInput(),
 	}
 
-	ti.answerInput = Must(components.NewInput("Answer", ti.answerEntry))
+	ti.answerOptionsSingle = Must(components.NewEntryListSingle(
+		ti.i18n.AnswerOptionsSingleLabel,
+		ti.i18n.AnswerOptionsSingleButtonAdd, "-",
+	))
 
-	ti.typeComboBox.Append(test.TaskSingle, "Single answer")
-	ti.typeComboBox.Append(test.TaskMultiple, "Multiple answers")
-	ti.typeComboBox.Append(test.TaskOpen, "Open question")
-	ti.typeComboBox.Append(test.TaskFile, "Answer with file(s)")
+	ti.answerOptionsMultiple = Must(components.NewEntryListMultiple(
+		ti.i18n.AnswerOptionsMultipleLabel,
+		ti.i18n.AnswerOptionsMultipleButtonAdd, "-",
+	))
+
+	ti.hasAttachmentCheckButton = Must(gtk.CheckButtonNewWithLabel(ti.i18n.Attachment.CheckInclude))
+
+	ti.answerInput = Must(components.NewInput(ti.i18n.InputAnswer, ti.answerEntry))
+
+	ti.typeComboBox.Append(test.TaskSingle, ti.i18n.LabelTypeSingle)
+	ti.typeComboBox.Append(test.TaskMultiple, ti.i18n.LabelTypeMultiple)
+	ti.typeComboBox.Append(test.TaskOpen, ti.i18n.LabelTypeOpen)
+	ti.typeComboBox.Append(test.TaskFile, ti.i18n.LabelTypeFile)
 	ti.typeComboBox.SetActiveID(test.TaskSingle)
+	typeInput := Must(components.NewInput(ti.i18n.InputType, ti.typeComboBox))
 
 	box := Must(gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 6))
 
 	box.SetMarginStart(12)
 	box.SetMarginEnd(12)
 
-	typeInput := Must(components.NewInput("Type", ti.typeComboBox))
-	textInput := Must(components.NewInput("Text", ti.textView))
+	textInput := Must(components.NewInput(ti.i18n.InputText, ti.textView))
 
 	ti.typeComboBox.Connect("changed", func() {
 		ti.SetType(ti.typeComboBox.GetActiveID())

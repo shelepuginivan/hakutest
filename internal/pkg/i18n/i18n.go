@@ -40,6 +40,7 @@ type GtkServerI18n struct {
 }
 
 type GtkEditorAttachmentI18n struct {
+	CheckInclude           string `yaml:"check_include"`
 	InputName              string `yaml:"input_name"`
 	InputType              string `yaml:"input_type"`
 	LabelTypeFile          string `yaml:"label_type_file"`
@@ -59,8 +60,19 @@ type GtkEditorTaskListI18n struct {
 }
 
 type GtkEditorTaskI18n struct {
-	Attachment *GtkEditorAttachmentI18n `yaml:"attachment"`
-	List       *GtkEditorTaskListI18n   `yaml:"list"`
+	InputType                      string                   `yaml:"input_type"`
+	LabelTypeSingle                string                   `yaml:"label_type_single"`
+	LabelTypeMultiple              string                   `yaml:"label_type_multiple"`
+	LabelTypeOpen                  string                   `yaml:"label_type_open"`
+	LabelTypeFile                  string                   `yaml:"label_type_file"`
+	InputText                      string                   `yaml:"input_text"`
+	InputAnswer                    string                   `yaml:"input_answer"`
+	AnswerOptionsSingleLabel       string                   `yaml:"answer_options_single_label"`
+	AnswerOptionsSingleButtonAdd   string                   `yaml:"answer_options_single_button_add"`
+	AnswerOptionsMultipleLabel     string                   `yaml:"answer_options_multiple_label"`
+	AnswerOptionsMultipleButtonAdd string                   `yaml:"answer_options_multiple_button_add"`
+	Attachment                     *GtkEditorAttachmentI18n `yaml:"attachment"`
+	List                           *GtkEditorTaskListI18n   `yaml:"list"`
 }
 
 type GtkEditorI18n struct {
