@@ -8,6 +8,7 @@ gtk:
     button_start: "Запустить сервер"
     button_stop: "Остановить сервер"
   editor:
+    new_test_label: "Новый #%d"
     form:
       input_title: "Название"
       input_description: "Описание"

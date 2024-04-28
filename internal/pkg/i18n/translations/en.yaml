@@ -8,6 +8,7 @@ gtk:
     button_start: "Start server"
     button_stop: "Stop server"
   editor:
+    new_test_label: "New #%d"
     form:
       input_title: "Title"
       input_description: "Description"

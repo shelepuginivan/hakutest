@@ -98,9 +98,10 @@ type GtkEditorTaskI18n struct {
 }
 
 type GtkEditorI18n struct {
-	Form *GtkEditorFormI18n `yaml:"form"`
-	Menu *GtkEditorMenuI18n `yaml:"menu"`
-	Task *GtkEditorTaskI18n `yaml:"task"`
+	NewTestLabel string             `yaml:"new_test_label"`
+	Form         *GtkEditorFormI18n `yaml:"form"`
+	Menu         *GtkEditorMenuI18n `yaml:"menu"`
+	Task         *GtkEditorTaskI18n `yaml:"task"`
 }
 
 type GtkStatsI18n struct {
