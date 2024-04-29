@@ -52,6 +52,7 @@ func (s StatisticsService) Export(testName, dest, format string) error {
 	}
 }
 
+// ExportToTable exports statistics to a printable table.
 func (s StatisticsService) ExportToTable(stats *Statistics) table.Table {
 	headerFmt := color.New(color.FgGreen, color.Underline).SprintfFunc()
 	columnFmt := color.New(color.FgYellow, color.Bold).SprintfFunc()
@@ -72,6 +73,7 @@ func (s StatisticsService) ExportToTable(stats *Statistics) table.Table {
 	return tbl
 }
 
+// ExportToPng exports statistics to a PNG histogram.
 func (s StatisticsService) ExportToPng(stats *Statistics, dest string) error {
 	if !strings.HasSuffix(dest, ".png") {
 		dest += ".png"
@@ -99,6 +101,7 @@ func (s StatisticsService) ExportToPng(stats *Statistics, dest string) error {
 	return p.Save(8*vg.Inch, 4*vg.Inch, dest)
 }
 
+// writeResultsSheetHeaders writes headers of the results sheet.
 func (s StatisticsService) writeResultsSheetHeaders(
 	file *excelize.File,
 	sheet string,
@@ -120,6 +123,7 @@ func (s StatisticsService) writeResultsSheetHeaders(
 	return nil
 }
 
+// writeEntryResults writes results of a single entry.
 func (s StatisticsService) writeEntryResults(
 	file *excelize.File,
 	entry results.TestResults,
@@ -146,6 +150,7 @@ func (s StatisticsService) writeEntryResults(
 	return file.SetCellValue(sheet, fmt.Sprintf("D%d", row), entry.Results.Percentage)
 }
 
+// writeEntryStatistics writes statistics of a single entry.
 func (s StatisticsService) writeEntryStatistics(
 	file *excelize.File,
 	entry results.TestResults,
@@ -200,6 +205,7 @@ func (s StatisticsService) writeEntryStatistics(
 	return nil
 }
 
+// ExportToExcel exports statistics to Excel spreadsheet.
 func (s StatisticsService) ExportToExcel(stats *Statistics, dest string) error {
 	if !strings.HasSuffix(dest, ".xlsx") {
 		dest += ".xlsx"
