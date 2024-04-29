@@ -19,8 +19,8 @@ type ConfigGeneralContainer struct {
 
 	i18n                  *i18n.GtkConfigGeneralI18n
 	langComboBox          *gtk.ComboBoxText
-	testsDirectoryEntry   *gtk.Entry
-	resultsDirectoryEntry *gtk.Entry
+	testsDirectoryEntry   *gtk.FileChooserButton
+	resultsDirectoryEntry *gtk.FileChooserButton
 	showResultsCheck      *gtk.CheckButton
 	overwriteResultsCheck *gtk.CheckButton
 }
@@ -30,10 +30,8 @@ func (b Builder) NewConfigGeneralContainer() *ConfigGeneralContainer {
 	c := &ConfigGeneralContainer{
 		Box: Must(layouts.NewContainer()),
 
-		i18n:                  b.app.I18n.Gtk.Config.General,
-		langComboBox:          Must(gtk.ComboBoxTextNew()),
-		testsDirectoryEntry:   Must(gtk.EntryNew()),
-		resultsDirectoryEntry: Must(gtk.EntryNew()),
+		i18n:         b.app.I18n.Gtk.Config.General,
+		langComboBox: Must(gtk.ComboBoxTextNew()),
 	}
 
 	heading := Must(components.NewHeadingH2(c.i18n.Title))
@@ -45,14 +43,30 @@ func (b Builder) NewConfigGeneralContainer() *ConfigGeneralContainer {
 	c.langComboBox.SetActiveID(b.app.Config.General.Language)
 	langInput := Must(components.NewInput(c.i18n.InputLang, c.langComboBox))
 
-	c.testsDirectoryEntry.SetText(b.app.Config.General.TestsDirectory)
+	testsDirectoryDialog := Must(gtk.FileChooserDialogNewWith2Buttons(
+		c.i18n.FileDialogTitle, nil,
+		gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
+		c.i18n.FileDialogButtonCancel, gtk.RESPONSE_CANCEL,
+		c.i18n.FileDialogButtonOpen, gtk.RESPONSE_ACCEPT,
+	))
+
+	c.testsDirectoryEntry = Must(gtk.FileChooserButtonNewWithDialog(testsDirectoryDialog))
+	c.testsDirectoryEntry.SetCurrentFolder(b.app.Config.General.TestsDirectory)
 	testsDirectoryInput := Must(components.NewInput(
 		c.i18n.InputTestsDirectory,
 		c.testsDirectoryEntry,
 	))
 	testsDirectoryInput.SetTooltipText(c.i18n.InputTestsDirectoryTooltip)
 
-	c.resultsDirectoryEntry.SetText(b.app.Config.General.ResultsDirectory)
+	resultsDirectoryDialog := Must(gtk.FileChooserDialogNewWith2Buttons(
+		c.i18n.FileDialogTitle, nil,
+		gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
+		c.i18n.FileDialogButtonCancel, gtk.RESPONSE_CANCEL,
+		c.i18n.FileDialogButtonOpen, gtk.RESPONSE_ACCEPT,
+	))
+
+	c.resultsDirectoryEntry = Must(gtk.FileChooserButtonNewWithDialog(resultsDirectoryDialog))
+	c.resultsDirectoryEntry.SetCurrentFolder(b.app.Config.General.ResultsDirectory)
 	resultsDirectoryInput := Must(components.NewInput(
 		c.i18n.InputResultsDirectory,
 		c.resultsDirectoryEntry,
@@ -78,25 +92,14 @@ func (b Builder) NewConfigGeneralContainer() *ConfigGeneralContainer {
 }
 
 // GetValues returns values of the general config inputs.
-func (c ConfigGeneralContainer) GetValues() (*config.GeneralConfig, error) {
-	var err error
-	gc := &config.GeneralConfig{}
-
-	gc.Language = c.langComboBox.GetActiveID()
-	gc.TestsDirectory, err = c.testsDirectoryEntry.GetText()
-	if err != nil {
-		return nil, err
+func (c ConfigGeneralContainer) GetValues() *config.GeneralConfig {
+	return &config.GeneralConfig{
+		Language:         c.langComboBox.GetActiveID(),
+		TestsDirectory:   c.testsDirectoryEntry.GetFilename(),
+		ResultsDirectory: c.resultsDirectoryEntry.GetFilename(),
+		ShowResults:      c.showResultsCheck.GetActive(),
+		OverwriteResults: c.overwriteResultsCheck.GetActive(),
 	}
-
-	gc.ResultsDirectory, err = c.resultsDirectoryEntry.GetText()
-	if err != nil {
-		return nil, err
-	}
-
-	gc.ShowResults = c.showResultsCheck.GetActive()
-	gc.OverwriteResults = c.overwriteResultsCheck.GetActive()
-
-	return gc, nil
 }
 
 // ConfigServerContainer is a GTK component based on Gtk.Form.
@@ -188,19 +191,10 @@ func (b Builder) NewConfigForm(onSubmit func(cfg *config.Config) error) *ConfigF
 			submitResult.SetText("")
 		})
 
-		var err error
-		cfg := &config.Config{}
-
-		cfg.General, err = general.GetValues()
-		if err != nil {
-			submitResult.SetText(fmt.Sprintf(
-				form.i18n.LabelError,
-				err.Error(),
-			))
-			return
+		cfg := &config.Config{
+			General: general.GetValues(),
+			Server:  server.GetValues(),
 		}
-
-		cfg.Server = server.GetValues()
 
 		if err := onSubmit(cfg); err != nil {
 			submitResult.SetText(fmt.Sprintf(

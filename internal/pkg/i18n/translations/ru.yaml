@@ -74,6 +74,9 @@ gtk:
     general:
       title: "Основные"
       input_lang: "Язык"
+      file_dialog_title: "Выбрать"
+      file_dialog_button_open: "Открыть"
+      file_dialog_button_cancel: "Отмена"
       input_tests_directory: "Директория тестов"
       input_tests_directory_tooltip: "Директория, в которой хранятся тесты"
       input_results_directory: "Директория результатов"

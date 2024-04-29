@@ -119,6 +119,9 @@ type GtkStatsI18n struct {
 type GtkConfigGeneralI18n struct {
 	Title                        string `yaml:"title"`
 	InputLang                    string `yaml:"input_lang"`
+	FileDialogTitle              string `yaml:"file_dialog_title"`
+	FileDialogButtonOpen         string `yaml:"file_dialog_button_open"`
+	FileDialogButtonCancel       string `yaml:"file_dialog_button_cancel"`
 	InputTestsDirectory          string `yaml:"input_tests_directory"`
 	InputTestsDirectoryTooltip   string `yaml:"input_tests_directory_tooltip"`
 	InputResultsDirectory        string `yaml:"input_results_directory"`
