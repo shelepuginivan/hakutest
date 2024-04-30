@@ -1,0 +1,33 @@
+#!/bin/sh
+
+if [ -n "$XDG_DATA_HOME" ]; then
+    HAKUTEST_INSTALL="$XDG_DATA_HOME/hakutest"
+    ICONS="$XDG_DATA_HOME/icons"
+    APPLICATIONS="$XDG_DATA_HOME/applications"
+else
+    HAKUTEST_INSTALL="$HOME/.local/share/hakutest"
+    ICONS="$HOME/.local/share/icons"
+    APPLICATIONS="$HOME/.local/share/applications"
+fi
+
+# Remove the local installation.
+if [ -d "$HAKUTEST_INSTALL" ]; then
+    rm -rf "$HAKUTEST_INSTALL"
+fi
+
+# Remove the local .desktop entries.
+
+# hakutest-server.desktop
+if [ -f "$APPLICATIONS/hakutest-server.desktop" ]; then
+    rm "$APPLICATIONS/hakutest-server.desktop"
+fi
+
+# hakutest-statistics.desktop
+if [ -f "$APPLICATIONS/hakutest-statistics.desktop" ]; then
+    rm "$APPLICATIONS/hakutest-statistics.desktop"
+fi
+
+# Remove the local icon.
+if [ -f "$ICONS/hakutest.svg" ]; then
+    rm "$ICONS/hakutest.svg"
+fi
