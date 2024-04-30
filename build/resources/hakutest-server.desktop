@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Hakutest Server
+Comment=Hakutest Server systray applet
+Exec=/usr/bin/hakutest-server
+Icon=hakutest
+Terminal=false
+Type=Application
+Categories=Education;
+Keywords=education;gtk;hakutest;
