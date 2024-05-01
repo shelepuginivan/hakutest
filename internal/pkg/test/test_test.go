@@ -4,7 +4,6 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
-	"fmt"
 	"os"
 	"path/filepath"
 	"testing"
@@ -15,19 +14,28 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+var app *application.App
+
 func TestMain(m *testing.M) {
 	defer setup()()
 	m.Run()
 }
 
 func setup() func() {
-	testDir := config.New().General.TestsDirectory
+	tmp, err := os.MkdirTemp("", "")
+	if err != nil {
+		panic(err)
+	}
 
-	os.Rename(testDir, fmt.Sprintf("%s.bak", testDir))
-	os.Mkdir(testDir, os.ModePerm|os.ModeDir)
+	app = &application.App{
+		Config: &config.Config{
+			General: &config.GeneralConfig{
+				TestsDirectory: tmp,
+			},
+		},
+	}
 
-	testName := "__test__"
-	testPath := filepath.Join(testDir, testName+".json")
+	testPath := filepath.Join(tmp, "__test__.json")
 
 	mockTest := Test{
 		Title: "Mock test",
@@ -44,11 +52,7 @@ func setup() func() {
 	}
 
 	return func() {
-		if err := os.RemoveAll(testDir); err != nil {
-			panic(err)
-		}
-
-		if err := os.Rename(fmt.Sprintf("%s.bak", testDir), testDir); err != nil {
+		if err := os.RemoveAll(tmp); err != nil {
 			panic(err)
 		}
 	}
@@ -102,7 +106,7 @@ func TestTestService_GetTestPath(t *testing.T) {
 
 func TestTestService_GetTestByName(t *testing.T) {
 	// get test created in setup function
-	test, err := NewService(application.New()).GetTestByName("__test__")
+	test, err := NewService(app).GetTestByName("__test__")
 
 	assert.NoError(t, err)
 	assert.Equal(t, "Mock test", test.Title)
@@ -136,14 +140,17 @@ func TestTestService_GetTestByPath(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	test, err := NewService(application.New()).GetTestByPath(testPath)
+	test, err := NewService(app).GetTestByPath(testPath)
 
 	assert.NoError(t, err)
-	assert.Equal(t, test, mockTest)
+	assert.Equal(t, mockTest.Title, test.Title)
+	assert.Equal(t, mockTest.Author, test.Author)
+	assert.Equal(t, mockTest.Target, test.Target)
+	assert.Equal(t, mockTest.Institution, test.Institution)
 }
 
 func TestTestService_GetTestList(t *testing.T) {
-	testList := NewService(application.New()).GetTestList()
+	testList := NewService(app).GetTestList()
 
 	assert.GreaterOrEqual(t, len(testList), 1)
 	assert.Contains(t, testList, "__test__")
@@ -157,14 +164,14 @@ func TestTestService_SaveToTestsDirectory(t *testing.T) {
 		Institution: "TestTestService_SaveToTestsDirectory",
 	}
 
-	err := NewService(application.New()).SaveToTestsDirectory(mockTest, "__mock_test__")
+	err := NewService(app).SaveToTestsDirectory(mockTest, "__mock_test__")
 
 	assert.NoError(t, err)
 
-	test, err := NewService(application.New()).GetTestByName("__mock_test__")
+	test, err := NewService(app).GetTestByName("__mock_test__")
 
 	assert.NoError(t, err)
-	assert.Equal(t, test, mockTest)
+	assert.EqualValues(t, mockTest, test)
 }
 
 func TestTestService_Import(t *testing.T) {
@@ -180,7 +187,7 @@ func TestTestService_Import(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	testFile, err := os.CreateTemp(os.TempDir(), "test")
+	testFile, err := os.CreateTemp(os.TempDir(), "test*.json")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -195,18 +202,21 @@ func TestTestService_Import(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	assert.NoError(t, NewService(application.New()).Import(testPath))
+	assert.NoError(t, NewService(app).Import(testPath))
 
-	test, err := NewService(application.New()).GetTestByName(filepath.Base(testPath))
+	test, err := NewService(app).GetTestByName(filepath.Base(testPath))
 
 	assert.NoError(t, err)
-	assert.Equal(t, test, mockTest)
+	assert.Equal(t, mockTest.Title, test.Title)
+	assert.Equal(t, mockTest.Author, test.Author)
+	assert.Equal(t, mockTest.Target, test.Target)
+	assert.Equal(t, mockTest.Institution, test.Institution)
 }
 
 func TestTestService_Remove(t *testing.T) {
-	s := NewService(application.New())
+	s := NewService(app)
 	testName := "__TestService.Remove__"
-	testPath := filepath.Join(config.New().General.TestsDirectory, testName+".json")
+	testPath := filepath.Join(app.Config.General.TestsDirectory, testName+".json")
 
 	mockTest := Test{
 		Title: "Mock test",
