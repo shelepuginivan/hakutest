@@ -6,22 +6,17 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"time"
-)
 
-// Attachment represents an attachment of the Task with a name, type, and source.
-type Attachment struct {
-	Name string `json:"name"` // Name of the attachment.
-	Type string `json:"type"` // Type of the attachment.
-	Src  string `json:"src"`  // Souce of the attachment, usually URL or base64 string
-}
+	"github.com/shelepuginivan/hakutest/internal/pkg/attachment"
+)
 
 // Task represents a Test task with a type, text, attachment, options, and answer.
 type Task struct {
-	Type       string      `json:"type"`       // Type of the task.
-	Text       string      `json:"text"`       // Text of the task, usually its terms.
-	Attachment *Attachment `json:"attachment"` // Attachment to the task.
-	Options    []string    `json:"options"`    // Answer options of the task.
-	Answer     string      `json:"answer"`     // Correct answer of the task.
+	Type       string                 `json:"type"`       // Type of the task.
+	Text       string                 `json:"text"`       // Text of the task, usually its terms.
+	Attachment *attachment.Attachment `json:"attachment"` // Attachment to the task.
+	Options    []string               `json:"options"`    // Answer options of the task.
+	Answer     string                 `json:"answer"`     // Correct answer of the task.
 }
 
 // Test represents a test with a title, target, description, subject, author, institution, creation date, expiration date, and tasks.

@@ -173,6 +173,7 @@ func (form TestForm) GetTest() (*test.Test, error) {
 	}
 
 	t.Tasks = form.taskList.GetTasks()
+	fmt.Println(t.Tasks)
 
 	return t, nil
 }

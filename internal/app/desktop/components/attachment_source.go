@@ -1,13 +1,8 @@
 package components
 
 import (
-	"encoding/base64"
-	"fmt"
-	"mime"
-	"net/url"
-	"os"
-
 	"github.com/gotk3/gotk3/gtk"
+	"github.com/shelepuginivan/hakutest/internal/pkg/attachment"
 )
 
 type AttachmentMode = string
@@ -141,7 +136,7 @@ func (as *AttachmentSource) SetMode(mode AttachmentMode) {
 
 // GetSource returns the entered source.
 //
-// If mode is set to file, it encodes the file to base64 URL.
+// If mode is set to file, it returns the path to the file.
 // If mode is set to URL, it returns the entered URL.
 func (as *AttachmentSource) GetSource() (string, error) {
 	if as.mode == AttachmentSourceModeLoaded {
@@ -152,31 +147,17 @@ func (as *AttachmentSource) GetSource() (string, error) {
 		return as.urlEntry.GetText()
 	}
 
-	path := as.fileButton.GetFilename()
-
-	fileBytes, err := os.ReadFile(path)
-	if err != nil {
-		return "", err
-	}
-
-	mimeType := mime.TypeByExtension(path)
-	base64Content := base64.StdEncoding.EncodeToString(fileBytes)
-
-	base64URL := fmt.Sprintf("data:%s;base64,%s", mimeType, base64Content)
-	encodedBase64URL := url.PathEscape(base64URL)
-
-	return encodedBase64URL, nil
+	return as.fileButton.GetFilename(), nil
 }
 
 // SetSource sets the URL of the AttachmentSource.
 func (as *AttachmentSource) SetSource(src string) {
-	_, err := url.ParseRequestURI(src)
-	if err != nil {
-		as.SetMode(AttachmentSourceModeLoaded)
-		as.loadedSource = src
+	if attachment.IsURL(src) {
+		as.SetMode(AttachmentSourceModeURL)
+		as.urlEntry.SetText(src)
 		return
 	}
 
-	as.SetMode(AttachmentSourceModeURL)
-	as.urlEntry.SetText(src)
+	as.SetMode(AttachmentSourceModeLoaded)
+	as.loadedSource = src
 }

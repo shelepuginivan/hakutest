@@ -3,8 +3,8 @@ package desktop
 import (
 	"github.com/gotk3/gotk3/gtk"
 	"github.com/shelepuginivan/hakutest/internal/app/desktop/components"
+	"github.com/shelepuginivan/hakutest/internal/pkg/attachment"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
-	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
 // AttachmentInput is a GTK component based on Gtk.Frame.
@@ -42,17 +42,17 @@ func (b Builder) NewAttachmentInput() *AttachmentInput {
 	nameInput := Must(components.NewInput(ai.i18n.InputName, ai.nameEntry))
 
 	typeMap := map[string]string{
-		test.AttachmentFile:  ai.i18n.LabelTypeFile,
-		test.AttachmentImage: ai.i18n.LabelTypeImage,
-		test.AttachmentAudio: ai.i18n.LabelTypeAudio,
-		test.AttachmentVideo: ai.i18n.LabelTypeVideo,
+		attachment.AttachmentFile:  ai.i18n.LabelTypeFile,
+		attachment.AttachmentImage: ai.i18n.LabelTypeImage,
+		attachment.AttachmentAudio: ai.i18n.LabelTypeAudio,
+		attachment.AttachmentVideo: ai.i18n.LabelTypeVideo,
 	}
 
 	for id, typeText := range typeMap {
 		ai.typeComboBox.Append(id, typeText)
 	}
 
-	ai.typeComboBox.SetActiveID(test.AttachmentFile)
+	ai.typeComboBox.SetActiveID(attachment.AttachmentFile)
 
 	typeInput := Must(components.NewInput(ai.i18n.InputType, ai.typeComboBox))
 
@@ -68,24 +68,23 @@ func (b Builder) NewAttachmentInput() *AttachmentInput {
 }
 
 // GetAttachment returns the configured attachment.
-func (ai AttachmentInput) GetAttachment() (*test.Attachment, error) {
-	var err error
-	attachment := test.Attachment{
-		Type: ai.typeComboBox.GetActiveID(),
-	}
-
-	attachment.Name, err = ai.nameEntry.GetText()
+func (ai AttachmentInput) GetAttachment() (*attachment.Attachment, error) {
+	t := ai.typeComboBox.GetActiveID()
+	n, err := ai.nameEntry.GetText()
 	if err != nil {
-		return &attachment, err
+		return nil, err
 	}
 
-	attachment.Src, err = ai.attachmentSource.GetSource()
+	src, err := ai.attachmentSource.GetSource()
+	if err != nil {
+		return nil, err
+	}
 
-	return &attachment, err
+	return attachment.New(n, t, src), nil
 }
 
 // SetAttachment configures the attachment.
-func (ai *AttachmentInput) SetAttachment(attachment *test.Attachment) {
+func (ai *AttachmentInput) SetAttachment(attachment *attachment.Attachment) {
 	ai.nameEntry.SetText(attachment.Name)
 	ai.typeComboBox.SetActiveID(attachment.Type)
 	ai.attachmentSource.SetSource(attachment.Src)

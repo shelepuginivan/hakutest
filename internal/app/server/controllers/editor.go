@@ -10,6 +10,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/application"
+	"github.com/shelepuginivan/hakutest/internal/pkg/attachment"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
@@ -138,7 +139,7 @@ func (co EditorController) CreateTest(c *gin.Context) {
 		task.Options = c.PostFormArray(fmt.Sprintf("%d-options", i))
 
 		if c.Request.Form.Get(fmt.Sprintf("%d-has-attachment", i)) == "on" {
-			attachment := &test.Attachment{}
+			attachment := &attachment.Attachment{}
 
 			attachment.Type = c.Request.Form.Get(fmt.Sprintf("%d-attachment-type", i))
 			attachment.Name = c.Request.Form.Get(fmt.Sprintf("%d-attachment-name", i))
