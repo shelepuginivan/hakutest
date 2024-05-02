@@ -5,7 +5,9 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/directories"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )
@@ -15,27 +17,23 @@ func TestMain(m *testing.M) {
 	m.Run()
 }
 
-func TestDefaultConfig(t *testing.T) {
+func TestDefault(t *testing.T) {
 	c := Default()
 
-	configBranches := []reflect.Value{
-		reflect.ValueOf(c.General),
-		reflect.ValueOf(c.Server),
-	}
-
-	for _, v := range configBranches {
-		for i := 0; i < v.NumField(); i++ {
-			assert.NotEqual(t, v.Field(i).Interface(), "")
-		}
-	}
+	assert.Equal(t, c.General.Language, i18n.LanguageEn)
+	assert.Equal(t, c.General.ShowResults, true)
+	assert.Equal(t, c.General.OverwriteResults, false)
+	assert.Equal(t, c.Server.Mode, gin.ReleaseMode)
+	assert.Equal(t, c.Server.Port, 8080)
+	assert.EqualValues(t, c.Server.MaxUploadSize, 1024*1024)
 }
 
 func TestNewConfig(t *testing.T) {
 	c := New()
 
 	configBranches := []reflect.Value{
-		reflect.ValueOf(c.General),
-		reflect.ValueOf(c.Server),
+		reflect.ValueOf(*c.General),
+		reflect.ValueOf(*c.Server),
 	}
 
 	for _, v := range configBranches {
