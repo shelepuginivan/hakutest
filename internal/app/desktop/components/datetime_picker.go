@@ -77,7 +77,7 @@ func NewDatetimePicker() (*DatetimePicker, error) {
 
 // GetDate returns a selected datetime.
 func (dp DatetimePicker) GetDate() time.Time {
-	year, day, month := dp.calendar.GetDate()
+	year, month, day := dp.calendar.GetDate()
 
 	return time.Date(
 		int(year),
@@ -94,7 +94,7 @@ func (dp DatetimePicker) GetDate() time.Time {
 // SetDate sets the selected datetime.
 func (dp *DatetimePicker) SetDate(date time.Time) {
 	dp.calendar.SelectDay(uint(date.Day()))
-	dp.calendar.SelectMonth(uint(date.Month()), uint(date.Year()))
+	dp.calendar.SelectMonth(uint(date.Month()-1), uint(date.Year()))
 	dp.hourSpin.SetValue(float64(date.Hour()))
 	dp.minuteSpin.SetValue(float64(date.Minute()))
 	dp.secondSpin.SetValue(float64(date.Second()))
