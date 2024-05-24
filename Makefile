@@ -40,13 +40,5 @@ clean:
 	go clean
 	rm -r ${TARGET_DIR}
 
-server:
-	go build ./cmd/hakutest
-	bash -c "trap 'rm ./hakutest' 2; ./hakutest server"
-
 test:
-	go test -c ./...
-	for t in *.test; do \
-		./$$t 1> /dev/null || { echo "TEST FAILED!"; rm *.test; exit 1; } ; \
-	done
-	rm *.test
+	go test -cover ./...
