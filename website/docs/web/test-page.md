@@ -15,9 +15,9 @@ When the server is running, it can be accessed from any device in the local netw
 
 Where:
 
--   `local-ip-of-your-device` - The local IP address of the device running the Hakutest server.
--   `port` - The port on which server is listening (see [Server configuration](/docs/configuration/server#port)).
--   `name-of-the-test-file` - Filename of the test you want to access. The test file should be placed in the tests directory (see [General configuration](/docs/configuration/general#tests_directory)).
+-   `local-ip-of-your-device` &mdash; The local IP address of the device running the Hakutest server.
+-   `port` &mdash; The port on which server is listening (see [Server configuration](/docs/configuration/server#port)).
+-   `name-of-the-test-file` &mdash; Filename of the test you want to access. The test file should be placed in the tests directory (see [General configuration](/docs/configuration/general#tests_directory)).
 
 :::tip
 

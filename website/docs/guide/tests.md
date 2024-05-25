@@ -36,10 +36,10 @@ Test files contain the following information:
 The test tasks contain the following information:
 
 -   Task type
-    -   Single answer - the student can choose one answer from the given options.
-    -   Multiple answers - the student can choose several answers from the given options.
-    -   Open question - the student must write the answer in the input field.
-    -   File - the student attaches file(s) as an answer.
+    -   Single answer &mdash; the student can choose one answer from the given options.
+    -   Multiple answers &mdash; the student can choose several answers from the given options.
+    -   Open question &mdash; the student must write the answer in the input field.
+    -   File &mdash; the student attaches file(s) as an answer.
 -   Task text (usually terms of the task)
 -   Answer options from which the student can choose an answer
 -   Correct answer to the task

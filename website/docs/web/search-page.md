@@ -17,8 +17,8 @@ When the server is running, the search page can be accessed from any device in t
 
 Where:
 
--   `local-ip-of-your-device` - The local IP address of the device running the Hakutest server.
--   `port` - The port on which server is listening (see [Server configuration](/docs/configuration/server#port)).
+-   `local-ip-of-your-device` &mdash; The local IP address of the device running the Hakutest server.
+-   `port` &mdash; The port on which server is listening (see [Server configuration](/docs/configuration/server#port)).
 
 :::tip
 

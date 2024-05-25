@@ -25,7 +25,7 @@ Hakutest offers three ways to manage the configuration:
 
 The configuration of Hakutest is stored in a `config.yaml` file. The program searches for this file in the following directories:
 
--   **OS config directory** - Configuration directory defined by your operating system. It can vary depending on the operating system and its version used. The common paths are:
+-   **OS config directory** &mdash; Configuration directory defined by your operating system. It can vary depending on the operating system and its version used. The common paths are:
 
     <Tabs>
         <TabItem value="windows" label="Windows" default>
@@ -38,7 +38,7 @@ The configuration of Hakutest is stored in a `config.yaml` file. The program sea
         </TabItem>
     </Tabs>
 
--   **Working directory** - The config file can be placed in the same directory with the executable:
+-   **Working directory** &mdash; The config file can be placed in the same directory with the executable:
 
     <Tabs>
         <TabItem value="windows" label="Windows" default>
