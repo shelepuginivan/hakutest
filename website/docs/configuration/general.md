@@ -9,6 +9,20 @@ Hakutest common settings, specified under the `general` field in the config file
 
 ## Fields
 
+### `lang`
+
+Sets the application language.
+
+-   **Value**: supported language.
+-   **Default**: `en` (English).
+
+Currently, the following languages are supported.
+
+| Language | Value |
+|:--------:|:-----:|
+| English  | `en`  |
+| Russian  | `ru`  |
+
 ### `tests_directory`
 
 Specifies the folder where tests files are stored.
@@ -43,6 +57,7 @@ Example of general configuration:
 
 ```yaml title='config.yaml'
 general:
+    lang: en
     tests_directory: ./data/tests
     results_directory: ./data/results
     show_results: true

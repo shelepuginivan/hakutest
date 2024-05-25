@@ -71,6 +71,7 @@ The default Hakutest configuration is as follows:
 
 ```yaml title='config.yaml'
 general:
+    lang: en
     tests_directory: ~/.cache/hakutest/tests # May vary depending on OS
     results_directory: ~/.cache/hakutest/results # May vary depending on OS
     show_results: true
