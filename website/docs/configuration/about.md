@@ -13,6 +13,14 @@ Hakutest provides various customization options. All settings are organized into
 -   **General**: Common Hakutest settings, such as data storage directories.
 -   **Server**: Settings of the Hakutest server.
 
+### Configuring Hakutest
+
+Hakutest offers three ways to manage the configuration:
+
+-   [Using the graphical app](/docs/gui/settings) (recommended).
+-   [Using the `hakutest config` command](/docs/cli/config).
+-   Manually edit the configuration file (for advanced users).
+
 ### Config file
 
 The configuration of Hakutest is stored in a `config.yaml` file. The program searches for this file in the following directories:
