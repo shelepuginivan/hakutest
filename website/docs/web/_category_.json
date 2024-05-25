@@ -1,10 +1,10 @@
 {
     "position": 4,
-    "label": "App",
+    "label": "Web interface",
     "collapsible": true,
     "collapsed": true,
     "link": {
         "type": "generated-index",
-        "title": "App"
+        "title": "Web interface"
     }
 }
