@@ -10,6 +10,13 @@ import TabItem from '@theme/TabItem'
 
 In Hakutest, each test is represented by a JSON file that is stored locally on your computer. When the Hakutest server is running, students can access the test through the browser. The platform dynamically generates a web page for each test, displaying the questions and any additional content specified in the test file.
 
+### Creating and editing test files
+
+Hakutest provides two ways of creating and editing test files:
+
+-   [Graphical app editor](/docs/gui/editor) (recommended).
+-   [Web-based editor](/docs/web/test-editor).
+
 ### Structure of the test file
 
 Test files contain the following information:
@@ -111,10 +118,3 @@ You can also attach an attachment to the task. An attachment can be a video, aud
     -   Audio
     -   Link
 -   Attachment Source (URL)
-
-### Creating and editing test files
-
-Hakutest provides two ways of creating and editing test files:
-
--   Web editor (see [Test editor](/docs/app/test-editor)) - recommended for most users
--   CLI editor (see [Editor command](/docs/cli/editor))
