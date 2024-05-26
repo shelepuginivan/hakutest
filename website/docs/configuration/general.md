@@ -19,7 +19,7 @@ Sets the application language.
 Currently, the following languages are supported.
 
 | Language | Value |
-|:--------:|:-----:|
+| :------: | :---: |
 | English  | `en`  |
 | Russian  | `ru`  |
 

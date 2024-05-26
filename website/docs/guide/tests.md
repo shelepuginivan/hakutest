@@ -97,6 +97,7 @@ The form of the correct answer differs depending on the type of task.
     <TabItem value="file" label="File">
         Correct answer is not checked. Instead, Hakutest checks whether file was uploaded.
     </TabItem>
+
 </Tabs>
 
 :::
