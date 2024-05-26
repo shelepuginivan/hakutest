@@ -333,5 +333,9 @@
     },
     "Installation ⚙️": {
         "message": "Установка ⚙️"
+    },
+    "theme.docs.DocCard.categoryDescription.plurals": {
+        "message": "{count} элемент|{count} элемента|{count} элементов",
+        "description": "The default description for a category card in the generated index about how many items this category includes"
     }
 }
