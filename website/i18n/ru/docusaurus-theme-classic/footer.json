@@ -26,5 +26,33 @@
     "copyright": {
         "message": "© 2023 Иван Шелепугин. Создано с помощью Docusaurus.",
         "description": "The footer copyright"
+    },
+    "link.item.label.Guide": {
+        "message": "Guide",
+        "description": "The label of footer link with label=Guide linking to /docs/category/guide"
+    },
+    "link.item.label.App": {
+        "message": "App",
+        "description": "The label of footer link with label=App linking to /docs/category/app"
+    },
+    "link.item.label.Statistics": {
+        "message": "Statistics",
+        "description": "The label of footer link with label=Statistics linking to /docs/category/statistics"
+    },
+    "link.item.label.Configuration": {
+        "message": "Configuration",
+        "description": "The label of footer link with label=Configuration linking to /docs/category/configuration"
+    },
+    "link.item.label.Internationalization": {
+        "message": "Internationalization",
+        "description": "The label of footer link with label=Internationalization linking to /docs/category/internationalization"
+    },
+    "link.item.label.CLI": {
+        "message": "CLI",
+        "description": "The label of footer link with label=CLI linking to /docs/category/commands"
+    },
+    "link.item.label.Install Hakutest": {
+        "message": "Install Hakutest",
+        "description": "The label of footer link with label=Install Hakutest linking to /docs/installation"
     }
 }
