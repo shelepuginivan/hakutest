@@ -18,8 +18,9 @@ application settings.
         it, run `hakutest.exe`.
     </TabItem>
     <TabItem value="linux" label="Linux">
-        On Linux, Hakutest provides both a graphical interface and a CLI
-        application. Run `hakutest-gtk` to launch the graphical app.
+        On Linux, Hakutest provides both a graphical interface and a
+        [CLI application](/docs/cli/about). Run `hakutest-gtk` to launch the
+        graphical app.
     </TabItem>
     <TabItem value="macos" label="macOS">
         Currently, graphical app is not available for macOS. We are working on
