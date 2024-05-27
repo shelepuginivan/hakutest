@@ -22,6 +22,13 @@ Where:
 
 :::tip
 
+You can create a shortcut to the search page on your students' workstations so
+they can easily open Hakutest.
+
+:::
+
+:::tip
+
 To find out your local IP address, see [Local IP address guide](/docs/guide/local-ip).
 
 :::
