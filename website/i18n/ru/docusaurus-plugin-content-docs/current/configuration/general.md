@@ -9,6 +9,20 @@ description: Основные настройки Hakutest
 
 ## Поля
 
+### `lang`
+
+Устанавливает язык приложения.
+
+-   **Значение**: один из поддерживаемых языков.
+-   **По умолчанию**: `en` (Английский).
+
+На данный момент поддерживаются следующие языки.
+
+|    Язык    | Значение |
+| :--------: | :------: |
+| Английский |   `en`   |
+|  Русский   |   `ru`   |
+
 ### `tests_directory`
 
 Определяет директорию хранения файлов тестов.
@@ -43,6 +57,7 @@ description: Основные настройки Hakutest
 
 ```yaml title='config.yaml'
 general:
+    lang: ru
     tests_directory: ./data/tests
     results_directory: ./data/results
     show_results: true

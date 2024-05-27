@@ -63,7 +63,7 @@ Hakutest предоставляет различные возможности к
 
 ```yaml title='config.yaml'
 general:
-    # может отличаться в зависимости от ОС
+    lang: en
     tests_directory: ~/.cache/hakutest/tests
     results_directory: ~/.cache/hakutest/results
     show_results: true
