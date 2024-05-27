@@ -18,8 +18,9 @@ Hakutest предоставляет простое в использовании
         Чтобы использовать его, запустите `hakutest.exe`.
     </TabItem>
     <TabItem value="linux" label="Linux">
-        На Linux, Hakutest предоставляет как графическое, так и CLI-приложение.
-        Чтобы использовать графический интерфейс, запустите `hakutest-gtk`.
+        На Linux, Hakutest предоставляет как графическое, так и
+        [CLI-приложение](/docs/cli/about). Чтобы использовать графический
+        интерфейс, запустите `hakutest-gtk`.
     </TabItem>
     <TabItem value="macos" label="macOS">
         В настоящий момент графическое приложение недоступно для macOS. Мы
