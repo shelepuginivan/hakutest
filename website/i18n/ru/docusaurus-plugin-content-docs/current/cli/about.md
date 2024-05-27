@@ -12,20 +12,20 @@ Hakutest предоставляет широкий интерфейс коман
 Для использования команд без указания полного пути до исполняемого файла, добавьте директорию установки Hakutest в `$PATH`:
 
 ```shell
-export PATH="$PATH:path/to/hakutest/installation"
+export PATH="$PATH:/путь/до/директории/hakutest"
 ```
 
 :::
 
 Вы можете увидеть список всех команд, запустив `hakutest help`:
 
-```shell
+```shell title='Команда'
 hakutest help
 ```
 
 Программа выведет следующее сообщение:
 
-```txt title='Help message'
+```txt title='Справочное сообщение'
 Reliable and efficient educational testing platform
 
 Usage:
