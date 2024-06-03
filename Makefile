@@ -12,10 +12,7 @@ windows:
 	${SCRIPTS_DIR}/build_windows.sh
 
 mac:
-	GOARCH=amd64 GOOS=darwin go build -trimpath -o ${TARGET_DIR}/mac/${BINARY_NAME} ./cmd/hakutest
-	cp -r web ${TARGET_DIR}/mac
-	tar -czf ${TARGET_DIR}/${BINARY_NAME}-macos.tar.gz --transform 's/^./${BINARY_NAME}/' -C ${TARGET_DIR}/mac .
-	rm -r ${TARGET_DIR}/mac
+	${SCRIPTS_DIR}/build_macos.sh
 
 manual:
 	mkdir -p ${TARGET_DIR}
