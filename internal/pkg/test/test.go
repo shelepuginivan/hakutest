@@ -28,14 +28,14 @@ type Test struct {
 	Author      string    `json:"author"`      // Author of the test.
 	Institution string    `json:"institution"` // Institution associated with the test.
 	CreatedAt   time.Time `json:"createdAt"`   // Creation time of the test.
-	ExpiresIn   time.Time `json:"expiresIn"`   // Expiration time of the test.
+	ExpiresAt   time.Time `json:"expiresAt"`   // Expiration time of the test.
 	Tasks       []*Task   `json:"tasks"`       // Tasks of the test.
 }
 
 // IsExpired reports whether the test is expired.
 // If the ExpiresIn field is zero, it returns true.
 func (t Test) IsExpired() bool {
-	return !t.ExpiresIn.IsZero() && t.ExpiresIn.Before(time.Now())
+	return !t.ExpiresAt.IsZero() && t.ExpiresAt.Before(time.Now())
 }
 
 // Sha256Sum returns the sha256 checksum of the test.

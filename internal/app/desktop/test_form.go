@@ -169,7 +169,7 @@ func (form TestForm) GetTest() (*test.Test, error) {
 	}
 
 	if form.expiresAtCheck.GetActive() {
-		t.ExpiresIn = form.expiresAtInput.GetDate()
+		t.ExpiresAt = form.expiresAtInput.GetDate()
 	}
 
 	t.Tasks = form.taskList.GetTasks()
@@ -191,9 +191,9 @@ func (form *TestForm) SetTest(t *test.Test) {
 	form.targetAudienceEntry.SetText(t.Target)
 	form.institutionEntry.SetText(t.Institution)
 
-	if !t.ExpiresIn.IsZero() {
+	if !t.ExpiresAt.IsZero() {
 		form.expiresAtCheck.SetActive(true)
-		form.expiresAtInput.SetDate(t.ExpiresIn)
+		form.expiresAtInput.SetDate(t.ExpiresAt)
 	}
 
 	form.taskList.SetTasks(t.Tasks)

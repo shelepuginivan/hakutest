@@ -60,7 +60,7 @@ func setup() func() {
 
 func TestTest_IsExpired(t *testing.T) {
 	mockTest := Test{
-		ExpiresIn: time.Now(),
+		ExpiresAt: time.Now(),
 	}
 
 	assert.True(t, mockTest.IsExpired())

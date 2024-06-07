@@ -113,7 +113,7 @@ func (co EditorController) CreateTest(c *gin.Context) {
 	expiresIn, err := time.Parse("2006-01-02T15:04:05", c.Request.Form.Get("expiresIn"))
 
 	if err == nil {
-		t.ExpiresIn = expiresIn
+		t.ExpiresAt = expiresIn
 	}
 
 	t.Title = c.Request.Form.Get("title")
