@@ -1,0 +1,10 @@
+{
+    "position": 1,
+    "label": "Тесты",
+    "collapsible": true,
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "title": "Тесты"
+    }
+}
