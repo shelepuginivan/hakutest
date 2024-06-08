@@ -1,0 +1,10 @@
+{
+    "position": 9,
+    "label": "Advanced guides",
+    "collapsible": true,
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "title": "Advanced guides"
+    }
+}
