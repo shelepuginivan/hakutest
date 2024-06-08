@@ -1,10 +1,10 @@
 {
     "position": 6,
-    "label": "Конфигурация",
+    "label": "Статистика",
     "collapsible": true,
     "collapsed": true,
     "link": {
         "type": "generated-index",
-        "title": "Конфигурация"
+        "title": "Статистика"
     }
 }
