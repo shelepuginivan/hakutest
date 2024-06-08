@@ -82,5 +82,13 @@
     "sidebar.tutorialSidebar.category.Graphical interface.link.generated-index.title": {
         "message": "Графический интерфейс",
         "description": "The generated-index page title for category Graphical interface in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Advanced guides": {
+        "message": "Продвинутые гайды",
+        "description": "The label for category Advanced guides in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Advanced guides.link.generated-index.title": {
+        "message": "Продвинутые гайды",
+        "description": "The generated-index page title for category Advanced guides in sidebar tutorialSidebar"
     }
 }
