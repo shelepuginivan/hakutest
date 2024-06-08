@@ -118,26 +118,6 @@ const config: Config = {
                             label: 'Guide',
                             to: '/docs/category/guide',
                         },
-                        {
-                            label: 'App',
-                            to: '/docs/category/app',
-                        },
-                        {
-                            label: 'Statistics',
-                            to: '/docs/category/statistics',
-                        },
-                        {
-                            label: 'Configuration',
-                            to: '/docs/category/configuration',
-                        },
-                        {
-                            label: 'Internationalization',
-                            to: '/docs/category/internationalization',
-                        },
-                        {
-                            label: 'CLI',
-                            to: '/docs/category/commands',
-                        },
                     ],
                 },
                 {
