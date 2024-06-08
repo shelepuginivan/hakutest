@@ -6,12 +6,13 @@ description: Learn how to manually edit test JSON files.
 
 # Manual editing of JSON test files
 
-In Hakutest, each test is represented by a JSON file. This means that the
-files may be created and edited manually or programmatically.
+In Hakutest, each test is represented by a JSON file. This means that the files
+may be created and edited manually or programmatically.
 
 :::tip
 
-To learn about the basics of test structure in Hakutest, see [Tests](/docs/guide/tests).
+To learn about the basics of test structure in Hakutest, see
+[Tests](/docs/guide/tests).
 
 :::
 
@@ -45,12 +46,7 @@ Below is an example of a test JSON file.
                 "type": "image",
                 "src": "https://example.com/python-script.png"
             },
-            "options": [
-                "SyntaxError",
-                "3",
-                "KeyError",
-                "foo"
-            ],
+            "options": ["SyntaxError", "3", "KeyError", "foo"],
             "answer": "3"
         }
     ]
@@ -66,9 +62,11 @@ no expiration time.
 
 ## JSON schema
 
-Hakutest provides a [JSON schema](https://json-schema.org) for test validation, completion, etc.
+Hakutest provides a [JSON schema](https://json-schema.org) for test validation,
+completion, etc.
 
-Schema is available at https://hakutest.shelepugin.ru/files/test.schema.json. You can include it in the JSON file as follows:
+Schema is available at https://hakutest.shelepugin.ru/files/test.schema.json.
+You can include it in the JSON file as follows:
 
 ```json
 {
