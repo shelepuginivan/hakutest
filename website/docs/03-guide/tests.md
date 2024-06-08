@@ -12,10 +12,11 @@ In Hakutest, each test is represented by a JSON file that is stored locally on y
 
 ### Creating and editing test files
 
-Hakutest provides two ways of creating and editing test files:
+Hakutest provides multiple ways of creating and editing test files:
 
 -   [Graphical app editor](/docs/gui/editor) (recommended).
 -   [Web-based editor](/docs/web/test-editor).
+-   [Manually](/docs/advanced/tests/manual-edit) (for advanced users).
 
 ### Structure of the test file
 
