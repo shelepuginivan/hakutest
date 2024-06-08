@@ -9,7 +9,7 @@ The main page of the application is the search page that allows to search for an
 
 ![Search page](./img/search.webp)
 
-As you enter text into the search input, a list of suggested existing tests will appear. You can choose one of the suggestions or type the name manually. Once you have entered the name of the test, press "Search" button (or the Enter key). The [page](/docs/app/test-page) with the selected test will open, if it exists.
+As you enter text into the search input, a list of suggested existing tests will appear. You can choose one of the suggestions or type the name manually. Once you have entered the name of the test, press "Search" button (or the Enter key). The [page with the selected test](/docs/web/test-page) will open, if it exists.
 
 When the server is running, the search page can be accessed from any device in the local network at the following URL:
 
