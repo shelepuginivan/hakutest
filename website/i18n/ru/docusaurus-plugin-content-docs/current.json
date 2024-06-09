@@ -90,5 +90,13 @@
     "sidebar.tutorialSidebar.category.Advanced guides.link.generated-index.title": {
         "message": "Продвинутые гайды",
         "description": "The generated-index page title for category Advanced guides in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Appearance": {
+        "message": "Внешний вид",
+        "description": "The label for category Appearance in sidebar tutorialSidebar"
+    },
+    "sidebar.tutorialSidebar.category.Appearance.link.generated-index.title": {
+        "message": "Внешний вид",
+        "description": "The generated-index page title for category Appearance in sidebar tutorialSidebar"
     }
 }
