@@ -12,6 +12,8 @@ Hakutest provides an easy-to-use graphical app. It includes features for
 creating and editing tests, an interactive menu for exporting statistics, and
 application settings.
 
+![Hakutest graphical app](./img/hakutest-gtk.webp)
+
 <Tabs>
     <TabItem value="windows" label="Windows" default>
         On Windows, Hakutest uses the graphical application by default. To use
@@ -27,3 +29,11 @@ application settings.
         it.
     </TabItem>
 </Tabs>
+
+:::tip
+
+Hereinafter screenshots use the GTK `Adwaita` theme. If you want to change the
+appearance of the application, see [Customizing appearance of the graphical
+app](/docs/advanced/appearance/gui).
+
+:::
