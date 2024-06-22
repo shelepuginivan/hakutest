@@ -12,7 +12,7 @@ windows:
 	${SCRIPTS_DIR}/build_windows.sh
 
 mac:
-	${SCRIPTS_DIR}/build_macos.sh
+	${SCRIPTS_DIR}/build_macos.py
 
 manual:
 	mkdir -p ${TARGET_DIR}
