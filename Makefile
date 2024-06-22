@@ -6,7 +6,7 @@ TARGET_DIR=./target
 build: linux windows mac
 
 linux:
-	${SCRIPTS_DIR}/build_linux.sh
+	${SCRIPTS_DIR}/build_linux.py
 
 windows:
 	${SCRIPTS_DIR}/build_windows.sh
