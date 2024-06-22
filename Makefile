@@ -9,7 +9,7 @@ linux:
 	${SCRIPTS_DIR}/build_linux.py
 
 windows:
-	${SCRIPTS_DIR}/build_windows.sh
+	${SCRIPTS_DIR}/build_windows.py
 
 mac:
 	${SCRIPTS_DIR}/build_macos.py
