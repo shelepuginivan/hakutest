@@ -1,10 +1,12 @@
 package config
 
-import "github.com/gin-gonic/gin"
+import (
+	"path/filepath"
 
-// ServerModeMap is a mapping server mode and its name.
-var ServerModeMap = map[string]string{
-	gin.ReleaseMode: "Release",
-	gin.DebugMode:   "Debug",
-	gin.TestMode:    "Test",
+	"github.com/adrg/xdg"
+)
+
+// configFile returns path to the config file.
+func configFile() string {
+	return filepath.Join(xdg.ConfigHome, "hakutest", "config.yaml")
 }

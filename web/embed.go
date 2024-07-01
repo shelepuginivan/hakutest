@@ -3,8 +3,10 @@ package web
 
 import "embed"
 
+// Templates directory.
+//
 //go:embed templates
 var Templates embed.FS
 
-//go:embed css fonts js img
+// Static files directories.
 var Static embed.FS

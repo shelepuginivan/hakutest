@@ -1,143 +1,41 @@
-// Package config provides global configuration for Hakutest.
+// Package config provides configuration for the app.
 package config
 
 import (
 	"os"
-	"path/filepath"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/directories"
-	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
-	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
 )
 
-// GeneralConfig represents general configuration parameters.
-type GeneralConfig struct {
-	Language string `yaml:"lang" mapstructure:"lang"`
-
-	// Directory where tests are stored (environment variables such as $HOME are supported).
-	TestsDirectory string `yaml:"tests_directory" mapstructure:"tests_directory"`
-
-	// Directory where results are stored (environment variables such as $HOME are supported).
-	ResultsDirectory string `yaml:"results_directory" mapstructure:"results_directory"`
-
-	// Specifies whether the results will be displayed immediately after the response is sent.
-	ShowResults bool `yaml:"show_results" mapstructure:"show_results"`
-
-	// Specifies whether the results are allowed to be overwritten if the same student resubmits the solution again.
-	OverwriteResults bool `yaml:"overwrite_results" mapstructure:"overwrite_results"`
-}
-
-// ServerConfig represents server configuration parameters.
-type ServerConfig struct {
-	// Port on which server is started.
-	Port int `yaml:"port" mapstructure:"port"`
-
-	// Mode in which server is started.
-	Mode string `yaml:"mode" mapstructure:"mode"`
-
-	// Max size (in bytes) of the submitted test form.
-	MaxUploadSize int64 `yaml:"max_upload_size" mapstructure:"max_upload_size"`
-}
-
-// Config represents Hakutest configuration.
+// Config is a global application configuration layer.
 type Config struct {
-	General *GeneralConfig `yaml:"general" mapstructure:"general"` // General configuration.
-	Server  *ServerConfig  `yaml:"server" mapstructure:"server"`   // Server configuration.
+	Debug    bool `yaml:"debug"`    // Run in debug mode.
+	Headless bool `yaml:"headless"` // Run in headless mode (without systray icon).
+	Port     int  `yaml:"port"`     // Port on which server is started.
 }
 
-// getViper returns a configured instance of viper.Viper.
-// It scans the OS-specific configuration directory and the Hakutest executable directory for the configuration file `config.yaml`.
-func getViper() *viper.Viper {
-	v := viper.New()
-
-	v.AddConfigPath(directories.Executable())
-	v.AddConfigPath(directories.Config())
-	v.SetConfigType("yaml")
-	v.SetConfigName("config")
-
-	return v
-}
-
-// Default returns the default configuration.
-func Default() Config {
-	dataDir := directories.Data()
-	testsDirectory := filepath.Join(dataDir, "tests")
-	resultsDirectory := filepath.Join(dataDir, "results")
-
-	defaultConfig := Config{
-		General: &GeneralConfig{
-			Language:         i18n.LanguageEn,
-			TestsDirectory:   testsDirectory,
-			ResultsDirectory: resultsDirectory,
-			ShowResults:      true,
-			OverwriteResults: false,
-		},
-		Server: &ServerConfig{
-			Port:          8080,
-			Mode:          "release",
-			MaxUploadSize: 1024 * 1024, // 1 MB
-		},
-	}
-
-	return defaultConfig
-}
-
-// createDefaultConfig creates a configuration file in the OS-specific configuration directory.
-func createDefaultConfig() error {
-	configDir := directories.Config()
-	configPath := filepath.Join(configDir, "config.yaml")
-
-	err := os.MkdirAll(configDir, os.ModeDir|os.ModePerm)
-
-	if err != nil {
-		return err
-	}
-
-	file, err := os.Create(configPath)
-
-	if err != nil {
-		return err
-	}
-
-	defer file.Close()
-
-	data, err := yaml.Marshal(Default())
-
-	if err != nil {
-		data = []byte{}
-	}
-
-	_, err = file.Write(data)
-
-	return err
-}
-
-// New returns configuration defined in the configuration file.
-// Fields that are not specified in the configuration file are fallback to default values.
+// New reads configuration file and returns the configuration.
+// If field is unset, it fallbacks to the default value.
 func New() *Config {
-	config := Default()
+	cfg := Default()
 
-	v := getViper()
-	v.SetDefault("general", config.General)
-	v.SetDefault("server", config.Server)
-
-	if err := v.ReadInConfig(); err != nil {
-		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
-			panic(err)
-		}
-
-		if err := createDefaultConfig(); err != nil {
-			panic(err)
-		}
+	data, err := os.ReadFile(configFile())
+	if err != nil {
+		return Default()
 	}
 
-	if err := v.Unmarshal(&config); err != nil {
-		panic(err)
+	if err = yaml.Unmarshal(data, cfg); err != nil {
+		return Default()
 	}
 
-	config.General.TestsDirectory = os.ExpandEnv(config.General.TestsDirectory)
-	config.General.ResultsDirectory = os.ExpandEnv(config.General.ResultsDirectory)
+	return cfg
+}
 
-	return &config
+// Default returns default configuration.
+func Default() *Config {
+	return &Config{
+		Debug:    false,
+		Headless: false,
+		Port:     8080,
+	}
 }
