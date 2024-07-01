@@ -5,19 +5,20 @@ import (
 	"golang.org/x/text/language"
 )
 
-var translationJson string
+var translation gjson.Result
 
 func Init(lang string) {
-	var ok bool
-	translationJson, ok = translations[lang]
+	translationJson, ok := translations[lang]
 
 	if !ok {
 		translationJson = translations[language.English.String()]
 	}
+
+	translation = gjson.Parse(translationJson)
 }
 
 func Get(key string) string {
-	result := gjson.Get(translationJson, key)
+	result := translation.Get(key)
 
 	if !result.Exists() || result.IsObject() {
 		return key
