@@ -32,4 +32,15 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 			"Tests": test.GetList(),
 		})
 	})
+
+	e.GET("/:test", func(c *gin.Context) {
+		t, err := test.GetByName(c.Param("test"))
+
+		if err != nil {
+			c.String(http.StatusNotFound, "not found")
+			return
+		}
+
+		c.JSON(http.StatusOK, t)
+	})
 }
