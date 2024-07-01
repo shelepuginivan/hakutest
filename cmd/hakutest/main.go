@@ -3,11 +3,13 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/getlantern/systray"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/server"
 	"github.com/shelepuginivan/hakutest/internal/pkg/trayutil"
 )
@@ -20,11 +22,13 @@ var (
 func init() {
 	cfg = config.New()
 
+	flag.StringVar(&cfg.Lang, "lang", cfg.Lang, "Language of the interface")
 	flag.IntVar(&cfg.Port, "port", cfg.Port, "Port on which server is started")
 	flag.BoolVar(&cfg.Debug, "debug", cfg.Debug, "Run in debug mode")
 	flag.BoolVar(&cfg.Headless, "headless", cfg.Headless, "Run in headless mode (without systray icon)")
 	flag.Parse()
 
+	i18n.Init(cfg.Lang)
 	srv = server.New(cfg)
 }
 
@@ -51,6 +55,8 @@ func onReady() {
 }
 
 func main() {
+	fmt.Println(i18n.Get("message.one"))
+
 	if cfg.Headless {
 		log.Fatal(srv.ListenAndServe())
 	}

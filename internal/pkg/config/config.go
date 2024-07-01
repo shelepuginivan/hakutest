@@ -4,14 +4,16 @@ package config
 import (
 	"os"
 
+	"golang.org/x/text/language"
 	"gopkg.in/yaml.v3"
 )
 
 // Config is a global application configuration layer.
 type Config struct {
-	Debug    bool `yaml:"debug"`    // Run in debug mode.
-	Headless bool `yaml:"headless"` // Run in headless mode (without systray icon).
-	Port     int  `yaml:"port"`     // Port on which server is started.
+	Debug    bool   `yaml:"debug"`    // Run in debug mode.
+	Headless bool   `yaml:"headless"` // Run in headless mode (without systray icon).
+	Lang     string `yaml:"lang"`
+	Port     int    `yaml:"port"` // Port on which server is started.
 }
 
 // New reads configuration file and returns the configuration.
@@ -36,6 +38,7 @@ func Default() *Config {
 	return &Config{
 		Debug:    false,
 		Headless: false,
+		Lang:     language.English.String(),
 		Port:     8080,
 	}
 }
