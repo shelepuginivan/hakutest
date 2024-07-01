@@ -1,0 +1,14 @@
+appname: "hakutest"
+build_pkg: "./cmd/hakutest"
+disable_run: false
+log_level: "info"
+vendor_watch: false
+watch_exts:
+  - .go
+  - .sum
+  - .mod
+  - .html
+  - .css
+  - .js
+  - .yml
+  - .json
