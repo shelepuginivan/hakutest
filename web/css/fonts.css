@@ -1,0 +1,54 @@
+/* comfortaa-regular - cyrillic_latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/static/fonts/comfortaa-v45-cyrillic_latin-regular.woff2') format('woff2');
+}
+
+/* comfortaa-700 - cyrillic_latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/static/fonts/comfortaa-v45-cyrillic_latin-700.woff2') format('woff2');
+}
+
+/* open-sans-regular - cyrillic_latin_math_symbols */
+@font-face {
+    font-display: swap;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-regular.woff2') format('woff2');
+}
+
+/* open-sans-italic - cyrillic_latin_math_symbols */
+@font-face {
+    font-display: swap;
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-italic.woff2') format('woff2');
+}
+
+/* open-sans-700 - cyrillic_latin_math_symbols */
+@font-face {
+    font-display: swap;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-700.woff2') format('woff2');
+}
+
+/* open-sans-700italic - cyrillic_latin_math_symbols */
+@font-face {
+    font-display: swap;
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 700;
+    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-700italic.woff2') format('woff2');
+}
+

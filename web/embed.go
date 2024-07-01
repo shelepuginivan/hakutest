@@ -11,6 +11,7 @@ var Templates embed.FS
 // Static files directories.
 //
 //go:embed css
+//go:embed fonts
 //go:embed img
 //go:embed js
 var Static embed.FS
