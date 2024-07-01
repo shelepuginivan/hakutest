@@ -19,6 +19,11 @@ func NormalizeName(name string) string {
 	return fmt.Sprintf("%s.json", name)
 }
 
+// PrettifyName removes suffix `.json` from the test name.
+func PrettifyName(name string) string {
+	return strings.TrimSuffix(name, ".json")
+}
+
 // GetList returns a slice of names of tests stored in the tests directory.
 func GetList() []string {
 	var tests []string
@@ -30,7 +35,7 @@ func GetList() []string {
 
 	for _, file := range files {
 		if !file.IsDir() && strings.HasSuffix(file.Name(), ".json") {
-			tests = append(tests, file.Name())
+			tests = append(tests, PrettifyName(file.Name()))
 		}
 	}
 
