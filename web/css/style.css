@@ -49,21 +49,42 @@ body {
     outline: none;
     border: 2px solid var(--gray);
     border-radius: 4px;
-    font-size: medium;
     min-width: 128px;
+}
+
+.form__item-maxwidth {
+    width: 100%;
+}
+
+.form__label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form__input {
+    background: var(--white);
 }
 
 .form__input:focus {
     border-color: var(--darkgreen);
 }
 
-.form__input-maxwidth {
-    width: 100%;
+.form__textarea {
+    transition-property: border-color;
+    background: var(--white);
+    resize: vertical;
+    min-height: 96px;
+}
+
+.form__textarea:focus {
+    border-color: var(--darkgreen);
 }
 
 .form__button {
     color: var(--darkgreen);
     border-color: var(--darkgreen);
+    font-size: medium;
     cursor: pointer;
 }
 
