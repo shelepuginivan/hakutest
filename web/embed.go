@@ -14,4 +14,5 @@ var Templates embed.FS
 //go:embed fonts
 //go:embed img
 //go:embed js
+//go:embed vendor
 var Static embed.FS
