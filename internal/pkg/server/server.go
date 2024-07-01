@@ -10,6 +10,8 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/logging"
 )
 
+// setMode sets mode of the gin engine.
+// By default, mode is set to `"release"`.
 func setMode(cfg *config.Config) {
 	if cfg.Debug {
 		gin.SetMode(gin.DebugMode)
