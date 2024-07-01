@@ -9,6 +9,7 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/logging"
+	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
 func setMode(cfg *config.Config) {
@@ -32,8 +33,9 @@ func New(cfg *config.Config) *http.Server {
 
 	engine.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"Lang": cfg.Lang,
-			"I18n": i18n.Get,
+			"Lang":  cfg.Lang,
+			"I18n":  i18n.Get,
+			"Tests": test.GetList(),
 		})
 	})
 
