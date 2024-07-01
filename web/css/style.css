@@ -10,15 +10,27 @@
     --transition: all .15s ease-in;
 }
 
-body {
-    background: var(--white);
-}
-
 * {
     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+}
+
+.main {
+    flex-grow: 1;
 }
 
 .container {
@@ -38,6 +50,7 @@ body {
     border: 2px solid var(--gray);
     border-radius: 4px;
     font-size: medium;
+    min-width: 128px;
 }
 
 .form__input:focus {
