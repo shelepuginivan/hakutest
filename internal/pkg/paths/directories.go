@@ -7,4 +7,4 @@ import (
 )
 
 // Path to the tests directory.
-var Tests = filepath.Join(xdg.DataHome, "tests")
+var Tests = filepath.Join(xdg.DataHome, "hakutest", "tests")
