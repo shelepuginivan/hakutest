@@ -4,5 +4,12 @@ target/
 # Test binary, built with `go test -c`
 *.test
 
+# Compiled binaries.
+hakutest
+hakuctl
+
 # Build vendor scripts and dependencies
 build/vendor
+
+# Web interface vendor scripts and styles.
+web/vendor
