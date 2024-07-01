@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"flag"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -59,8 +58,6 @@ func onReady() {
 }
 
 func main() {
-	fmt.Println(test.GetList())
-
 	if cfg.Headless {
 		log.Fatal(srv.ListenAndServe())
 	}

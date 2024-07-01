@@ -1,0 +1,60 @@
+:root {
+    --white: #f1f2f3;
+    --lightgray: #e5e5e5;
+    --gray: #cacaca;
+    --accent: #1b9e14;
+    --red: #eb363e;
+    --yellow: #ffe600;
+    --green: #2cbe56;
+    --darkgreen: #1c7b38;
+    --transition: all .15s ease-in;
+}
+
+body {
+    background: var(--white);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    gap: 24px;
+}
+
+.form__item {
+    transition: var(--transition);
+    padding: 8px 16px;
+    background: transparent;
+    outline: none;
+    border: 2px solid var(--gray);
+    border-radius: 4px;
+    font-size: medium;
+}
+
+.form__input:focus {
+    border-color: var(--darkgreen);
+}
+
+.form__input-maxwidth {
+    width: 100%;
+}
+
+.form__button {
+    color: var(--darkgreen);
+    border-color: var(--darkgreen);
+    cursor: pointer;
+}
+
+.form__button:hover {
+    background: var(--darkgreen);
+    color: var(--white);
+}

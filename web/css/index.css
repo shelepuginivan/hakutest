@@ -1,0 +1,14 @@
+.header__logo {
+    width: 80%;
+    max-width: 700px;
+}
+
+.header__logo__img {
+    width: 100%;
+}
+
+.form {
+    width: 80%;
+    max-width: 700px;
+    margin: 0 auto;
+}

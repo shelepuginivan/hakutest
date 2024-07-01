@@ -1,5 +1,6 @@
 {
-    "message": {
-        "example": "Hello, world!"
+    "index": {
+        "input": "Enter name of the test...",
+        "submit": "Search"
     }
 }

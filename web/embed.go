@@ -9,4 +9,8 @@ import "embed"
 var Templates embed.FS
 
 // Static files directories.
+//
+//go:embed css
+//go:embed img
+//go:embed js
 var Static embed.FS
