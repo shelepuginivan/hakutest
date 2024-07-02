@@ -52,3 +52,29 @@
     src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-700italic.woff2') format('woff2');
 }
 
+/* Icon font */
+@font-face {
+    font-family: iconfont;
+    src: url("/static/fonts/iconfont.eot");
+    src: url("/static/fonts/iconfont.eot") format("embedded-opentype"),
+         url("/static/fonts/iconfont.ttf") format("truetype"),
+         url("/static/fonts/iconfont.woff") format("woff"),
+         url("/static/fonts/iconfont.woff2") format("woff2"),
+         url("/static/fonts/iconfont.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.i {
+    font-family: iconfont !important;
+    font-size: 1em;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.i.close:before {
+    content: "\e001";
+}
+
