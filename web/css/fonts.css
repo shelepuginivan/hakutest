@@ -73,8 +73,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-
 .i.close:before {
     content: "\e001";
 }
 
+.i.search:before {
+    content: "\e002";
+}
