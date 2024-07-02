@@ -5,8 +5,8 @@ target/
 *.test
 
 # Compiled binaries.
-hakutest
-hakuctl
+/hakutest
+/hakuctl
 
 # Build vendor scripts and dependencies
 build/vendor
