@@ -99,28 +99,6 @@ body.modal_open {
     min-height: 96px;
 }
 
-.form__item {
-    transition: var(--transition);
-    padding: 8px 16px;
-    background: transparent;
-    outline: none;
-    border: 2px solid var(--gray);
-    border-radius: 4px;
-    min-width: 128px;
-}
-
-.form__button {
-    color: var(--darkgreen);
-    border-color: var(--darkgreen);
-    font-size: medium;
-    cursor: pointer;
-}
-
-.form__button:hover {
-    background: var(--darkgreen);
-    color: var(--white);
-}
-
 .modal__backdrop {
     display: none;
     align-items: center;
