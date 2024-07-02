@@ -29,6 +29,11 @@ type Test struct {
 	Tasks       []*Task   `json:"tasks"`       // Tasks of the test.
 }
 
+// TotalPoints returns total points of the test.
+func (t Test) TotalPoints() int {
+	return len(t.Tasks)
+}
+
 // IsExpired reports whether the test is expired.
 // If the ExpiresIn field is zero, it returns true.
 func (t Test) IsExpired() bool {
