@@ -77,6 +77,15 @@
     content: "\e001";
 }
 
-.i.search:before {
+.i.info:before {
     content: "\e002";
 }
+
+.i.result:before {
+    content: "\e003";
+}
+
+.i.search:before {
+    content: "\e004";
+}
+
