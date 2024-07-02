@@ -43,3 +43,24 @@ func New(t *test.Test, s *test.Solution) *Result {
 
 	return &r
 }
+
+// PerformanceCategory returns a number based on a scored percentage.
+// 90 to 100 returns 0;
+// 75 to 90 returns 1;
+// 50 to 75 returns 2;
+// 0 to 50 returns 3.
+func (r Result) PerformanceCategory() int {
+	if r.Percentage >= 90 {
+		return 0
+	}
+
+	if r.Percentage >= 75 {
+		return 1
+	}
+
+	if r.Percentage >= 50 {
+		return 2
+	}
+
+	return 3
+}
