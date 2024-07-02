@@ -8,18 +8,71 @@
     <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/static/css/fonts.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/result.css">
 
-    <title>Hakutest</title>
+    <title>{{ .Result.Student }} | Hakutest</title>
 </head>
 <body>
-    <header class="header container">
-        <h1 class="">Result</h1>
+    <header class="header result__header">
+        <h1 class="header__title result__title">
+            {{ call .I18n "result.title" }}
+        </h1>
     </header>
     <main>
-        {{ .Result }}
+    {{ if .Show }}
+        {{ with .Result }}
+        <div
+            class="container result__container result__container-result"
+            data-performance-category="{{ .PerformanceCategory }}"
+        >
+            <div class="result__container__header">
+                <span class="i result"></span>
+                {{ call $.I18n "result.overview" }}
+            </div>
+            <div class="result__container__body">
+                <figure class="result__overview">
+                    <div
+                        class="meter__score"
+                        style="--percentage: {{ .Percentage }}"
+                        aria-role="meter"
+                        aria-valuenow="{{ .Percentage }}"
+                        aria-valuemax="100"
+                        aria-valuemin="0"
+                    >
+                        <p class="meter__score__percent">
+                            {{ .Percentage }}%
+                        </p>
+                    </div>
+                    <figcaption class="result__summary">
+                        <h2 class="result__summary__heading">
+                            {{ .Student }}
+                        </h2>
+                        <p>
+                            {{ call $.I18n "result.points" }}
+                            <b>{{ .Points }} / {{ .Total }}</b>
+                        </p>
+                        <p>
+                            {{ call $.I18n "result.percentage" }}
+                            <b>{{ .Percentage }}%</b>
+                        </p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        {{ end }}
+    {{ else }}
+        <div class="container result__container result__container-info">
+            <div class="result__container__header">
+                <span class="i info"></span>
+                {{ call .I18n "result.information" }}
+            </div>
+            <div class="result__container__body">
+                <h2 class="result__heading">
+                    {{ call .I18n "result.show_disabled" }}
+                </h2>
+            </div>
+        </div>
+    {{ end }}
     </main>
-    <footer>
-    </footer>
 </body>
 </html>

@@ -3,6 +3,14 @@
         "input": "Enter name of the test...",
         "search": "Search"
     },
+    "result": {
+        "information": "Information",
+        "overview": "Overview",
+        "points": "Points:",
+        "percentage": "Percentage:",
+        "show_disabled": "Result not displayed according to Hakutest settings",
+        "title": "Your result"
+    },
     "test": {
         "form": {
             "close": "Close",

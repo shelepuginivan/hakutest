@@ -1,0 +1,126 @@
+.result__container[data-performance-category='0'] {
+    --accent: var(--darkgreen);
+}
+
+.result__container[data-performance-category='1'] {
+    --accent: var(--green);
+}
+
+.result__container[data-performance-category='2'] {
+    --accent: var(--yellow);
+}
+
+.result__container[data-performance-category='3'] {
+    --accent: var(--red);
+}
+
+.result__container {
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: var(--selection);
+    border-radius: 8px;
+    min-height: 240px;
+    border: 2px solid var(--accent);
+}
+
+.result__container-info {
+    border: 2px solid var(--blue);
+}
+
+.result__container__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    font-family: Comfortaa, sans-serif;
+    font-size: 18px;
+}
+
+.i.info {
+    font-size: 24px;
+}
+
+.result__container__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.result__heading {
+    text-align: center;
+    font-size: large;
+    width: 90%;
+    max-width: 500px;
+}
+
+.result__overview {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px;
+}
+
+.meter__score {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background: conic-gradient(var(--accent) calc(var(--percentage) * 1%), var(--secondary) 0);
+}
+
+.meter__score__percent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 16;
+    top: 16;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    font-size: xx-large;
+    font-family: Comfortaa, sans-serif;
+    background: var(--selection);
+}
+
+.result__summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex-grow: 1;
+    max-width: calc(100% - 140px);
+}
+
+.result__summary__heading {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 440px) {
+    .result__overview {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .result__summary {
+        max-width: 100%;
+    }
+
+    .result__summary__heading {
+        padding: 0;
+    }
+}
