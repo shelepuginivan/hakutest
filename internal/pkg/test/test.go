@@ -13,7 +13,7 @@ type Task struct {
 	Type    string   `json:"type"`    // Type of the task.
 	Text    string   `json:"text"`    // Text of the task, usually its terms.
 	Options []string `json:"options"` // Answer options of the task.
-	Answer  string   `json:"answer"`  // Correct answer of the task.
+	Answer  string   `json:"answer"`  // Correct answer of the task, zero-indexed.
 }
 
 // Test represents a test with a title, target, description, subject, author, institution, creation date, expiration date, and tasks.
