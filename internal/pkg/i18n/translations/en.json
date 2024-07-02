@@ -2,5 +2,29 @@
     "index": {
         "input": "Enter name of the test...",
         "submit": "Search"
+    },
+    "test": {
+        "form": {
+            "answers_given": "Answers given:",
+            "close": "Close",
+            "confirm": "Confirm submission",
+            "name": "Name:",
+            "student": "Enter your name:",
+            "submit": "Submit"
+        },
+        "task": {
+            "single": {
+                "legend": "Choose one answer option:"
+            },
+            "multiple": {
+                "legend": "Choose several answer options:"
+            },
+            "open": {
+                "label": "Enter your answer:"
+            },
+            "detailed": {
+                "label": "Enter detailed answer:"
+            }
+        }
     }
 }

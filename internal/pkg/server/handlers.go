@@ -41,6 +41,10 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 			return
 		}
 
-		c.JSON(http.StatusOK, t)
+		c.HTML(http.StatusOK, "test.html", gin.H{
+			"Lang": cfg.Lang,
+			"I18n": i18n.Get,
+			"Test": t,
+		})
 	})
 }
