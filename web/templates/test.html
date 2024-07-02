@@ -15,39 +15,33 @@
     <title>{{ .Test.Title }} | Hakutest</title>
 </head>
 <body>
-    <header class="header container">
-        <h1 class="header__title">{{ .Test.Title }}</h1>
+    <header class="test__header">
+        <h1 class="test__title">{{ .Test.Title }}</h1>
     </header>
-    <main 
-    >
+    <main>
         <form
             id="test-form"
-            class="form container"
+            class="form test__form container"
             method="POST"
             action="/{{ .TestName }}"
         >
-            <div class="form__task">
-                <label class="form__task__options__wrapper">
+            <div class="test__task">
+                <label class="student__label">
                     <span>{{ call $.I18n "test.form.student" }}</span>
-                    <input
-                        class="form__item form__item-maxwidth form__input"
-                        name="student"
-                        required
-                        autofocus
-                    >
+                    <input class="input" name="student" required autofocus>
                 </label>
             </div>
             {{ range $index, $task := .Test.Tasks }}
-                <div class="form__task">
-                    <div class="form__task__text">{{ .Text }}</div>
-                    <div class="form__task__options">
+                <div class="test__task">
+                    <div class="test__task__text">{{ .Text }}</div>
+                    <div class="test__task__options">
                         {{ if eq .Type "single" }}
-                            <fieldset class="form__task__options__fieldset">
-                                <legend class="form__task__options__fieldset__legend">
+                            <fieldset class="task__options__fieldset">
+                                <legend class="task__legend">
                                     <i>{{ call $.I18n "test.task.single.legend" }}</i>
                                 </legend>
                                 {{ range $optIndex, $opt := .Options }}
-                                    <label class="form__label">
+                                    <label class="task__single__label">
                                         <input
                                             type="radio"
                                             name="{{ $index }}"
@@ -58,12 +52,12 @@
                                 {{ end }}
                             </fieldset>
                         {{ else if eq .Type "multiple" }}
-                            <fieldset class="form__task__options__fieldset">
-                                <legend class="form__task__options__fieldset__legend">
+                            <fieldset class="task__options__fieldset">
+                                <legend class="task__legend">
                                     <i>{{ call $.I18n "test.task.multiple.legend" }}</i>
                                 </legend>
                                 {{ range $optIndex, $opt := .Options }}
-                                    <label class="form__label">
+                                    <label class="task__multiple__label">
                                         <input
                                             type="checkbox"
                                             name="{{ $index }}"
@@ -74,36 +68,33 @@
                                 {{ end }}
                             </fieldset>
                         {{ else if eq .Type "open" }}
-                            <label class="form__task__options__wrapper">
+                            <label class="task__open__label">
                                 <i>{{ call $.I18n "test.task.open.label" }}</i>
-                                <input
-                                    class="form__item form__item-maxwidth form__input"
-                                    name="{{ $index }}"
-                                >
+                                <input class="input" name="{{ $index }}">
                             </label>
                         {{ else if eq .Type "detailed" }}
-                            <label class="form__task__options__wrapper">
+                            <label class="task__detailed__label">
                                 <i>{{ call $.I18n "test.task.detailed.label" }}</i>
                                 <textarea
-                                    class="form__item form__item-maxwidth form__textarea"
-                                    name="{{ $index }}"
+                                   class="input textarea"
+                                   name="{{ $index }}"
                                 ></textarea>
                             </label>
                         {{ end }}
                     </div>
                 </div>
             {{ end }}
-            <button class="form__item form__button">
+            <button class="button button__primary">
                 {{ call $.I18n "test.form.submit" }}
             </button>
         </form>
-        <div class="modal__backdrop"></div>
-        <div class="modal__wrapper">
+        <div class="modal__backdrop" data-cancel>
             <div class="modal">
                 <div class="modal__header">
-                    <span 
-                        class="i close modal__close"
+                    <span
+                        class="i close"
                         aria-label="{{ call $.I18n "test.form.close" }}"
+                        data-cancel
                     ></span>
                 </div>
                 <div class="modal__body">
@@ -112,7 +103,7 @@
                     </h2>
                 </div>
                 <div class="modal__footer">
-                    <button class="form__item form__button modal__confirm">
+                    <button class="button button__primary" data-confirm>
                         {{ call $.I18n "test.form.submit" }}
                     </button>
                 </form>

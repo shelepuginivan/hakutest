@@ -53,23 +53,11 @@ body.modal_open {
     gap: 24px;
 }
 
-.input {
-    background: var(--white);
-    padding: 8px 16px;
-    border: 2px solid var(--gray);
-    border-radius: 4px;
-    outline: none;
-    font-size: medium;
-}
-
-.input:focus {
-    border-color: var(--darkgreen);
-}
-
 .button {
     display: flex;
     align-items: center;
     cursor: pointer;
+    font-size: medium;
 }
 
 .button__primary {
@@ -83,6 +71,28 @@ body.modal_open {
     background: var(--darkgreen);
 }
 
+.form {
+    gap: 36px;
+}
+
+.input {
+    background: var(--white);
+    padding: 8px 16px;
+    border: 2px solid var(--gray);
+    border-radius: 4px;
+    outline: none;
+    font-size: medium;
+}
+
+.input:focus {
+    border-color: var(--darkgreen);
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 96px;
+}
+
 .form__item {
     transition: var(--transition);
     padding: 8px 16px;
@@ -91,33 +101,6 @@ body.modal_open {
     border: 2px solid var(--gray);
     border-radius: 4px;
     min-width: 128px;
-}
-
-.form__item-maxwidth {
-    width: 100%;
-}
-
-.form__label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.form__input {
-    background: var(--white);
-    font-size: medium;
-}
-
-
-.form__textarea {
-    transition-property: border-color;
-    background: var(--white);
-    resize: vertical;
-    min-height: 96px;
-}
-
-.form__textarea:focus {
-    border-color: var(--darkgreen);
 }
 
 .form__button {
@@ -147,22 +130,6 @@ body.modal_open {
 .modal__backdrop.visible {
     display: flex;
     z-index: 2;
-}
-
-.modal__wrapper {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.modal__wrapper.visible {
-    display: flex;
-    z-index: 4;
 }
 
 .modal {

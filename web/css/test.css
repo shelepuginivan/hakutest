@@ -1,18 +1,14 @@
-.header {
+.test__header {
     padding: 64px;
 }
 
-.header__title {
+.test__title {
     font-family: Comfortaa;
     font-size: xx-large;
     text-align: center;
 }
 
-.form {
-    gap: 36px;
-}
-
-.form__task {
+.test__task {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -24,21 +20,30 @@
     border-radius: 8px;
 }
 
-.form__task__options {
+.test__task__options {
     width: 100%;
 }
 
-.form__task__options__fieldset {
+.task__options__fieldset {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.form__task__options__fieldset__legend {
+.task__legend {
     margin-bottom: 16px;
 }
 
-.form__task__options__wrapper {
+.task__single__label,
+.task__multiple__label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.student__label,
+.task__open__label,
+.task__detailed__label {
     display: flex;
     flex-direction: column;
     width: 100%;
