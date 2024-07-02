@@ -46,6 +46,16 @@ body.modal_open {
     display: none !important;
 }
 
+.header {
+    padding: 64px;
+}
+
+.header__title {
+    font-family: Comfortaa;
+    font-size: xx-large;
+    text-align: center;
+}
+
 .main {
     flex-grow: 1;
 }
