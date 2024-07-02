@@ -1,14 +1,12 @@
 {
     "index": {
         "input": "Enter name of the test...",
-        "submit": "Search"
+        "search": "Search"
     },
     "test": {
         "form": {
-            "answers_given": "Answers given:",
             "close": "Close",
-            "confirm": "Confirm submission",
-            "name": "Name:",
+            "confirm": "Are you sure you want to submit your answers?",
             "student": "Enter your name:",
             "submit": "Submit"
         },

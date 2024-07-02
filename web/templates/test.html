@@ -10,51 +10,21 @@
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/test.css">
 
-    <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
+    <script defer src="/static/js/test.js"></script>
 
     <title>{{ .Test.Title }} | Hakutest</title>
 </head>
-<body
-    x-data="{
-        student: '',
-        answers: [
-            {{ range .Test.Tasks }}
-                {{ if eq .Type "multiple" }}
-                    []
-                {{ else }}
-                    ''
-                {{ end }},
-            {{ end }}
-        ],
-        get answersGiven() {
-            const isGiven = (answer) => {
-                return !!answer.toString().length
-            }
-            const given = this.answers.filter(isGiven).length
-            return `${given} / {{ len .Test.Tasks }}`
-        },
-        showModal: false,
-        openModal() {
-            this.showModal = true
-        },
-        closeModal() {
-            this.showModal = false
-        },
-        submit() {
-            alert('TODO: implement submission logic')
-        }
-    }"
-    x-on:keydown.escape="closeModal"
-    x-bind:data-modal-open="showModal"
->
+<body>
     <header class="header container">
         <h1 class="header__title">{{ .Test.Title }}</h1>
     </header>
     <main 
     >
         <form
+            id="test-form"
             class="form container"
-            x-on:submit.prevent="openModal"
+            method="POST"
+            action="/{{ .TestName }}"
         >
             <div class="form__task">
                 <label class="form__task__options__wrapper">
@@ -64,7 +34,6 @@
                         name="student"
                         required
                         autofocus
-                        x-model="student"
                     >
                 </label>
             </div>
@@ -81,9 +50,8 @@
                                     <label class="form__label">
                                         <input
                                             type="radio"
-                                            name="task-{{ $index }}"
+                                            name="{{ $index }}"
                                             value="{{ $optIndex }}"
-                                            x-model="answers[{{ $index }}]"
                                         />
                                         <span>{{ $opt }}</span>
                                     </label>
@@ -98,9 +66,8 @@
                                     <label class="form__label">
                                         <input
                                             type="checkbox"
-                                            name="task-{{ $index }}"
+                                            name="{{ $index }}"
                                             value="{{ $optIndex }}"
-                                            x-model="answers[{{ $index }}]"
                                         />
                                         <span>{{ $opt }}</span>
                                     </label>
@@ -111,8 +78,7 @@
                                 <i>{{ call $.I18n "test.task.open.label" }}</i>
                                 <input
                                     class="form__item form__item-maxwidth form__input"
-                                    name="task-{{ $index }}"
-                                    x-model="answers[{{ $index }}]"
+                                    name="{{ $index }}"
                                 >
                             </label>
                         {{ else if eq .Type "detailed" }}
@@ -120,8 +86,7 @@
                                 <i>{{ call $.I18n "test.task.detailed.label" }}</i>
                                 <textarea
                                     class="form__item form__item-maxwidth form__textarea"
-                                    name="task-{{ $index }}"
-                                    x-model="answers[{{ $index }}]"
+                                    name="{{ $index }}"
                                 ></textarea>
                             </label>
                         {{ end }}
@@ -132,37 +97,25 @@
                 {{ call $.I18n "test.form.submit" }}
             </button>
         </form>
-        <div
-            class="modal__backdrop"
-            x-cloak
-            x-show="showModal"
-        >
-            <div class="modal" x-on:click.away="closeModal">
+        <div class="modal__backdrop"></div>
+        <div class="modal__wrapper">
+            <div class="modal">
                 <div class="modal__header">
-                    <h2 class="modal__heading">
-                        {{ call $.I18n "test.form.confirm" }}
-                    </h2>
                     <span 
-                        class="i close"
+                        class="i close modal__close"
                         aria-label="{{ call $.I18n "test.form.close" }}"
-                        x-on:click="closeModal"
                     ></span>
                 </div>
                 <div class="modal__body">
-                    <p class="modal__text">
-                        {{ call $.I18n "test.form.name" }}
-                        <b x-text="student"></b>
-                    </p>
-                    <p class="modal__text">
-                        {{ call $.I18n "test.form.answers_given" }}
-                        <b x-text="answersGiven"></b>
-                    </p>
+                    <h2 class="modal__heading">
+                        {{ call $.I18n "test.form.confirm" }}
+                    </h2>
                 </div>
                 <div class="modal__footer">
-                    <button class="form__item form__button" x-on:click="submit">
+                    <button class="form__item form__button modal__confirm">
                         {{ call $.I18n "test.form.submit" }}
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     <main>
