@@ -11,13 +11,19 @@ import (
 
 // Config is a global application configuration layer.
 type Config struct {
-	Debug            bool   `yaml:"debug"`    // Run in debug mode.
-	Headless         bool   `yaml:"headless"` // Run in headless mode (without systray icon).
-	Lang             string `yaml:"lang"`
+	// General options.
+	Debug    bool   `yaml:"debug"`    // Run in debug mode.
+	Headless bool   `yaml:"headless"` // Run in headless mode (without systray icon).
+	Port     int    `yaml:"port"`     // Port on which server is started.
+	Lang     string `yaml:"lang"`
+
+	// Results.
 	OverwriteResults bool   `yaml:"overwrite_results"` // Whether to overwrite results on resend.
-	Port             int    `yaml:"port"`              // Port on which server is started.
 	ResultsDirectory string `yaml:"results_directory"`
-	TestsDirectory   string `yaml:"tests_directory"`
+	ShowResults      bool   `yaml:"show_results"` // Whether to show results on submission.
+
+	// Tests.
+	TestsDirectory string `yaml:"tests_directory"`
 }
 
 // New reads configuration file and returns the configuration.
@@ -43,9 +49,10 @@ func Default() *Config {
 		Debug:            false,
 		Headless:         false,
 		Lang:             language.English.String(),
-		OverwriteResults: false,
 		Port:             8080,
+		OverwriteResults: false,
 		ResultsDirectory: paths.Results,
+		ShowResults:      true,
 		TestsDirectory:   paths.Tests,
 	}
 }

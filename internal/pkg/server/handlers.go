@@ -90,7 +90,9 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 
 		c.HTML(http.StatusCreated, "result.html", gin.H{
 			"Lang":   cfg.Lang,
+			"I18n":   i18n.Get,
 			"Result": r,
+			"Show":   cfg.ShowResults,
 		})
 	})
 }
