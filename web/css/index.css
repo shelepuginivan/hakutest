@@ -1,14 +1,27 @@
 .logo {
-    width: 80%;
-    max-width: 700px;
+    width: 100%;
+    max-width: 640px;
 }
 
 .logo__img {
     width: 100%;
 }
 
-.form {
-    width: 80%;
+.search__box {
+    width: 100%;
     max-width: 700px;
     margin: 0 auto;
+    display: flex;
+    padding-bottom: 36px;
+}
+
+.input__search {
+    border-radius: 8px 0 0 8px;
+    border-right: 0;
+    width: 100%;
+}
+
+.button__search {
+    border-radius: 0 8px 8px 0;
+    font-size: 24px;
 }
