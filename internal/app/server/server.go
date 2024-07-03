@@ -7,6 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/embedded"
 	"github.com/shelepuginivan/hakutest/internal/pkg/logging"
 )
 
@@ -28,6 +29,7 @@ func New(cfg *config.Config) *http.Server {
 
 	engine.Use(RequestTimestamp)
 	engine.Use(gin.Recovery())
+	engine.Use(serveFavicon(embedded.Icon))
 	logging.RegisterHttp(engine)
 	registerStatic(engine)
 	registerTemplates(engine)
