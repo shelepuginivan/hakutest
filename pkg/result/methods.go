@@ -1,4 +1,4 @@
-package results
+package result
 
 import (
 	"encoding/json"
@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
-	"github.com/shelepuginivan/hakutest/internal/pkg/test"
+	"github.com/shelepuginivan/hakutest/pkg/test"
 )
 
 // NormalizeAnswer returns answer in normal form.

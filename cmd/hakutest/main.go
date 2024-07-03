@@ -7,12 +7,12 @@ import (
 	"net/http"
 
 	"github.com/getlantern/systray"
+	"github.com/shelepuginivan/hakutest/internal/app/server"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
-	"github.com/shelepuginivan/hakutest/internal/pkg/results"
-	"github.com/shelepuginivan/hakutest/internal/pkg/server"
-	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 	"github.com/shelepuginivan/hakutest/internal/pkg/trayutil"
+	"github.com/shelepuginivan/hakutest/pkg/result"
+	"github.com/shelepuginivan/hakutest/pkg/test"
 )
 
 var (
@@ -32,7 +32,7 @@ func init() {
 	flag.Parse()
 
 	i18n.Init(cfg.Lang)
-	results.Init(cfg)
+	result.Init(cfg)
 	test.Init(cfg.TestsDirectory)
 	srv = server.New(cfg)
 }

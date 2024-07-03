@@ -8,8 +8,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
-	"github.com/shelepuginivan/hakutest/internal/pkg/results"
-	"github.com/shelepuginivan/hakutest/internal/pkg/test"
+	"github.com/shelepuginivan/hakutest/pkg/result"
+	"github.com/shelepuginivan/hakutest/pkg/test"
 )
 
 // registerStudentInterface adds endpoints for the student interface.
@@ -64,9 +64,9 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 			s.Answers = append(s.Answers, answerString)
 		}
 
-		r := results.New(t, s)
+		r := result.New(t, s)
 
-		if err := results.Save(r, name); err != nil {
+		if err := result.Save(r, name); err != nil {
 			c.HTML(http.StatusConflict, "error.html", gin.H{
 				"Lang":    i18n.Lang(),
 				"I18n":    i18n.Get,

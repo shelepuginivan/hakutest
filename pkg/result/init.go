@@ -1,4 +1,4 @@
-package results
+package result
 
 import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"

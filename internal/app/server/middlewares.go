@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
-	"github.com/shelepuginivan/hakutest/internal/pkg/test"
+	"github.com/shelepuginivan/hakutest/pkg/test"
 )
 
 // RequestTimestamp is a middleware that sets timestamp of the request to the

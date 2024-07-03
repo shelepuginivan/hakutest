@@ -1,7 +1,7 @@
-// Package results provides results management for the app.
-package results
+// Package result provides results management for the app.
+package result
 
-import "github.com/shelepuginivan/hakutest/internal/pkg/test"
+import "github.com/shelepuginivan/hakutest/pkg/test"
 
 // Answer represents answer given by the student.
 type Answer struct {
