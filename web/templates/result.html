@@ -22,7 +22,7 @@
     <main class="container">
         <div class="container result__container">
             <div class="result__container__header">
-                <span class="i result"></span>
+                <i class="i result"></i>
                 {{ call $.I18n "result.overview.heading" }}
             </div>
             <div class="result__container__body">
@@ -57,7 +57,7 @@
         </div>
         <div class="container result__container">
             <div class="result__container__header">
-                <span class="i book"></span>
+                <i class="i book"></i>
                 {{ call $.I18n "result.table.heading" }}
             </div>
             <div class="result__container__body">
@@ -69,14 +69,14 @@
                                 title="{{ call $.I18n "result.table.task" }}"
                                 aria-label="{{ call $.I18n "result.table.task" }}" 
                             >
-                                <span class="i hash"></span>
+                                <i class="i hash"></i>
                             </th>
                             <th
                                 scope="col"
                                 title="{{ call $.I18n "result.table.correctness" }}"
                                 aria-label="{{ call $.I18n "result.table.correctness" }}"
                             >
-                                <span class="i correctness"></span>
+                                <i class="i correctness"></i>
                             </th>
                         </tr>
                     </thead>
@@ -86,11 +86,11 @@
                             <td>{{ call $.Incr $index }}</td>
                             {{ if $answer.Correct }}
                             <td title="{{ $answer.Value | printf (call $.I18n "result.table.answer_correct") }}">
-                                <span class="i checkmark"></span>
+                                <i class="i checkmark"></i>
                             </td>
                             {{ else }}
                             <td title="{{ $answer.Value | printf (call $.I18n "result.table.answer_wrong") }}">
-                                <span class="i cross"></span>
+                                <i class="i cross"></i>
                             </td>
                             {{ end }}
                         </tr>
