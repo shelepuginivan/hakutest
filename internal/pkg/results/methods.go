@@ -2,7 +2,6 @@ package results
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -50,7 +49,7 @@ func Save(r *Result, testName string) error {
 
 	// Check whether result exist and overwrite is enabled.
 	if !overwriteResults && fsutil.FileExists(resultsFile) {
-		return fmt.Errorf("results overwrite is disabled")
+		return nil
 	}
 
 	return os.WriteFile(resultsFile, data, os.ModePerm)
