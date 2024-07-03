@@ -1,7 +1,6 @@
 package server
 
 import (
-	"html/template"
 	"net/http"
 	"strconv"
 	"strings"
@@ -12,20 +11,7 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/results"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
-	"github.com/shelepuginivan/hakutest/web"
 )
-
-// registerStatic sets engine static file system.
-func registerStatic(e *gin.Engine) {
-	staticFS := http.FS(web.Static)
-	e.StaticFS("/static", staticFS)
-}
-
-// registerTemplates sets engine template file system.
-func registerTemplates(e *gin.Engine) {
-	templatesFS := template.Must(template.ParseFS(web.Templates, "templates/*.html"))
-	e.SetHTMLTemplate(templatesFS)
-}
 
 // registerStudentInterface adds endpoints for the student interface.
 func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
