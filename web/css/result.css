@@ -15,7 +15,7 @@ body[data-perf='3'] {
 }
 
 .result__container {
-    width: 90%;
+    width: 100%;
     max-width: 700px;
     margin: 0 auto;
     background-color: var(--selection);
@@ -100,6 +100,33 @@ body[data-perf='3'] {
     overflow: hidden;
     text-align: center;
     text-overflow: ellipsis;
+}
+
+.result__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.result__table th, 
+.result__table td {
+    padding: 8px;
+    border: 1px solid var(--secondary);
+    text-align: center;
+}
+
+.i.hash, 
+.i.correctness {
+    font-size: 24px;
+}
+
+.i.checkmark {
+    font-size: 20px;
+    color: var(--green);
+}
+
+.i.cross {
+    font-size: 20px;
+    color: var(--red);
 }
 
 @media screen and (max-width: 440px) {

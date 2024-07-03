@@ -19,11 +19,11 @@
             {{ call $.I18n "result.title" }}
         </h1>
     </header>
-    <main>
+    <main class="container">
         <div class="container result__container">
             <div class="result__container__header">
                 <span class="i result"></span>
-                {{ call $.I18n "result.overview" }}
+                {{ call $.I18n "result.overview.heading" }}
             </div>
             <div class="result__container__body">
                 <figure class="result__overview">
@@ -44,15 +44,59 @@
                             {{ .Student }}
                         </h2>
                         <p>
-                            {{ call $.I18n "result.points" }}
+                            {{ call $.I18n "result.overview.points" }}
                             <b>{{ .Points }} / {{ .Total }}</b>
                         </p>
                         <p>
-                            {{ call $.I18n "result.percentage" }}
+                            {{ call $.I18n "result.overview.percentage" }}
                             <b>{{ .Percentage }}%</b>
                         </p>
                     </figcaption>
                 </figure>
+            </div>
+        </div>
+        <div class="container result__container">
+            <div class="result__container__header">
+                <span class="i book"></span>
+                {{ call $.I18n "result.table.heading" }}
+            </div>
+            <div class="result__container__body">
+                <table class="result__table">
+                    <thead>
+                        <tr>
+                            <th 
+                                scope="col" 
+                                title="{{ call $.I18n "result.table.task" }}"
+                                aria-label="{{ call $.I18n "result.table.task" }}" 
+                            >
+                                <span class="i hash"></span>
+                            </th>
+                            <th
+                                scope="col"
+                                title="{{ call $.I18n "result.table.correctness" }}"
+                                aria-label="{{ call $.I18n "result.table.correctness" }}"
+                            >
+                                <span class="i correctness"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ range $index, $answer := .Answers }}
+                        <tr>
+                            <td>{{ call $.Incr $index }}</td>
+                            {{ if $answer.Correct }}
+                            <td title="{{ $answer.Value | printf (call $.I18n "result.table.answer_correct") }}">
+                                <span class="i checkmark"></span>
+                            </td>
+                            {{ else }}
+                            <td title="{{ $answer.Value | printf (call $.I18n "result.table.answer_wrong") }}">
+                                <span class="i cross"></span>
+                            </td>
+                            {{ end }}
+                        </tr>
+                        {{ end }}
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>

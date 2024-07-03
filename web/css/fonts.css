@@ -54,7 +54,7 @@
 
 /* Icon font */
 @font-face {
-    font-family: iconfont;
+    font-family: 'Iconify Explorer Font';
     src: url("/static/fonts/iconfont.eot");
     src: url("/static/fonts/iconfont.eot") format("embedded-opentype"),
          url("/static/fonts/iconfont.ttf") format("truetype"),
@@ -66,26 +66,46 @@
 }
 
 .i {
-    font-family: iconfont !important;
+    font-family: 'Iconify Explorer Font' !important;
     font-size: 1em;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.i.close:before {
+.i.book:before {
     content: "\e001";
 }
 
-.i.info:before {
+.i.correctness:before {
     content: "\e002";
 }
 
-.i.result:before {
+.i.checkmark:before {
     content: "\e003";
 }
 
-.i.search:before {
+.i.close:before {
     content: "\e004";
+}
+
+.i.cross:before {
+    content: "\e004";
+}
+
+.i.hash:before {
+    content: "\e005";
+}
+
+.i.info:before {
+    content: "\e006";
+}
+
+.i.result:before {
+    content: "\e007";
+}
+
+.i.search:before {
+    content: "\e008";
 }
 

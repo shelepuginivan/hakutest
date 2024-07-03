@@ -79,7 +79,9 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 				"Lang":   cfg.Lang,
 				"I18n":   i18n.Get,
 				"Result": r,
-				"Show":   cfg.ShowResults,
+				"Incr": func(i int) int {
+					return i + 1
+				},
 			})
 			return
 		}
