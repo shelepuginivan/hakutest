@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/test"
 )
 
@@ -29,7 +30,12 @@ func TestIsAvailable(c *gin.Context) {
 	}
 
 	if t.IsExpired() {
-		c.String(http.StatusGone, "expired")
+		c.HTML(http.StatusGone, "info.html", gin.H{
+			"Lang":  i18n.Lang(),
+			"I18n":  i18n.Get,
+			"Title": i18n.Get("expired.title"),
+			"Text":  i18n.Get("expired.text"),
+		})
 		c.Abort()
 		return
 	}

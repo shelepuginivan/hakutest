@@ -2,12 +2,16 @@
     "meta": {
         "info": "Information"
     },
+    "expired": {
+        "title": "Test has expired",
+        "text": "This test has expired and is no longer available. Please contact your teacher for details."
+    },
     "index": {
         "input": "Enter name of the test...",
         "search": "Search"
     },
     "result": {
-        "disabled": "Result not displayed according to Hakutest settings. If you want to know the result, ask the teacher.",
+        "disabled": "Result not displayed according to Hakutest settings. If you want to know the result, contact your teacher.",
         "title": "Your result",
         "table": {
             "heading": "Tasks",

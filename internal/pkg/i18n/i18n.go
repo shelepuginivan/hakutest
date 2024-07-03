@@ -6,7 +6,10 @@ import (
 	"golang.org/x/text/language"
 )
 
-var translation gjson.Result
+var (
+	langUsed    = language.English.String()
+	translation gjson.Result
+)
 
 // Init initializes internationalization with the language.
 // It must be called at least once before `Get` is called.
@@ -15,6 +18,8 @@ func Init(lang string) {
 
 	if !ok {
 		translationJson = translations[language.English.String()]
+	} else {
+		langUsed = lang
 	}
 
 	translation = gjson.Parse(translationJson)
@@ -31,4 +36,9 @@ func Get(key string) string {
 	}
 
 	return result.String()
+}
+
+// Lang returns currently used language.
+func Lang() string {
+	return langUsed
 }
