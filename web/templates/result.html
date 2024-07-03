@@ -12,19 +12,15 @@
 
     <title>{{ .Result.Student }} | Hakutest</title>
 </head>
-<body>
+{{ with .Result }}
+<body data-perf="{{ .PerformanceCategory }}">
     <header class="header result__header">
         <h1 class="header__title result__title">
-            {{ call .I18n "result.title" }}
+            {{ call $.I18n "result.title" }}
         </h1>
     </header>
     <main>
-    {{ if .Show }}
-        {{ with .Result }}
-        <div
-            class="container result__container result__container-result"
-            data-performance-category="{{ .PerformanceCategory }}"
-        >
+        <div class="container result__container">
             <div class="result__container__header">
                 <span class="i result"></span>
                 {{ call $.I18n "result.overview" }}
@@ -59,20 +55,7 @@
                 </figure>
             </div>
         </div>
-        {{ end }}
-    {{ else }}
-        <div class="container result__container result__container-info">
-            <div class="result__container__header">
-                <span class="i info"></span>
-                {{ call .I18n "result.information" }}
-            </div>
-            <div class="result__container__body">
-                <h2 class="result__heading">
-                    {{ call .I18n "result.show_disabled" }}
-                </h2>
-            </div>
-        </div>
-    {{ end }}
     </main>
 </body>
+{{ end }}
 </html>

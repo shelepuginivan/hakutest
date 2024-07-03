@@ -88,11 +88,21 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 			return
 		}
 
-		c.HTML(http.StatusCreated, "result.html", gin.H{
-			"Lang":   cfg.Lang,
-			"I18n":   i18n.Get,
-			"Result": r,
-			"Show":   cfg.ShowResults,
+		if cfg.ShowResults {
+			c.HTML(http.StatusCreated, "result.html", gin.H{
+				"Lang":   cfg.Lang,
+				"I18n":   i18n.Get,
+				"Result": r,
+				"Show":   cfg.ShowResults,
+			})
+			return
+		}
+
+		c.HTML(http.StatusCreated, "info.html", gin.H{
+			"Lang":  cfg.Lang,
+			"I18n":  i18n.Get,
+			"Title": i18n.Get("result.title"),
+			"Text":  i18n.Get("result.disabled"),
 		})
 	})
 }
