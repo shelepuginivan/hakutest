@@ -38,6 +38,6 @@ func registerStatic(e *gin.Engine) {
 
 // registerTemplates sets engine template file system.
 func registerTemplates(e *gin.Engine) {
-	templatesFS := template.Must(template.ParseFS(web.Templates, "templates/*.html"))
+	templatesFS := template.Must(template.ParseFS(web.Templates, "templates/*.gohtml"))
 	e.SetHTMLTemplate(templatesFS)
 }

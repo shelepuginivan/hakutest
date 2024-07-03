@@ -24,7 +24,7 @@ func TestIsAvailable(c *gin.Context) {
 
 	t, err := test.GetByName(testName)
 	if err != nil {
-		c.HTML(http.StatusNotFound, "info.html", gin.H{
+		c.HTML(http.StatusNotFound, "info.gohtml", gin.H{
 			"Lang":  i18n.Lang(),
 			"I18n":  i18n.Get,
 			"Title": i18n.Get("test_not_found.title"),
@@ -35,7 +35,7 @@ func TestIsAvailable(c *gin.Context) {
 	}
 
 	if t.IsExpired() {
-		c.HTML(http.StatusGone, "info.html", gin.H{
+		c.HTML(http.StatusGone, "info.gohtml", gin.H{
 			"Lang":  i18n.Lang(),
 			"I18n":  i18n.Get,
 			"Title": i18n.Get("expired.title"),

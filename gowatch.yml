@@ -7,7 +7,7 @@ watch_exts:
   - .go
   - .sum
   - .mod
-  - .html
+  - .gohtml
   - .css
   - .js
   - .yml

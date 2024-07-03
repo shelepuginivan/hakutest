@@ -15,7 +15,7 @@ import (
 // registerStudentInterface adds endpoints for the student interface.
 func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 	e.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{
+		c.HTML(http.StatusOK, "index.gohtml", gin.H{
 			"Lang":  i18n.Lang(),
 			"I18n":  i18n.Get,
 			"Tests": test.GetList(),
@@ -26,7 +26,7 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		name := c.Param("test")
 		t, _ := test.GetByName(name)
 
-		c.HTML(http.StatusOK, "test.html", gin.H{
+		c.HTML(http.StatusOK, "test.gohtml", gin.H{
 			"Lang":     i18n.Lang(),
 			"I18n":     i18n.Get,
 			"Test":     t,
@@ -40,7 +40,7 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		t, _ := test.GetByName(name)
 
 		if err := c.Request.ParseForm(); err != nil {
-			c.HTML(http.StatusUnprocessableEntity, "error.html", gin.H{
+			c.HTML(http.StatusUnprocessableEntity, "error.gohtml", gin.H{
 				"Lang":    i18n.Lang(),
 				"I18n":    i18n.Get,
 				"Title":   i18n.Get("submission.unprocessable.title"),
@@ -67,7 +67,7 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		r := result.New(t, s)
 
 		if err := result.Save(r, name); err != nil {
-			c.HTML(http.StatusConflict, "error.html", gin.H{
+			c.HTML(http.StatusConflict, "error.gohtml", gin.H{
 				"Lang":    i18n.Lang(),
 				"I18n":    i18n.Get,
 				"Title":   i18n.Get("submission.save_failed.title"),
@@ -80,7 +80,7 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		}
 
 		if cfg.ShowResults {
-			c.HTML(http.StatusCreated, "result.html", gin.H{
+			c.HTML(http.StatusCreated, "result.gohtml", gin.H{
 				"Lang":   i18n.Lang(),
 				"I18n":   i18n.Get,
 				"Result": r,
@@ -91,7 +91,7 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 			return
 		}
 
-		c.HTML(http.StatusCreated, "info.html", gin.H{
+		c.HTML(http.StatusCreated, "info.gohtml", gin.H{
 			"Lang":  i18n.Lang(),
 			"I18n":  i18n.Get,
 			"Title": i18n.Get("result.title"),
