@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Lang }}">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,17 +24,17 @@
                 id="search-input"
                 class="input input__search"
                 name="q"
-                placeholder="{{ call .I18n "index.input" }}"
+                placeholder="{{ i "index.input" }}"
                 type="search"
                 list="test-list"
-                aria-label="{{ call .I18n "index.input" }}"
+                aria-label="{{ i "index.input" }}"
                 pattern="[^\/\\]+"
                 required
                 autofocus
             >
             <button
                 class="button button__primary button__search"
-                aria-label="{{ call .I18n "index.search" }}"
+                aria-label="{{ i "index.search" }}"
             >
                 <i class="i search"></i>
             </button>

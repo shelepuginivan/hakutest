@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Lang }}">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +18,7 @@
         <div class="container data__container error__container">
             <div class="data__container__header error__container__header">
                 <i class="i error"></i>
-                {{ call .I18n "meta.error" }}
+                {{ i "meta.error" }}
             </div>
             <div class="data__container__body error__container__body">
                 <p>{{ .Text }}</p>

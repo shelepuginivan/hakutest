@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Lang }}">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,21 +12,21 @@
 <body data-perf="{{ .PerformanceCategory }}">
     <header class="header result__header">
         <h1 class="header__title result__title">
-            {{ call $.I18n "result.title" }}
+            {{ i "result.title" }}
         </h1>
     </header>
     <main class="container">
         <div class="container data__container result__container">
             <div class="data__container__header result__container__header">
                 <i class="i result"></i>
-                {{ call $.I18n "result.overview.heading" }}
+                {{ i "result.overview.heading" }}
             </div>
             <div class="data__container__body result__container__body">
                 <figure class="result__overview">
                     <div
                         class="meter__score"
                         style="--percentage: {{ .Percentage }}"
-                        aria-role="meter"
+                        role="meter"
                         aria-valuenow="{{ .Percentage }}"
                         aria-valuemax="100"
                         aria-valuemin="0"
@@ -40,11 +40,11 @@
                             {{ .Student }}
                         </h2>
                         <p>
-                            {{ call $.I18n "result.overview.points" }}
+                            {{ i "result.overview.points" }}
                             <b>{{ .Points }} / {{ .Total }}</b>
                         </p>
                         <p>
-                            {{ call $.I18n "result.overview.percentage" }}
+                            {{ i "result.overview.percentage" }}
                             <b>{{ .Percentage }}%</b>
                         </p>
                     </figcaption>
@@ -54,7 +54,7 @@
         <div class="container data__container result__container">
             <div class="data__container__header result__container__header">
                 <i class="i book"></i>
-                {{ call $.I18n "result.table.heading" }}
+                {{ i "result.table.heading" }}
             </div>
             <div class="data__container__body result__container__body">
                 <table class="result__table">
@@ -62,15 +62,15 @@
                         <tr>
                             <th 
                                 scope="col" 
-                                title="{{ call $.I18n "result.table.task" }}"
-                                aria-label="{{ call $.I18n "result.table.task" }}" 
+                                title="{{ i "result.table.task" }}"
+                                aria-label="{{ i "result.table.task" }}"
                             >
                                 <i class="i hash"></i>
                             </th>
                             <th
                                 scope="col"
-                                title="{{ call $.I18n "result.table.correctness" }}"
-                                aria-label="{{ call $.I18n "result.table.correctness" }}"
+                                title="{{ i "result.table.correctness" }}"
+                                aria-label="{{ i "result.table.correctness" }}"
                             >
                                 <i class="i correctness"></i>
                             </th>
@@ -79,13 +79,13 @@
                     <tbody>
                         {{ range $index, $answer := .Answers }}
                         <tr>
-                            <td>{{ call $.Incr $index }}</td>
+                            <td>{{ incr $index }}</td>
                             {{ if $answer.Correct }}
-                            <td title="{{ $answer.Value | printf (call $.I18n "result.table.answer_correct") }}">
+                            <td title="{{ $answer.Value | printf (i "result.table.answer_correct") }}">
                                 <i class="i checkmark"></i>
                             </td>
                             {{ else }}
-                            <td title="{{ $answer.Value | printf (call $.I18n "result.table.answer_wrong") }}">
+                            <td title="{{ $answer.Value | printf (i "result.table.answer_wrong") }}">
                                 <i class="i cross"></i>
                             </td>
                             {{ end }}

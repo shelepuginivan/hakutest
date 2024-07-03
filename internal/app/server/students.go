@@ -16,8 +16,6 @@ import (
 func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 	e.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.gohtml", gin.H{
-			"Lang":  i18n.Lang(),
-			"I18n":  i18n.Get,
 			"Tests": test.GetList(),
 		})
 	})
@@ -27,8 +25,6 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		t, _ := test.GetByName(name)
 
 		c.HTML(http.StatusOK, "test.gohtml", gin.H{
-			"Lang":     i18n.Lang(),
-			"I18n":     i18n.Get,
 			"Test":     t,
 			"TestName": name,
 		})
@@ -41,8 +37,6 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 
 		if err := c.Request.ParseForm(); err != nil {
 			c.HTML(http.StatusUnprocessableEntity, "error.gohtml", gin.H{
-				"Lang":    i18n.Lang(),
-				"I18n":    i18n.Get,
 				"Title":   i18n.Get("submission.unprocessable.title"),
 				"Text":    i18n.Get("submission.unprocessable.text"),
 				"Code":    http.StatusUnprocessableEntity,
@@ -68,8 +62,6 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 
 		if err := result.Save(r, name); err != nil {
 			c.HTML(http.StatusConflict, "error.gohtml", gin.H{
-				"Lang":    i18n.Lang(),
-				"I18n":    i18n.Get,
 				"Title":   i18n.Get("submission.save_failed.title"),
 				"Text":    i18n.Get("submission.save_failed.text"),
 				"Code":    http.StatusConflict,
@@ -81,19 +73,12 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 
 		if cfg.ShowResults {
 			c.HTML(http.StatusCreated, "result.gohtml", gin.H{
-				"Lang":   i18n.Lang(),
-				"I18n":   i18n.Get,
 				"Result": r,
-				"Incr": func(i int) int {
-					return i + 1
-				},
 			})
 			return
 		}
 
 		c.HTML(http.StatusCreated, "info.gohtml", gin.H{
-			"Lang":  i18n.Lang(),
-			"I18n":  i18n.Get,
 			"Title": i18n.Get("result.title"),
 			"Text":  i18n.Get("result.disabled"),
 		})

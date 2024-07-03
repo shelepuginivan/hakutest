@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Lang }}">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
         >
             <div class="test__task">
                 <label class="student__label">
-                    <span>{{ call $.I18n "test.form.student" }}</span>
+                    <span>{{ i "test.form.student" }}</span>
                     <input class="input" name="student" required autofocus>
                 </label>
             </div>
@@ -35,7 +35,7 @@
                         {{ if eq .Type "single" }}
                             <fieldset class="task__options__fieldset">
                                 <legend class="task__legend">
-                                    <i>{{ call $.I18n "test.task.single.legend" }}</i>
+                                    <i>{{ i "test.task.single.legend" }}</i>
                                 </legend>
                                 {{ range $optIndex, $opt := .Options }}
                                     <label class="task__single__label">
@@ -51,7 +51,7 @@
                         {{ else if eq .Type "multiple" }}
                             <fieldset class="task__options__fieldset">
                                 <legend class="task__legend">
-                                    <i>{{ call $.I18n "test.task.multiple.legend" }}</i>
+                                    <i>{{ i "test.task.multiple.legend" }}</i>
                                 </legend>
                                 {{ range $optIndex, $opt := .Options }}
                                     <label class="task__multiple__label">
@@ -66,12 +66,12 @@
                             </fieldset>
                         {{ else if eq .Type "open" }}
                             <label class="task__open__label">
-                                <i>{{ call $.I18n "test.task.open.label" }}</i>
+                                <i>{{ i "test.task.open.label" }}</i>
                                 <input class="input" name="{{ $index }}">
                             </label>
                         {{ else if eq .Type "detailed" }}
                             <label class="task__detailed__label">
-                                <i>{{ call $.I18n "test.task.detailed.label" }}</i>
+                                <i>{{ i "test.task.detailed.label" }}</i>
                                 <textarea
                                    class="input textarea"
                                    name="{{ $index }}"
@@ -82,7 +82,7 @@
                 </div>
             {{ end }}
             <button class="button button__primary">
-                {{ call $.I18n "test.form.submit" }}
+                {{ i "test.form.submit" }}
             </button>
         </form>
         <div class="modal__backdrop" data-cancel>
@@ -90,18 +90,18 @@
                 <div class="modal__header">
                     <span
                         class="i close"
-                        aria-label="{{ call $.I18n "test.form.close" }}"
+                        aria-label="{{ i "test.form.close" }}"
                         data-cancel
                     ></span>
                 </div>
                 <div class="modal__body">
                     <h2 class="modal__heading">
-                        {{ call $.I18n "test.form.confirm" }}
+                        {{ i "test.form.confirm" }}
                     </h2>
                 </div>
                 <div class="modal__footer">
                     <button class="button button__primary" data-confirm>
-                        {{ call $.I18n "test.form.submit" }}
+                        {{ i "test.form.submit" }}
                     </button>
                 </div>
             </div>

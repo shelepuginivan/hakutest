@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/web"
 )
 
@@ -38,6 +39,21 @@ func registerStatic(e *gin.Engine) {
 
 // registerTemplates sets engine template file system.
 func registerTemplates(e *gin.Engine) {
-	templatesFS := template.Must(template.ParseFS(web.Templates, "templates/*.gohtml"))
-	e.SetHTMLTemplate(templatesFS)
+	var err error
+	tmpl := template.New("embedded")
+
+	tmpl = tmpl.Funcs(template.FuncMap{
+		"i": i18n.Get,
+		"incr": func(i int) int {
+			return i + 1
+		},
+		"lang": i18n.Lang,
+	})
+
+	tmpl, err = tmpl.ParseFS(web.Templates, "templates/*.gohtml")
+	if err != nil {
+		panic(err)
+	}
+
+	e.SetHTMLTemplate(tmpl)
 }
