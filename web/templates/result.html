@@ -6,9 +6,9 @@
 
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/static/css/fonts.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/result.css">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/result.css">
 
     <title>{{ .Result.Student }} | Hakutest</title>
 </head>
@@ -20,12 +20,12 @@
         </h1>
     </header>
     <main class="container">
-        <div class="container result__container">
-            <div class="result__container__header">
+        <div class="container data__container result__container">
+            <div class="data__container__header result__container__header">
                 <i class="i result"></i>
                 {{ call $.I18n "result.overview.heading" }}
             </div>
-            <div class="result__container__body">
+            <div class="data__container__body result__container__body">
                 <figure class="result__overview">
                     <div
                         class="meter__score"
@@ -55,12 +55,12 @@
                 </figure>
             </div>
         </div>
-        <div class="container result__container">
-            <div class="result__container__header">
+        <div class="container data__container result__container">
+            <div class="data__container__header result__container__header">
                 <i class="i book"></i>
                 {{ call $.I18n "result.table.heading" }}
             </div>
-            <div class="result__container__body">
+            <div class="data__container__body result__container__body">
                 <table class="result__table">
                     <thead>
                         <tr>

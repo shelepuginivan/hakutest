@@ -1,0 +1,39 @@
+.button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.button__primary {
+    background: var(--green);
+    color: var(--background);
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+.button__primary:hover {
+    background: var(--darkgreen);
+}
+
+.form {
+    gap: 36px;
+}
+
+.input {
+    background: var(--background);
+    padding: 8px 16px;
+    border: 2px solid var(--secondary);
+    border-radius: 4px;
+    outline: none;
+    font-size: medium;
+}
+
+.input:focus {
+    border-color: var(--darkgreen);
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 96px;
+}

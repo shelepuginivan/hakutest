@@ -15,23 +15,7 @@ body[data-perf='3'] {
 }
 
 .result__container {
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    background-color: var(--selection);
-    border-radius: 8px;
-    min-height: 240px;
     border: 2px solid var(--accent);
-}
-
-.result__container__header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-    width: 100%;
-    font-family: Comfortaa, sans-serif;
-    font-size: 18px;
 }
 
 .result__container__body {

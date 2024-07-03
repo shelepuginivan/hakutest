@@ -6,9 +6,9 @@
 
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/static/css/fonts.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/info.css">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/info.css">
 
     <title>{{ .Title }} | Hakutest</title>
 </head>
@@ -19,12 +19,12 @@
         </h1>
     </header>
     <main>
-        <div class="container info__container">
-            <div class="info__container__header">
+        <div class="container data__container info__container">
+            <div class="data__container__header info__container__header">
                 <i class="i info"></i>
                 {{ call .I18n "meta.info" }}
             </div>
-            <div class="info__container__body">
+            <div class="data__container__body info__container__body">
                 <p>{{ .Text }}</p>
             </div>
         </div>
