@@ -16,7 +16,7 @@ import (
 func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 	e.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"Lang":  cfg.Lang,
+			"Lang":  i18n.Lang(),
 			"I18n":  i18n.Get,
 			"Tests": test.GetList(),
 		})
@@ -27,7 +27,7 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		t, _ := test.GetByName(name)
 
 		c.HTML(http.StatusOK, "test.html", gin.H{
-			"Lang":     cfg.Lang,
+			"Lang":     i18n.Lang(),
 			"I18n":     i18n.Get,
 			"Test":     t,
 			"TestName": name,
@@ -65,7 +65,7 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 
 		if cfg.ShowResults {
 			c.HTML(http.StatusCreated, "result.html", gin.H{
-				"Lang":   cfg.Lang,
+				"Lang":   i18n.Lang(),
 				"I18n":   i18n.Get,
 				"Result": r,
 				"Incr": func(i int) int {
@@ -76,7 +76,7 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		}
 
 		c.HTML(http.StatusCreated, "info.html", gin.H{
-			"Lang":  cfg.Lang,
+			"Lang":  i18n.Lang(),
 			"I18n":  i18n.Get,
 			"Title": i18n.Get("result.title"),
 			"Text":  i18n.Get("result.disabled"),
