@@ -8,9 +8,9 @@ import (
 
 	"github.com/getlantern/systray"
 	"github.com/shelepuginivan/hakutest/internal/app/server"
+	"github.com/shelepuginivan/hakutest/internal/app/tray"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
-	"github.com/shelepuginivan/hakutest/internal/pkg/trayutil"
 	"github.com/shelepuginivan/hakutest/pkg/result"
 	"github.com/shelepuginivan/hakutest/pkg/test"
 )
@@ -38,9 +38,9 @@ func init() {
 }
 
 func onReady() {
-	systray.SetIcon(trayutil.Icon)
-	systray.SetTitle(trayutil.Title)
-	systray.SetTooltip(trayutil.Tooltip)
+	systray.SetIcon(tray.Icon)
+	systray.SetTitle(tray.Title)
+	systray.SetTooltip(tray.Tooltip)
 
 	systray.AddSeparator()
 	mQuit := systray.AddMenuItem("Quit", "Quit application")
