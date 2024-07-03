@@ -4,7 +4,8 @@
     font-family: 'Comfortaa';
     font-style: normal;
     font-weight: 400;
-    src: url('/static/fonts/comfortaa-v45-cyrillic_latin-regular.woff2') format('woff2');
+    src: url('/static/fonts/comfortaa-v45-cyrillic_latin-regular.woff2') format('woff2'),
+         url('/static/fonts/comfortaa-v45-cyrillic_latin-regular.ttf') format('truetype');
 }
 
 /* comfortaa-700 - cyrillic_latin */
@@ -13,7 +14,8 @@
     font-family: 'Comfortaa';
     font-style: normal;
     font-weight: 700;
-    src: url('/static/fonts/comfortaa-v45-cyrillic_latin-700.woff2') format('woff2');
+    src: url('/static/fonts/comfortaa-v45-cyrillic_latin-700.woff2') format('woff2'),
+         url('/static/fonts/comfortaa-v45-cyrillic_latin-700.ttf') format('truetype');
 }
 
 /* open-sans-regular - cyrillic_latin_math_symbols */
@@ -22,7 +24,8 @@
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
-    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-regular.woff2') format('woff2');
+    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-regular.woff2') format('woff2'),
+         url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-regular.ttf') format('truetype');
 }
 
 /* open-sans-italic - cyrillic_latin_math_symbols */
@@ -31,7 +34,8 @@
     font-family: 'Open Sans';
     font-style: italic;
     font-weight: 400;
-    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-italic.woff2') format('woff2');
+    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-italic.woff2') format('woff2'),
+         url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-italic.ttf') format('truetype');
 }
 
 /* open-sans-700 - cyrillic_latin_math_symbols */
@@ -40,7 +44,8 @@
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 700;
-    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-700.woff2') format('woff2');
+    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-700.woff2') format('woff2'),
+         url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-700.ttf') format('truetype');
 }
 
 /* open-sans-700italic - cyrillic_latin_math_symbols */
@@ -49,18 +54,15 @@
     font-family: 'Open Sans';
     font-style: italic;
     font-weight: 700;
-    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-700italic.woff2') format('woff2');
+    src: url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-700italic.woff2') format('woff2'),
+         url('/static/fonts/open-sans-v40-cyrillic_latin_math_symbols-700italic.ttf') format('truetype');
 }
 
 /* Icon font */
 @font-face {
     font-family: 'Iconify Explorer Font';
-    src: url("/static/fonts/iconfont.eot");
-    src: url("/static/fonts/iconfont.eot") format("embedded-opentype"),
-         url("/static/fonts/iconfont.ttf") format("truetype"),
-         url("/static/fonts/iconfont.woff") format("woff"),
-         url("/static/fonts/iconfont.woff2") format("woff2"),
-         url("/static/fonts/iconfont.svg") format("svg");
+    src: url('/static/fonts/iconfont.ttf') format('truetype'),
+         url('/static/fonts/iconfont.woff2') format('woff2'),
     font-weight: normal;
     font-style: normal;
 }
@@ -74,41 +76,41 @@
 }
 
 .i.book:before {
-    content: "\e001";
+    content: '\e001';
 }
 
 .i.correctness:before {
-    content: "\e002";
+    content: '\e002';
 }
 
 .i.checkmark:before {
-    content: "\e003";
+    content: '\e003';
 }
 
 .i.close:before {
-    content: "\e004";
+    content: '\e004';
 }
 
 .i.cross:before {
-    content: "\e004";
+    content: '\e004';
 }
 
 .i.error:before {
-    content: "\e005";
+    content: '\e005';
 }
 
 .i.hash:before {
-    content: "\e006";
+    content: '\e006';
 }
 
 .i.info:before {
-    content: "\e007";
+    content: '\e007';
 }
 
 .i.result:before {
-    content: "\e008";
+    content: '\e008';
 }
 
 .i.search:before {
-    content: "\e009";
+    content: '\e009';
 }
