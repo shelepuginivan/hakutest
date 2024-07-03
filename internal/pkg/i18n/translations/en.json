@@ -10,6 +10,10 @@
         "input": "Enter name of the test...",
         "search": "Search"
     },
+    "test_not_found": {
+        "title": "Test not found",
+        "text": "The test you are requesting does not exist."
+    },
     "result": {
         "disabled": "Result not displayed according to Hakutest settings. If you want to know the result, contact your teacher.",
         "title": "Your result",

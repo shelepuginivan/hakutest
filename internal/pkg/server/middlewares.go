@@ -24,7 +24,12 @@ func TestIsAvailable(c *gin.Context) {
 
 	t, err := test.GetByName(testName)
 	if err != nil {
-		c.String(http.StatusNotFound, "not found")
+		c.HTML(http.StatusNotFound, "info.html", gin.H{
+			"Lang":  i18n.Lang(),
+			"I18n":  i18n.Get,
+			"Title": i18n.Get("test_not_found.title"),
+			"Text":  i18n.Get("test_not_found.text"),
+		})
 		c.Abort()
 		return
 	}
