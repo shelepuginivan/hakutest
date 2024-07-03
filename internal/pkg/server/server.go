@@ -26,6 +26,7 @@ func New(cfg *config.Config) *http.Server {
 
 	engine := gin.New()
 
+	engine.Use(RequestTimestamp)
 	engine.Use(gin.Recovery())
 	logging.RegisterHttp(engine)
 	registerStatic(engine)

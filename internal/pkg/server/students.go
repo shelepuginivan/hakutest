@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
@@ -23,14 +22,9 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		})
 	})
 
-	e.GET("/:test", func(c *gin.Context) {
+	e.GET("/:test", TestIsAvailable, func(c *gin.Context) {
 		name := c.Param("test")
-		t, err := test.GetByName(name)
-
-		if err != nil {
-			c.String(http.StatusNotFound, "not found")
-			return
-		}
+		t, _ := test.GetByName(name)
 
 		c.HTML(http.StatusOK, "test.html", gin.H{
 			"Lang":     cfg.Lang,
@@ -40,25 +34,20 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		})
 	})
 
-	e.POST("/:test", func(c *gin.Context) {
-		s := &test.Solution{
-			SubmittedAt: time.Now(),
-		}
-
+	e.POST("/:test", TestIsAvailable, func(c *gin.Context) {
 		name := c.Param("test")
 
-		t, err := test.GetByName(name)
-		if err != nil {
-			c.String(http.StatusNotFound, "not found")
-			return
-		}
+		t, _ := test.GetByName(name)
 
-		if err = c.Request.ParseForm(); err != nil {
+		if err := c.Request.ParseForm(); err != nil {
 			c.String(http.StatusUnprocessableEntity, "unprocessable entity")
 			return
 		}
 
-		s.Student = c.PostForm("student")
+		s := &test.Solution{
+			Student:     c.PostForm("student"),
+			SubmittedAt: c.GetTime("timestamp"),
+		}
 
 		for i := range len(t.Tasks) {
 			answer := c.PostFormArray(strconv.Itoa(i))
@@ -69,7 +58,7 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 
 		r := results.New(t, s)
 
-		if err = results.Save(r, name); err != nil {
+		if err := results.Save(r, name); err != nil {
 			c.String(http.StatusInternalServerError, "failed to save results")
 			return
 		}
