@@ -1,5 +1,6 @@
 {
     "meta": {
+        "error": "Error",
         "info": "Information"
     },
     "expired": {
@@ -9,6 +10,16 @@
     "index": {
         "input": "Enter name of the test...",
         "search": "Search"
+    },
+    "submission": {
+        "unprocessable": {
+            "title": "Failed to read answers",
+            "text": "Entered data is invalid. Please try again or contact your teacher."
+        },
+        "save_failed": {
+            "title": "Failed to save answers",
+            "text": "Answers are not saved. Please try again or contact your teacher."
+        }
     },
     "test_not_found": {
         "title": "Test not found",

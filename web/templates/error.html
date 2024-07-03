@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ .Lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/static/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/error.css">
+
+    <title>{{ .Title }} | Hakutest</title>
+</head>
+<body>
+    <header class="header error__header">
+        <h1 class="header__title error__title">
+            {{ .Title }}
+        </h1>
+    </header>
+    <main class="main">
+        <div class="container error__container">
+            <div class="error__container__header">
+                <i class="i error"></i>
+                {{ call .I18n "meta.error" }}
+            </div>
+            <div class="error__container__body">
+                <p>{{ .Text }}</p>
+            </div>
+        </div>
+    </main>
+    <footer class="error__debug">
+        <code class="error__debug__message">
+            {{ .Code }} : {{ .Message }} : {{ .Error }}
+        </code>
+    </footer>
+</body>
+</html>

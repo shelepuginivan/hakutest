@@ -40,7 +40,15 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		t, _ := test.GetByName(name)
 
 		if err := c.Request.ParseForm(); err != nil {
-			c.String(http.StatusUnprocessableEntity, "unprocessable entity")
+			c.HTML(http.StatusUnprocessableEntity, "error.html", gin.H{
+				"Lang":    i18n.Lang(),
+				"I18n":    i18n.Get,
+				"Title":   i18n.Get("submission.unprocessable.title"),
+				"Text":    i18n.Get("submission.unprocessable.text"),
+				"Code":    http.StatusUnprocessableEntity,
+				"Message": "failed to parse form",
+				"Error":   err.Error(),
+			})
 			return
 		}
 
@@ -59,7 +67,15 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		r := results.New(t, s)
 
 		if err := results.Save(r, name); err != nil {
-			c.String(http.StatusInternalServerError, "failed to save results")
+			c.HTML(http.StatusConflict, "error.html", gin.H{
+				"Lang":    i18n.Lang(),
+				"I18n":    i18n.Get,
+				"Title":   i18n.Get("submission.save_failed.title"),
+				"Text":    i18n.Get("submission.save_failed.text"),
+				"Code":    http.StatusConflict,
+				"Message": "failed to save answers",
+				"Error":   err.Error(),
+			})
 			return
 		}
 

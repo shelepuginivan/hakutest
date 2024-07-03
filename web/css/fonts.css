@@ -93,19 +93,22 @@
     content: "\e004";
 }
 
-.i.hash:before {
+.i.error:before {
     content: "\e005";
 }
 
-.i.info:before {
+.i.hash:before {
     content: "\e006";
 }
 
-.i.result:before {
+.i.info:before {
     content: "\e007";
 }
 
-.i.search:before {
+.i.result:before {
     content: "\e008";
 }
 
+.i.search:before {
+    content: "\e009";
+}
