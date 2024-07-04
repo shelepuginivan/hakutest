@@ -9,18 +9,26 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/pkg/result"
+	"github.com/shelepuginivan/hakutest/pkg/security"
 	"github.com/shelepuginivan/hakutest/pkg/test"
 )
 
 // registerStudentInterface adds endpoints for the student interface.
 func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
-	e.GET("/", func(c *gin.Context) {
+	student := e.Group("")
+
+	student.Use(security.Middleware(
+		security.RoleStudent,
+		cfg.Security.Student,
+	))
+
+	student.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.gohtml", gin.H{
 			"Tests": test.GetList(),
 		})
 	})
 
-	e.GET("/:test", TestIsAvailable, func(c *gin.Context) {
+	student.GET("/:test", TestIsAvailable, func(c *gin.Context) {
 		name := c.Param("test")
 		t, _ := test.GetByName(name)
 
@@ -30,7 +38,7 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 		})
 	})
 
-	e.POST("/:test", TestIsAvailable, func(c *gin.Context) {
+	student.POST("/:test", TestIsAvailable, func(c *gin.Context) {
 		name := c.Param("test")
 
 		t, _ := test.GetByName(name)

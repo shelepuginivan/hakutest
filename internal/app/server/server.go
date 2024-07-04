@@ -9,6 +9,7 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/embedded"
 	"github.com/shelepuginivan/hakutest/internal/pkg/logging"
+	"github.com/shelepuginivan/hakutest/pkg/security"
 )
 
 // setMode sets mode of the gin engine.
@@ -34,6 +35,7 @@ func New(cfg *config.Config) *http.Server {
 
 	registerStatic(engine)
 	registerTemplates(engine)
+	security.Register(engine, cfg.Security.Student, cfg.Security.Teacher)
 	registerStudentInterface(engine, cfg)
 
 	return &http.Server{
