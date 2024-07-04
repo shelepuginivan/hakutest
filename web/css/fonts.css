@@ -79,7 +79,7 @@
     content: "\e001";
 }
 
-.i.certificate-check:before {
+.i.correctness:before {
     content: "\e002";
 }
 
@@ -87,7 +87,11 @@
     content: "\e003";
 }
 
-.i.close-large:before {
+.i.close:before {
+    content: "\e004";
+}
+
+.i.cross:before {
     content: "\e004";
 }
 
@@ -95,11 +99,11 @@
     content: "\e005";
 }
 
-.i.hashtag:before {
+.i.hash:before {
     content: "\e006";
 }
 
-.i.information:before {
+.i.info:before {
     content: "\e007";
 }
 
