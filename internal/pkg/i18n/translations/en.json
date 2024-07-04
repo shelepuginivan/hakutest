@@ -3,6 +3,20 @@
         "error": "Error",
         "info": "Information"
     },
+    "auth": {
+        "username": "Username",
+        "password": "Password",
+        "button": "Log In",
+        "invalid": "Invalid username or password",
+        "unprocessable": {
+            "title": "Failed to read credentials",
+            "text": "Entered data is invalid. Please try again."
+        },
+        "jwt_generation_err": {
+            "title": "Failed to process credentials",
+            "text": "Entered data is valid, but could not be processed. Please try again."
+        }
+    },
     "expired": {
         "title": "Test has expired",
         "text": "This test has expired and is no longer available. Please contact your teacher for details."

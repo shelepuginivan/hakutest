@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/auth.css">
+    <title>Hakutest</title>
+</head>
+<body>
+    <main class="main container">
+        <h1 class="logo">
+            <img
+                class="logo__img"
+                src="/static/img/logo.svg"
+                alt="Hakutest"
+            />
+        </h1>
+        {{ if .Invalid }}
+        <h2 class="auth__invalid">{{ i "auth.invalid" }}</h2>
+        {{ end }}
+        <form class="auth__form" action="/auth" method="POST">
+            <label
+                class="auth__input__wrapper"
+                aria-label="{{ i "auth.username" }}"
+            >
+                <i class="i user"></i>
+                <input 
+                    class="input auth__input" 
+                    name="username"
+                    placeholder="{{ i "auth.username" }}"
+                >
+            </label>
+            <label
+                class="auth__input__wrapper"
+                aria-label="{{ i "auth.password" }}"
+            >
+                <i class="i password"></i>
+                <input
+                    class="input auth__input"
+                    name="password"
+                    type="password"
+                    placeholder="{{ i "auth.password" }}"
+                >
+            </label>
+            <input type="hidden" name="to" value="{{ .To }}">
+            <button class="button button__primary">{{ i "auth.button" }}</button>
+        </form>
+    </main>
+</body>
+</html>
