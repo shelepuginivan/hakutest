@@ -5,9 +5,15 @@ import (
 	"os"
 
 	"github.com/shelepuginivan/hakutest/internal/pkg/paths"
+	"github.com/shelepuginivan/hakutest/pkg/security"
 	"golang.org/x/text/language"
 	"gopkg.in/yaml.v3"
 )
+
+type SecurityConfig struct {
+	Teacher string `json:"teacher"`
+	Student string `json:"student"`
+}
 
 // Config is a global application configuration layer.
 type Config struct {
@@ -21,6 +27,9 @@ type Config struct {
 	OverwriteResults bool   `yaml:"overwrite_results"` // Whether to overwrite results on resend.
 	ResultsDirectory string `yaml:"results_directory"`
 	ShowResults      bool   `yaml:"show_results"` // Whether to show results on submission.
+
+	// Security.
+	Security SecurityConfig `json:"security"`
 
 	// Tests.
 	TestsDirectory string `yaml:"tests_directory"`
@@ -52,7 +61,11 @@ func Default() *Config {
 		Port:             8080,
 		OverwriteResults: false,
 		ResultsDirectory: paths.Results,
-		ShowResults:      true,
-		TestsDirectory:   paths.Tests,
+		Security: SecurityConfig{
+			Teacher: security.PolicyHostOnly,
+			Student: security.PolicyNoVerification,
+		},
+		ShowResults:    true,
+		TestsDirectory: paths.Tests,
 	}
 }
