@@ -1,7 +1,9 @@
 // Package tray provides constants and helpers for tray app.
 package tray
 
-import "github.com/shelepuginivan/hakutest/internal/pkg/embedded"
+import (
+	"github.com/shelepuginivan/hakutest/internal/pkg/embedded"
+)
 
 const (
 	Title   = "Hakutest"

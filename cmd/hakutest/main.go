@@ -37,32 +37,26 @@ func init() {
 	srv = server.New(cfg)
 }
 
-func onReady() {
-	systray.SetIcon(tray.Icon)
-	systray.SetTitle(tray.Title)
-	systray.SetTooltip(tray.Tooltip)
-
-	systray.AddSeparator()
-	mQuit := systray.AddMenuItem("Quit", "Quit application")
-
-	go func() {
-		if err := srv.ListenAndServe(); err != nil {
-			systray.Quit()
-		}
-	}()
-
-	go func() {
-		<-mQuit.ClickedCh
-
-		srv.Shutdown(context.Background())
-		systray.Quit()
-	}()
-}
-
 func main() {
 	if cfg.Headless {
 		log.Fatal(srv.ListenAndServe())
 	}
 
-	systray.Run(onReady, func() {})
+	onReady := tray.OnReady(
+		func() {
+			if err := srv.ListenAndServe(); err != nil {
+				systray.Quit()
+			}
+		},
+		tray.MenuEntry{
+			Label:   "Quit",
+			Tooltip: "Quit Hakutest",
+			Callback: func() {
+				srv.Shutdown(context.Background())
+				systray.Quit()
+			},
+		},
+	)
+
+	systray.Run(onReady, tray.OnExit)
 }
