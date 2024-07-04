@@ -1,3 +1,4 @@
+// Package logging provides internal methods for logging.
 package logging
 
 import (
@@ -8,7 +9,7 @@ import (
 )
 
 func httpFormatter(param gin.LogFormatterParams) string {
-	return fmt.Sprintf("HTTP | %s %s %s - %d (%s) | [%s]\n",
+	return fmt.Sprintf("HTTP | %s %s %s - %d (%s) | %s\n",
 		param.Method,
 		param.Path,
 		param.Request.Proto,
@@ -18,12 +19,10 @@ func httpFormatter(param gin.LogFormatterParams) string {
 	)
 }
 
-// RegisterHttp registers logger for Gin HTTP Engine.
-func RegisterHttp(e *gin.Engine) {
-	cfg := gin.LoggerConfig{
-		Output:    Output(),
+// HttpConfig returns configuration for gin.Logger.
+func HttpConfig() gin.LoggerConfig {
+	return gin.LoggerConfig{
+		Output:    Output,
 		Formatter: httpFormatter,
 	}
-
-	e.Use(gin.LoggerWithConfig(cfg))
 }

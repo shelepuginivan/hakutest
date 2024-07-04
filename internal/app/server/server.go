@@ -27,10 +27,11 @@ func New(cfg *config.Config) *http.Server {
 
 	engine := gin.New()
 
+	engine.Use(gin.LoggerWithConfig(logging.HttpConfig()))
 	engine.Use(RequestTimestamp)
 	engine.Use(gin.Recovery())
 	engine.Use(serveFavicon(embedded.Icon))
-	logging.RegisterHttp(engine)
+
 	registerStatic(engine)
 	registerTemplates(engine)
 	registerStudentInterface(engine, cfg)
