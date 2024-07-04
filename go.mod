@@ -6,6 +6,7 @@ require (
 	github.com/adrg/xdg v0.4.0
 	github.com/getlantern/systray v1.2.2
 	github.com/gin-gonic/gin v1.9.1
+	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/gomarkdown/markdown v0.0.0-20240626202925-2eda941fd024
 	github.com/microcosm-cc/bluemonday v1.0.26
 	github.com/tidwall/gjson v1.17.1
