@@ -6,12 +6,15 @@ require (
 	github.com/adrg/xdg v0.4.0
 	github.com/getlantern/systray v1.2.2
 	github.com/gin-gonic/gin v1.9.1
+	github.com/gomarkdown/markdown v0.0.0-20240626202925-2eda941fd024
+	github.com/microcosm-cc/bluemonday v1.0.26
 	github.com/tidwall/gjson v1.17.1
 	golang.org/x/text v0.14.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
+	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/bytedance/sonic v1.11.3 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.1 // indirect
@@ -30,6 +33,7 @@ require (
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
+	github.com/gorilla/css v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.7 // indirect
 	github.com/kr/pretty v0.3.1 // indirect

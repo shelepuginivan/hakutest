@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
+	"github.com/shelepuginivan/hakutest/internal/pkg/markdown"
 	"github.com/shelepuginivan/hakutest/web"
 )
 
@@ -47,7 +48,8 @@ func registerTemplates(e *gin.Engine) {
 		"incr": func(i int) int {
 			return i + 1
 		},
-		"lang": i18n.Lang,
+		"lang":     i18n.Lang,
+		"markdown": markdown.ToGoHTML,
 	})
 
 	tmpl, err = tmpl.ParseFS(web.Templates, "templates/*.gohtml")

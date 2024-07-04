@@ -29,57 +29,57 @@
                 </label>
             </div>
             {{ range $index, $task := .Test.Tasks }}
-                <div class="test__task">
-                    <div class="test__task__text">{{ .Text }}</div>
-                    <div class="test__task__options">
-                        {{ if eq .Type "single" }}
-                            <fieldset class="task__options__fieldset">
-                                <legend class="task__legend">
-                                    <i>{{ i "test.task.single.legend" }}</i>
-                                </legend>
-                                {{ range $optIndex, $opt := .Options }}
-                                    <label class="task__single__label">
-                                        <input
-                                            type="radio"
-                                            name="{{ $index }}"
-                                            value="{{ $optIndex }}"
-                                        />
-                                        <span>{{ $opt }}</span>
-                                    </label>
-                                {{ end }}
-                            </fieldset>
-                        {{ else if eq .Type "multiple" }}
-                            <fieldset class="task__options__fieldset">
-                                <legend class="task__legend">
-                                    <i>{{ i "test.task.multiple.legend" }}</i>
-                                </legend>
-                                {{ range $optIndex, $opt := .Options }}
-                                    <label class="task__multiple__label">
-                                        <input
-                                            type="checkbox"
-                                            name="{{ $index }}"
-                                            value="{{ $optIndex }}"
-                                        />
-                                        <span>{{ $opt }}</span>
-                                    </label>
-                                {{ end }}
-                            </fieldset>
-                        {{ else if eq .Type "open" }}
-                            <label class="task__open__label">
-                                <i>{{ i "test.task.open.label" }}</i>
-                                <input class="input" name="{{ $index }}">
-                            </label>
-                        {{ else if eq .Type "detailed" }}
-                            <label class="task__detailed__label">
-                                <i>{{ i "test.task.detailed.label" }}</i>
-                                <textarea
-                                   class="input textarea"
-                                   name="{{ $index }}"
-                                ></textarea>
-                            </label>
-                        {{ end }}
-                    </div>
+            <div class="test__task">
+                <div class="test__task__text">{{ markdown .Text }}</div>
+                <div class="test__task__options">
+                    {{ if eq .Type "single" }}
+                        <fieldset class="task__options__fieldset">
+                            <legend class="task__legend">
+                                <i>{{ i "test.task.single.legend" }}</i>
+                            </legend>
+                            {{ range $optIndex, $opt := .Options }}
+                                <label class="task__single__label">
+                                    <input
+                                        type="radio"
+                                        name="{{ $index }}"
+                                        value="{{ $optIndex }}"
+                                    />
+                                    <span>{{ $opt }}</span>
+                                </label>
+                            {{ end }}
+                        </fieldset>
+                    {{ else if eq .Type "multiple" }}
+                        <fieldset class="task__options__fieldset">
+                            <legend class="task__legend">
+                                <i>{{ i "test.task.multiple.legend" }}</i>
+                            </legend>
+                            {{ range $optIndex, $opt := .Options }}
+                                <label class="task__multiple__label">
+                                    <input
+                                        type="checkbox"
+                                        name="{{ $index }}"
+                                        value="{{ $optIndex }}"
+                                    />
+                                    <span>{{ $opt }}</span>
+                                </label>
+                            {{ end }}
+                        </fieldset>
+                    {{ else if eq .Type "open" }}
+                        <label class="task__open__label">
+                            <i>{{ i "test.task.open.label" }}</i>
+                            <input class="input" name="{{ $index }}">
+                        </label>
+                    {{ else if eq .Type "detailed" }}
+                        <label class="task__detailed__label">
+                            <i>{{ i "test.task.detailed.label" }}</i>
+                            <textarea
+                               class="input textarea"
+                               name="{{ $index }}"
+                            ></textarea>
+                        </label>
+                    {{ end }}
                 </div>
+            </div>
             {{ end }}
             <button class="button button__primary">
                 {{ i "test.form.submit" }}
