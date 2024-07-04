@@ -76,41 +76,45 @@
 }
 
 .i.book:before {
-    content: '\e001';
+    content: "\e001";
 }
 
-.i.correctness:before {
-    content: '\e002';
+.i.certificate-check:before {
+    content: "\e002";
 }
 
 .i.checkmark:before {
-    content: '\e003';
+    content: "\e003";
 }
 
-.i.close:before {
-    content: '\e004';
-}
-
-.i.cross:before {
-    content: '\e004';
+.i.close-large:before {
+    content: "\e004";
 }
 
 .i.error:before {
-    content: '\e005';
+    content: "\e005";
 }
 
-.i.hash:before {
-    content: '\e006';
+.i.hashtag:before {
+    content: "\e006";
 }
 
-.i.info:before {
-    content: '\e007';
+.i.information:before {
+    content: "\e007";
+}
+
+.i.password:before {
+    content: "\e008";
 }
 
 .i.result:before {
-    content: '\e008';
+    content: "\e009";
 }
 
 .i.search:before {
-    content: '\e009';
+    content: "\e00a";
+}
+
+.i.user:before {
+    content: "\e00b";
 }
