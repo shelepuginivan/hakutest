@@ -9,48 +9,58 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/security"
 )
 
+// LoginForm represents data sent in authorization form.
+type LoginForm struct {
+	Username string `form:"username"`
+	Password string `form:"password"`
+	To       string `form:"to"`
+}
+
 // CredentialsMiddleware is a gin middleware that sets route security policy.
 // Protected route can only be accessed by an authorized user.
 // If user is unauthorized, they are redirected to the authorization page.
 // It must be used with the `CredentialsRegister` method.
-func CredentialsMiddleware(c *gin.Context) {
-	location := fmt.Sprintf("/auth?to=%s", c.Request.RequestURI)
+func CredentialsMiddleware(role string) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		location := fmt.Sprintf("/auth?to=%s", c.Request.RequestURI)
 
-	jwt, err := c.Cookie("jwt")
-	if err != nil {
-		c.Redirect(http.StatusSeeOther, location)
-		c.Abort()
-		return
-	}
+		jwt, err := c.Cookie("jwt")
+		if err != nil {
+			c.Redirect(http.StatusSeeOther, location)
+			c.Abort()
+			return
+		}
 
-	credentials, err := security.ParseJWT(jwt)
-	if err != nil {
-		c.Redirect(http.StatusSeeOther, location)
-		c.Abort()
-		return
-	}
+		credentials, err := security.ParseJWT(jwt)
+		if err != nil {
+			c.Redirect(http.StatusSeeOther, location)
+			c.Abort()
+			return
+		}
 
-	if security.IsValidCredentials(credentials) {
+		if credentials.Role != role {
+			c.Redirect(http.StatusSeeOther, location)
+			c.Abort()
+			return
+		}
+
 		c.Next()
-		return
 	}
-
-	c.Redirect(http.StatusSeeOther, "/auth")
-	c.Abort()
 }
 
 // CredentialsRegister registers additional routes for the `CredentialsMiddleware`.
-func CredentialsRegister(e *gin.Engine) {
-	e.GET("/auth", func(c *gin.Context) {
+func CredentialsRegister(router gin.IRouter) {
+	router.GET("/auth", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "auth.gohtml", gin.H{
 			"Invalid": false,
 			"To":      c.Query("to"),
 		})
 	})
 
-	e.POST("/auth", func(c *gin.Context) {
-		err := c.Request.ParseForm()
-		if err != nil {
+	router.POST("/auth", func(c *gin.Context) {
+		var form LoginForm
+
+		if err := c.Bind(&form); err != nil {
 			c.HTML(http.StatusUnprocessableEntity, "error.gohtml", gin.H{
 				"Title":   i18n.Get("auth.unprocessable.title"),
 				"Text":    i18n.Get("auth.unprocessable.text"),
@@ -61,17 +71,11 @@ func CredentialsRegister(e *gin.Engine) {
 			return
 		}
 
-		credentials := &security.Credentials{
-			Username: c.PostForm("username"),
-			Password: c.PostForm("password"),
-		}
-
-		to := c.PostForm("to")
-
-		if security.IsValidCredentials(credentials) {
+		credentials, err := security.Login(form.Username, form.Password)
+		if err != nil {
 			c.HTML(http.StatusUnauthorized, "auth.gohtml", gin.H{
 				"Invalid": true,
-				"To":      to,
+				"To":      c.Query("to"),
 			})
 			return
 		}
@@ -82,13 +86,13 @@ func CredentialsRegister(e *gin.Engine) {
 				"Title":   i18n.Get("auth.jwt_generation_err.title"),
 				"Text":    i18n.Get("auth.jwt_generation_err.text"),
 				"Code":    http.StatusUnprocessableEntity,
-				"Message": "failed to parse form",
+				"Message": "failed to generate jwt",
 				"Error":   err.Error(),
 			})
 			return
 		}
 
 		c.SetCookie("jwt", jwt, 60*60*24, "/", "", true, false)
-		c.Redirect(http.StatusSeeOther, to)
+		c.Redirect(http.StatusSeeOther, form.To)
 	})
 }

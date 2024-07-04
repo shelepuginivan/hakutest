@@ -4,6 +4,8 @@ go 1.22.1
 
 require (
 	github.com/adrg/xdg v0.4.0
+	github.com/deckarep/golang-set/v2 v2.6.0
+	github.com/denisbrodbeck/machineid v1.0.1
 	github.com/getlantern/systray v1.2.2
 	github.com/gin-gonic/gin v1.9.1
 	github.com/golang-jwt/jwt/v5 v5.2.1

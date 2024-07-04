@@ -7,11 +7,13 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
+// JWT claims constants.
 const (
-	claimSub  = "sub"
-	claimPass = "pass"
+	claimRole = "role"
+	claimUser = "user"
 )
 
+// JWT key constants.
 var (
 	jwtKey    = make([]byte, 32)
 	jwtKeyErr error
@@ -28,8 +30,8 @@ func GenerateJWT(credentials *Credentials) (string, error) {
 	token := jwt.New(jwt.SigningMethodHS256)
 
 	claims := token.Claims.(jwt.MapClaims)
-	claims[claimSub] = credentials.Username
-	claims[claimPass] = credentials.Password
+	claims[claimRole] = credentials.Role
+	claims[claimUser] = credentials.Username
 
 	tokenString, err := token.SignedString(jwtKey)
 	if err != nil {
@@ -56,7 +58,7 @@ func ParseJWT(tokenString string) (*Credentials, error) {
 	}
 
 	return &Credentials{
-		Username: claims[claimSub].(string),
-		Password: claims[claimPass].(string),
+		Role:     claims[claimRole].(string),
+		Username: claims[claimUser].(string),
 	}, nil
 }
