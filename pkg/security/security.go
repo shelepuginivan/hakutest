@@ -18,12 +18,13 @@ const (
 )
 
 // Middleware returns a gin middleware to apply policy for a route.
-func Middleware(role, policy string) gin.HandlerFunc {
+// For `credentials` policy required roles can be specified.
+func Middleware(policy string, roles ...string) gin.HandlerFunc {
 	switch policy {
 	case PolicyHostOnly:
 		return HostOnlyMiddleware
 	case PolicyCredentials:
-		return CredentialsMiddleware(role)
+		return CredentialsMiddleware(roles)
 	default:
 		return NoVerificationMiddleware
 	}

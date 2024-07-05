@@ -3,6 +3,7 @@ package security
 import (
 	"crypto/rand"
 	"fmt"
+	"strings"
 
 	"github.com/golang-jwt/jwt/v5"
 )
@@ -30,7 +31,7 @@ func GenerateJWT(credentials *Credentials) (string, error) {
 	token := jwt.New(jwt.SigningMethodHS256)
 
 	claims := token.Claims.(jwt.MapClaims)
-	claims[claimRole] = credentials.Role
+	claims[claimRole] = strings.Join(credentials.Roles, ",")
 	claims[claimUser] = credentials.Username
 
 	tokenString, err := token.SignedString(jwtKey)
@@ -58,7 +59,7 @@ func ParseJWT(tokenString string) (*Credentials, error) {
 	}
 
 	return &Credentials{
-		Role:     claims[claimRole].(string),
+		Roles:    strings.Split(claims[claimRole].(string), ","),
 		Username: claims[claimUser].(string),
 	}, nil
 }

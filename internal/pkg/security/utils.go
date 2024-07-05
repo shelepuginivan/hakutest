@@ -5,6 +5,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 
+	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/denisbrodbeck/machineid"
 )
 
@@ -25,4 +26,13 @@ func HashPassword(password string) string {
 // ComparePasswords reports whether password matches with expected hash.
 func ComparePasswords(password, expected string) bool {
 	return HashPassword(password) == expected
+}
+
+// HasPermissions reports whether user has permission for the action based on
+// roles.
+func HasPermissions(c *Credentials, requiredRoles []string) bool {
+	userRoles := mapset.NewSet(c.Roles...)
+	wantRoles := mapset.NewSet(requiredRoles...)
+
+	return userRoles.IsSuperset(wantRoles)
 }

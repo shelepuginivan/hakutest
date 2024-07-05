@@ -18,8 +18,8 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 	student := e.Group("")
 
 	student.Use(security.Middleware(
-		security.RoleStudent,
 		cfg.Security.Student,
+		security.RoleStudent,
 	))
 
 	student.GET("/", func(c *gin.Context) {

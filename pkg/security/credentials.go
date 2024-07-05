@@ -20,7 +20,7 @@ type LoginForm struct {
 // Protected route can only be accessed by an authorized user.
 // If user is unauthorized, they are redirected to the authorization page.
 // It must be used with the `CredentialsRegister` method.
-func CredentialsMiddleware(role string) gin.HandlerFunc {
+func CredentialsMiddleware(roles []string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		location := fmt.Sprintf("/auth?to=%s", c.Request.RequestURI)
 
@@ -38,7 +38,7 @@ func CredentialsMiddleware(role string) gin.HandlerFunc {
 			return
 		}
 
-		if credentials.Role != role {
+		if !security.HasPermissions(credentials, roles) {
 			c.Redirect(http.StatusSeeOther, location)
 			c.Abort()
 			return

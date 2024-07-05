@@ -6,15 +6,16 @@ import (
 	"path/filepath"
 	"strings"
 
+	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
 	"github.com/shelepuginivan/hakutest/internal/pkg/paths"
 )
 
 // User represents user data stored locally.
 type User struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-	Role     string `json:"role"`
+	Username string   `json:"username"`
+	Password string   `json:"password"`
+	Roles    []string `json:"roles"`
 }
 
 // UserFile returns full path to the file with user data.
@@ -24,11 +25,11 @@ func UserFile(username string) string {
 
 // NewUser returns a new instance of User.
 // Provided password is hashed using HMAC-SHA256 algorithm.
-func NewUser(username, password string, role string) *User {
+func NewUser(username, password string, roles []string) *User {
 	return &User{
 		Username: username,
 		Password: HashPassword(password),
-		Role:     role,
+		Roles:    mapset.NewSet(roles...).ToSlice(),
 	}
 }
 

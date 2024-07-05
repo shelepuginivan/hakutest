@@ -6,7 +6,7 @@ import "fmt"
 // Credentials represents authorization data.
 // It contains Role and Username.
 type Credentials struct {
-	Role     string
+	Roles    []string
 	Username string
 }
 
@@ -23,6 +23,6 @@ func Login(username, password string) (*Credentials, error) {
 
 	return &Credentials{
 		Username: user.Username,
-		Role:     user.Role,
+		Roles:    user.Roles,
 	}, nil
 }
