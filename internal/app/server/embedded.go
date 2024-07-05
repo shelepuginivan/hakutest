@@ -52,7 +52,11 @@ func registerTemplates(e *gin.Engine) {
 		"markdown": markdown.ToGoHTML,
 	})
 
-	tmpl, err = tmpl.ParseFS(web.Templates, "templates/*.gohtml")
+	tmpl, err = tmpl.ParseFS(
+		web.Templates,
+		"templates/*.gohtml",
+		"partials/*.gohtml",
+	)
 	if err != nil {
 		panic(err)
 	}

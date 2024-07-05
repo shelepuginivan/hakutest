@@ -5,6 +5,7 @@ import "embed"
 
 // Templates directory.
 //
+//go:embed partials
 //go:embed templates
 var Templates embed.FS
 
