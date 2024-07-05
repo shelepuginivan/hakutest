@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
 	"github.com/shelepuginivan/hakutest/internal/pkg/paths"
@@ -14,6 +15,11 @@ type User struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 	Role     string `json:"role"`
+}
+
+// UserFile returns full path to the file with user data.
+func UserFile(username string) string {
+	return filepath.Join(paths.Users, strings.ToLower(username))
 }
 
 // NewUser returns a new instance of User.
@@ -30,8 +36,7 @@ func NewUser(username, password string, role string) *User {
 func GetUser(username string) (*User, error) {
 	var u User
 
-	userFile := filepath.Join(paths.Users, u.Username)
-	data, err := os.ReadFile(userFile)
+	data, err := os.ReadFile(UserFile(username))
 	if err != nil {
 		return nil, err
 	}
@@ -45,16 +50,15 @@ func GetUser(username string) (*User, error) {
 
 // SaveUser saves user locally.
 func SaveUser(u *User) error {
-	userFile := filepath.Join(paths.Users, u.Username)
 	data, err := json.Marshal(u)
 	if err != nil {
 		return err
 	}
 
-	return fsutil.WriteAll(userFile, data)
+	return fsutil.WriteAll(UserFile(u.Username), data)
 }
 
 // DeleteUser deletes locally stored user.
 func DeleteUser(username string) error {
-	return os.RemoveAll(filepath.Join(paths.Users, username))
+	return os.RemoveAll(UserFile(username))
 }
