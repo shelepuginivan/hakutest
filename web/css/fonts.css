@@ -75,50 +75,86 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.i.book:before {
+.i.analytics:before {
     content: "\e001";
 }
 
-.i.correctness:before {
+.i.arrow-right:before {
     content: "\e002";
 }
 
-.i.checkmark:before {
+.i.book:before {
     content: "\e003";
 }
 
-.i.close:before {
+.i.correctness:before {
     content: "\e004";
 }
 
-.i.cross:before {
-    content: "\e004";
-}
-
-.i.error:before {
+.i.checkmark:before {
     content: "\e005";
 }
 
-.i.hash:before {
+.i.close:before {
     content: "\e006";
 }
 
-.i.info:before {
+.i.cross:before {
+    content: "\e006";
+}
+
+.i.dashboard:before {
     content: "\e007";
 }
 
-.i.password:before {
+.i.edit:before {
     content: "\e008";
 }
 
-.i.result:before {
+.i.error:before {
     content: "\e009";
 }
 
-.i.search:before {
+.i.hash:before {
     content: "\e00a";
 }
 
-.i.user:before {
+.i.image:before {
     content: "\e00b";
+}
+
+.i.info:before {
+    content: "\e00c";
+}
+
+.i.appearance:before {
+    content: "\e00d";
+}
+
+.i.password:before {
+    content: "\e00e";
+}
+
+.i.result:before {
+    content: "\e00f";
+}
+
+.i.search:before {
+    content: "\e010";
+}
+
+.i.security:before {
+    content: "\e011";
+}
+
+.i.settings:before {
+    content: "\e012";
+}
+
+.i.table:before {
+    content: "\e013";
+}
+
+.i.user:before {
+    content: "\e014";
 }
