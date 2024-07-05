@@ -37,6 +37,7 @@ func New(cfg *config.Config) *http.Server {
 	registerTemplates(engine)
 	security.Register(engine, cfg.Security.Student, cfg.Security.Teacher)
 	registerStudentInterface(engine, cfg)
+	registerTeacherInterface(engine, cfg)
 
 	return &http.Server{
 		Addr:    fmt.Sprintf(":%d", cfg.Port),

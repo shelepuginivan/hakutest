@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/teacher.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
+    <title>{{ i "teacher.dashboard.title" }} | Hakutest</title>
+</head>
+<body 
+    x-data="{ 
+        hours: {{ .Uptime.Hours }},
+        minutes: {{ .Uptime.Minutes }},
+        seconds: {{ .Uptime.Seconds }},
+        get uptime() {
+            const hoursStr = this.hours.toString().padStart(2, '0')
+            const minutesStr = this.minutes.toString().padStart(2, '0')
+            const secondsStr = this.seconds.toString().padStart(2, '0')
+            return `${hoursStr}:${minutesStr}:${secondsStr}`
+        }
+    }"
+    x-init="setInterval(function() {
+        $data.seconds++
+        $data.minutes += Math.floor($data.seconds / 60)
+        $data.seconds %= 60
+        $data.hours += Math.floor($data.minutes / 60)
+        $data.minutes %= 60
+    }, 1000)"
+>
+    {{ template "navigation" }}
+    <header class="header">
+        <h1>{{ i "teacher.dashboard.heading" }}</h1>
+    </header>
+    <main class="main dashboard">
+        {{ if .AddressAvailable }}
+        <section class="dashboard__section shadow">
+            <h2>{{ i "teacher.dashboard.address" }}</h2>
+            <code class="code__inline">{{ .Address }}</code>
+            <i>{{ i "teacher.dashboard.address_tip" }}</i>
+        </section>
+        {{ end }}
+        <section class="dashboard__section shadow">
+            <h2>{{ i "teacher.dashboard.system_details" }}</h2>
+            <div>
+                <p>
+                    <i>{{ i "teacher.dashboard.uptime" }}</i>
+                    <b x-text="uptime">
+                        {{ .Uptime.Hours }}:{{ .Uptime.Minutes }}:{{ .Uptime.Seconds }}
+                    </b>
+                </p>
+                <p>
+                    <i>{{ i "teacher.dashboard.version" }}</i>
+                    <b>{{ .Version }}</b>
+                </p>
+            </div>
+        </section>
+    </main>
+</body>

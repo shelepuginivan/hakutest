@@ -12,6 +12,7 @@
     --red: #B11213;
     --yellow: #DDD645;
     --backdrop: rgba(16, 16, 16, .7);
+    --shadow: rgba(16, 16, 16, .3);
 }
 
 * {
@@ -44,6 +45,17 @@ body.modal_open {
 
 main {
     flex-grow: 1;
+}
+
+code {
+    font-family: monospace;
+    font-size: larger;
+}
+
+.code__inline {
+    background-color: var(--selection);
+    padding: 4px;
+    border-radius: 4px;
 }
 
 [x-cloak] {
@@ -96,4 +108,10 @@ main {
     justify-content: center;
     flex-grow: 1;
     margin-bottom: 32px;
+}
+
+.shadow {
+    -webkit-box-shadow: var(--shadow) 0 1px 4px;
+    -moz-box-shadow: var(--shadow) 0 1px 4px;
+    box-shadow: var(--shadow) 0 1px 4px;
 }

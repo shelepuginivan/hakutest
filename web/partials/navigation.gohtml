@@ -1,0 +1,40 @@
+{{ define "navigation" }}
+<nav class="nav shadow">
+    <ul class="nav__list">
+        <li class="nav__logo__wrapper">
+            <a href="/">
+                <img class="nav__logo" src="/favicon.ico" alt="Hakutest">
+            </a>
+        </li>
+        <li title="{{ i "teacher.dashboard.title" }}">
+            <a 
+                class="nav__link"
+                href="/teacher/dashboard"
+                aria-label="{{ i "teacher.dashboard.title" }}"
+            >
+                <i class="i dashboard"></i>
+            </a>
+        </li>
+        <li>
+            <a class="nav__link" href="/teacher/editor">
+                <i class="i edit"></i>
+            </a>
+        </li>
+        <li>
+            <a class="nav__link" href="/teacher/statistics">
+                <i class="i analytics"></i>
+            </a>
+        </li>
+        <li>
+            <a class="nav__link" href="/teacher/security">
+                <i class="i security"></i>
+            </a>
+        </li>
+        <li>
+            <a class="nav__link" href="/teacher/settings">
+                <i class="i settings"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+{{ end }}
