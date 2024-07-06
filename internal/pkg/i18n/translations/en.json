@@ -34,6 +34,51 @@
         "input": "Enter name of the test...",
         "search": "Search"
     },
+    "settings": {
+        "title": "Settings",
+        "heading": "Settings",
+        "button": "Save settings",
+        "unprocessable": {
+            "title": "Failed to read data",
+            "text": "Entered data is invalid. Please try again."
+        },
+        "save_failed": {
+            "title": "Failed to write settings",
+            "text": "Entered data is valid, but could not be saved."
+        },
+        "debug": {
+            "label": "Debug",
+            "tip": "Run Hakutest in debug mode, which allows to see more information in the logs."
+        },
+        "disable_tray": {
+            "label": "Hide tray icon",
+            "tip": "Run Hakutest without a system tray icon."
+        },
+        "port": {
+            "label": "Port",
+            "tip": "Port on which Hakutest server is started."
+        },
+        "lang": {
+            "label": "Language",
+            "tip": "Language of the interface. Applied for both student and teacher interface."
+        },
+        "overwrite_results": {
+            "label": "Overwrite results",
+            "tip": "Overwrite student results on test form resubmission."
+        },
+        "show_results": {
+            "label": "Show results",
+            "tip": "Show results to students immediately after test form is submitted."
+        },
+        "results_directory": {
+            "label": "Save results into",
+            "tip": "Directory (folder) in which Hakutest stores student results."
+        },
+        "tests_directory": {
+            "label": "Save tests into",
+            "tip": "Directory (folder) in which Hakutest stores tests."
+        }
+    },
     "submission": {
         "unprocessable": {
             "title": "Failed to read answers",

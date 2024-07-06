@@ -6,11 +6,11 @@
                 <img class="nav__logo" src="/favicon.ico" alt="Hakutest">
             </a>
         </li>
-        <li title="{{ i "teacher.dashboard.title" }}">
+        <li title="{{ i "dashboard.title" }}">
             <a 
                 class="nav__link"
                 href="/teacher/dashboard"
-                aria-label="{{ i "teacher.dashboard.title" }}"
+                aria-label="{{ i "dashboard.title" }}"
             >
                 <i class="i dashboard"></i>
             </a>
@@ -30,8 +30,12 @@
                 <i class="i security"></i>
             </a>
         </li>
-        <li>
-            <a class="nav__link" href="/teacher/settings">
+        <li title="{{ i "settings.title" }}">
+            <a
+                class="nav__link"
+                href="/teacher/settings"
+                aria-label="{{ i "settings.title" }}"
+            >
                 <i class="i settings"></i>
             </a>
         </li>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/teacher.css">
+    <link rel="stylesheet" href="/static/css/settings.css">
+    <title>{{ i "settings.title" }} | Hakutest</title>
+</head>
+<body >
+    {{ template "navigation" }}
+    <header class="header">
+        <h1>{{ i "settings.heading" }}</h1>
+    </header>
+    <main class="main">
+        <form
+            id="settings-form"
+            class="settings__form"
+            action="/teacher/settings"
+            method="POST"
+            autocomplete="off"
+        >
+            <section class="settings__section shadow">
+                <label
+                    class="settings__section__label"
+                    aria-describedby="lang-tip"
+                >
+                    <b>{{ i "settings.lang.label" }}</b>
+                    <select class="input" name="lang" required>
+                        {{ range $key, $value := .SupportedLangs }}
+                        <option 
+                            value="{{ $key }}"
+                            {{ if eq $key $.Config.Lang }}selected{{ end }}
+                        >
+                            {{ $value }}
+                        </option>
+                        {{ end }}
+                    </select>
+                </label>
+                <i id="lang-tip">{{ i "settings.lang.tip" }}</i>
+            </section>
+            <section class="settings__section shadow">
+                <label
+                    class="settings__section__label"
+                    aria-describedby="overwrite_results-tip"
+                >
+                    <b>{{ i "settings.overwrite_results.label" }}</b>
+                    <input
+                        type="checkbox" 
+                        name="overwrite_results"
+                        {{ if .Config.OverwriteResults }}checked{{ end }}
+                    >
+                </label>
+                <i id="overwrite_results-tip">
+                    {{ i "settings.overwrite_results.tip" }}
+                </i>
+            </section>
+            <section class="settings__section shadow">
+                <label
+                    class="settings__section__label"
+                    aria-describedby="show_results-tip"
+                >
+                    <b>{{ i "settings.show_results.label" }}</b>
+                    <input
+                        type="checkbox" 
+                        name="show_results"
+                        {{ if .Config.ShowResults }}checked{{ end }}
+                    >
+                </label>
+                <i id="show_results-tip">
+                    {{ i "settings.show_results.tip" }}
+                </i>
+            </section>
+            <section class="settings__section shadow">
+                <label
+                    class="settings__section__label"
+                    aria-describedby="disable_tray-tip"
+                >
+                    <b>{{ i "settings.disable_tray.label" }}</b>
+                    <input
+                        type="checkbox" 
+                        name="disable_tray"
+                        {{ if .Config.DisableTray }}checked{{ end }}
+                    >
+                </label>
+                <i id="disable_tray-tip">{{ i "settings.disable_tray.tip" }}</i>
+            </section>
+            <section class="settings__section shadow">
+                <label
+                    class="settings__section__label"
+                    aria-describedby="debug-tip"
+                >
+                    <b>{{ i "settings.debug.label" }}</b>
+                    <input
+                        type="checkbox" 
+                        name="debug"
+                        {{ if .Config.Debug }}checked{{ end }}
+                    >
+                </label>
+                <i id="debug-tip">{{ i "settings.debug.tip" }}</i>
+            </section>
+            <section class="settings__section shadow">
+                <label
+                    class="settings__section__label"
+                    aria-describedby="port-tip"
+                >
+                    <b>{{ i "settings.port.label" }}</b>
+                    <input
+                        class="input"
+                        type="number"
+                        min="1024"
+                        max="65535"
+                        name="port"
+                        required
+                        value="{{ .Config.Port }}"
+                    >
+                </label>
+                <i id="port-tip">{{ i "settings.port.tip" }}</i>
+            </section>
+            <section class="settings__section shadow">
+                <label
+                    class="settings__section__label"
+                    aria-describedby="results_directory-tip"
+                >
+                    <b>{{ i "settings.results_directory.label" }}</b>
+                    <input
+                        class="input input__directory"
+                        name="results_directory"
+                        required
+                        value="{{ .Config.ResultsDirectory }}"
+                    >
+                </label>
+                <i id="results_directory-tip">
+                    {{ i "settings.results_directory.tip" }}
+                </i>
+            </section>
+            <section class="settings__section shadow">
+                <label
+                    class="settings__section__label"
+                    aria-describedby="tests_directory-tip"
+                >
+                    <b>{{ i "settings.tests_directory.label" }}</b>
+                    <input
+                        class="input input__directory"
+                        name="tests_directory"
+                        required
+                        value="{{ .Config.TestsDirectory }}"
+                    >
+                </label>
+                <i id="tests_directory-tip">
+                    {{ i "settings.tests_directory.tip" }}
+                </i>
+            </section>
+        </form>
+    </main>
+    <footer class="footer">
+        <button
+            class="button button__primary settings__button" 
+            form="settings-form"
+        >
+            {{ i "settings.button" }}
+        </button>
+    </footer>
+</body>

@@ -1,0 +1,41 @@
+.settings__form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    height: fit-content;
+}
+
+.settings__section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    padding: 32px 48px;
+    border: 1px solid var(--selection);
+    border-radius: 8px;
+}
+
+.settings__section__label {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: fit-content;
+    gap: 16px;
+    font-size: large;
+}
+
+.input__directory {
+    width: 400px;
+}
+
+.settings__button {
+    width: fit-content;
+    margin-left: auto;
+}
+
+@media screen and (max-width: 630px) {
+    .input__directory {
+        width: unset;
+    }
+}

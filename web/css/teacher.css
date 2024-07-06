@@ -2,6 +2,23 @@ body {
     padding-left: 64px;
 }
 
+.header {
+    padding: 32px;
+    border-bottom: 1px solid var(--selection);
+}
+
+.main {
+    display: flex;
+    padding: 32px;
+    gap: 32px;
+    overflow: scroll;
+}
+
+.footer {
+    padding: 8px 16px;
+    border-top: 1px solid var(--selection);
+}
+
 .nav {
     position: absolute;
     left: 0;

@@ -1,14 +1,3 @@
-.header {
-    padding: 32px;
-}
-
-.main {
-    display: flex;
-    padding: 32px;
-    gap: 32px;
-    overflow: scroll;
-}
-
 .dashboard__section {
     display: flex;
     flex-direction: column;

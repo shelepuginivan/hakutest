@@ -42,3 +42,13 @@ func Get(key string) string {
 func Lang() string {
 	return langUsed
 }
+
+// SupportedLangs returns a map of currently supported languages.
+// Keys of the returned map are the language codes, and values are
+// human-readable names of the languages.
+func SupportedLangs() map[string]string {
+	return map[string]string{
+		"en": "English",
+		"ru": "Русский",
+	}
+}
