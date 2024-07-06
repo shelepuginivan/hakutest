@@ -5,6 +5,7 @@ import (
 	"os"
 	"sync"
 
+	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
 	"github.com/shelepuginivan/hakutest/internal/pkg/paths"
 	"github.com/shelepuginivan/hakutest/pkg/security"
 	"golang.org/x/text/language"
@@ -72,7 +73,7 @@ func (c *Config) OnUpdate(cb func(*Config)) {
 // Provided Fields struct should contain all keys explicitly, otherwise
 // unrepresented configuration fields are set to their zero value.
 // This method is safe to use by multiple goroutines.
-func (c *Config) Update(fields Fields) {
+func (c *Config) Update(fields Fields) error {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
@@ -81,6 +82,8 @@ func (c *Config) Update(fields Fields) {
 	for _, cb := range c.callbacks {
 		cb(c)
 	}
+
+	return write(c)
 }
 
 // New reads configuration file and returns the configuration.
@@ -118,4 +121,14 @@ func Default() *Config {
 			TestsDirectory: paths.Tests,
 		},
 	}
+}
+
+// write writes configuration to the file.
+func write(cfg *Config) error {
+	data, err := yaml.Marshal(cfg.Fields)
+	if err != nil {
+		return err
+	}
+
+	return fsutil.WriteAll(paths.Config, data)
 }
