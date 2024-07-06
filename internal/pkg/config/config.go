@@ -13,27 +13,40 @@ import (
 
 // SecurityFields represents configuration for security policies.
 type SecurityFields struct {
+	// Teacher security policy.
 	Teacher string `yaml:"teacher"`
+
+	// Student security policy.
 	Student string `yaml:"student"`
 }
 
 // Fields represents configuration fields.
 type Fields struct {
-	// General options.
-	Debug    bool   `yaml:"debug"`    // Run in debug mode.
-	Headless bool   `yaml:"headless"` // Run in headless mode (without systray icon).
-	Port     int    `yaml:"port"`     // Port on which server is started.
-	Lang     string `yaml:"lang"`
+	// Run in debug mode.
+	Debug bool `yaml:"debug"`
 
-	// Results.
-	OverwriteResults bool   `yaml:"overwrite_results"` // Whether to overwrite results on resend.
+	// Run without icon in system tray.
+	DisableTray bool `yaml:"disable_tray"`
+
+	// Port on which server is started.
+	Port int `yaml:"port"`
+
+	// Language of the application interface.
+	Lang string `yaml:"lang"`
+
+	// Whether to overwrite results on resend.
+	OverwriteResults bool `yaml:"overwrite_results"`
+
+	// Directory where results are stored.
 	ResultsDirectory string `yaml:"results_directory"`
-	ShowResults      bool   `yaml:"show_results"` // Whether to show results on submission.
 
-	// Security.
+	// Whether to show results on submission.
+	ShowResults bool `yaml:"show_results"`
+
+	// Security policy configuration.
 	Security SecurityFields `yaml:"security"`
 
-	// Tests.
+	// Directory where tests are stored.
 	TestsDirectory string `yaml:"tests_directory"`
 }
 
@@ -92,7 +105,7 @@ func Default() *Config {
 	return &Config{
 		Fields: Fields{
 			Debug:            false,
-			Headless:         false,
+			DisableTray:      false,
 			Lang:             language.English.String(),
 			Port:             8080,
 			OverwriteResults: false,

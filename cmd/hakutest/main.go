@@ -24,7 +24,7 @@ func init() {
 	cfg = config.New()
 
 	flag.BoolVar(&cfg.Debug, "debug", cfg.Debug, "Run in debug mode")
-	flag.BoolVar(&cfg.Headless, "headless", cfg.Headless, "Run in headless mode (without systray icon)")
+	flag.BoolVar(&cfg.DisableTray, "disable-tray", cfg.DisableTray, "Run without icon in system tray")
 	flag.StringVar(&cfg.Lang, "lang", cfg.Lang, "Language of the interface")
 	flag.IntVar(&cfg.Port, "port", cfg.Port, "Port on which server is started")
 	flag.StringVar(&cfg.TestsDirectory, "tests-directory", cfg.TestsDirectory, "Directory where the test files are stored")
@@ -44,7 +44,7 @@ func main() {
 		test.Init(c.TestsDirectory)
 	})
 
-	if cfg.Headless {
+	if cfg.DisableTray {
 		log.Fatal(srv.ListenAndServe())
 	}
 
