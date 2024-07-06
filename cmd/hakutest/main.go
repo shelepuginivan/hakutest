@@ -38,6 +38,12 @@ func init() {
 }
 
 func main() {
+	cfg.OnUpdate(func(c *config.Config) {
+		i18n.Init(c.Lang)
+		result.Init(c)
+		test.Init(c.TestsDirectory)
+	})
+
 	if cfg.Headless {
 		log.Fatal(srv.ListenAndServe())
 	}

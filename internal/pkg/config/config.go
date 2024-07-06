@@ -3,6 +3,7 @@ package config
 
 import (
 	"os"
+	"sync"
 
 	"github.com/shelepuginivan/hakutest/internal/pkg/paths"
 	"github.com/shelepuginivan/hakutest/pkg/security"
@@ -10,13 +11,14 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-type SecurityConfig struct {
+// SecurityFields represents configuration for security policies.
+type SecurityFields struct {
 	Teacher string `yaml:"teacher"`
 	Student string `yaml:"student"`
 }
 
-// Config is a global application configuration layer.
-type Config struct {
+// Fields represents configuration fields.
+type Fields struct {
 	// General options.
 	Debug    bool   `yaml:"debug"`    // Run in debug mode.
 	Headless bool   `yaml:"headless"` // Run in headless mode (without systray icon).
@@ -29,10 +31,43 @@ type Config struct {
 	ShowResults      bool   `yaml:"show_results"` // Whether to show results on submission.
 
 	// Security.
-	Security SecurityConfig `yaml:"security"`
+	Security SecurityFields `yaml:"security"`
 
 	// Tests.
 	TestsDirectory string `yaml:"tests_directory"`
+}
+
+// Config is a configuration layer for the application.
+type Config struct {
+	Fields
+
+	callbacks []func(*Config)
+	mu        sync.Mutex
+}
+
+// OnUpdate registers a callback allowing to run it when configuration is
+// updated.
+// This method is safe to use by multiple goroutines.
+func (c *Config) OnUpdate(cb func(*Config)) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	c.callbacks = append(c.callbacks, cb)
+}
+
+// Update updates configuration fields and calls each registered callback.
+// Provided Fields struct should contain all keys explicitly, otherwise
+// unrepresented configuration fields are set to their zero value.
+// This method is safe to use by multiple goroutines.
+func (c *Config) Update(fields Fields) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	c.Fields = fields
+
+	for _, cb := range c.callbacks {
+		cb(c)
+	}
 }
 
 // New reads configuration file and returns the configuration.
@@ -45,7 +80,7 @@ func New() *Config {
 		return Default()
 	}
 
-	if err = yaml.Unmarshal(data, cfg); err != nil {
+	if err = yaml.Unmarshal(data, &cfg.Fields); err != nil {
 		return Default()
 	}
 
@@ -55,17 +90,19 @@ func New() *Config {
 // Default returns default configuration.
 func Default() *Config {
 	return &Config{
-		Debug:            false,
-		Headless:         false,
-		Lang:             language.English.String(),
-		Port:             8080,
-		OverwriteResults: false,
-		ResultsDirectory: paths.Results,
-		Security: SecurityConfig{
-			Teacher: security.PolicyHostOnly,
-			Student: security.PolicyNoVerification,
+		Fields: Fields{
+			Debug:            false,
+			Headless:         false,
+			Lang:             language.English.String(),
+			Port:             8080,
+			OverwriteResults: false,
+			ResultsDirectory: paths.Results,
+			Security: SecurityFields{
+				Teacher: security.PolicyHostOnly,
+				Student: security.PolicyNoVerification,
+			},
+			ShowResults:    true,
+			TestsDirectory: paths.Tests,
 		},
-		ShowResults:    true,
-		TestsDirectory: paths.Tests,
 	}
 }
