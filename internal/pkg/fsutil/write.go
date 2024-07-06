@@ -8,10 +8,6 @@ import (
 // WriteAll creates file and all its parent directories.
 // It writes data to the file.
 func WriteAll(file string, data []byte) error {
-	if FileExists(file) {
-		return nil
-	}
-
 	dir := filepath.Dir(file)
 
 	if err := os.MkdirAll(dir, os.ModePerm|os.ModeDir); err != nil {
