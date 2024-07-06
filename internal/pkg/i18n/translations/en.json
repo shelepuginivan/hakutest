@@ -17,6 +17,15 @@
             "text": "Entered data is valid, but could not be processed. Please try again."
         }
     },
+    "dashboard": {
+        "title": "Dashboard",
+        "heading": "Hakutest Dashboard",
+        "address": "Hakutest Address",
+        "address_tip": "To ensure that your students can use Hakutest, open this address on their devices.",
+        "system_details": "System Details",
+        "uptime": "Uptime:",
+        "version": "Version:"
+    },
     "expired": {
         "title": "Test has expired",
         "text": "This test has expired and is no longer available. Please contact your teacher for details."
@@ -33,17 +42,6 @@
         "save_failed": {
             "title": "Failed to save answers",
             "text": "Answers are not saved. Please try again or contact your teacher."
-        }
-    },
-    "teacher": {
-        "dashboard": {
-            "title": "Dashboard",
-            "heading": "Hakutest Dashboard",
-            "address": "Hakutest Address",
-            "address_tip": "To ensure that your students can use Hakutest, open this address on their devices.",
-            "system_details": "System Details",
-            "uptime": "Uptime:",
-            "version": "Version:"
         }
     },
     "test_not_found": {

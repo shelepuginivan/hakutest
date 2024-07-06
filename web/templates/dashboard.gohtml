@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/static/css/teacher.css">
     <link rel="stylesheet" href="/static/css/dashboard.css">
     <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
-    <title>{{ i "teacher.dashboard.title" }} | Hakutest</title>
+    <title>{{ i "dashboard.title" }} | Hakutest</title>
 </head>
 <body 
     x-data="{ 
@@ -32,27 +32,27 @@
 >
     {{ template "navigation" }}
     <header class="header">
-        <h1>{{ i "teacher.dashboard.heading" }}</h1>
+        <h1>{{ i "dashboard.heading" }}</h1>
     </header>
     <main class="main dashboard">
         {{ if .AddressAvailable }}
         <section class="dashboard__section shadow">
-            <h2>{{ i "teacher.dashboard.address" }}</h2>
+            <h2>{{ i "dashboard.address" }}</h2>
             <code class="code__inline">{{ .Address }}</code>
-            <i>{{ i "teacher.dashboard.address_tip" }}</i>
+            <i>{{ i "dashboard.address_tip" }}</i>
         </section>
         {{ end }}
         <section class="dashboard__section shadow">
-            <h2>{{ i "teacher.dashboard.system_details" }}</h2>
+            <h2>{{ i "dashboard.system_details" }}</h2>
             <div>
                 <p>
-                    <i>{{ i "teacher.dashboard.uptime" }}</i>
+                    <i>{{ i "dashboard.uptime" }}</i>
                     <b x-text="uptime">
                         {{ .Uptime.Hours }}:{{ .Uptime.Minutes }}:{{ .Uptime.Seconds }}
                     </b>
                 </p>
                 <p>
-                    <i>{{ i "teacher.dashboard.version" }}</i>
+                    <i>{{ i "dashboard.version" }}</i>
                     <b>{{ .Version }}</b>
                 </p>
             </div>
