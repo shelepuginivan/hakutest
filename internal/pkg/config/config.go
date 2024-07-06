@@ -11,8 +11,8 @@ import (
 )
 
 type SecurityConfig struct {
-	Teacher string `json:"teacher"`
-	Student string `json:"student"`
+	Teacher string `yaml:"teacher"`
+	Student string `yaml:"student"`
 }
 
 // Config is a global application configuration layer.
@@ -29,7 +29,7 @@ type Config struct {
 	ShowResults      bool   `yaml:"show_results"` // Whether to show results on submission.
 
 	// Security.
-	Security SecurityConfig `json:"security"`
+	Security SecurityConfig `yaml:"security"`
 
 	// Tests.
 	TestsDirectory string `yaml:"tests_directory"`
