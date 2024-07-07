@@ -79,82 +79,90 @@
     content: "\e001";
 }
 
-.i.arrow-right:before {
+.i.arrow-down:before {
     content: "\e002";
 }
 
-.i.book:before {
+.i.arrow-right:before {
     content: "\e003";
 }
 
-.i.correctness:before {
+.i.arrow-up:before {
     content: "\e004";
 }
 
-.i.checkmark:before {
+.i.book:before {
     content: "\e005";
 }
 
-.i.close:before {
+.i.correctness:before {
     content: "\e006";
 }
 
-.i.cross:before {
-    content: "\e006";
-}
-
-.i.dashboard:before {
+.i.checkmark:before {
     content: "\e007";
 }
 
-.i.edit:before {
+.i.close:before {
     content: "\e008";
 }
 
-.i.error:before {
+.i.cross:before {
+    content: "\e008";
+}
+
+.i.dashboard:before {
     content: "\e009";
 }
 
-.i.hash:before {
+.i.edit:before {
     content: "\e00a";
 }
 
-.i.image:before {
+.i.error:before {
     content: "\e00b";
 }
 
-.i.info:before {
+.i.hash:before {
     content: "\e00c";
 }
 
-.i.appearance:before {
+.i.image:before {
     content: "\e00d";
 }
 
-.i.password:before {
+.i.info:before {
     content: "\e00e";
 }
 
-.i.result:before {
+.i.appearance:before {
     content: "\e00f";
 }
 
-.i.search:before {
+.i.password:before {
     content: "\e010";
 }
 
-.i.security:before {
+.i.result:before {
     content: "\e011";
 }
 
-.i.settings:before {
+.i.search:before {
     content: "\e012";
 }
 
-.i.table:before {
+.i.security:before {
     content: "\e013";
 }
 
-.i.user:before {
+.i.settings:before {
     content: "\e014";
+}
+
+.i.table:before {
+    content: "\e015";
+}
+
+.i.user:before {
+    content: "\e016";
 }
