@@ -10,6 +10,7 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/network"
 	"github.com/shelepuginivan/hakutest/internal/pkg/uptime"
+	"github.com/shelepuginivan/hakutest/pkg/result"
 	"github.com/shelepuginivan/hakutest/pkg/security"
 	"github.com/shelepuginivan/hakutest/pkg/version"
 )
@@ -44,6 +45,18 @@ func registerTeacherInterface(e *gin.Engine, cfg *config.Config) {
 				"Minutes": int(u.Minutes()) % 60,
 				"Seconds": int(u.Seconds()) % 60,
 			},
+		})
+	})
+
+	teacher.GET("/statistics", func(c *gin.Context) {
+		resultName, ok := c.GetQuery("q")
+		if ok {
+			c.String(http.StatusOK, resultName)
+			return
+		}
+
+		c.HTML(http.StatusOK, "statistics_menu.gohtml", gin.H{
+			"AvailableResults": result.AvailableResults(),
 		})
 	})
 

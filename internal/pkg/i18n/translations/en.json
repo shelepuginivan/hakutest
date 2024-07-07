@@ -79,6 +79,14 @@
             "tip": "Directory (folder) in which Hakutest stores tests."
         }
     },
+    "statistics": {
+        "title": "Statistics",
+        "heading": "Statistics",
+        "form": {
+            "heading": "Select the test for which statistics will be generated",
+            "button": "Generate statistics"
+        }
+    },
     "submission": {
         "unprocessable": {
             "title": "Failed to read answers",

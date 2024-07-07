@@ -1,0 +1,21 @@
+.statistics__form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 24px;
+    width: 90%;
+    max-width: 500px;
+    padding: 36px 36px 72px 36px;
+    margin: auto;
+}
+
+.statistics__form__heading {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 36px;
+}
+
+.statistics__form__button {
+    justify-content: center;
+}

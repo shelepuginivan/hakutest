@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/teacher.css">
+    <link rel="stylesheet" href="/static/css/statistics.css">
+    <title>{{ i "statistics.title" }} | Hakutest</title>
+</head>
+<body>
+    {{ template "navigation" }}
+    <header class="header">
+        <h1>{{ i "statistics.heading" }}</h1>
+    </header>
+    <main class="main">
+        <form class="form statistics__form" target="_blank">
+            <h2 id="form-heading" class="statistics__form__heading">
+                {{ i "statistics.form.heading" }}
+            </h2>
+            <select name="q" class="input" aria-labelledby="form-heading">
+                {{ range .AvailableResults }}
+                <option value="{{ . }}">{{ . }}</option>
+                {{ end }}
+            </select>
+            <button class="button button__primary statistics__form__button">
+                {{ i "statistics.form.button" }}
+            </button>
+        </form>
+    </main>
+</body>
