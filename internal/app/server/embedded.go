@@ -50,6 +50,16 @@ func registerTemplates(e *gin.Engine) {
 		},
 		"lang":     i18n.Lang,
 		"markdown": markdown.ToGoHTML,
+		"iter": func(i int) (stream chan int) {
+			stream = make(chan int)
+			go func() {
+				for k := range i {
+					stream <- k
+				}
+				close(stream)
+			}()
+			return
+		},
 	})
 
 	tmpl, err = tmpl.ParseFS(
