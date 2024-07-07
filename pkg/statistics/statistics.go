@@ -4,14 +4,21 @@ import "github.com/shelepuginivan/hakutest/pkg/result"
 
 type Statistics struct {
 	Name    string
+	Total   int
 	Results []*result.Result
 }
 
 func New(testName string, results []*result.Result) *Statistics {
-	return &Statistics{
+	s := &Statistics{
 		Name:    testName,
 		Results: results,
 	}
+
+	if len(results) > 0 {
+		s.Total = s.Results[0].Total
+	}
+
+	return s
 }
 
 func NewFromName(testName string) (*Statistics, error) {
@@ -20,8 +27,14 @@ func NewFromName(testName string) (*Statistics, error) {
 		return nil, err
 	}
 
-	return &Statistics{
+	s := &Statistics{
 		Name:    testName,
 		Results: results,
-	}, nil
+	}
+
+	if len(results) > 0 {
+		s.Total = s.Results[0].Total
+	}
+
+	return s, nil
 }

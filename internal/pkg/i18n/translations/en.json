@@ -85,6 +85,10 @@
         "form": {
             "heading": "Select the test for which statistics will be generated",
             "button": "Generate statistics"
+        },
+        "view": {
+            "student": "Student",
+            "points": "Points"
         }
     },
     "submission": {

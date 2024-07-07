@@ -19,3 +19,70 @@
 .statistics__form__button {
     justify-content: center;
 }
+
+.statistics__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--selection);
+}
+
+.statistics__heading {
+    max-width: 50%;
+    font-size: x-large;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.statistics__main {
+    width: 100%;
+    min-width: fit-content;
+    height: 100%;
+    min-height: fit-content;
+    padding: 16px;
+    margin-top: 64px;
+    overflow: scroll;
+}
+
+.statistics__table {
+    border-collapse: collapse;
+}
+
+.statistics__table th,
+.statistics__table td {
+    border: 1px solid var(--secondary);
+    padding: 8px;
+    vertical-align: middle;
+}
+
+.statistics__table th {
+    cursor: pointer;
+}
+
+.statistics__table th .sort__placeholder,
+.statistics__table th .sort__indicator {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 16px;
+    height: 22px;
+}
+
+.i.checkmark {
+    font-size: 20px;
+    color: var(--green);
+    cursor: help;
+}
+
+.i.cross {
+    font-size: 20px;
+    color: var(--red);
+    cursor: help;
+}

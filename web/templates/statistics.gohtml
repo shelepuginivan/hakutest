@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/statistics.css">
+    <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
+    <title>{{ .Stats.Name }} | Hakutest</title>
+</head>
+<body x-data="{
+    results: [
+        {{ range .Stats.Results }}
+        {
+            student: '{{ .Student }}',
+            points: {{ .Points }},
+            percentage: {{ .Percentage }},
+            answers: [
+                {{ range .Answers }}
+                {
+                    value: '{{ .Value }}',
+                    correct: {{ .Correct }}
+                },
+                {{ end }}
+            ]
+        },
+        {{ end }}
+    ],
+    sortedBy: 'student',
+    ascending: true,
+    sortByStudent() {
+        if (this.sortedBy === 'student') {
+            this.ascending = !this.ascending
+        }
+        this.sortedBy = 'student'
+
+        this.results.sort((a, b) => {
+            if (this.ascending) {
+                return a.student >= b.student
+            }
+            return a.student <= b.student
+        })
+    },
+    sortByPoints() {
+        if (this.sortedBy === 'points') {
+            this.ascending = !this.ascending
+        }
+        this.sortedBy = 'points'
+
+        this.results.sort((a, b) => {
+            if (this.ascending) {
+                return a.points >= b.points
+            }
+            return a.points <= b.points
+        })
+    },
+    sortByPercentage() {
+        if (this.sortedBy === 'percentage') {
+            this.ascending = !this.ascending
+        }
+        this.sortedBy = 'percentage'
+
+        this.results.sort((a, b) => {
+            if (this.ascending) {
+                return a.percentage >= b.percentage
+            }
+            return a.percentage <= b.percentage
+        })
+    },
+    sortByTask(task) {
+        if (this.sortedBy === `task:${task}`) {
+            this.ascending = !this.ascending
+        }
+        this.sortedBy = `task:${task}`
+
+        this.results.sort((a, b) => {
+            if (this.ascending) {
+                return a.answers[task].correct >= b.answers[task].correct
+            }
+            return a.answers[task].correct <= b.answers[task].correct
+        })
+    },
+    get sortIndicator() {
+        const iconName = this.ascending ? 'i arrow-up' : 'i arrow-down'
+        return `sort__indicator ${iconName}`
+    }
+}"
+>
+    <header class="header statistics__header">
+        <h1 class="statistics__heading">{{ .Stats.Name }}</h1>
+    </header>
+    <main class="statistics__main">
+        <table class="statistics__table">
+            <thead>
+                <tr>
+                    <th @click="sortByStudent">
+                        {{ i "statistics.view.student" }}
+                        <template x-if="sortedBy === 'student'">
+                            <i :class="sortIndicator"></i>
+                        </template>
+                        <template x-if="sortedBy !== 'student'">
+                            <div class="sort__placeholder"></div>
+                        </template>
+                    </th>
+                    <th @click="sortByPoints">
+                        {{ i "statistics.view.points" }}
+                        <template x-if="sortedBy === 'points'">
+                            <i :class="sortIndicator"></i>
+                        </template>
+                        <template x-if="sortedBy !== 'points'">
+                            <div class="sort__placeholder"></div>
+                        </template>
+                    </th>
+                    <th @click="sortByPercentage">
+                        %
+                        <template x-if="sortedBy === 'percentage'">
+                            <i :class="sortIndicator"></i>
+                        </template>
+                        <template x-if="sortedBy !== 'percentage'">
+                            <div class="sort__placeholder"></div>
+                        </template>
+                    </th>
+                    {{ range iter .Stats.Total }}
+                    <th @click="sortByTask({{ . }})">
+                        {{ incr . }}
+                        <template x-if="sortedBy === 'task:{{ . }}'">
+                            <i :class="sortIndicator"></i>
+                        </template>
+                        <template x-if="sortedBy !== 'task:{{ . }}'">
+                            <div class="sort__placeholder"></div>
+                        </template>
+                    </th>
+                    {{ end }}
+                </tr>
+            </thead>
+            <tbody>
+                <template x-for="r in results">
+                    <tr>
+                        <td x-text="r.student"></td>
+                        <td x-text="r.points"></td>
+                        <td x-text="r.percentage"></td>
+                        <template x-for="a in r.answers">
+                            <td :title="a.value">
+                                <i :class="a.correct ? 'i checkmark' : 'i cross'"></i>
+                            </td>
+                        </template>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </main>
+</body>

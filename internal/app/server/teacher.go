@@ -12,6 +12,7 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/uptime"
 	"github.com/shelepuginivan/hakutest/pkg/result"
 	"github.com/shelepuginivan/hakutest/pkg/security"
+	"github.com/shelepuginivan/hakutest/pkg/statistics"
 	"github.com/shelepuginivan/hakutest/pkg/version"
 )
 
@@ -51,7 +52,10 @@ func registerTeacherInterface(e *gin.Engine, cfg *config.Config) {
 	teacher.GET("/statistics", func(c *gin.Context) {
 		resultName, ok := c.GetQuery("q")
 		if ok {
-			c.String(http.StatusOK, resultName)
+			stats, _ := statistics.NewFromName(resultName)
+			c.HTML(http.StatusOK, "statistics.gohtml", gin.H{
+				"Stats": stats,
+			})
 			return
 		}
 
