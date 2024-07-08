@@ -64,6 +64,42 @@ func registerTeacherInterface(e *gin.Engine, cfg *config.Config) {
 		})
 	})
 
+	teacher.GET("/statistics/export", func(c *gin.Context) {
+		name, ok := c.GetQuery("name")
+		if !ok {
+			// TODO: Handle this case properly.
+			return
+		}
+
+		stats, err := statistics.NewFromName(name)
+		if err != nil {
+			// TODO: Handle this case properly.
+			return
+		}
+
+		format, ok := c.GetQuery("format")
+		if !ok {
+			format = statistics.FormatJSON
+		}
+
+		c.Header(
+			"Content-Disposition",
+			fmt.Sprintf("attachment; filename=%s.%s", name, format),
+		)
+
+		switch format {
+		case statistics.FormatCSV:
+			c.Header("Content-Type", statistics.MimeCSV)
+			stats.WriteCSV(c.Writer)
+		case statistics.FormatXLSX:
+			c.Header("Content-Type", statistics.MimeXLSX)
+			stats.WriteXLSX(c.Writer)
+		default:
+			c.Header("Content-Type", statistics.MimeJSON)
+			stats.WriteJSON(c.Writer)
+		}
+	})
+
 	teacher.GET("/settings", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "settings.gohtml", gin.H{
 			"Config":         cfg,
