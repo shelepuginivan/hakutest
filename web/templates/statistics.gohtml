@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/statistics.css">
+    <script src="/static/js/statistics.js"></script>
     <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
     <title>{{ .Stats.Name }} | Hakutest</title>
 </head>
@@ -28,77 +29,7 @@
         },
         {{ end }}
     ],
-    sortedBy: 'student',
-    ascending: true,
-    sortByStudent() {
-        if (this.sortedBy === 'student') {
-            this.ascending = !this.ascending
-        }
-        this.sortedBy = 'student'
-
-        this.results.sort((a, b) => {
-            if (this.ascending) {
-                return a.student >= b.student
-            }
-            return a.student <= b.student
-        })
-    },
-    sortByPoints() {
-        if (this.sortedBy === 'points') {
-            this.ascending = !this.ascending
-        }
-        this.sortedBy = 'points'
-
-        this.results.sort((a, b) => {
-            if (this.ascending) {
-                return a.points >= b.points
-            }
-            return a.points <= b.points
-        })
-    },
-    sortByPercentage() {
-        if (this.sortedBy === 'percentage') {
-            this.ascending = !this.ascending
-        }
-        this.sortedBy = 'percentage'
-
-        this.results.sort((a, b) => {
-            if (this.ascending) {
-                return a.percentage >= b.percentage
-            }
-            return a.percentage <= b.percentage
-        })
-    },
-    sortBySubmissionTime() {
-        if (this.sortedBy === 'submittedAt') {
-            this.ascending = !this.ascending
-        }
-        this.sortedBy = 'submittedAt'
-
-        this.results.sort((a, b) => {
-            if (this.ascending) {
-                return a.submittedAt >= b.submittedAt
-            }
-            return a.submittedAt <= b.submittedAt
-        })
-    },
-    sortByTask(task) {
-        if (this.sortedBy === `task:${task}`) {
-            this.ascending = !this.ascending
-        }
-        this.sortedBy = `task:${task}`
-
-        this.results.sort((a, b) => {
-            if (this.ascending) {
-                return a.answers[task].correct >= b.answers[task].correct
-            }
-            return a.answers[task].correct <= b.answers[task].correct
-        })
-    },
-    get sortIndicator() {
-        const iconName = this.ascending ? 'i arrow-up' : 'i arrow-down'
-        return `sort__indicator ${iconName}`
-    }
+    ...statistics()
 }"
 >
     <header class="header statistics__header">
@@ -166,7 +97,10 @@
                         <td x-text="r.submittedAt"></td>
                         <template x-for="a in r.answers">
                             <td :title="a.value">
-                                <i :class="a.correct ? 'i checkmark' : 'i cross'"></i>
+                                <i :class="a.correct 
+                                    ? 'i checkmark' 
+                                    : 'i cross'
+                                "></i>
                             </td>
                         </template>
                     </tr>
