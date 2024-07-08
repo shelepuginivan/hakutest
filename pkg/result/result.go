@@ -5,6 +5,7 @@ import "github.com/shelepuginivan/hakutest/pkg/test"
 
 // Answer represents answer given by the student.
 type Answer struct {
+	Type    string `json:"type"`    // Type of the task.
 	Value   string `json:"value"`   // The answer.
 	Correct bool   `json:"correct"` // Whether answer is correct.
 }

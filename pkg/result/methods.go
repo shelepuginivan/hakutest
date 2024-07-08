@@ -16,6 +16,7 @@ func NormalizeAnswer(answer string) string {
 // Correctness of answer depends on type of the task.
 func CheckAnswer(task *test.Task, answer string) *Answer {
 	a := Answer{
+		Type:  task.Type,
 		Value: answer,
 	}
 
