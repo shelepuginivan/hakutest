@@ -82,6 +82,7 @@
     "statistics": {
         "title": "Statistics",
         "heading": "Statistics",
+        "export": "Export",
         "form": {
             "heading": "Select the test for which statistics will be generated",
             "button": "Generate statistics"

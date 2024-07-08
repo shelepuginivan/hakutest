@@ -10,6 +10,9 @@ import (
 )
 
 const (
+	// Human readable description of XLSX export format.
+	DescriptionXLSX = ".xlsx (MS Excel)"
+
 	// XLSX statistics export format.
 	FormatXLSX = "xlsx"
 

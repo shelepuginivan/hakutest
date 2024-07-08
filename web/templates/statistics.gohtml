@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/form.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/statistics.css">
     <script src="/static/js/statistics.js"></script>
@@ -34,6 +35,20 @@
 >
     <header class="header statistics__header">
         <h1 class="statistics__heading">{{ .Stats.Name }}</h1>
+        <form class="export__form" action="/teacher/statistics/export">
+            <select class="input" name="format">
+                {{ range $fmt, $desc := .ExportFormats }}
+                <option 
+                    value="{{ $fmt }}"
+                    {{ if eq $fmt "xlsx" }}selected{{ end }}
+                >{{ $desc }}</option>
+                {{ end }}
+            </select>
+            <input type="hidden" name="name" value="{{ .Stats.Name }}"/>
+            <button class="button button__primary">
+                {{ i "statistics.export" }}
+            </button>
+        </form>
     </header>
     <main class="statistics__main">
         <table class="statistics__table">

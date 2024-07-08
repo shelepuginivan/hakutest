@@ -6,8 +6,14 @@ import (
 )
 
 const (
+	// Human readable description of JSON export format.
+	DescriptionJSON = ".json (JavaScript Object Notation)"
+
+	// JSON statistics export format.
 	FormatJSON = "json"
-	MimeJSON   = "application/json"
+
+	// JSON file MIME type.
+	MimeJSON = "application/json"
 )
 
 // ToJSON returns statistics bytes in JSON format.

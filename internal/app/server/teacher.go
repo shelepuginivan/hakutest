@@ -55,6 +55,11 @@ func registerTeacherInterface(e *gin.Engine, cfg *config.Config) {
 			stats, _ := statistics.NewFromName(resultName)
 			c.HTML(http.StatusOK, "statistics.gohtml", gin.H{
 				"Stats": stats,
+				"ExportFormats": map[string]string{
+					statistics.FormatXLSX: statistics.DescriptionXLSX,
+					statistics.FormatCSV:  statistics.DescriptionCSV,
+					statistics.FormatJSON: statistics.DescriptionJSON,
+				},
 			})
 			return
 		}

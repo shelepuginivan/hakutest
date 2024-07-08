@@ -41,6 +41,11 @@
     text-overflow: ellipsis;
 }
 
+.export__form {
+    display: flex;
+    gap: 8px;
+}
+
 .statistics__main {
     width: 100%;
     min-width: fit-content;

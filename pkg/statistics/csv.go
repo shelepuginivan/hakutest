@@ -9,6 +9,9 @@ import (
 )
 
 const (
+	// Human readable description of CSV export format.
+	DescriptionCSV = ".csv (Comma-separated values)"
+
 	// CSV statistics export format.
 	FormatCSV = "csv"
 
