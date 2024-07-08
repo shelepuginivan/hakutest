@@ -8,6 +8,13 @@ import (
 	"time"
 )
 
+const (
+	TaskSingle   = "single"   // Task with a single answer.
+	TaskMultiple = "multiple" // Task with multiple answers.
+	TaskOpen     = "open"     // Open-ended task.
+	TaskDetailed = "detailed" // Task with detailed answer.
+)
+
 // Task represents a Test task with a type, text, attachment, options, and answer.
 type Task struct {
 	Type    string   `json:"type"`    // Type of the task.
