@@ -87,8 +87,9 @@
             "button": "Generate statistics"
         },
         "view": {
+            "points": "Points",
             "student": "Student",
-            "points": "Points"
+            "submitted_at": "Submitted at"
         }
     },
     "submission": {

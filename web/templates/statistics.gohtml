@@ -16,6 +16,7 @@
             student: '{{ .Student }}',
             points: {{ .Points }},
             percentage: {{ .Percentage }},
+            submittedAt: '{{ .SubmittedAt.Format "2006-01-02 15:04:05" }}',
             answers: [
                 {{ range .Answers }}
                 {
@@ -66,6 +67,19 @@
                 return a.percentage >= b.percentage
             }
             return a.percentage <= b.percentage
+        })
+    },
+    sortBySubmissionTime() {
+        if (this.sortedBy === 'submittedAt') {
+            this.ascending = !this.ascending
+        }
+        this.sortedBy = 'submittedAt'
+
+        this.results.sort((a, b) => {
+            if (this.ascending) {
+                return a.submittedAt >= b.submittedAt
+            }
+            return a.submittedAt <= b.submittedAt
         })
     },
     sortByTask(task) {
@@ -121,6 +135,15 @@
                             <div class="sort__placeholder"></div>
                         </template>
                     </th>
+                    <th @click="sortBySubmissionTime">
+                        {{ i "statistics.view.submitted_at" }}
+                        <template x-if="sortedBy === 'submittedAt'">
+                            <i :class="sortIndicator"></i>
+                        </template>
+                        <template x-if="sortedBy !== 'submittedAt'">
+                            <div class="sort__placeholder"></div>
+                        </template>
+                    </th>
                     {{ range iter .Stats.Total }}
                     <th @click="sortByTask({{ . }})">
                         {{ incr . }}
@@ -140,6 +163,7 @@
                         <td x-text="r.student"></td>
                         <td x-text="r.points"></td>
                         <td x-text="r.percentage"></td>
+                        <td x-text="r.submittedAt"></td>
                         <template x-for="a in r.answers">
                             <td :title="a.value">
                                 <i :class="a.correct ? 'i checkmark' : 'i cross'"></i>

@@ -69,8 +69,12 @@ func (s *Statistics) WriteXLSX(w io.Writer) error {
 			continue
 		}
 
+		if f.SetCellValue(sheet, fmt.Sprintf("D%d", row), r.SubmittedAt) != nil {
+			continue
+		}
+
 		for idx, a := range r.Answers {
-			cell, err := excelize.CoordinatesToCellName(idx+4, row)
+			cell, err := excelize.CoordinatesToCellName(idx+5, row)
 			if err != nil {
 				continue
 			}
@@ -169,8 +173,13 @@ func writeHeaderRow(f *excelize.File, totalTasks int) (err error) {
 		return err
 	}
 
+	err = f.SetCellValue(sheet, "D1", i18n.Get("statistics.view.submitted_at"))
+	if err != nil {
+		return err
+	}
+
 	for i := range totalTasks {
-		cell, err := excelize.CoordinatesToCellName(i+4, 1)
+		cell, err := excelize.CoordinatesToCellName(i+5, 1)
 		if err != nil {
 			return err
 		}

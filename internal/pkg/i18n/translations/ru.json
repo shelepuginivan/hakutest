@@ -87,8 +87,9 @@
             "button": "Сгенерировать статистику"
         },
         "view": {
+            "points": "Баллы",
             "student": "Ученик",
-            "points": "Баллы"
+            "submitted_at": "Отправлено"
         }
     },
     "submission": {

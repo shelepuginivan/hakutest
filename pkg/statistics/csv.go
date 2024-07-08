@@ -36,6 +36,7 @@ func (s *Statistics) WriteCSV(w io.Writer) (err error) {
 			r.Student,
 			strconv.Itoa(r.Points),
 			strconv.Itoa(r.Percentage),
+			r.SubmittedAt.Format("2006-01-02 15:04:05"),
 		}
 
 		for _, a := range r.Answers {

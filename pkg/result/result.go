@@ -1,7 +1,11 @@
 // Package result provides results management for the app.
 package result
 
-import "github.com/shelepuginivan/hakutest/pkg/test"
+import (
+	"time"
+
+	"github.com/shelepuginivan/hakutest/pkg/test"
+)
 
 // Answer represents answer given by the student.
 type Answer struct {
@@ -12,19 +16,21 @@ type Answer struct {
 
 // Result represent result scored by the student.
 type Result struct {
-	Student    string    `json:"student"`
-	Answers    []*Answer `json:"answers"`
-	Percentage int       `json:"percentage"`
-	Points     int       `json:"points"`
-	Total      int       `json:"total"`
+	Student     string    `json:"student"`
+	SubmittedAt time.Time `json:"submitted_at"`
+	Answers     []*Answer `json:"answers"`
+	Percentage  int       `json:"percentage"`
+	Points      int       `json:"points"`
+	Total       int       `json:"total"`
 }
 
 // New checks solution submitted by student and returns Result.
 func New(t *test.Test, s *test.Solution) *Result {
 	r := Result{
-		Student: s.Student,
-		Points:  0,
-		Total:   t.TotalPoints(),
+		Student:     s.Student,
+		SubmittedAt: s.SubmittedAt,
+		Points:      0,
+		Total:       t.TotalPoints(),
 	}
 
 	for i := range len(t.Tasks) {
