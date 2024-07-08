@@ -1,7 +1,7 @@
 package tray
 
-import "github.com/shelepuginivan/hakutest/pkg/logging"
+import "github.com/rs/zerolog/log"
 
 func OnExit() {
-	logging.Println("TRAY", "System tray application stopped")
+	log.Info().Msg("System tray application exited")
 }

@@ -3,22 +3,21 @@ package main
 import (
 	"context"
 	"flag"
-	"log"
-	"net/http"
 
 	"github.com/getlantern/systray"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 	"github.com/shelepuginivan/hakutest/internal/app/server"
 	"github.com/shelepuginivan/hakutest/internal/app/tray"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
+	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
+	"github.com/shelepuginivan/hakutest/internal/pkg/paths"
 	"github.com/shelepuginivan/hakutest/pkg/result"
 	"github.com/shelepuginivan/hakutest/pkg/test"
 )
 
-var (
-	cfg *config.Config
-	srv *http.Server
-)
+var cfg *config.Config
 
 func init() {
 	cfg = config.New()
@@ -28,30 +27,43 @@ func init() {
 	flag.StringVar(&cfg.Lang, "lang", cfg.Lang, "Language of the interface")
 	flag.IntVar(&cfg.Port, "port", cfg.Port, "Port on which server is started")
 	flag.StringVar(&cfg.TestsDirectory, "tests-directory", cfg.TestsDirectory, "Directory where the test files are stored")
+}
 
-	flag.Parse()
+func onConfigUpdate(c *config.Config) {
+	i18n.Init(c.Lang)
+	result.Init(c)
+	test.Init(c.TestsDirectory)
 
-	i18n.Init(cfg.Lang)
-	result.Init(cfg)
-	test.Init(cfg.TestsDirectory)
-	srv = server.New(cfg)
+	if c.Debug {
+		zerolog.SetGlobalLevel(zerolog.DebugLevel)
+	} else {
+		zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	}
 }
 
 func main() {
-	cfg.OnUpdate(func(c *config.Config) {
-		i18n.Init(c.Lang)
-		result.Init(c)
-		test.Init(c.TestsDirectory)
-	})
+	flag.Parse()
+	srv := server.New(cfg)
+
+	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
+	logFile, err := fsutil.CreateAll(paths.Logs)
+	if err == nil {
+		log.Logger = log.Output(logFile)
+		defer logFile.Close()
+	}
+
+	cfg.OnUpdate(onConfigUpdate)
+	cfg.Update(cfg.Fields)
 
 	if cfg.DisableTray {
-		log.Fatal(srv.ListenAndServe())
+		log.Fatal().Err(srv.ListenAndServe())
 	}
 
 	onReady := tray.OnReady(
 		func() {
 			if err := srv.ListenAndServe(); err != nil {
 				systray.Quit()
+				log.Fatal().Err(err)
 			}
 		},
 		tray.MenuEntry{
@@ -60,6 +72,7 @@ func main() {
 			Callback: func() {
 				srv.Shutdown(context.Background())
 				systray.Quit()
+				log.Info().Msg("Shutdown")
 			},
 		},
 	)

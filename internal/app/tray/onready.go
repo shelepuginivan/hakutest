@@ -2,7 +2,7 @@ package tray
 
 import (
 	"github.com/getlantern/systray"
-	"github.com/shelepuginivan/hakutest/pkg/logging"
+	"github.com/rs/zerolog/log"
 )
 
 type MenuEntry struct {
@@ -29,6 +29,6 @@ func OnReady(callback func(), entries ...MenuEntry) func() {
 		}
 
 		go callback()
-		logging.Println("TRAY", "System tray application started")
+		log.Info().Msg("System tray application is ready")
 	}
 }
