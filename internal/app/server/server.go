@@ -7,7 +7,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
-	"github.com/shelepuginivan/hakutest/internal/pkg/embedded"
 	"github.com/shelepuginivan/hakutest/pkg/security"
 )
 
@@ -32,7 +31,6 @@ func New(cfg *config.Config) *http.Server {
 	engine.Use(gin.Recovery())
 	engine.Use(Logger)
 	engine.Use(RequestTimestamp)
-	engine.Use(serveFavicon(embedded.Icon))
 
 	security.Register(engine, cfg.Security.Student, cfg.Security.Teacher)
 	registerStudentInterface(engine, cfg)
