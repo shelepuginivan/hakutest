@@ -1,8 +1,9 @@
 package tray
 
 import (
-	"github.com/getlantern/systray"
+	"fyne.io/systray"
 	"github.com/rs/zerolog/log"
+	"github.com/shelepuginivan/hakutest/internal/app/tray/icon"
 )
 
 type MenuEntry struct {
@@ -13,7 +14,7 @@ type MenuEntry struct {
 
 func OnReady(callback func(), entries ...MenuEntry) func() {
 	return func() {
-		systray.SetIcon(Icon)
+		systray.SetIcon(icon.Icon)
 		systray.SetTitle(Title)
 		systray.SetTooltip(Tooltip)
 

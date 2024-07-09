@@ -4,7 +4,7 @@ import (
 	"context"
 	"flag"
 
-	"github.com/getlantern/systray"
+	"fyne.io/systray"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/shelepuginivan/hakutest/internal/app/server"
