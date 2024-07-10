@@ -5,6 +5,24 @@
         "error": "Error",
         "info": "Information"
     },
+    "err": {
+        "jwt": {
+            "title": "Failed to authorize",
+            "text": "Entered data is valid, but authorization failed. Please try again later."
+        },
+        "not_found": {
+            "title": "Not found",
+            "text": "The requested page does not exist."
+        },
+        "unprocessable": {
+            "title": "Failed to read request data",
+            "text": "Request data is invalid and cannot be processed. Please try again later."
+        },
+        "write": {
+            "title": "Failed to save data",
+            "text": "Request data is valid, but cannot be saved. Please try again later."
+        }
+    },
     "auth": {
         "username": "Username",
         "password": "Password",

@@ -49,34 +49,45 @@ func registerTeacherInterface(r gin.IRouter, cfg *config.Config) {
 
 	r.GET("/statistics", func(c *gin.Context) {
 		resultName, ok := c.GetQuery("q")
-		if ok {
-			stats, _ := statistics.NewFromName(resultName)
-			c.HTML(http.StatusOK, "statistics.gohtml", gin.H{
-				"Stats": stats,
-				"ExportFormats": map[string]string{
-					statistics.FormatXLSX: statistics.DescriptionXLSX,
-					statistics.FormatCSV:  statistics.DescriptionCSV,
-					statistics.FormatJSON: statistics.DescriptionJSON,
-				},
+		if !ok {
+			c.HTML(http.StatusOK, "statistics_menu.gohtml", gin.H{
+				"AvailableResults": result.AvailableResults(),
 			})
 			return
 		}
 
-		c.HTML(http.StatusOK, "statistics_menu.gohtml", gin.H{
-			"AvailableResults": result.AvailableResults(),
+		stats, err := statistics.NewFromName(resultName)
+		if err != nil {
+			c.HTML(http.StatusNotFound, "info.gohtml", gin.H{
+				"Title": i18n.Get("err.not_found.title"),
+				"Text":  i18n.Get("err.not_found.text"),
+			})
+			return
+		}
+
+		c.HTML(http.StatusOK, "statistics.gohtml", gin.H{
+			"Stats": stats,
+			"ExportFormats": map[string]string{
+				statistics.FormatXLSX: statistics.DescriptionXLSX,
+				statistics.FormatCSV:  statistics.DescriptionCSV,
+				statistics.FormatJSON: statistics.DescriptionJSON,
+			},
 		})
 	})
 
 	r.GET("/statistics/export", func(c *gin.Context) {
 		name, ok := c.GetQuery("name")
 		if !ok {
-			// TODO: Handle this case properly.
+			c.Redirect(http.StatusSeeOther, "/teacher/statistics")
 			return
 		}
 
 		stats, err := statistics.NewFromName(name)
 		if err != nil {
-			// TODO: Handle this case properly.
+			c.HTML(http.StatusNotFound, "info.gohtml", gin.H{
+				"Title": i18n.Get("err.not_found.title"),
+				"Text":  i18n.Get("err.not_found.text"),
+			})
 			return
 		}
 
@@ -93,13 +104,17 @@ func registerTeacherInterface(r gin.IRouter, cfg *config.Config) {
 		switch format {
 		case statistics.FormatCSV:
 			c.Header("Content-Type", statistics.MimeCSV)
-			stats.WriteCSV(c.Writer)
+			err = stats.WriteCSV(c.Writer)
 		case statistics.FormatXLSX:
 			c.Header("Content-Type", statistics.MimeXLSX)
-			stats.WriteXLSX(c.Writer)
+			err = stats.WriteXLSX(c.Writer)
 		default:
 			c.Header("Content-Type", statistics.MimeJSON)
-			stats.WriteJSON(c.Writer)
+			err = stats.WriteJSON(c.Writer)
+		}
+
+		if err != nil {
+			c.Status(http.StatusInternalServerError)
 		}
 	})
 
