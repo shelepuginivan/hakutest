@@ -62,10 +62,10 @@ func CredentialsRegister(router gin.IRouter) {
 
 		if err := c.Bind(&form); err != nil {
 			c.HTML(http.StatusUnprocessableEntity, "error.gohtml", gin.H{
-				"Title":   i18n.Get("auth.unprocessable.title"),
-				"Text":    i18n.Get("auth.unprocessable.text"),
+				"Title":   i18n.Get("err.unprocessable.title"),
+				"Text":    i18n.Get("err.unprocessable.text"),
 				"Code":    http.StatusUnprocessableEntity,
-				"Message": "failed to parse form",
+				"Message": "failed to parse authorization form",
 				"Error":   err.Error(),
 			})
 			return
@@ -83,8 +83,8 @@ func CredentialsRegister(router gin.IRouter) {
 		jwt, err := security.GenerateJWT(credentials)
 		if err != nil {
 			c.HTML(http.StatusUnprocessableEntity, "error.gohtml", gin.H{
-				"Title":   i18n.Get("auth.jwt_generation_err.title"),
-				"Text":    i18n.Get("auth.jwt_generation_err.text"),
+				"Title":   i18n.Get("err.jwt.title"),
+				"Text":    i18n.Get("err.jwt.text"),
 				"Code":    http.StatusUnprocessableEntity,
 				"Message": "failed to generate jwt",
 				"Error":   err.Error(),

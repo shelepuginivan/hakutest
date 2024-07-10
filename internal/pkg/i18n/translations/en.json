@@ -27,15 +27,7 @@
         "username": "Username",
         "password": "Password",
         "button": "Log In",
-        "invalid": "Invalid username or password",
-        "unprocessable": {
-            "title": "Failed to read credentials",
-            "text": "Entered data is invalid. Please try again."
-        },
-        "jwt_generation_err": {
-            "title": "Failed to process credentials",
-            "text": "Entered data is valid, but could not be processed. Please try again."
-        }
+        "invalid": "Invalid username or password"
     },
     "dashboard": {
         "title": "Dashboard",
@@ -58,14 +50,6 @@
         "title": "Settings",
         "heading": "Settings",
         "button": "Save settings",
-        "unprocessable": {
-            "title": "Failed to read data",
-            "text": "Entered data is invalid. Please try again."
-        },
-        "save_failed": {
-            "title": "Failed to write settings",
-            "text": "Entered data is valid, but could not be saved."
-        },
         "debug": {
             "label": "Debug",
             "tip": "Run Hakutest in debug mode, which allows to see more information in the logs."
@@ -111,16 +95,6 @@
             "points": "Points",
             "student": "Student",
             "submitted_at": "Submitted at"
-        }
-    },
-    "submission": {
-        "unprocessable": {
-            "title": "Failed to read answers",
-            "text": "Entered data is invalid. Please try again or contact your teacher."
-        },
-        "save_failed": {
-            "title": "Failed to save answers",
-            "text": "Answers are not saved. Please try again or contact your teacher."
         }
     },
     "test_not_found": {

@@ -129,10 +129,10 @@ func registerTeacherInterface(r gin.IRouter, cfg *config.Config) {
 		err := c.Request.ParseForm()
 		if err != nil {
 			c.HTML(http.StatusUnprocessableEntity, "error.gohtml", gin.H{
-				"Title":   i18n.Get("settings.unprocessable.title"),
-				"Text":    i18n.Get("settings.unprocessable.text"),
+				"Title":   i18n.Get("err.unprocessable.title"),
+				"Text":    i18n.Get("err.unprocessable.text"),
 				"Code":    http.StatusUnprocessableEntity,
-				"Message": "failed to parse form",
+				"Message": "failed to parse settings form",
 				"Error":   err.Error(),
 			})
 			return
@@ -156,8 +156,8 @@ func registerTeacherInterface(r gin.IRouter, cfg *config.Config) {
 		err = cfg.Update(fields)
 		if err != nil {
 			c.HTML(http.StatusInternalServerError, "error.gohtml", gin.H{
-				"Title":   i18n.Get("settings.save_failed.title"),
-				"Text":    i18n.Get("settings.save_failed.text"),
+				"Title":   i18n.Get("err.write.title"),
+				"Text":    i18n.Get("err.write.text"),
 				"Code":    http.StatusUnprocessableEntity,
 				"Message": "failed to write config file",
 				"Error":   err.Error(),
