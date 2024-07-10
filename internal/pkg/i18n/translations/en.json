@@ -1,4 +1,6 @@
 {
+    "lang": "en",
+    "dir": "ltr",
     "meta": {
         "error": "Error",
         "info": "Information"

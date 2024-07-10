@@ -18,7 +18,6 @@ func templates() *template.Template {
 		"incr": func(i int) int {
 			return i + 1
 		},
-		"lang":     i18n.Lang,
 		"markdown": markdown.ToGoHTML,
 		"iter": func(i int) (stream chan int) {
 			stream = make(chan int)
