@@ -32,7 +32,7 @@ func init() {
 func onConfigUpdate(c *config.Config) {
 	i18n.Init(c.Lang)
 	result.Init(c)
-	test.Init(c.TestsDirectory)
+	test.Init(c)
 
 	if c.Debug {
 		zerolog.SetGlobalLevel(zerolog.DebugLevel)
