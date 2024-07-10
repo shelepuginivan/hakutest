@@ -124,25 +124,12 @@
         }
     },
     "test": {
-        "form": {
-            "close": "Close",
-            "confirm": "Are you sure you want to submit your answers?",
-            "student": "Enter your name:",
-            "submit": "Submit"
-        },
-        "task": {
-            "single": {
-                "legend": "Choose one answer option:"
-            },
-            "multiple": {
-                "legend": "Choose several answer options:"
-            },
-            "open": {
-                "label": "Enter your answer:"
-            },
-            "detailed": {
-                "label": "Enter detailed answer:"
-            }
-        }
+        "confirm": "Are you sure you want to submit your answers?",
+        "student": "Enter your name:",
+        "submit": "Submit",
+        "task_single": "Choose one answer option:",
+        "task_multiple": "Choose several answer options:",
+        "task_open": "Enter your answer:",
+        "task_detailed": "Enter detailed answer:"
     }
 }
