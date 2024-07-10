@@ -1,3 +1,9 @@
+input[type='checkbox'],
+input[type='radio'] {
+    background: none;
+    accent-color: var(--green);
+}
+
 .button {
     display: flex;
     align-items: center;
