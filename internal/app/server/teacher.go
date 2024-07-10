@@ -17,19 +17,17 @@ import (
 )
 
 // registerTeacherInterface adds endpoints for the teacher interface.
-func registerTeacherInterface(e *gin.Engine, cfg *config.Config) {
-	teacher := e.Group("/teacher")
-
-	teacher.Use(security.Middleware(
+func registerTeacherInterface(r gin.IRouter, cfg *config.Config) {
+	r.Use(security.Middleware(
 		cfg.Security.Teacher,
 		security.RoleTeacher,
 	))
 
-	teacher.GET("/", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {
 		c.Redirect(http.StatusPermanentRedirect, "/teacher/dashboard")
 	})
 
-	teacher.GET("/dashboard", func(c *gin.Context) {
+	r.GET("/dashboard", func(c *gin.Context) {
 		localIP, err := network.GetLocalIP()
 		if err == nil {
 			localIP = fmt.Sprintf("http://%s:%d", localIP, cfg.Port)
@@ -49,7 +47,7 @@ func registerTeacherInterface(e *gin.Engine, cfg *config.Config) {
 		})
 	})
 
-	teacher.GET("/statistics", func(c *gin.Context) {
+	r.GET("/statistics", func(c *gin.Context) {
 		resultName, ok := c.GetQuery("q")
 		if ok {
 			stats, _ := statistics.NewFromName(resultName)
@@ -69,7 +67,7 @@ func registerTeacherInterface(e *gin.Engine, cfg *config.Config) {
 		})
 	})
 
-	teacher.GET("/statistics/export", func(c *gin.Context) {
+	r.GET("/statistics/export", func(c *gin.Context) {
 		name, ok := c.GetQuery("name")
 		if !ok {
 			// TODO: Handle this case properly.
@@ -105,14 +103,14 @@ func registerTeacherInterface(e *gin.Engine, cfg *config.Config) {
 		}
 	})
 
-	teacher.GET("/settings", func(c *gin.Context) {
+	r.GET("/settings", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "settings.gohtml", gin.H{
 			"Config":         cfg,
 			"SupportedLangs": i18n.SupportedLangs(),
 		})
 	})
 
-	teacher.POST("/settings", func(c *gin.Context) {
+	r.POST("/settings", func(c *gin.Context) {
 		err := c.Request.ParseForm()
 		if err != nil {
 			c.HTML(http.StatusUnprocessableEntity, "error.gohtml", gin.H{

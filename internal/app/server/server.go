@@ -34,8 +34,20 @@ func New(cfg *config.Config) *http.Server {
 	engine.StaticFS("/static", http.FS(web.Static))
 
 	security.Register(engine, cfg.Security.Student, cfg.Security.Teacher)
-	registerStudentInterface(engine, cfg)
-	registerTeacherInterface(engine, cfg)
+
+	// Student interface.
+	student := engine.Group("/", security.Middleware(
+		cfg.Security.Student,
+		security.RoleStudent,
+	))
+	registerStudentInterface(student, cfg)
+
+	// Teacher interface.
+	teacher := engine.Group("/teacher", security.Middleware(
+		cfg.Security.Teacher,
+		security.RoleTeacher,
+	))
+	registerTeacherInterface(teacher, cfg)
 
 	return &http.Server{
 		Addr:    fmt.Sprintf(":%d", cfg.Port),
