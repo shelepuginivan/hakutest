@@ -15,8 +15,8 @@
     gap: 36px;
     width: 100%;
     max-width: 800px;
-    background: var(--selection);
     padding: 32px;
+    border: 1px solid var(--selection);
     border-radius: 8px;
 }
 
