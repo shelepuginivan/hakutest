@@ -2,23 +2,15 @@ package server
 
 import (
 	"html/template"
-	"net/http"
 
-	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/markdown"
 	"github.com/shelepuginivan/hakutest/web"
 )
 
-// registerStatic sets engine static file system.
-func registerStatic(e *gin.Engine) {
-	staticFS := http.FS(web.Static)
-	e.StaticFS("/static", staticFS)
-}
-
-// registerTemplates sets engine template file system.
-func registerTemplates(e *gin.Engine) {
-	var err error
+// templates provides HTML templates defined in `/web/templates` directory.
+// It parses the embedded filesystem and adds custom functions.
+func templates() *template.Template {
 	tmpl := template.New("embedded")
 
 	tmpl = tmpl.Funcs(template.FuncMap{
@@ -40,14 +32,9 @@ func registerTemplates(e *gin.Engine) {
 		},
 	})
 
-	tmpl, err = tmpl.ParseFS(
+	return template.Must(tmpl.ParseFS(
 		web.Templates,
 		"templates/*.gohtml",
 		"partials/*.gohtml",
-	)
-	if err != nil {
-		panic(err)
-	}
-
-	e.SetHTMLTemplate(tmpl)
+	))
 }

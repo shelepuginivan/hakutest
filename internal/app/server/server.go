@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/pkg/security"
+	"github.com/shelepuginivan/hakutest/web"
 )
 
 // setMode sets mode of the gin engine.
@@ -25,12 +26,12 @@ func New(cfg *config.Config) *http.Server {
 	setMode(cfg)
 
 	engine := gin.New()
-	registerStatic(engine)
-	registerTemplates(engine)
 
 	engine.Use(gin.Recovery())
 	engine.Use(Logger)
 	engine.Use(RequestTimestamp)
+	engine.SetHTMLTemplate(templates())
+	engine.StaticFS("/static", http.FS(web.Static))
 
 	security.Register(engine, cfg.Security.Student, cfg.Security.Teacher)
 	registerStudentInterface(engine, cfg)
