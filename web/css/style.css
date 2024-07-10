@@ -8,7 +8,6 @@
     --darkgreen: #2C7135;
     --red: #FF4500;
     --yellow: #FFFF00;
-    --backdrop: rgba(16, 16, 16, .7);
     --shadow: rgba(16, 16, 16, .3);
 }
 
@@ -23,7 +22,6 @@
         --darkgreen: #67B458;
         --red: #FF4500;
         --yellow: #FFFF00;
-        --backdrop: rgba(168, 168, 168, .4);
         --shadow: rgba(136, 144, 136, .5);
     }
 }
@@ -50,10 +48,6 @@ body {
     height: 100%;
     flex-direction: column;
     background: var(--background);
-}
-
-body.modal_open {
-    overflow: hidden;
 }
 
 main {

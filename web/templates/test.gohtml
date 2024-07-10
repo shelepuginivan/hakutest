@@ -6,10 +6,8 @@
     <link rel="icon" href="/static/img/favicon.ico">
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/css/form.css">
-    <link rel="stylesheet" href="/static/css/modal.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/test.css">
-    <script defer src="/static/js/test.js"></script>
     <title>{{ .Test.Title }} | Hakutest</title>
 </head>
 <body>
@@ -22,6 +20,7 @@
             class="form test__form container"
             method="POST"
             action="/{{ .TestName }}"
+            onsubmit="return confirm({{ i "test.form.confirm" }})"
         >
             <div class="test__task shadow">
                 <label class="student__label">
@@ -86,27 +85,6 @@
                 {{ i "test.form.submit" }}
             </button>
         </form>
-        <div class="modal__backdrop" data-cancel>
-            <div class="modal">
-                <div class="modal__header">
-                    <span
-                        class="i close"
-                        aria-label="{{ i "test.form.close" }}"
-                        data-cancel
-                    ></span>
-                </div>
-                <div class="modal__body">
-                    <h2 class="modal__heading">
-                        {{ i "test.form.confirm" }}
-                    </h2>
-                </div>
-                <div class="modal__footer">
-                    <button class="button button__primary" data-confirm>
-                        {{ i "test.form.submit" }}
-                    </button>
-                </div>
-            </div>
-        </div>
     <main>
 </body>
 </html>
