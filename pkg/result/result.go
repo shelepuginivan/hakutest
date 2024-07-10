@@ -33,8 +33,7 @@ func New(t *test.Test, s *test.Solution) *Result {
 		Total:       t.TotalPoints(),
 	}
 
-	for i := range len(t.Tasks) {
-		task := t.Tasks[i]
+	for i, task := range t.Tasks {
 		answer := s.Answers[i]
 
 		a := CheckAnswer(task, answer)

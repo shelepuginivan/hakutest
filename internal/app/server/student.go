@@ -59,7 +59,7 @@ func registerStudentInterface(e *gin.Engine, cfg *config.Config) {
 			SubmittedAt: c.GetTime("timestamp"),
 		}
 
-		for i := range len(t.Tasks) {
+		for i := range t.Tasks {
 			answer := c.PostFormArray(strconv.Itoa(i))
 			answerString := strings.Join(answer, ",")
 
