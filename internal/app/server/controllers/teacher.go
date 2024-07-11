@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"bytes"
 	"fmt"
+	"io"
 	"net/http"
 	"strconv"
 
@@ -84,6 +86,42 @@ func (co *TeacherController) DownloadSelected(c *gin.Context) {
 func (co *TeacherController) DeleteSelected(c *gin.Context) {
 	selected := c.PostFormArray("tests")
 	test.DeleteMany(selected...)
+	c.Redirect(http.StatusSeeOther, "/teacher/tests")
+}
+
+// ImportTests is a [github.com/gin-gonic/gin] handler for the `POST
+// /teacher/tests/import` route. It imports uploaded tests to the tests
+// directory and redirects request to the `/teacher/tests` page.
+func (co *TeacherController) ImportTests(c *gin.Context) {
+	form, err := c.MultipartForm()
+	if err != nil {
+		c.HTML(http.StatusUnprocessableEntity, "error.gohtml", gin.H{
+			"Title":   i18n.Get("err.unprocessable.title"),
+			"Text":    i18n.Get("err.unprocessable.text"),
+			"Code":    http.StatusUnprocessableEntity,
+			"Message": "failed to get uploaded files",
+			"Error":   err.Error(),
+		})
+		return
+	}
+
+	files := form.File["files"]
+
+	for _, file := range files {
+		f, err := file.Open()
+		if err != nil {
+			continue
+		}
+		defer f.Close()
+
+		buf := bytes.NewBuffer(nil)
+		if _, err := io.Copy(buf, f); err != nil {
+			continue
+		}
+
+		test.Import(buf.Bytes())
+	}
+
 	c.Redirect(http.StatusSeeOther, "/teacher/tests")
 }
 
