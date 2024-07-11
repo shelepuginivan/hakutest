@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/shelepuginivan/hakutest/internal/app/server/controllers"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/pkg/security"
 	"github.com/shelepuginivan/hakutest/web"
@@ -36,18 +37,27 @@ func New(cfg *config.Config) *http.Server {
 	security.Register(engine, cfg.Security.Student, cfg.Security.Teacher)
 
 	// Student interface.
+	s := controllers.NewStudent(cfg)
 	student := engine.Group("/", security.Middleware(
 		cfg.Security.Student,
 		security.RoleStudent,
 	))
-	registerStudentInterface(student, cfg)
+	student.GET("/", s.SearchPage)
+	student.GET("/:test", s.TestIsAvailable, s.TestPage)
+	student.POST("/:test", s.TestIsAvailable, s.TestSubmission)
 
 	// Teacher interface.
+	t := controllers.NewTeacher(cfg)
 	teacher := engine.Group("/teacher", security.Middleware(
 		cfg.Security.Teacher,
 		security.RoleTeacher,
 	))
-	registerTeacherInterface(teacher, cfg)
+	teacher.GET("/", t.Index)
+	teacher.GET("/dashboard", t.Dashboard)
+	teacher.GET("/statistics", t.Statistics)
+	teacher.GET("/statistics/export", t.StatisticsExport)
+	teacher.GET("/settings", t.SettingsPage)
+	teacher.POST("/settings", t.SettingsUpdate)
 
 	return &http.Server{
 		Addr:    fmt.Sprintf(":%d", cfg.Port),
