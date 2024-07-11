@@ -125,6 +125,25 @@ func (co *TeacherController) ImportTests(c *gin.Context) {
 	c.Redirect(http.StatusSeeOther, "/teacher/tests")
 }
 
+// DownloadSelected is a [github.com/gin-gonic/gin] handler for the `GET
+// /teacher/tests/action/:test` route. It writes the test as attachment in JSON
+// format.
+func (co *TeacherController) DownloadTest(c *gin.Context) {
+	testName := c.Param("test")
+
+	c.Header("Content-Type", "application/json")
+	c.Header(
+		"Content-Disposition",
+		fmt.Sprintf("attachment; filename=%s.json", testName),
+	)
+
+	err := test.WriteJSON(c.Writer, testName)
+	if err != nil {
+		c.Status(http.StatusInternalServerError)
+		c.Error(err)
+	}
+}
+
 // Statistics is a [github.com/gin-gonic/gin] handler for the `GET
 // /teacher/statistics` route. If search parameter `q` is present, it renders
 // HTML view of the results statistics, otherwise it renders statistics menu.
