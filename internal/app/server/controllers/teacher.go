@@ -78,6 +78,15 @@ func (co *TeacherController) DownloadSelected(c *gin.Context) {
 	}
 }
 
+// DeleteSelected is a [github.com/gin-gonic/gin] handler for the `POST
+// /teacher/tests/selected` route. It deletes every selected test and redirects
+// request to the `/teacher/tests` page.
+func (co *TeacherController) DeleteSelected(c *gin.Context) {
+	selected := c.PostFormArray("tests")
+	test.DeleteMany(selected...)
+	c.Redirect(http.StatusSeeOther, "/teacher/tests")
+}
+
 // Statistics is a [github.com/gin-gonic/gin] handler for the `GET
 // /teacher/statistics` route. If search parameter `q` is present, it renders
 // HTML view of the results statistics, otherwise it renders statistics menu.
