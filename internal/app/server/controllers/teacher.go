@@ -12,6 +12,7 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/uptime"
 	"github.com/shelepuginivan/hakutest/pkg/result"
 	"github.com/shelepuginivan/hakutest/pkg/statistics"
+	"github.com/shelepuginivan/hakutest/pkg/test"
 	"github.com/shelepuginivan/hakutest/pkg/version"
 )
 
@@ -51,6 +52,14 @@ func (co *TeacherController) Dashboard(c *gin.Context) {
 			"Minutes": int(u.Minutes()) % 60,
 			"Seconds": int(u.Seconds()) % 60,
 		},
+	})
+}
+
+// Tests is a [github.com/gin-gonic/gin] handler for the `GET
+// /teacher/tests` route. It renders tests menu HTML page.
+func (co *TeacherController) Tests(c *gin.Context) {
+	c.HTML(http.StatusOK, "tests.gohtml", gin.H{
+		"Tests": test.GetList(),
 	})
 }
 
