@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="{{ i "lang" }}" dir="{{ i "dir" }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/teacher.css">
+    <link rel="stylesheet" href="/static/css/tests.css">
+    <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
+    <title>{{ i "tests.title" }} | Hakutest</title>
+</head>
+<body x-data="{
+    tests: [
+        {{ range .Tests }}
+        '{{ . }}',
+        {{ end }}
+    ],
+    selected: new Set(),
+    selectedAll: false,
+    selectAll() {
+        this.tests.forEach((t) => this.selected.add(t))
+    },
+    unselectAll() {
+        this.selected.clear()
+    },
+    toggleSelectAll() {
+        if (this.selectedAll) {
+            this.unselectAll()
+        } else {
+            this.selectAll()
+        }
+
+        this.selectedAll = !this.selectedAll
+    },
+    toggleEntry(entry) {
+        if (this.selected.has(entry)) {
+            this.selected.delete(entry)
+        } else {
+            this.selected.add(entry)
+        }
+    },
+    downloadSelectedAction() {
+        const query = new URLSearchParams()
+        for (const s of this.selected) {
+            query.append('tests', s)
+        }
+        return `/teacher/tests/selected?${query.toString()}`
+    }
+}">
+    {{ template "navigation" }}
+    <header class="header">
+        <h1>{{ i "tests.heading" }}</h1>
+    </header>
+    <main class="main">
+        <div class="menu shadow">
+            <label>
+                <input type="checkbox" @click="toggleSelectAll" autocomplete="off">
+                {{ i "tests.select_all" }}
+            </label>
+            <menu class="test__actions">
+                <li>
+                    <form
+                        action="/teacher/tests/selected"
+                        method="post"
+                        onsubmit="return confirm('{{ i "tests.selected.delete.confirm" }}')"
+                    >
+                        <template x-for="s in Array.from(selected)">
+                            <input type="hidden" name="tests" :value="s">
+                        </template>
+                        <button
+                            class="button button__danger"
+                            disabled
+                            :disabled="selected.size <= 0"
+                        >
+                            <i class="i trash-can"></i>
+                            {{ i "tests.selected.delete.button" }}
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="/teacher/tests/selected">
+                        <template x-for="s in Array.from(selected)">
+                            <input type="hidden" name="tests" :value="s">
+                        </template>
+                        <button class="button button__secondary" disabled :disabled="selected.size <= 0">
+                            <i class="i download"></i>
+                            {{ i "tests.selected.download" }}
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form
+                        action="/teacher/tests/import"
+                        enctype="multipart/form-data"
+                        method="post"
+                    >
+                        <label class="button button__primary">
+                            <i class="i import"></i> {{ i "tests.import" }}
+                            <input 
+                                type="file"
+                                name="files"
+                                accept="application/json"
+                                multiple
+                                hidden
+                                onchange="this.form.submit()"
+                            >
+                        </label>
+                    </form>
+                </li>
+                <a class="button button__primary" href="/teacher/tests/edit">
+                    <i class="i add"></i> {{ i "tests.add" }}
+                </a>
+            </menu>
+        </div>
+        {{ if eq (len .Tests) 0 }}
+        <div class="test__fallback shadow">
+            <h2>{{ i "tests.fallback" }}</h2>
+        </div>
+        {{ else }}
+        <div class="test__list shadow">
+            {{ range $index, $test := .Tests }}
+            {{ if gt $index 0 }}
+            <div class="divider" role="presentation"></div>
+            {{ end }}
+            {{ with $test }}
+            <div class="test__entry">
+                <label>
+                    <input
+                        type="checkbox"
+                        :checked="selected.has('{{ . }}')"
+                        @click="toggleEntry('{{ . }}')"
+                    >
+                    {{ . }}
+                </label>
+                <menu class="test__menu">
+                    <li title="{{ i "tests.menu.view" }}">
+                        <a
+                            class="test__menu__action"
+                            href="/{{ . }}"
+                            aria-label="{{ i "tests.menu.view" }}"
+                        >
+                            <i class="i view"></i>
+                        </a>
+                    </li>
+                    <li title="{{ i "tests.menu.download" }}">
+                        <a
+                            class="test__menu__action"
+                            href="/teacher/tests/action/{{ . }}"
+                            aria-label="{{ i "tests.menu.download" }}"
+                        >
+                            <i class="i download"></i>
+                        </a>
+                    </li>
+                    <li title="{{ i "tests.menu.delete.button" }}">
+                        <form
+                            action="/teacher/tests/action/{{ . }}"
+                            method="post"
+                            onsubmit="return confirm('{{ i "tests.menu.delete.confirm" }}')"
+                        >
+                            <button
+                                class="test__menu__action"
+                                aria-label="{{ i "tests.menu.delete.button" }}"
+                            >
+                                <i class="i trash-can"></i>
+                            </button>
+                        </form>
+                    </li>
+                    <li title="{{ i "tests.menu.edit" }}">
+                        <a
+                            class="test__menu__action"
+                            href="/teacher/tests/edit?name={{ . }}"
+                            aria-label="{{ i "tests.menu.edit" }}"
+                        >
+                            <i class="i edit"></i>
+                        </a>
+                    </li>
+                </menu>
+            </div>
+            {{ end }}
+            {{ end }}
+        </div>
+        {{ end }}
+    </main>
+    <footer class="footer">
+    </footer>
+</body>
+</html>

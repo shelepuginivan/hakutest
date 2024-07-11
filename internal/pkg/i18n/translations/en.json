@@ -97,6 +97,30 @@
             "submitted_at": "Submitted at"
         }
     },
+    "tests": {
+        "title": "Tests",
+        "heading": "Tests",
+        "select_all": "Select all",
+        "selected": {
+            "delete": {
+                "confirm": "Are you sure you want to delete selected tests?",
+                "button": "Delete selected"
+            },
+            "download": "Download selected"
+        },
+        "import": "Import",
+        "add": "Add",
+        "fallback": "You don't have any tests yet",
+        "menu": {
+            "view": "Open this test",
+            "download": "Download this test",
+            "delete": {
+                "button": "Delete this test",
+                "confirm": "Are you sure you want to delete this test?"
+            },
+            "edit": "Edit this test"
+        }
+    },
     "test_not_found": {
         "title": "Test not found",
         "text": "The test you are requesting does not exist."
