@@ -63,6 +63,21 @@ func (co *TeacherController) Tests(c *gin.Context) {
 	})
 }
 
+// DownloadSelected is a [github.com/gin-gonic/gin] handler for the `GET
+// /teacher/tests/selected` route. It writes `.zip` archive with each selected
+// test.
+func (co *TeacherController) DownloadSelected(c *gin.Context) {
+	selected := c.QueryArray("tests")
+	c.Header("Content-Type", "application/zip")
+	c.Header("Content-Disposition", "attachment; filename=hakutest.zip")
+
+	err := test.WriteZip(c.Writer, selected...)
+	if err != nil {
+		c.Status(http.StatusInternalServerError)
+		c.Error(err)
+	}
+}
+
 // Statistics is a [github.com/gin-gonic/gin] handler for the `GET
 // /teacher/statistics` route. If search parameter `q` is present, it renders
 // HTML view of the results statistics, otherwise it renders statistics menu.

@@ -55,6 +55,7 @@ func New(cfg *config.Config) *http.Server {
 	teacher.GET("/", t.Index)
 	teacher.GET("/dashboard", t.Dashboard)
 	teacher.GET("/tests", t.Tests)
+	teacher.GET("/tests/selected", t.DownloadSelected)
 	teacher.GET("/statistics", t.Statistics)
 	teacher.GET("/statistics/export", t.StatisticsExport)
 	teacher.GET("/settings", t.SettingsPage)
