@@ -16,10 +16,8 @@
     </header>
     <main>
         <form
-            id="test-form"
             class="form test__form container"
             method="POST"
-            action="/{{ .TestName }}"
             onsubmit="return confirm({{ i "test.confirm" }})"
         >
             <div class="test__task shadow">

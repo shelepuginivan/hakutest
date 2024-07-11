@@ -69,12 +69,10 @@ func (co *StudentController) TestIsAvailable(c *gin.Context) {
 //
 // TestPage must be used after [StudentController.TestIsAvailable] middleware.
 func (co *StudentController) TestPage(c *gin.Context) {
-	name := c.Param("test")
 	t, _ := c.Get("test")
 
 	c.HTML(http.StatusOK, "test.gohtml", gin.H{
-		"Test":     t,
-		"TestName": name,
+		"Test": t,
 	})
 }
 
