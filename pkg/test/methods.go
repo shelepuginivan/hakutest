@@ -67,7 +67,9 @@ func GetByName(name string) (*Test, error) {
 	return &test, nil
 }
 
-// Import imports test to the tests directory.
+// Import imports test to the tests directory. If test with the same title
+// exists, append a numeric suffix. The suffix is incremented until test name
+// is unique.
 func Import(test []byte) error {
 	var t Test
 	if err := json.Unmarshal(test, &t); err != nil {
@@ -84,8 +86,6 @@ func Import(test []byte) error {
 		return fsutil.WriteAll(testPath, test)
 	}
 
-	// If test with this name exists, append numeric suffix.
-	// The suffix is incremented until test name is unique.
 	for i := 1; true; i++ {
 		testName := fmt.Sprintf("%s (%d)", t.Title, i)
 		testPath = filepath.Join(testsDirectory, NormalizeName(testName))

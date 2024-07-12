@@ -42,7 +42,7 @@ func (t Test) TotalPoints() int {
 }
 
 // IsExpired reports whether the test is expired.
-// If the ExpiresIn field is zero, it returns true.
+// If the ExpiresIn field is zero, it returns false.
 func (t Test) IsExpired() bool {
 	return !t.ExpiresAt.IsZero() && t.ExpiresAt.Before(time.Now())
 }
