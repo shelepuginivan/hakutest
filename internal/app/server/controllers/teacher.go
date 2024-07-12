@@ -145,7 +145,7 @@ func (co *TeacherController) DownloadTest(c *gin.Context) {
 }
 
 // DeleteTest is a [github.com/gin-gonic/gin] handler for the `POST
-// /teacher/tests/:test` route. It deletes the test and redirects request to
+// /teacher/tests/action/:test` route. It deletes the test and redirects request to
 // `/teacher/tests` page.
 func (co *TeacherController) DeleteTest(c *gin.Context) {
 	testName := c.Param("test")
