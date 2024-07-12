@@ -2,6 +2,7 @@ package server
 
 import (
 	"html/template"
+	"strings"
 
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/markdown"
@@ -28,6 +29,9 @@ func templates() *template.Template {
 				close(stream)
 			}()
 			return
+		},
+		"split": func(s, d string) []string {
+			return strings.Split(s, d)
 		},
 	})
 

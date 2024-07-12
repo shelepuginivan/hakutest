@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="{{ i "lang" }}" dir="{{ i "dir" }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/teacher.css">
+    <link rel="stylesheet" href="/static/css/editor.css">
+    <script src="/static/js/editor.js"></script>
+    <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
+    <title>{{ if eq (len .Title) 0 }}{{ i "editor.new_test" }}{{ else }}{{ .Title }}{{ end }} | Hakutest</title>
+</head>
+<body x-data="{
+    title: '{{ .Title }}',
+    target: '{{ .Target }}',
+    description: '{{ .Description }}',
+    subject: '{{ .Subject }}',
+    author: '{{ .Author }}',
+    institution: '{{ .Institution }}',
+    expiresAt: {{ if not .ExpiresAt.IsZero }}
+        '{{ .ExpiresAt.Local.Format "2006-01-02T15:04:05" }}'
+    {{ else }}
+        ''
+    {{ end }},
+    tasks: [
+        {{ range $index, $task := .Tasks }}
+        {{ with $task }}
+        {
+            id: 'task:{{ $index }}',
+            text: `{{ .Text }}`,
+            type: '{{ .Type }}',
+            single: {
+                {{ if eq .Type "single" }}
+                answer: '{{ .Answer }}',
+                {{ else }}
+                answer: '',
+                {{ end }}
+
+                options: [{{ range .Options }}'{{ . }}',{{ end }}]
+            },
+            multiple: {
+                {{ if eq .Type "multiple" }}
+                answer: [
+                    {{ range (split .Answer ",") }}
+                    '{{ . }}',
+                    {{ end }}
+                ],
+                {{ else }}
+                answer: [],
+                {{ end }}
+
+                options: [{{ range .Options }}'{{ . }}',{{ end }}]
+            },
+            {{ if eq .Type "open" }}
+            open: `{{ .Answer }}`
+            {{ else }}
+            open: ''
+            {{ end }}
+        },
+        {{ end }}
+        {{ end }}
+    ],
+    ...editor()
+}">
+    <header class="header editor__header">
+        <h1 class="editor__heading" x-text="title"></h1>
+        <button
+            class="button button__secondary"
+            type="submit"
+            form="editor-form"
+        >
+            {{ i "editor.save" }}
+        </button>
+    </header>
+    <main class="main">
+        <form id="editor-form" class="editor" @submit.prevent="onSubmit">
+            <section class="editor__fields shadow">
+                <label class="editor__label">
+                    <i>{{ i "editor.field.title" }}</i>
+                    <input class="input" required x-model="title">
+                </label>
+                <label class="editor__label">
+                    <i>{{ i "editor.field.description" }}</i>
+                    <textarea class="input textarea" x-model="description"></textarea>
+                </label>
+                <label class="editor__label">
+                    <i>{{ i "editor.field.subject" }}</i>
+                    <input class="input" x-model="subject">
+                </label>
+                <label class="editor__label">
+                    <i>{{ i "editor.field.author" }}</i>
+                    <input class="input" x-model="author">
+                </label>
+                <label class="editor__label">
+                    <i>{{ i "editor.field.target" }}</i>
+                    <input class="input" x-model="target">
+                </label>
+                <label class="editor__label">
+                    <i>{{ i "editor.field.institution" }}</i>
+                    <input class="input" x-model="institution">
+                </label>
+                <label class="editor__label">
+                    <i>{{ i "editor.field.expires_at" }}</i>
+                    <input class="input" type="datetime-local" x-model="expiresAt">
+                </label>
+            </section>
+            <template x-for="(task, index) in tasks" :key="task.id">
+                <section class="editor__task__wrapper">
+                    <template x-if="tasks[index]">
+                        <div class="editor__task shadow">
+                            <label class="editor__label">
+                                <i>{{ i "editor.task.type.label" }}</i>
+                                <select class="input" x-model="tasks[index].type">
+                                    <option value="single">{{ i "editor.task.type.single" }}</option>
+                                    <option value="multiple">{{ i "editor.task.type.multiple" }}</option>
+                                    <option value="open">{{ i "editor.task.type.open" }}</option>
+                                    <option value="detailed">{{ i "editor.task.type.detailed" }}</option>
+                                </select>
+                            </label>
+
+                            <label class="editor__label">
+                                <i>{{ i "editor.task.text.label" }}</i>
+                                <textarea
+                                    class="input textarea"
+                                    placeholder="{{ i "editor.task.text.placeholder" }}"
+                                    x-model="tasks[index].text"
+                                ></textarea>
+                            </label>
+                     
+                            <template x-if="task.type === 'single'">
+                                <div class="editor__task__options">
+                                    <i class="editor__task__options__tip">
+                                        {{ i "editor.task.option.single" }}
+                                    </i>
+                                    <template x-for="(option, i) in task.single.options">
+                                        <div class="option__wrapper">
+                                            <input
+                                                type="radio"
+                                                :name="`options-${i}`"
+                                                :value="i.toString()"
+                                                x-model="tasks[index].single.answer"
+                                            >
+                                            <input
+                                                class="input option__value"
+                                                x-model="tasks[index].single.options[i]"
+                                            >
+                                            <button
+                                                class="button button__neutral"
+                                                type="button"
+                                                @click="tasks[index].single.options.splice(i, 1)"
+                                            >
+                                                <i class="i close"></i>
+                                            </button>
+                                        </div>
+                                    </template>
+                                    <button
+                                        class="button button__neutral editor__task__options__add"
+                                        type="button"
+                                        @click="tasks[index].single.options.push('')"
+                                    >
+                                        <i class="i add"></i> {{ i "editor.task.add_option" }}
+                                    </button>
+                                </div>
+                            </template>
+                            
+                            <template x-if="task.type === 'multiple'">
+                                <div class="editor__task__options">
+                                    <i class="editor__task__options__tip">
+                                        {{ i "editor.task.option.multiple" }}
+                                    </i>
+                                    <template x-for="(option, i) in task.multiple.options">
+                                        <div class="option__wrapper">
+                                            <input
+                                                type="checkbox"
+                                                :name="`options-${i}`"
+                                                :value="i.toString()"
+                                                x-model="tasks[index].multiple.answer"
+                                            >
+                                            <input
+                                                class="input option__value"
+                                                x-model="tasks[index].multiple.options[i]"
+                                            >
+                                            <button
+                                                class="button button__neutral"
+                                                type="button"
+                                                @click="tasks[index].multiple.options.splice(i, 1)"
+                                            >
+                                                <i class="i close"></i>
+                                            </button>
+                                        </div>
+                                    </template>
+                                    <button
+                                        class="button button__neutral editor__task__options__add"
+                                        type="button"
+                                        @click="tasks[index].multiple.options.push('')"
+                                    >
+                                        <i class="i add"></i> {{ i "editor.task.add_option" }}
+                                    </button>
+                                </div>
+                            </template>
+                            
+                            <template x-if="task.type === 'open'">
+                                <label class="editor__label">
+                                    <i>{{ i "editor.task.option.open" }}</i>
+                                    <input class="input" x-model="tasks[index].open">
+                                </label>
+                            </template>
+                            
+                            <template x-if="task.type === 'detailed'">
+                                <i>{{ i "editor.task.option.detailed" }}</i>
+                            </template>
+                        </div>
+                    </template>
+
+                    <button
+                        class="button button__danger"
+                        type="button"
+                        @click="tasks.splice(index, 1)"
+                    >
+                        <i class="i close"></i>
+                    </button>
+                </section>
+            </template>
+            <button
+                class="button button__primary button__add__task"
+                type="button"
+                @click="addTask"
+            >
+                <i class="i add"></i> {{ i "editor.add_task" }}
+            </button>
+        </form>
+    </main>
+</body>

@@ -38,6 +38,40 @@
         "uptime": "Uptime:",
         "version": "Version:"
     },
+    "editor": {
+        "field": {
+            "title": "Title of the test:",
+            "description": "Description:",
+            "subject": "Subject:",
+            "author": "Author:",
+            "target": "Target audience:",
+            "institution": "Educational institution:",
+            "expires_at": "Expires at:"
+        },
+        "task": {
+            "type": {
+                "label": "Type of the task:",
+                "single": "Single answer task",
+                "multiple": "Multiple answer task",
+                "open": "Open answer task",
+                "detailed": "Task with detailed answer"
+            },
+            "text": {
+                "label": "Text:",
+                "placeholder": "# Markdown is supported"
+            },
+            "option": {
+                "single": "Add answer options and select a correct one:",
+                "multiple": "Add answer options and select correct ones:",
+                "open": "Enter correct answer:",
+                "detailed": "Tasks with detailed answer are checked manually."
+            },
+            "add_option": "Add answer option"
+        },
+        "add_task": "Add task",
+        "save": "Save test",
+        "new_test": "New test"
+    },
     "expired": {
         "title": "Test has expired",
         "text": "This test has expired and is no longer available. Please contact your teacher for details."
