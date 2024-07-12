@@ -162,9 +162,31 @@ func (co *TeacherController) TestEditor(c *gin.Context) {
 		t = &test.Test{}
 	}
 
-	c.HTML(http.StatusOK, "editor.gohtml", gin.H{
-		"Test": t,
-	})
+	c.HTML(http.StatusOK, "editor.gohtml", t)
+}
+
+func (co *TeacherController) SubmitTest(c *gin.Context) {
+	var t test.Test
+
+	err := c.BindJSON(&t)
+	if err != nil {
+		c.Error(err)
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{
+			"message": i18n.Get("err.unprocessable.text"),
+		})
+		return
+	}
+
+	err = test.Save(&t)
+	if err != nil {
+		c.Error(err)
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{
+			"message": i18n.Get("err.write.text"),
+		})
+		return
+	}
+
+	c.Status(http.StatusOK)
 }
 
 // Statistics is a [github.com/gin-gonic/gin] handler for the `GET
