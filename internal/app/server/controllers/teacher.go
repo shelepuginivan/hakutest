@@ -153,6 +153,20 @@ func (co *TeacherController) DeleteTest(c *gin.Context) {
 	c.Redirect(http.StatusSeeOther, "/teacher/tests")
 }
 
+// TestEditor is a [github.com/gin-gonic/gin] handler for the `GET
+// /teacher/tests/edit` route. It renders test editor HTML page.
+func (co *TeacherController) TestEditor(c *gin.Context) {
+	testName, ok := c.GetQuery("name")
+	t, err := test.GetByName(testName)
+	if !ok || err != nil {
+		t = &test.Test{}
+	}
+
+	c.HTML(http.StatusOK, "editor.gohtml", gin.H{
+		"Test": t,
+	})
+}
+
 // Statistics is a [github.com/gin-gonic/gin] handler for the `GET
 // /teacher/statistics` route. If search parameter `q` is present, it renders
 // HTML view of the results statistics, otherwise it renders statistics menu.
