@@ -98,6 +98,26 @@ func Import(test []byte) error {
 	return nil
 }
 
+// Save saves test to the tests directory. Unlike [Import], if test with the
+// same title exists, it is overwritten.
+func Save(t *Test) error {
+	if strings.TrimSpace(t.Title) == "" {
+		return fmt.Errorf("title must not be empty")
+	}
+	testPath := filepath.Join(testsDirectory, NormalizeName(t.Title))
+
+	data, err := json.Marshal(t)
+	if err != nil {
+		return err
+	}
+
+	if !fsutil.FileExists(testPath) {
+		return fsutil.WriteAll(testPath, data)
+	}
+
+	return fsutil.WriteAll(testPath, data)
+}
+
 // WriteJSON writes raw test JSON file to w.
 func WriteJSON(w io.Writer, name string) error {
 	t, err := GetByName(name)
