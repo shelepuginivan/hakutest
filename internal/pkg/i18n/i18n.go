@@ -2,15 +2,25 @@
 package i18n
 
 import (
+	"sync"
+
 	"github.com/tidwall/gjson"
 	"golang.org/x/text/language"
 )
 
-var translation gjson.Result
+var (
+	translation gjson.Result
+
+	mu sync.Mutex
+)
 
 // Init initializes internationalization with the language.
 // It must be called at least once before `Get` is called.
+// This method is concurrent safe.
 func Init(lang string) {
+	mu.Lock()
+	defer mu.Unlock()
+
 	translationJson, ok := translations[lang]
 
 	if !ok {
