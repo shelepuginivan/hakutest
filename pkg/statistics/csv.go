@@ -3,7 +3,6 @@ package statistics
 import (
 	"bytes"
 	"encoding/csv"
-	"fmt"
 	"io"
 	"strconv"
 )
@@ -47,7 +46,6 @@ func (s *Statistics) WriteCSV(w io.Writer) (err error) {
 		}
 
 		if err = csvWriter.Write(record); err != nil {
-			fmt.Println(err)
 			return err
 		}
 	}
