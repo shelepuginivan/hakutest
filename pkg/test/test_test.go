@@ -1,7 +1,10 @@
 package test_test
 
 import (
+	"archive/zip"
 	"bytes"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -67,6 +70,32 @@ func TestTest_IsExpired(t *testing.T) {
 		c.Actual = c.Test.IsExpired()
 		assert.Equal(t, c.Expected, c.Actual)
 	}
+}
+
+func TestTest_Sha256Sum(t *testing.T) {
+	tst := test.Test{
+		Title:       "title",
+		Description: "description",
+		Author:      "go",
+		Subject:     "hakutest",
+		Target:      "go test ./...",
+		Institution: "-",
+		ExpiresAt:   time.Now().Add(time.Hour * 72),
+		Tasks: []*test.Task{
+			{
+				Type:    "single",
+				Text:    "# my task",
+				Answer:  "1",
+				Options: []string{"0", "1", "2", "3"},
+			},
+		},
+	}
+
+	hasher := sha256.New()
+	data, _ := json.Marshal(tst)
+	hasher.Write(data)
+
+	assert.Equal(t, hex.EncodeToString(hasher.Sum(nil)), tst.Sha256Sum())
 }
 
 func TestNormalizeName(t *testing.T) {
@@ -247,6 +276,42 @@ func TestImport(t *testing.T) {
 	})
 }
 
+func TestSave(t *testing.T) {
+	tmp := t.TempDir()
+	test.Init(&config.Config{
+		Fields: config.Fields{TestsDirectory: tmp},
+	})
+
+	t.Run("should import test", func(t *testing.T) {
+		tst := &test.Test{
+			Title: "my new test",
+		}
+
+		assert.NoError(t, test.Save(tst))
+		assert.Contains(t, test.GetList(), "my new test")
+	})
+
+	t.Run("should not append numeric suffix and rewrite existing test", func(t *testing.T) {
+		tst := &test.Test{
+			Title:       "my new test",
+			Description: "a new description",
+		}
+
+		assert.NoError(t, test.Save(tst))
+		assert.Contains(t, test.GetList(), "my new test")
+		assert.NotContains(t, test.GetList(), "my new test (1)")
+
+		actual, err := test.GetByName("my new test")
+
+		assert.NoError(t, err)
+		assert.Equal(t, tst, actual)
+	})
+
+	t.Run("should return error if test has no title", func(t *testing.T) {
+		tst := &test.Test{Description: "it does not contain a title"}
+		assert.Error(t, test.Save(tst))
+	})
+}
 func TestWriteJSON(t *testing.T) {
 	expected := &test.Test{
 		Title: "my new test",
@@ -284,6 +349,36 @@ func TestWriteJSON(t *testing.T) {
 		err := test.WriteJSON(&MockWriter{}, "this test does not exist")
 		assert.Error(t, err)
 	})
+}
+
+func TestWriteZip(t *testing.T) {
+	tmp := t.TempDir()
+	test.Init(&config.Config{
+		Fields: config.Fields{TestsDirectory: tmp},
+	})
+	t1 := []byte("{\"title\":\"test 1\"}")
+	t2 := []byte("{\"title\":\"test 2\"}")
+	t3 := []byte("{\"title\":\"test 3\"}")
+	os.WriteFile(filepath.Join(tmp, "test 1.json"), t1, os.ModePerm)
+	os.WriteFile(filepath.Join(tmp, "test 2.json"), t2, os.ModePerm)
+	os.WriteFile(filepath.Join(tmp, "test 3.json"), t3, os.ModePerm)
+
+	b := bytes.NewBuffer(nil)
+	test.WriteZip(b, "test 1", "test 2", "test 3", "does not exist")
+
+	zipReader, err := zip.NewReader(bytes.NewReader(b.Bytes()), int64(b.Len()))
+	assert.NoError(t, err)
+
+	var fileNames []string
+	for _, file := range zipReader.File {
+		fileNames = append(fileNames, file.Name)
+	}
+
+	assert.Len(t, fileNames, 3)
+	assert.Contains(t, fileNames, "test 1.json")
+	assert.Contains(t, fileNames, "test 2.json")
+	assert.Contains(t, fileNames, "test 3.json")
+	assert.NotContains(t, fileNames, "does not exist.json")
 }
 
 func TestDeleteMany(t *testing.T) {
