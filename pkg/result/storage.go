@@ -66,8 +66,8 @@ func AvailableResults() (names []string) {
 
 // Save saves result to the results directory.
 //
-// `testName` is a prefix directory in the results directory.
-// For example, if `testName` "mytest" is provided, Save would save result to
+// testName is a prefix directory in the results directory. For example, if it
+// is equal to `mytest`, Save saves result to
 // `/results/dir/mytest/<Result.Student>.json` file.
 //
 // Results are overwritten if and only if the configuration has field
@@ -86,7 +86,7 @@ func Save(r *Result, testName string) error {
 
 	resultsFile := filepath.Join(thisTestDir, r.Student) + ".json"
 
-	// Check whether result exist and overwrite is enabled.
+	// Check whether result exists and `overwrite_results` is enabled.
 	if !overwriteResults && fsutil.FileExists(resultsFile) {
 		return nil
 	}
