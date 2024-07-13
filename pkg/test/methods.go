@@ -140,17 +140,17 @@ func WriteZip(w io.Writer, names ...string) error {
 	zipWriter := zip.NewWriter(w)
 
 	for _, name := range names {
-		f, err := zipWriter.Create(NormalizeName(name))
-		if err != nil {
-			continue
-		}
-
 		t, err := GetByName(name)
 		if err != nil {
 			continue
 		}
 
 		data, err := json.Marshal(t)
+		if err != nil {
+			continue
+		}
+
+		f, err := zipWriter.Create(NormalizeName(name))
 		if err != nil {
 			continue
 		}
