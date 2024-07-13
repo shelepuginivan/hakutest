@@ -91,9 +91,5 @@ func Save(r *Result, testName string) error {
 		return nil
 	}
 
-	if err = os.MkdirAll(thisTestDir, os.ModePerm|os.ModeDir); err != nil {
-		return err
-	}
-
-	return os.WriteFile(resultsFile, data, os.ModePerm)
+	return fsutil.WriteAll(resultsFile, data)
 }
