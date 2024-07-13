@@ -74,7 +74,7 @@ func AvailableResults() (names []string) {
 // Results are overwritten if and only if the configuration has field
 // `overwrite_results` set to `true`.
 func Save(r *Result, testName string) error {
-	if strings.TrimSpace(testName) == "" {
+	if strings.TrimSpace(testName) == "" || strings.Contains(testName, string(os.PathSeparator)) {
 		return fmt.Errorf("testName must be a valid directory name")
 	}
 
@@ -84,16 +84,15 @@ func Save(r *Result, testName string) error {
 	}
 
 	thisTestDir := filepath.Join(resultsDirectory, testName)
-
-	if err = os.MkdirAll(thisTestDir, os.ModePerm|os.ModeDir); err != nil {
-		return err
-	}
-
 	resultsFile := filepath.Join(thisTestDir, r.Student) + ".json"
 
 	// Check whether result exists and `overwrite_results` is enabled.
 	if !overwriteResults && fsutil.FileExists(resultsFile) {
 		return nil
+	}
+
+	if err = os.MkdirAll(thisTestDir, os.ModePerm|os.ModeDir); err != nil {
+		return err
 	}
 
 	return os.WriteFile(resultsFile, data, os.ModePerm)
