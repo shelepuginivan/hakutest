@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
 )
@@ -73,6 +74,10 @@ func AvailableResults() (names []string) {
 // Results are overwritten if and only if the configuration has field
 // `overwrite_results` set to `true`.
 func Save(r *Result, testName string) error {
+	if strings.TrimSpace(testName) == "" {
+		return fmt.Errorf("testName must be a valid directory name")
+	}
+
 	data, err := json.Marshal(r)
 	if err != nil {
 		return err
