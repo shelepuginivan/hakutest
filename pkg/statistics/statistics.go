@@ -43,19 +43,5 @@ func NewFromSaved(testName string) (*Statistics, error) {
 		return nil, err
 	}
 
-	s := &Statistics{
-		Name:    testName,
-		Results: results,
-	}
-
-	// Set s.Total to the maximal value of total tasks among results. This is
-	// required since tests can be modified, hence total number of tasks of
-	// results may differ.
-	for _, r := range s.Results {
-		if r.Total > s.Total {
-			s.Total = r.Total
-		}
-	}
-
-	return s, nil
+	return New(testName, results), nil
 }
