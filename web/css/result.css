@@ -113,6 +113,11 @@ body[data-perf='3'] {
     color: var(--red);
 }
 
+.result__note {
+    text-align: center;
+    max-width: 96%;
+}
+
 @media screen and (max-width: 440px) {
     .result__overview {
         flex-direction: column;

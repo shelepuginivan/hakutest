@@ -161,6 +161,7 @@
     },
     "result": {
         "disabled": "Result not displayed according to Hakutest settings. If you want to know the result, contact your teacher.",
+        "note": "The actual score may be reduced by the teacher after manual check.",
         "title": "Your result",
         "table": {
             "heading": "Tasks",
