@@ -201,7 +201,7 @@ func (co *TeacherController) Statistics(c *gin.Context) {
 		return
 	}
 
-	stats, err := statistics.NewFromName(resultName)
+	stats, err := statistics.NewFromSaved(resultName)
 	if err != nil {
 		c.HTML(http.StatusNotFound, "info.gohtml", gin.H{
 			"Title": i18n.Get("err.not_found.title"),
@@ -235,7 +235,7 @@ func (co *TeacherController) StatisticsExport(c *gin.Context) {
 		return
 	}
 
-	stats, err := statistics.NewFromName(name)
+	stats, err := statistics.NewFromSaved(name)
 	if err != nil {
 		c.HTML(http.StatusNotFound, "info.gohtml", gin.H{
 			"Title": i18n.Get("err.not_found.title"),

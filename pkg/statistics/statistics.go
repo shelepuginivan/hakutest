@@ -34,10 +34,10 @@ func New(testName string, results []*result.Result) *Statistics {
 	return s
 }
 
-// NewFromName returns a new instance of Statistics.
+// NewFromSaved returns a new instance of Statistics.
 // It reads results from the results directory.
 // E.g. if the testName is `foo`, it reads `/results/directory/foo`.
-func NewFromName(testName string) (*Statistics, error) {
+func NewFromSaved(testName string) (*Statistics, error) {
 	results, err := result.GetForTest(testName)
 	if err != nil {
 		return nil, err
