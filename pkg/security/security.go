@@ -5,10 +5,25 @@ import (
 
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/gin-gonic/gin"
+	"github.com/shelepuginivan/hakutest/internal/pkg/security"
 )
 
 // SecurityFields represents configuration for security policies.
 type Config struct {
+	// DSN of the database used to store user data.
+	//
+	// For SQLite dialect you can use `file::memory:?cache=shared`, in this
+	// case user data will be stored in memory.
+	DSN string `yaml:"dsn"`
+
+	// Dialect of tge database used to store user data.
+	//
+	// List of supported dialects:
+	//   - `postgres` for PostgreSQL,
+	//   - `mysql` for MySQL,
+	//   - `sqlite` for SQLite (default).
+	Dialect string `yaml:"dialect"`
+
 	// Teacher security policy.
 	Teacher string `yaml:"teacher"`
 
@@ -23,6 +38,8 @@ var (
 func Init(cfg Config) {
 	mu.Lock()
 	defer mu.Unlock()
+
+	security.InitDB(cfg.DSN, cfg.Dialect)
 }
 
 // Security policies.
