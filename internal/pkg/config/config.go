@@ -7,6 +7,7 @@ import (
 
 	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
 	"github.com/shelepuginivan/hakutest/internal/pkg/paths"
+	isecurity "github.com/shelepuginivan/hakutest/internal/pkg/security"
 	"github.com/shelepuginivan/hakutest/pkg/result"
 	"github.com/shelepuginivan/hakutest/pkg/security"
 	"github.com/shelepuginivan/hakutest/pkg/test"
@@ -106,6 +107,8 @@ func Default() *Config {
 				Show:      true,
 			},
 			Security: security.Config{
+				DSN:     paths.UserDB,
+				Dialect: isecurity.DialectSQLite,
 				Teacher: security.PolicyHostOnly,
 				Student: security.PolicyNoVerification,
 			},
