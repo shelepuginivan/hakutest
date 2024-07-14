@@ -15,6 +15,8 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// GeneralFields represents general configuration fields defined in `general`
+// section in the configuration file.
 type GeneralFields struct {
 	// Run in debug mode.
 	Debug bool `yaml:"debug"`
@@ -31,11 +33,16 @@ type GeneralFields struct {
 
 // Fields represents configuration fields.
 type Fields struct {
+	// General configuration fields.
 	General GeneralFields `yaml:"general"`
-	Result  result.Config `yaml:"result"`
-	Test    test.Config   `yaml:"test"`
 
-	// Security policy configuration.
+	// Result package configuration.
+	Result result.Config `yaml:"result"`
+
+	// Test package configuration.
+	Test test.Config `yaml:"test"`
+
+	// Security configuration.
 	Security security.Config `yaml:"security"`
 }
 
@@ -49,6 +56,7 @@ type Config struct {
 
 // OnUpdate registers a callback allowing to run it when configuration is
 // updated.
+//
 // This method is safe to use by multiple goroutines.
 func (c *Config) OnUpdate(cb func(*Config)) {
 	c.mu.Lock()
@@ -60,6 +68,7 @@ func (c *Config) OnUpdate(cb func(*Config)) {
 // Update updates configuration fields and calls each registered callback.
 // Provided Fields struct should contain all keys explicitly, otherwise
 // unrepresented configuration fields are set to their zero value.
+//
 // This method is safe to use by multiple goroutines.
 func (c *Config) Update(updateFunc func(f Fields) Fields) error {
 	c.mu.Lock()
@@ -74,8 +83,8 @@ func (c *Config) Update(updateFunc func(f Fields) Fields) error {
 	return write(c)
 }
 
-// New reads configuration file and returns the configuration.
-// If field is unset, it fallbacks to the default value.
+// New reads configuration file and returns the configuration. If field is
+// unset, it fallbacks to the default value as defined in [Default].
 func New() *Config {
 	cfg := Default()
 
@@ -91,7 +100,24 @@ func New() *Config {
 	return cfg
 }
 
-// Default returns default configuration.
+// Default returns the default configuration:
+//
+//	general:
+//	  debug: false
+//	  disable_tray: false
+//	  port: 8080
+//	  lang: en
+//	result:
+//	  overwrite: false
+//	  path: $XDG_DATA_HOME/hakutest/results
+//	  show: true
+//	test:
+//	  path: $XDG_DATA_HOME/hakutest/tests
+//	security:
+//	  dsn: $XDG_CACHE_HOME/hakutest/users.db
+//	  dialect: sqlite
+//	  teacher: hostonly
+//	  student: no_verification
 func Default() *Config {
 	return &Config{
 		Fields: Fields{
