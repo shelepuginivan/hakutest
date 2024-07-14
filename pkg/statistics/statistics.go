@@ -22,8 +22,13 @@ func New(testName string, results []*result.Result) *Statistics {
 		Results: results,
 	}
 
-	if len(results) > 0 {
-		s.Total = s.Results[0].Total
+	// Set s.Total to the maximal value of total tasks among results. This is
+	// required since tests can be modified, hence total number of tasks of
+	// results may differ.
+	for _, r := range s.Results {
+		if r.Total > s.Total {
+			s.Total = r.Total
+		}
 	}
 
 	return s
@@ -43,8 +48,13 @@ func NewFromName(testName string) (*Statistics, error) {
 		Results: results,
 	}
 
-	if len(results) > 0 {
-		s.Total = s.Results[0].Total
+	// Set s.Total to the maximal value of total tasks among results. This is
+	// required since tests can be modified, hence total number of tasks of
+	// results may differ.
+	for _, r := range s.Results {
+		if r.Total > s.Total {
+			s.Total = r.Total
+		}
 	}
 
 	return s, nil
