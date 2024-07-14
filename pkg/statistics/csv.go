@@ -5,6 +5,7 @@ import (
 	"encoding/csv"
 	"io"
 	"strconv"
+	"time"
 )
 
 const (
@@ -38,7 +39,7 @@ func (s *Statistics) WriteCSV(w io.Writer) (err error) {
 			r.Student,
 			strconv.Itoa(r.Points),
 			strconv.Itoa(r.Percentage),
-			r.SubmittedAt.Format("2006-01-02 15:04:05"),
+			r.SubmittedAt.Format(time.DateTime),
 		}
 
 		for _, a := range r.Answers {
