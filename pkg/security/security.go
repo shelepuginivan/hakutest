@@ -45,7 +45,7 @@ func Init(cfg Config) {
 // Security policies.
 const (
 	// PolicyNoVerification does not require any verification. Default for student.
-	PolicyNoVerification = "no"
+	PolicyNoVerification = "no_verification"
 
 	// PolicyCredentials requires unauthorized user to enter their credentials. User data is stored locally.
 	PolicyCredentials = "credentials"
