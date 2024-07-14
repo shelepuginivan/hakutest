@@ -9,7 +9,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/pkg/result"
 	"github.com/shelepuginivan/hakutest/pkg/test"
 	"github.com/stretchr/testify/assert"
@@ -288,12 +287,9 @@ func TestCheckAnswer(t *testing.T) {
 
 func TestGetForTest(t *testing.T) {
 	tmp := t.TempDir()
-
-	result.Init(&config.Config{
-		Fields: config.Fields{
-			ResultsDirectory: tmp,
-			OverwriteResults: false,
-		},
+	result.Init(result.Config{
+		Path:      tmp,
+		Overwrite: false,
 	})
 
 	t.Run(
@@ -378,12 +374,9 @@ func TestGetForTest(t *testing.T) {
 func TestAvailableResults(t *testing.T) {
 	t.Run("should return slice of available results", func(t *testing.T) {
 		tmp := t.TempDir()
-
-		result.Init(&config.Config{
-			Fields: config.Fields{
-				ResultsDirectory: tmp,
-				OverwriteResults: false,
-			},
+		result.Init(result.Config{
+			Path:      tmp,
+			Overwrite: false,
 		})
 
 		iterations := 50
@@ -407,10 +400,8 @@ func TestAvailableResults(t *testing.T) {
 
 		os.Mkdir(writeOnly, 0333)
 
-		result.Init(&config.Config{
-			Fields: config.Fields{
-				ResultsDirectory: writeOnly,
-			},
+		result.Init(result.Config{
+			Path: writeOnly,
 		})
 
 		assert.Nil(t, result.AvailableResults())
@@ -420,11 +411,8 @@ func TestAvailableResults(t *testing.T) {
 func TestSave(t *testing.T) {
 	t.Run("should save valid result", func(t *testing.T) {
 		tmp := t.TempDir()
-
-		result.Init(&config.Config{
-			Fields: config.Fields{
-				ResultsDirectory: tmp,
-			},
+		result.Init(result.Config{
+			Path: tmp,
 		})
 
 		res := &result.Result{
@@ -440,11 +428,8 @@ func TestSave(t *testing.T) {
 
 	t.Run("should return error if testName is a whitespace-only or an empty string", func(t *testing.T) {
 		tmp := t.TempDir()
-
-		result.Init(&config.Config{
-			Fields: config.Fields{
-				ResultsDirectory: tmp,
-			},
+		result.Init(result.Config{
+			Path: tmp,
 		})
 
 		res := &result.Result{
@@ -460,11 +445,8 @@ func TestSave(t *testing.T) {
 
 	t.Run("should return error if testName contains path delimeter", func(t *testing.T) {
 		tmp := t.TempDir()
-
-		result.Init(&config.Config{
-			Fields: config.Fields{
-				ResultsDirectory: tmp,
-			},
+		result.Init(result.Config{
+			Path: tmp,
 		})
 
 		res := &result.Result{
@@ -480,10 +462,8 @@ func TestSave(t *testing.T) {
 		readOnly := filepath.Join(tmp, "ReadOnly")
 		os.Mkdir(readOnly, 0444)
 
-		result.Init(&config.Config{
-			Fields: config.Fields{
-				ResultsDirectory: tmp,
-			},
+		result.Init(result.Config{
+			Path: readOnly,
 		})
 
 		res := &result.Result{
@@ -499,10 +479,8 @@ func TestSave(t *testing.T) {
 		file := filepath.Join(tmp, "file")
 		os.WriteFile(file, []byte{}, 0444)
 
-		result.Init(&config.Config{
-			Fields: config.Fields{
-				ResultsDirectory: tmp,
-			},
+		result.Init(result.Config{
+			Path: file,
 		})
 
 		res := &result.Result{
@@ -515,12 +493,9 @@ func TestSave(t *testing.T) {
 
 	t.Run("should not overwrite existing result if this option is not enabled", func(t *testing.T) {
 		tmp := t.TempDir()
-
-		result.Init(&config.Config{
-			Fields: config.Fields{
-				ResultsDirectory: tmp,
-				OverwriteResults: false, // Disable result overwriting.
-			},
+		result.Init(result.Config{
+			Path:      tmp,
+			Overwrite: false, // Disable result overwriting.
 		})
 
 		result.Save(&result.Result{
@@ -545,12 +520,9 @@ func TestSave(t *testing.T) {
 
 	t.Run("should overwrite existing result if this option is enabled", func(t *testing.T) {
 		tmp := t.TempDir()
-
-		result.Init(&config.Config{
-			Fields: config.Fields{
-				ResultsDirectory: tmp,
-				OverwriteResults: true, // Enable result overwriting.
-			},
+		result.Init(result.Config{
+			Path:      tmp,
+			Overwrite: true, // Enable result overwriting.
 		})
 
 		result.Save(&result.Result{

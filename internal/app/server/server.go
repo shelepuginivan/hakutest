@@ -15,7 +15,7 @@ import (
 // setMode sets mode of the gin engine.
 // By default, mode is set to `"release"`.
 func setMode(cfg *config.Config) {
-	if cfg.Debug {
+	if cfg.General.Debug {
 		gin.SetMode(gin.DebugMode)
 	} else {
 		gin.SetMode(gin.ReleaseMode)
@@ -68,7 +68,7 @@ func New(cfg *config.Config) *http.Server {
 	teacher.POST("/settings", t.SettingsUpdate)
 
 	return &http.Server{
-		Addr:    fmt.Sprintf(":%d", cfg.Port),
+		Addr:    fmt.Sprintf(":%d", cfg.General.Port),
 		Handler: engine,
 	}
 }

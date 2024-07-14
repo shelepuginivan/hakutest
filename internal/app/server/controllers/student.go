@@ -122,7 +122,7 @@ func (co *StudentController) TestSubmission(c *gin.Context) {
 		return
 	}
 
-	if co.cfg.ShowResults {
+	if co.cfg.Result.Show {
 		c.HTML(http.StatusCreated, "result.gohtml", gin.H{
 			"Result": r,
 		})

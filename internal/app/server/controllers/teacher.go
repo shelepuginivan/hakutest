@@ -40,7 +40,7 @@ func (co *TeacherController) Index(c *gin.Context) {
 func (co *TeacherController) Dashboard(c *gin.Context) {
 	localIP, err := network.GetLocalIP()
 	if err == nil {
-		localIP = fmt.Sprintf("http://%s:%d", localIP, co.cfg.Port)
+		localIP = fmt.Sprintf("http://%s:%d", localIP, co.cfg.General.Port)
 	}
 
 	u := uptime.Uptime()
@@ -299,22 +299,23 @@ func (co *TeacherController) SettingsUpdate(c *gin.Context) {
 		return
 	}
 
-	fields := co.cfg.Fields
+	err = co.cfg.Update(func(f config.Fields) config.Fields {
+		f.General.Debug = c.PostForm("debug") == "on"
+		f.General.DisableTray = c.PostForm("disable_tray") == "on"
+		f.General.Lang = c.PostForm("lang")
+		f.Result.Overwrite = c.PostForm("overwrite_results") == "on"
+		f.Result.Show = c.PostForm("show_results") == "on"
+		f.Result.Path = c.PostForm("results_directory")
+		f.Test.Path = c.PostForm("tests_directory")
 
-	fields.Debug = c.PostForm("debug") == "on"
-	fields.DisableTray = c.PostForm("disable_tray") == "on"
-	fields.Lang = c.PostForm("lang")
-	fields.OverwriteResults = c.PostForm("overwrite_results") == "on"
-	fields.ShowResults = c.PostForm("show_results") == "on"
-	fields.TestsDirectory = c.PostForm("tests_directory")
-	fields.ResultsDirectory = c.PostForm("results_directory")
+		port, err := strconv.Atoi(c.PostForm("port"))
+		if err == nil {
+			f.General.Port = port
+		}
 
-	port, err := strconv.Atoi(c.PostForm("port"))
-	if err == nil {
-		fields.Port = port
-	}
+		return f
+	})
 
-	err = co.cfg.Update(fields)
 	if err != nil {
 		c.HTML(http.StatusInternalServerError, "error.gohtml", gin.H{
 			"Title":   i18n.Get("err.write.title"),

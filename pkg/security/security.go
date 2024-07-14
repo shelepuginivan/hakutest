@@ -1,9 +1,29 @@
 package security
 
 import (
+	"sync"
+
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/gin-gonic/gin"
 )
+
+// SecurityFields represents configuration for security policies.
+type Config struct {
+	// Teacher security policy.
+	Teacher string `yaml:"teacher"`
+
+	// Student security policy.
+	Student string `yaml:"student"`
+}
+
+var (
+	mu sync.Mutex
+)
+
+func Init(cfg Config) {
+	mu.Lock()
+	defer mu.Unlock()
+}
 
 // Security policies.
 const (

@@ -34,7 +34,7 @@
                         {{ range $key, $value := .SupportedLangs }}
                         <option 
                             value="{{ $key }}"
-                            {{ if eq $key $.Config.Lang }}selected{{ end }}
+                            {{ if eq $key $.Config.General.Lang }}selected{{ end }}
                         >
                             {{ $value }}
                         </option>
@@ -52,7 +52,7 @@
                     <input
                         type="checkbox" 
                         name="overwrite_results"
-                        {{ if .Config.OverwriteResults }}checked{{ end }}
+                        {{ if .Config.Result.Overwrite }}checked{{ end }}
                     >
                 </label>
                 <i id="overwrite_results-tip">
@@ -68,7 +68,7 @@
                     <input
                         type="checkbox" 
                         name="show_results"
-                        {{ if .Config.ShowResults }}checked{{ end }}
+                        {{ if .Config.Result.Show }}checked{{ end }}
                     >
                 </label>
                 <i id="show_results-tip">
@@ -84,7 +84,7 @@
                     <input
                         type="checkbox" 
                         name="disable_tray"
-                        {{ if .Config.DisableTray }}checked{{ end }}
+                        {{ if .Config.General.DisableTray }}checked{{ end }}
                     >
                 </label>
                 <i id="disable_tray-tip">{{ i "settings.disable_tray.tip" }}</i>
@@ -98,7 +98,7 @@
                     <input
                         type="checkbox" 
                         name="debug"
-                        {{ if .Config.Debug }}checked{{ end }}
+                        {{ if .Config.General.Debug }}checked{{ end }}
                     >
                 </label>
                 <i id="debug-tip">{{ i "settings.debug.tip" }}</i>
@@ -116,7 +116,7 @@
                         max="65535"
                         name="port"
                         required
-                        value="{{ .Config.Port }}"
+                        value="{{ .Config.General.Port }}"
                     >
                 </label>
                 <i id="port-tip">{{ i "settings.port.tip" }}</i>
@@ -131,7 +131,7 @@
                         class="input input__directory"
                         name="results_directory"
                         required
-                        value="{{ .Config.ResultsDirectory }}"
+                        value="{{ .Config.Result.Path }}"
                     >
                 </label>
                 <i id="results_directory-tip">
@@ -148,7 +148,7 @@
                         class="input input__directory"
                         name="tests_directory"
                         required
-                        value="{{ .Config.TestsDirectory }}"
+                        value="{{ .Config.Test.Path }}"
                     >
                 </label>
                 <i id="tests_directory-tip">

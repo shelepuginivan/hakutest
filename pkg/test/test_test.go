@@ -12,7 +12,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/pkg/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
@@ -159,9 +158,10 @@ func TestPrettifyName(t *testing.T) {
 func TestGetList(t *testing.T) {
 	t.Run("should return test names", func(t *testing.T) {
 		tmp := t.TempDir()
-		test.Init(&config.Config{
-			Fields: config.Fields{TestsDirectory: tmp},
+		test.Init(test.Config{
+			Path: tmp,
 		})
+
 		os.WriteFile(filepath.Join(tmp, "some.json"), []byte{}, os.ModePerm)
 		os.WriteFile(filepath.Join(tmp, "another.json"), []byte{}, os.ModePerm)
 		os.WriteFile(filepath.Join(tmp, "should ignore non-json.txt"), []byte{}, os.ModePerm)
@@ -178,10 +178,8 @@ func TestGetList(t *testing.T) {
 	})
 
 	t.Run("should return empty slice if error occurres", func(t *testing.T) {
-		test.Init(&config.Config{
-			Fields: config.Fields{
-				TestsDirectory: "this directory does not exist",
-			},
+		test.Init(test.Config{
+			Path: "this directory does not exist",
 		})
 
 		assert.Empty(t, test.GetList())
@@ -198,8 +196,8 @@ func TestGetByName(t *testing.T) {
 	}
 
 	tmp := t.TempDir()
-	test.Init(&config.Config{
-		Fields: config.Fields{TestsDirectory: tmp},
+	test.Init(test.Config{
+		Path: tmp,
 	})
 
 	t.Run("should get test by name", func(t *testing.T) {
@@ -232,8 +230,8 @@ func TestGetByName(t *testing.T) {
 
 func TestImport(t *testing.T) {
 	tmp := t.TempDir()
-	test.Init(&config.Config{
-		Fields: config.Fields{TestsDirectory: tmp},
+	test.Init(test.Config{
+		Path: tmp,
 	})
 
 	t.Run("should import test", func(t *testing.T) {
@@ -278,8 +276,8 @@ func TestImport(t *testing.T) {
 
 func TestSave(t *testing.T) {
 	tmp := t.TempDir()
-	test.Init(&config.Config{
-		Fields: config.Fields{TestsDirectory: tmp},
+	test.Init(test.Config{
+		Path: tmp,
 	})
 
 	t.Run("should import test", func(t *testing.T) {
@@ -327,9 +325,10 @@ func TestWriteJSON(t *testing.T) {
 	data, _ := json.Marshal(expected)
 
 	tmp := t.TempDir()
-	test.Init(&config.Config{
-		Fields: config.Fields{TestsDirectory: tmp},
+	test.Init(test.Config{
+		Path: tmp,
 	})
+
 	os.WriteFile(filepath.Join(tmp, "some.json"), data, os.ModePerm)
 
 	t.Run("should write tests in JSON format", func(t *testing.T) {
@@ -353,9 +352,10 @@ func TestWriteJSON(t *testing.T) {
 
 func TestWriteZip(t *testing.T) {
 	tmp := t.TempDir()
-	test.Init(&config.Config{
-		Fields: config.Fields{TestsDirectory: tmp},
+	test.Init(test.Config{
+		Path: tmp,
 	})
+
 	t1 := []byte("{\"title\":\"test 1\"}")
 	t2 := []byte("{\"title\":\"test 2\"}")
 	t3 := []byte("{\"title\":\"test 3\"}")
@@ -383,9 +383,10 @@ func TestWriteZip(t *testing.T) {
 
 func TestDeleteMany(t *testing.T) {
 	tmp := t.TempDir()
-	test.Init(&config.Config{
-		Fields: config.Fields{TestsDirectory: tmp},
+	test.Init(test.Config{
+		Path: tmp,
 	})
+
 	os.WriteFile(filepath.Join(tmp, "1.json"), []byte{}, os.ModePerm)
 	os.WriteFile(filepath.Join(tmp, "2.json"), []byte{}, os.ModePerm)
 	os.WriteFile(filepath.Join(tmp, "3.json"), []byte{}, os.ModePerm)

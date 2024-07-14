@@ -14,6 +14,7 @@ import (
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/paths"
 	"github.com/shelepuginivan/hakutest/pkg/result"
+	"github.com/shelepuginivan/hakutest/pkg/security"
 	"github.com/shelepuginivan/hakutest/pkg/test"
 )
 
@@ -22,19 +23,20 @@ var cfg *config.Config
 func init() {
 	cfg = config.New()
 
-	flag.BoolVar(&cfg.Debug, "debug", cfg.Debug, "Run in debug mode")
-	flag.BoolVar(&cfg.DisableTray, "disable-tray", cfg.DisableTray, "Run without icon in system tray")
-	flag.StringVar(&cfg.Lang, "lang", cfg.Lang, "Language of the interface")
-	flag.IntVar(&cfg.Port, "port", cfg.Port, "Port on which server is started")
-	flag.StringVar(&cfg.TestsDirectory, "tests-directory", cfg.TestsDirectory, "Directory where the test files are stored")
+	flag.BoolVar(&cfg.General.Debug, "debug", cfg.General.Debug, "Run in debug mode")
+	flag.BoolVar(&cfg.General.DisableTray, "disable-tray", cfg.General.DisableTray, "Run without icon in system tray")
+	flag.StringVar(&cfg.General.Lang, "lang", cfg.General.Lang, "Language of the interface")
+	flag.IntVar(&cfg.General.Port, "port", cfg.General.Port, "Port on which server is started")
+	flag.StringVar(&cfg.Test.Path, "tests-directory", cfg.Test.Path, "Directory where the test files are stored")
 }
 
 func onConfigUpdate(c *config.Config) {
-	i18n.Init(c.Lang)
-	result.Init(c)
-	test.Init(c)
+	i18n.Init(c.General.Lang)
+	result.Init(c.Result)
+	security.Init(c.Security)
+	test.Init(c.Test)
 
-	if c.Debug {
+	if c.General.Debug {
 		zerolog.SetGlobalLevel(zerolog.DebugLevel)
 	} else {
 		zerolog.SetGlobalLevel(zerolog.InfoLevel)
@@ -53,9 +55,11 @@ func main() {
 	}
 
 	cfg.OnUpdate(onConfigUpdate)
-	cfg.Update(cfg.Fields)
+	cfg.Update(func(_ config.Fields) config.Fields {
+		return cfg.Fields
+	})
 
-	if cfg.DisableTray {
+	if cfg.General.DisableTray {
 		log.Fatal().Err(srv.ListenAndServe())
 	}
 

@@ -1,7 +1,9 @@
 // Package security provides private security methods.
 package security
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Credentials represents authorization data.
 // It contains Role and Username.
