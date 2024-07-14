@@ -56,6 +56,18 @@ func InitDB(dsn, dialect string) {
 	db.AutoMigrate(&User{})
 }
 
+// InitDBWithDialector initializes database used to store users. Unlike
+// [InitDB], it accepts GORM dialector, allowing dependency injection.
+func InitDBWithDialector(dialector gorm.Dialector) {
+	var err error
+	db, err = gorm.Open(dialector)
+	if err != nil {
+		panic(err)
+	}
+
+	db.AutoMigrate(&User{})
+}
+
 // Credentials represents authorization data.
 // It contains Role and Username.
 type Credentials struct {
