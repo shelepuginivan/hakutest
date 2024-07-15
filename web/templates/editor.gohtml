@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/css/editor.css">
     <link rel="stylesheet" href="/static/css/notify.css">
     <script src="/static/js/editor.js"></script>
+    <script src="/static/js/markdown.js"></script>
     <script src="/static/js/notify.js"></script>
     <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
     <title>{{ if eq (len .Title) 0 }}{{ i "editor.new_test" }}{{ else }}{{ .Title }}{{ end }} | Hakutest</title>
@@ -142,6 +143,7 @@
                                     class="input textarea"
                                     placeholder="{{ i "editor.task.text.placeholder" }}"
                                     x-model="tasks[index].text"
+                                    @keydown="hotkey"
                                 ></textarea>
                             </label>
                      
