@@ -16,8 +16,8 @@
     width: 100%;
     max-width: 800px;
     padding: 32px;
-    border: 1px solid var(--selection);
     border-radius: 8px;
+    background-color: var(--selection);
 }
 
 .test__task__options {

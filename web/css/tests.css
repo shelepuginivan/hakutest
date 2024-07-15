@@ -9,7 +9,7 @@
     flex-wrap: wrap;
     gap: 24px;
     padding: 16px;
-    border: 1px solid var(--selection);
+    border: 2px solid var(--selection);
     border-radius: 8px;
     z-index: 2;
     background-color: var(--background);
@@ -30,7 +30,7 @@
     gap: 8px;
     height: 100%;
     padding: 8px;
-    border: 1px solid var(--selection);
+    border: 2px solid var(--selection);
     border-radius: 8px;
     text-align: center;
 }
@@ -40,7 +40,7 @@
     flex-direction: column;
     padding: 8px 0;
     gap: 8px;
-    border: 1px solid var(--selection);
+    border: 2px solid var(--selection);
     border-radius: 8px;
 }
 
@@ -69,7 +69,7 @@
     width: 36px;
     height: 36px;
     background: var(--selection);
-    border: 1px solid var(--secondary);
+    border: 2px solid var(--secondary);
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;

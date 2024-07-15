@@ -50,7 +50,7 @@ body {
     flex-grow: 1;
     gap: 40px;
     padding: 16px;
-    border: 1px solid var(--selection);
+    border: 2px solid var(--selection);
     border-radius: 8px;
 }
 

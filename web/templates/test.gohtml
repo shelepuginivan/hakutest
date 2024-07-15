@@ -20,14 +20,14 @@
             method="POST"
             onsubmit="return confirm({{ i "test.confirm" }})"
         >
-            <div class="test__task shadow">
+            <div class="test__task">
                 <label class="student__label">
                     <span>{{ i "test.student" }}</span>
                     <input class="input" name="student" required autofocus>
                 </label>
             </div>
             {{ range $index, $task := .Test.Tasks }}
-            <div class="test__task shadow">
+            <div class="test__task">
                 <div class="test__task__text">{{ markdown .Text }}</div>
                 <div class="test__task__options">
                     {{ if eq .Type "single" }}

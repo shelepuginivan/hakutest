@@ -37,13 +37,13 @@
     </header>
     <main class="main dashboard">
         {{ if .AddressAvailable }}
-        <section class="dashboard__section shadow">
+        <section class="dashboard__section">
             <h2>{{ i "dashboard.address" }}</h2>
             <code class="code__inline">{{ .Address }}</code>
             <i>{{ i "dashboard.address_tip" }}</i>
         </section>
         {{ end }}
-        <section class="dashboard__section shadow">
+        <section class="dashboard__section">
             <h2>{{ i "dashboard.system_details" }}</h2>
             <div>
                 <p>

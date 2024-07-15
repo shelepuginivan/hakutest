@@ -26,7 +26,7 @@
         <h1>{{ i "tests.heading" }}</h1>
     </header>
     <main class="main">
-        <div class="menu shadow">
+        <div class="menu">
             <label>
                 <input type="checkbox" @click="toggleSelectAll" autocomplete="off">
                 {{ i "tests.select_all" }}
@@ -87,11 +87,11 @@
             </menu>
         </div>
         {{ if eq (len .Tests) 0 }}
-        <div class="test__fallback shadow">
+        <div class="test__fallback">
             <h2>{{ i "tests.fallback" }}</h2>
         </div>
         {{ else }}
-        <div class="test__list shadow">
+        <div class="test__list">
             {{ range $index, $test := .Tests }}
             {{ if gt $index 0 }}
             <div class="divider" role="presentation"></div>
