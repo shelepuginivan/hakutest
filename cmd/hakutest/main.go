@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
 
 	"fyne.io/systray"
+	"github.com/pkg/browser"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/shelepuginivan/hakutest/internal/app/server"
@@ -71,8 +73,18 @@ func main() {
 			}
 		},
 		tray.MenuEntry{
-			Label:   "Quit",
-			Tooltip: "Quit Hakutest",
+			Label:   i18n.Get("tray.open.label"),
+			Tooltip: i18n.Get("tray.open.tooltip"),
+			Callback: func() {
+				err := browser.OpenURL(fmt.Sprintf("http://localhost:%d/teacher/dashboard", cfg.General.Port))
+				if err != nil {
+					log.Error().Err(err).Msg("Failed to open dashboard")
+				}
+			},
+		},
+		tray.MenuEntry{
+			Label:   i18n.Get("tray.quit.label"),
+			Tooltip: i18n.Get("tray.quit.tooltip"),
 			Callback: func() {
 				srv.Shutdown(context.Background())
 				systray.Quit()

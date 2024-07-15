@@ -186,5 +186,15 @@
         "task_multiple": "Choose several answer options:",
         "task_open": "Enter your answer:",
         "task_detailed": "Enter detailed answer:"
+    },
+    "tray": {
+        "open": {
+            "label": "Dashboard",
+            "tooltip": "Open Hakutest dashboard"
+        },
+        "quit": {
+            "label": "Quit Hakutest",
+            "tooltip": "Stop Hakutest server and quit"
+        }
     }
 }
