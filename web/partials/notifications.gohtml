@@ -1,0 +1,19 @@
+{{ define "notifications" }}
+<div
+    class="notification__area"
+    x-data="notificationHandler()"
+    @notify.window="notify($event.detail)"
+>
+    <template x-for="(notification, index) in notifications" :key="notification.id">
+        <div
+            class="notification"
+            :data-type="notification.type"
+            x-show="notification.show"
+            x-transition.duration.300ms
+            @click="notifications[index].show = false"
+        >
+            <p x-text="notification.message"></p>
+        </div>
+    </template>
+</div>
+{{ end }}

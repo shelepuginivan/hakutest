@@ -1,0 +1,29 @@
+.notification__area {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    height: fit-content;
+    max-height: 100%;
+    width: 100%;
+    max-width: 324px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    overflow: hidden;
+}
+
+.notification {
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 3;
+    font-size: smaller;
+    opacity: .95;
+    backdrop-filter: blur(4px);
+}
+
+.notification[data-type="error"] {
+    background: var(--red);
+}
