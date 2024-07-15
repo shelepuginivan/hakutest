@@ -17,6 +17,16 @@ function editor() {
             })
         },
 
+        removeOptionMultiple(task, option) {
+            this.tasks[task].multiple.options.splice(option, 1)
+
+            const answerIndex = this.tasks[task].multiple.answer.indexOf(option.toString())
+
+            if (answerIndex > -1) {
+                this.tasks[task].multiple.answer.splice(answerIndex, 1)
+            }
+        },
+
         // Submit edited test.
         onSubmit() {
             const body = {
