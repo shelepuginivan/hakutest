@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/teacher.css">
     <link rel="stylesheet" href="/static/css/editor.css">
+    <link rel="stylesheet" href="/static/css/notify.css">
     <script src="/static/js/editor.js"></script>
+    <script src="/static/js/notify.js"></script>
     <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
     <title>{{ if eq (len .Title) 0 }}{{ i "editor.new_test" }}{{ else }}{{ .Title }}{{ end }} | Hakutest</title>
 </head>
@@ -238,4 +240,5 @@
             </button>
         </form>
     </main>
+    {{ template "notifications" }}
 </body>

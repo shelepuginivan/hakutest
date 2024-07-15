@@ -72,9 +72,23 @@ function editor() {
             fetch(document.location.href, {
                 method: 'POST',
                 body: JSON.stringify(body)
-            }).finally(function() {
-                window.location.href = '/teacher/tests'
             })
+                .then((response) => {
+                    if (response.ok) {
+                        window.location.href = '/teacher/tests'
+                    }
+                    return Promise.reject(response)
+                })
+                .catch(function(res) {
+                    res.json().then(function(json) {
+                        dispatchEvent(new CustomEvent('notify', {
+                            detail: {
+                                type: 'error',
+                                message: json.message,
+                            }
+                        }))
+                    })
+                })
         }
     }
 }
