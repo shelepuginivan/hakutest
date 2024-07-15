@@ -108,9 +108,22 @@
                 </label>
             </section>
             <template x-for="(task, index) in tasks" :key="task.id">
-                <section class="editor__task__wrapper">
+                <div>
                     <template x-if="tasks[index]">
-                        <div class="editor__task shadow">
+                        <section class="editor__task shadow">
+                            <div class="editor__task__header">
+                                <h2 class="editor__task__heading">
+                                    {{ i "editor.task.heading" }} <span x-text="index+1"></span>
+                                </h2>
+                                <button
+                                    class="button button__danger"
+                                    type="button"
+                                    aria-label="{{ i "editor.task.delete" }}"
+                                    @click="tasks.splice(index, 1)"
+                                >
+                                    <i class="i close"></i>
+                                </button>
+                            </div>
                             <label class="editor__label">
                                 <i>{{ i "editor.task.type.label" }}</i>
                                 <select class="input" x-model="tasks[index].type">
@@ -212,17 +225,9 @@
                             <template x-if="task.type === 'detailed'">
                                 <i>{{ i "editor.task.option.detailed" }}</i>
                             </template>
-                        </div>
+                        </section>
                     </template>
-
-                    <button
-                        class="button button__danger"
-                        type="button"
-                        @click="tasks.splice(index, 1)"
-                    >
-                        <i class="i close"></i>
-                    </button>
-                </section>
+                </div>
             </template>
             <button
                 class="button button__primary button__add__task"

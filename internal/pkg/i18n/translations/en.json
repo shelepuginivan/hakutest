@@ -49,6 +49,8 @@
             "expires_at": "Expires at:"
         },
         "task": {
+            "heading": "Task",
+            "delete": "Delete task",
             "type": {
                 "label": "Type of the task:",
                 "single": "Single answer task",

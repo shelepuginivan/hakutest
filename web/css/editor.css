@@ -60,11 +60,14 @@ body {
     gap: 12px 
 }
 
-.editor__task__wrapper {
+.editor__task__header {
     display: flex;
-    align-items: flex-start;
-    width: 100%;
-    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.editor__task__heading {
+    display: block;
 }
 
 .editor__task__options {
