@@ -6,7 +6,10 @@ clean:
 	rm -rf ./target
 	rm hakutest hakuctl
 
-minify:
+test:
+	go test -cover ./...
+
+web-minify:
 	for f in web/css/*; do \
 		minify -qo "$$f" "$$f" ; \
 	done
@@ -17,5 +20,5 @@ minify:
 		minify -qo "$$f" "$$f" ; \
 	done
 
-test:
-	go test -cover ./...
+web-vendor:
+	wget -qO ./web/vendor/alpine-3.14.1.min.js "https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"
