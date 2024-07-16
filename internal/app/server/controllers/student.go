@@ -1,3 +1,7 @@
+// Package controllers provides controllers for [github.com/gin-gonic/gin].
+//
+// Each controller encapsulates app configuration, exported methods are either
+// HTTP handlers or middlewares.
 package controllers
 
 import (
@@ -12,8 +16,7 @@ import (
 	"github.com/shelepuginivan/hakutest/pkg/test"
 )
 
-// StudentController is a [github.com/gin-gonic/gin] controller that provides
-// handlers for student routes.
+// StudentController is a controller that provides handlers for student routes.
 type StudentController struct {
 	cfg *config.Config
 }
@@ -23,19 +26,19 @@ func NewStudent(cfg *config.Config) *StudentController {
 	return &StudentController{cfg: cfg}
 }
 
-// SearchPage is a [github.com/gin-gonic/gin] handler for the `GET /` route.
-// It renders HTML page with test search.
+// SearchPage is a handler for the `GET /` route.
+//
+// It renders HTML template of a test search.
 func (co *StudentController) SearchPage(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.gohtml", gin.H{
 		"Tests": test.GetList(),
 	})
 }
 
-// TestIsAvailable is a [github.com/gin-gonic/gin] middleware. It checks
-// whether requested test exists and is not expired. If conditions are
-// satisfied, it sets context parameter `test` containing a pointer to the
-// resolved test.
-
+// TestIsAvailable is a middleware that checks whether requested test exists
+// and is not expired. If conditions are satisfied, it sets context parameter
+// `test` containing a pointer to the resolved test.
+//
 // TestIsAvailable is intended to be used with handlers for routes that contain
 // `:test` parameter.
 func (co *StudentController) TestIsAvailable(c *gin.Context) {
@@ -64,8 +67,9 @@ func (co *StudentController) TestIsAvailable(c *gin.Context) {
 	c.Next()
 }
 
-// SearchPage is a [github.com/gin-gonic/gin] handler for the `GET /:test`
-// route. It renders HTML page for the specified test.
+// TestPage is a handler for the `GET /:test` route.
+//
+// It renders HTML template of the requested test.
 //
 // TestPage must be used after [StudentController.TestIsAvailable] middleware.
 func (co *StudentController) TestPage(c *gin.Context) {
@@ -76,8 +80,11 @@ func (co *StudentController) TestPage(c *gin.Context) {
 	})
 }
 
-// TestSubmission is a [github.com/gin-gonic/gin] handler for the `POST /:test`
-// route. It checks answers given by the student via form and saves the result.
+// TestSubmission is a handler for the `POST /:test` route.
+//
+// It accepts form (`application/x-www-form-urlencoded`) and checks answers
+// given by the student. Test result is saved locally depending on the app
+// configuration.
 //
 // TestSubmission must be used after [StudentController.TestIsAvailable]
 // middleware.

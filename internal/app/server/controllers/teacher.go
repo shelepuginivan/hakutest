@@ -17,8 +17,7 @@ import (
 	"github.com/shelepuginivan/hakutest/pkg/version"
 )
 
-// TeacherController is a [github.com/gin-gonic/gin] controller that provides
-// handlers for teacher routes.
+// TeacherController is a controller that provides handlers for teacher routes.
 type TeacherController struct {
 	cfg *config.Config
 }
@@ -28,14 +27,16 @@ func NewTeacher(cfg *config.Config) *TeacherController {
 	return &TeacherController{cfg: cfg}
 }
 
-// Index is a [github.com/gin-gonic/gin] handler for the `GET /teacher` route.
+// Index is a handler for the `GET /teacher` route.
+//
 // It redirects request to `/teacher/dashboard`.
 func (co *TeacherController) Index(c *gin.Context) {
 	c.Redirect(http.StatusPermanentRedirect, "/teacher/dashboard")
 }
 
-// Dashboard is a [github.com/gin-gonic/gin] handler for the `GET
-// /teacher/dashboard` route. It renders teacher dashboard HTML page.
+// Dashboard is a handler for the `GET /teacher/dashboard` route.
+//
+// It renders HTML template of the dashboard.
 func (co *TeacherController) Dashboard(c *gin.Context) {
 	localIP, err := network.GetLocalIP()
 	if err == nil {
@@ -56,17 +57,18 @@ func (co *TeacherController) Dashboard(c *gin.Context) {
 	})
 }
 
-// Tests is a [github.com/gin-gonic/gin] handler for the `GET
-// /teacher/tests` route. It renders tests menu HTML page.
+// Tests is a handler for the `GET /teacher/tests` route.
+//
+// It renders HTML template of a test menu.
 func (co *TeacherController) Tests(c *gin.Context) {
 	c.HTML(http.StatusOK, "tests.gohtml", gin.H{
 		"Tests": test.GetList(),
 	})
 }
 
-// DownloadSelected is a [github.com/gin-gonic/gin] handler for the `GET
-// /teacher/tests/selected` route. It writes `.zip` archive with each selected
-// test.
+// DownloadSelected is a handler for the `GET /teacher/tests/selected` route.
+//
+// It writes `.zip` archive with selected test to the response.
 func (co *TeacherController) DownloadSelected(c *gin.Context) {
 	selected := c.QueryArray("tests")
 	c.Header("Content-Type", "application/zip")
@@ -79,18 +81,20 @@ func (co *TeacherController) DownloadSelected(c *gin.Context) {
 	}
 }
 
-// DeleteSelected is a [github.com/gin-gonic/gin] handler for the `POST
-// /teacher/tests/selected` route. It deletes every selected test and redirects
-// request to the `/teacher/tests` page.
+// DeleteSelected is a handler for the `POST /teacher/tests/selected` route.
+//
+// It accepts form (`application/x-www-form-urlencoded`) and deletes selected
+// tests. The request is redirected to the `/teacher/tests` page.
 func (co *TeacherController) DeleteSelected(c *gin.Context) {
 	selected := c.PostFormArray("tests")
 	test.DeleteMany(selected...)
 	c.Redirect(http.StatusSeeOther, "/teacher/tests")
 }
 
-// ImportTests is a [github.com/gin-gonic/gin] handler for the `POST
-// /teacher/tests/import` route. It imports uploaded tests to the tests
-// directory and redirects request to the `/teacher/tests` page.
+// ImportTests is a handler for the `POST /teacher/tests/import` route.
+//
+// It accepts form (`multipart/form-data`) and imports uploaded tests to the
+// tests directory. The request is redirected to the `/teacher/tests` page.
 func (co *TeacherController) ImportTests(c *gin.Context) {
 	form, err := c.MultipartForm()
 	if err != nil {
@@ -124,9 +128,9 @@ func (co *TeacherController) ImportTests(c *gin.Context) {
 	c.Redirect(http.StatusSeeOther, "/teacher/tests")
 }
 
-// DownloadSelected is a [github.com/gin-gonic/gin] handler for the `GET
-// /teacher/tests/action/:test` route. It writes the test as attachment in JSON
-// format.
+// DownloadTest is a handler for the `GET /teacher/tests/action/:test` route.
+//
+// It writes the test as attachment in JSON format.
 func (co *TeacherController) DownloadTest(c *gin.Context) {
 	testName := c.Param("test")
 
@@ -143,17 +147,19 @@ func (co *TeacherController) DownloadTest(c *gin.Context) {
 	}
 }
 
-// DeleteTest is a [github.com/gin-gonic/gin] handler for the `POST
-// /teacher/tests/action/:test` route. It deletes the test and redirects request to
-// `/teacher/tests` page.
+// DeleteTest is a handler for the `POST /teacher/tests/action/:test` route.
+//
+// It accepts form (`application/x-www-form-urlencoded`) and deletes specified
+// test. The request is redirected to `/teacher/tests` page.
 func (co *TeacherController) DeleteTest(c *gin.Context) {
 	testName := c.Param("test")
 	test.DeleteMany(testName)
 	c.Redirect(http.StatusSeeOther, "/teacher/tests")
 }
 
-// TestEditor is a [github.com/gin-gonic/gin] handler for the `GET
-// /teacher/tests/edit` route. It renders test editor HTML page.
+// TestEditor is a handler for the `GET /teacher/tests/edit` route.
+//
+// It renders HTML template of a test editor.
 func (co *TeacherController) TestEditor(c *gin.Context) {
 	testName, ok := c.GetQuery("name")
 	t, err := test.GetByName(testName)
@@ -164,6 +170,13 @@ func (co *TeacherController) TestEditor(c *gin.Context) {
 	c.HTML(http.StatusOK, "editor.gohtml", t)
 }
 
+// SubmitTest is a handler for `POST /teacher/tests/edit` route.
+//
+// It accepts JSON (`application/json`) and adds test bound to it.
+//
+// If test is valid and added sucessfully, SubmitTest responds with status `201
+// Created`, otherwise it returns JSON with field `message` explaining occurred
+// error.
 func (co *TeacherController) SubmitTest(c *gin.Context) {
 	var t test.Test
 
@@ -185,12 +198,13 @@ func (co *TeacherController) SubmitTest(c *gin.Context) {
 		return
 	}
 
-	c.Status(http.StatusOK)
+	c.AbortWithStatus(http.StatusCreated)
 }
 
-// Statistics is a [github.com/gin-gonic/gin] handler for the `GET
-// /teacher/statistics` route. If search parameter `q` is present, it renders
-// HTML view of the results statistics, otherwise it renders statistics menu.
+// Statistics is a handler for the `GET /teacher/statistics` route.
+//
+// If search parameter `q` is present, it renders HTML template of the results
+// statistics, otherwise statistics menu is rendered.
 func (co *TeacherController) Statistics(c *gin.Context) {
 	resultName, ok := c.GetQuery("q")
 	if !ok {
@@ -219,14 +233,12 @@ func (co *TeacherController) Statistics(c *gin.Context) {
 	})
 }
 
-// StatisticsExport is a [github.com/gin-gonic/gin] handler for the `GET
-// /teacher/statistics/export` route.
-//
-// If search parameter `name` is not present, it redirects request to the
-// `/teacher/statistics`.
+// StatisticsExport is a handler for the `GET /teacher/statistics/export`
+// route.
 //
 // If search parameter `name` is present, it exports statistics in the format
-// `format` (JSON by default) and writes it as response.
+// `format` (JSON by default) and writes it as response, otherwise
+// StatisticsExport redirects request to the `/teacher/statistics`.
 func (co *TeacherController) StatisticsExport(c *gin.Context) {
 	name, ok := c.GetQuery("name")
 	if !ok {
@@ -270,8 +282,18 @@ func (co *TeacherController) StatisticsExport(c *gin.Context) {
 	}
 }
 
-// SettingsPage is a [github.com/gin-gonic/gin] handler for the `GET
-// /teacher/settings` route. It renders settings HTML page.
+// SecurityPage is a handler for the `GET /teacher/security` route.
+//
+// It renders HTML template of a security configuration page.
+func (co *TeacherController) SecurityPage(c *gin.Context) {
+	c.HTML(http.StatusOK, "security.gohtml", gin.H{
+		"Security": co.cfg.Security,
+	})
+}
+
+// SettingsPage is a handler for the `GET /teacher/settings` route.
+//
+// It renders HTML template of a settings page.
 func (co *TeacherController) SettingsPage(c *gin.Context) {
 	c.HTML(http.StatusOK, "settings.gohtml", gin.H{
 		"Config":         co.cfg,
@@ -279,18 +301,14 @@ func (co *TeacherController) SettingsPage(c *gin.Context) {
 	})
 }
 
-func (co *TeacherController) SecurityPage(c *gin.Context) {
-	c.HTML(http.StatusOK, "security.gohtml", gin.H{
-		"Security": co.cfg.Security,
-	})
-}
-
-// SettingsUpdate is a [github.com/gin-gonic/gin] handler for the `POST
-// /teacher/settings` route. It updates the application settings with the
-// values provided in JSON format.
+// SettingsUpdate is a handler for the `POST /teacher/settings` route.
 //
-// The configuration is updated dynamically, i.e. values are applied in-place,
-// application restart is not required. The only exception is the server port.
+// It accepts JSON (`application/json`) and updates the application settings
+// with the values provided in JSON format.
+//
+// If configuration is updated successfully, it responds with status `201
+// Created`, otherwise it returns JSON with field `message` explaining occurred
+// error.
 func (co *TeacherController) SettingsUpdate(c *gin.Context) {
 	var fields config.Fields
 	err := c.BindJSON(&fields)
@@ -312,8 +330,5 @@ func (co *TeacherController) SettingsUpdate(c *gin.Context) {
 		return
 	}
 
-	c.HTML(http.StatusCreated, "settings.gohtml", gin.H{
-		"Config":         co.cfg,
-		"SupportedLangs": i18n.SupportedLangs(),
-	})
+	c.AbortWithStatus(http.StatusCreated)
 }
