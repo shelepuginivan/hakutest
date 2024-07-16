@@ -7,11 +7,42 @@
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/notify.css">
     <link rel="stylesheet" href="/static/css/teacher.css">
     <link rel="stylesheet" href="/static/css/settings.css">
+    <script src="/static/js/notify.js"></script>
+    <script src="/static/js/settings.js"></script>
+    <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
     <title>{{ i "settings.title" }} | Hakutest</title>
+    <script>
+        document.addEventListener("alpine:init", () => {
+            Alpine.data("settings", () => ({
+                general: {
+                    debug: {{ .Config.General.Debug }},
+                    disableTray: {{ .Config.General.DisableTray }},
+                    lang: '{{ .Config.General.Lang }}',
+                    port: {{ .Config.General.Port }}
+                },
+                result: {
+                    overwrite: {{ .Config.Result.Overwrite }},
+                    path: '{{ .Config.Result.Path }}',
+                    show: {{ .Config.Result.Show }}
+                },
+                security: {
+                    dialect: '{{ .Config.Security.Dialect }}',
+                    dsn: '{{ .Config.Security.DSN }}',
+                    student: '{{ .Config.Security.Student }}',
+                    teacher: '{{ .Config.Security.Teacher }}'
+                },
+                test: {
+                    path: {{ .Config.Test.Path }}
+                },
+                ...settings()
+            }))
+        })
+    </script>
 </head>
-<body >
+<body x-data="settings">
     {{ template "navigation" "settings" }}
     <header class="header">
         <h1>{{ i "settings.heading" }}</h1>
@@ -20,140 +51,201 @@
         <form
             id="settings-form"
             class="settings__form"
-            action="/teacher/settings"
-            method="POST"
             autocomplete="off"
+            @submit.prevent="onSubmit"
         >
-            <section class="settings__section">
-                <label
-                    class="settings__section__label"
-                    aria-describedby="lang-tip"
-                >
-                    <b>{{ i "settings.lang.label" }}</b>
-                    <select class="input" name="lang" required>
-                        {{ range $key, $value := .SupportedLangs }}
-                        <option 
-                            value="{{ $key }}"
-                            {{ if eq $key $.Config.General.Lang }}selected{{ end }}
+            <section class="settings__group">
+                <h2>{{ i "settings.general.heading" }}</h2>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.general.lang.label" }}</h3>
+                        <select
+                            class="input"
+                            aria-describedby="tip-lang"
+                            x-model="general.lang"
                         >
-                            {{ $value }}
-                        </option>
-                        {{ end }}
-                    </select>
-                </label>
-                <i id="lang-tip">{{ i "settings.lang.tip" }}</i>
+                            {{ range $key, $value := .SupportedLangs }}
+                            <option value="{{ $key }}">{{ $value }}</option>
+                            {{ end }}
+                        </select>
+                    </label>
+                    <i id="tip-lang">{{ i "settings.general.lang.tip" }}</i>
+                </div>
+                <div class="divider" role="separator"></div>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.general.disable_tray.label" }}</h3>
+                        <input
+                            type="checkbox"
+                            aria-describedby="tip-tray"
+                            x-model="general.disableTray"
+                        >
+                    </label>
+                    <i id="tip-tray">{{ i "settings.general.disable_tray.tip" }}</i>
+                </div>
+                <div class="divider" role="separator"></div>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.general.debug.label" }}</h3>
+                        <input
+                            type="checkbox"
+                            aria-describedby="tip-debug"
+                            x-model="general.debug"
+                        >
+                    </label>
+                    <i id="tip-debug">{{ i "settings.general.debug.tip" }}</i>
+                </div>
+                <div class="divider" role="separator"></div>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.general.port.label" }}</h3>
+                        <input
+                            class="input"
+                            type="number"
+                            min="1024"
+                            max="65535"
+                            aria-describedby="tip-port"
+                            x-model="general.port"
+                        >
+                    </label>
+                    <i id="tip-port">{{ i "settings.general.port.tip" }}</i>
+                </div>
             </section>
-            <section class="settings__section">
-                <label
-                    class="settings__section__label"
-                    aria-describedby="overwrite_results-tip"
-                >
-                    <b>{{ i "settings.overwrite_results.label" }}</b>
-                    <input
-                        type="checkbox" 
-                        name="overwrite_results"
-                        {{ if .Config.Result.Overwrite }}checked{{ end }}
-                    >
-                </label>
-                <i id="overwrite_results-tip">
-                    {{ i "settings.overwrite_results.tip" }}
-                </i>
+
+            <section class="settings__group">
+                <h2>{{ i "settings.result.heading" }}</h2>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.result.overwrite.label" }}</h3>
+                        <input
+                            type="checkbox"
+                            aria-describedby="tip-overwrite"
+                            x-model="result.overwrite"
+                        >
+                    </label>
+                    <i id="tip-overwrite">{{ i "settings.result.overwrite.tip" }}</i>
+                </div>
+                <div class="divider" role="separator"></div>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.result.show.label" }}</h3>
+                        <input
+                            type="checkbox"
+                            aria-describedby="tip-show"
+                            x-model="result.show"
+                        >
+                    </label>
+                    <i id="tip-show">{{ i "settings.result.show.tip" }}</i>
+                </div>
+                <div class="divider" role="separator"></div>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.result.path.label" }}</h3>
+                        <input
+                            class="input input__directory"
+                            aria-describedby="tip-result_path"
+                            x-model="result.path"
+                        >
+                    </label>
+                    <i id="tip-result_path">
+                        {{ i "settings.result.path.tip" }}
+                    </i>
+                </div>
             </section>
-            <section class="settings__section">
-                <label
-                    class="settings__section__label"
-                    aria-describedby="show_results-tip"
-                >
-                    <b>{{ i "settings.show_results.label" }}</b>
-                    <input
-                        type="checkbox" 
-                        name="show_results"
-                        {{ if .Config.Result.Show }}checked{{ end }}
-                    >
-                </label>
-                <i id="show_results-tip">
-                    {{ i "settings.show_results.tip" }}
-                </i>
+
+            <section class="settings__group">
+                <h2>{{ i "settings.test.heading" }}</h2>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.test.path.label" }}</h3>
+                        <input
+                            class="input input__directory"
+                            aria-describedby="tip-test_path"
+                            x-model="test.path"
+                        >
+                    </label>
+                    <i id="tip-test_path">
+                        {{ i "settings.test.path.tip" }}
+                    </i>
+                </div>
             </section>
-            <section class="settings__section">
-                <label
-                    class="settings__section__label"
-                    aria-describedby="disable_tray-tip"
-                >
-                    <b>{{ i "settings.disable_tray.label" }}</b>
-                    <input
-                        type="checkbox" 
-                        name="disable_tray"
-                        {{ if .Config.General.DisableTray }}checked{{ end }}
-                    >
-                </label>
-                <i id="disable_tray-tip">{{ i "settings.disable_tray.tip" }}</i>
-            </section>
-            <section class="settings__section">
-                <label
-                    class="settings__section__label"
-                    aria-describedby="debug-tip"
-                >
-                    <b>{{ i "settings.debug.label" }}</b>
-                    <input
-                        type="checkbox" 
-                        name="debug"
-                        {{ if .Config.General.Debug }}checked{{ end }}
-                    >
-                </label>
-                <i id="debug-tip">{{ i "settings.debug.tip" }}</i>
-            </section>
-            <section class="settings__section">
-                <label
-                    class="settings__section__label"
-                    aria-describedby="port-tip"
-                >
-                    <b>{{ i "settings.port.label" }}</b>
-                    <input
-                        class="input"
-                        type="number"
-                        min="1024"
-                        max="65535"
-                        name="port"
-                        required
-                        value="{{ .Config.General.Port }}"
-                    >
-                </label>
-                <i id="port-tip">{{ i "settings.port.tip" }}</i>
-            </section>
-            <section class="settings__section">
-                <label
-                    class="settings__section__label"
-                    aria-describedby="results_directory-tip"
-                >
-                    <b>{{ i "settings.results_directory.label" }}</b>
-                    <input
-                        class="input input__directory"
-                        name="results_directory"
-                        required
-                        value="{{ .Config.Result.Path }}"
-                    >
-                </label>
-                <i id="results_directory-tip">
-                    {{ i "settings.results_directory.tip" }}
-                </i>
-            </section>
-            <section class="settings__section">
-                <label
-                    class="settings__section__label"
-                    aria-describedby="tests_directory-tip"
-                >
-                    <b>{{ i "settings.tests_directory.label" }}</b>
-                    <input
-                        class="input input__directory"
-                        name="tests_directory"
-                        required
-                        value="{{ .Config.Test.Path }}"
-                    >
-                </label>
-                <i id="tests_directory-tip">
-                    {{ i "settings.tests_directory.tip" }}
-                </i>
+            
+            <section class="settings__group">
+                <hgroup>
+                    <h2>{{ i "settings.security.heading" }}</h2>
+                    <p class="text__warning">{{ i "settings.advanced" }}</p>
+                </hgroup>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.security.student.label" }}</h3>
+                        <select
+                            class="input"
+                            x-model="security.student"
+                            aria-describedby="tip-student"
+                        >
+                            <option value="no_verification">
+                                {{ i "security.policy.no_verification" }}
+                            </option>
+                            <option value="credentials">
+                                {{ i "security.policy.credentials" }}
+                            </option>
+                            <option value="hostonly">
+                                {{ i "security.policy.hostonly" }}
+                            </option>
+                        </select>
+                    </label>
+                    <i id="tip-student">{{ i "settings.security.student.tip" }}</i>
+                </div>
+                <div class="divider" role="separator"></div>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.security.teacher.label" }}</h3>
+                        <select
+                            class="input"
+                            aria-describedby="tip-teacher"
+                            x-model="security.teacher"
+                        >
+                            <option value="no_verification">
+                                {{ i "security.policy.no_verification" }}
+                            </option>
+                            <option value="credentials">
+                                {{ i "security.policy.credentials" }}
+                            </option>
+                            <option value="hostonly">
+                                {{ i "security.policy.hostonly" }}
+                            </option>
+                        </select>
+                    </label>
+                    <i id="tip-teacher">{{ i "settings.security.teacher.tip" }}</i>
+                </div>
+                <div class="divider" role="separator"></div>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.security.dialect.label" }}</h3>
+                        <select
+                            class="input"
+                            aria-describedby="tip-dialect"
+                            x-model="security.dialect"
+                        >
+                            <option value="sqlite">SQLite</option>
+                            <option value="mysql">MySQL</option>
+                            <option value="postgres">PostgreSQL</option>
+                        </select>
+                    </label>
+                    <i id="tip-dialect">{{ i "settings.security.dialect.tip" }}</i>
+                </div>
+                <div class="divider" role="separator"></div>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.security.dsn.label" }}</h3>
+                        <input
+                            class="input input__directory"
+                            aria-describedby="tip-dsn"
+                            x-model="security.dsn"
+                        >
+                    </label>
+                    <i id="tip-dsn">{{ i "settings.security.dsn.tip" }}</i>
+                </div>
             </section>
         </form>
     </main>
@@ -165,4 +257,5 @@
             {{ i "settings.button" }}
         </button>
     </footer>
+    {{ template "notifications" }}
 </body>

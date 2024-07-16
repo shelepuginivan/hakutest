@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
@@ -280,49 +279,35 @@ func (co *TeacherController) SettingsPage(c *gin.Context) {
 	})
 }
 
-// SettingsPage is a [github.com/gin-gonic/gin] handler for the `POST
+func (co *TeacherController) SecurityPage(c *gin.Context) {
+	c.HTML(http.StatusOK, "security.gohtml", gin.H{
+		"Security": co.cfg.Security,
+	})
+}
+
+// SettingsUpdate is a [github.com/gin-gonic/gin] handler for the `POST
 // /teacher/settings` route. It updates the application settings with the
-// values provided in the form.
+// values provided in JSON format.
 //
 // The configuration is updated dynamically, i.e. values are applied in-place,
 // application restart is not required. The only exception is the server port.
 func (co *TeacherController) SettingsUpdate(c *gin.Context) {
-	err := c.Request.ParseForm()
+	var fields config.Fields
+	err := c.BindJSON(&fields)
 	if err != nil {
-		c.HTML(http.StatusUnprocessableEntity, "error.gohtml", gin.H{
-			"Title":   i18n.Get("err.unprocessable.title"),
-			"Text":    i18n.Get("err.unprocessable.text"),
-			"Code":    http.StatusUnprocessableEntity,
-			"Message": "failed to parse settings form",
-			"Error":   err.Error(),
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{
+			"message": i18n.Get("err.unprocessable.text"),
 		})
 		return
 	}
 
-	err = co.cfg.Update(func(f config.Fields) config.Fields {
-		f.General.Debug = c.PostForm("debug") == "on"
-		f.General.DisableTray = c.PostForm("disable_tray") == "on"
-		f.General.Lang = c.PostForm("lang")
-		f.Result.Overwrite = c.PostForm("overwrite_results") == "on"
-		f.Result.Show = c.PostForm("show_results") == "on"
-		f.Result.Path = c.PostForm("results_directory")
-		f.Test.Path = c.PostForm("tests_directory")
-
-		port, err := strconv.Atoi(c.PostForm("port"))
-		if err == nil {
-			f.General.Port = port
-		}
-
-		return f
+	err = co.cfg.Update(func(_ config.Fields) config.Fields {
+		return fields
 	})
 
 	if err != nil {
-		c.HTML(http.StatusInternalServerError, "error.gohtml", gin.H{
-			"Title":   i18n.Get("err.write.title"),
-			"Text":    i18n.Get("err.write.text"),
-			"Code":    http.StatusUnprocessableEntity,
-			"Message": "failed to write config file",
-			"Error":   err.Error(),
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+			"message": i18n.Get("err.write.text"),
 		})
 		return
 	}

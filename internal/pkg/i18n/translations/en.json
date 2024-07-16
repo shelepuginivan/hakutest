@@ -85,38 +85,67 @@
     "settings": {
         "title": "Settings",
         "heading": "Settings",
+        "advanced": "For advanced users",
         "button": "Save settings",
-        "debug": {
-            "label": "Debug",
-            "tip": "Run Hakutest in debug mode, which allows to see more information in the logs."
+        "general": {
+            "heading": "General",
+            "debug": {
+                "label": "Debug",
+                "tip": "Run Hakutest in debug mode, which allows to see more information in the logs."
+            },
+            "disable_tray": {
+                "label": "Hide tray icon",
+                "tip": "Run Hakutest without a system tray icon."
+            },
+            "lang": {
+                "label": "Language",
+                "tip": "Language of the interface. Applied for both student and teacher interface."
+            },
+            "port": {
+                "label": "Port",
+                "tip": "Port on which Hakutest server is started."
+            }
         },
-        "disable_tray": {
-            "label": "Hide tray icon",
-            "tip": "Run Hakutest without a system tray icon."
+        "result": {
+            "heading": "Results",
+            "overwrite": {
+                "label": "Overwrite results",
+                "tip": "Overwrite student results on test form resubmission."
+            },
+            "path": {
+                "label": "Save results into",
+                "tip": "Directory (folder) in which Hakutest stores student results."
+            },
+            "show": {
+                "label": "Show results",
+                "tip": "Show results to students immediately after test form is submitted."
+            }
         },
-        "port": {
-            "label": "Port",
-            "tip": "Port on which Hakutest server is started."
+        "security": {
+            "heading": "Security",
+            "teacher": {
+                "label": "Security policy (teacher)",
+                "tip": "Access rules for teacher pages (e.g. Dashboard, Settings)."
+            },
+            "student": {
+                "label": "Security policy (student)",
+                "tip": "Access rules for teacher pages (e.g. Test Search, Result Overview)."
+            },
+            "dialect": {
+                "label": "Users DB dialect",
+                "tip": "Dialect of the database containing the user data."
+            },
+            "dsn": {
+                "label": "Users DB DSN",
+                "tip": "DSN (Data Source Name) of the database containing the user data."
+            }
         },
-        "lang": {
-            "label": "Language",
-            "tip": "Language of the interface. Applied for both student and teacher interface."
-        },
-        "overwrite_results": {
-            "label": "Overwrite results",
-            "tip": "Overwrite student results on test form resubmission."
-        },
-        "show_results": {
-            "label": "Show results",
-            "tip": "Show results to students immediately after test form is submitted."
-        },
-        "results_directory": {
-            "label": "Save results into",
-            "tip": "Directory (folder) in which Hakutest stores student results."
-        },
-        "tests_directory": {
-            "label": "Save tests into",
-            "tip": "Directory (folder) in which Hakutest stores tests."
+        "test": {
+            "heading": "Tests",
+            "path": {
+                "label": "Save tests into",
+                "tip": "Directory (folder) in which Hakutest stores tests."
+            }
         }
     },
     "statistics": {
@@ -131,6 +160,15 @@
             "points": "Points",
             "student": "Student",
             "submitted_at": "Submitted at"
+        }
+    },
+    "security": {
+        "title": "Security",
+        "heading": "Security",
+        "policy": {
+            "no_verification": "For everyone without verification",
+            "credentials": "By username and password",
+            "hostonly": "Only from this device"
         }
     },
     "tests": {

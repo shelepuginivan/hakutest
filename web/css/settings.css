@@ -6,14 +6,21 @@
     height: fit-content;
 }
 
-.settings__section {
+.settings__group {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    width: 100%;
+    padding: 36px;
+    border: 2px solid var(--selection);
+    border-radius: 8px;
+}
+
+.settings__entry {
     display: flex;
     flex-direction: column;
     gap: 24px;
     width: 100%;
-    padding: 32px 48px;
-    border: 2px solid var(--selection);
-    border-radius: 8px;
 }
 
 .settings__section__label {
@@ -22,7 +29,6 @@
     flex-wrap: wrap;
     width: fit-content;
     gap: 16px;
-    font-size: large;
 }
 
 .input__directory {

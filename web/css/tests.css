@@ -51,11 +51,6 @@
     padding: 8px 16px;
 }
 
-.divider {
-    border: 1px solid var(--selection);
-    margin: 0 16px;
-}
-
 .test__menu {
     display: flex;
     gap: 20px;
