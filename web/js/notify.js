@@ -22,3 +22,9 @@ function notificationHandler() {
         }
     }
 }
+
+function notify(type, message) {
+    dispatchEvent(new CustomEvent("notify", {
+        detail: { type, message }
+    }))
+}
