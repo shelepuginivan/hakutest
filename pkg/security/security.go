@@ -14,7 +14,7 @@ type Config struct {
 	//
 	// For SQLite dialect you can use `file::memory:?cache=shared`, in this
 	// case user data will be stored in memory.
-	DSN string `yaml:"dsn"`
+	DSN string `json:"dsn" yaml:"dsn"`
 
 	// Dialect of tge database used to store user data.
 	//
@@ -22,13 +22,13 @@ type Config struct {
 	//   - `postgres` for PostgreSQL,
 	//   - `mysql` for MySQL,
 	//   - `sqlite` for SQLite (default).
-	Dialect string `yaml:"dialect"`
+	Dialect string `json:"dialect" yaml:"dialect"`
 
 	// Teacher security policy.
-	Teacher string `yaml:"teacher"`
+	Teacher string `json:"teacher" yaml:"teacher"`
 
 	// Student security policy.
-	Student string `yaml:"student"`
+	Student string `json:"student" yaml:"student"`
 }
 
 var (

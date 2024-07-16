@@ -9,13 +9,13 @@ import (
 // Result configuration section.
 type Config struct {
 	// Whether to overwrite results on resend.
-	Overwrite bool `yaml:"overwrite"`
+	Overwrite bool `json:"overwrite" yaml:"overwrite"`
 
 	// Directory where results are stored.
-	Path string `yaml:"path"`
+	Path string `json:"path" yaml:"path"`
 
 	// Whether to show results on submission.
-	Show bool `yaml:"show"`
+	Show bool `json:"show" yaml:"show"`
 }
 
 var (

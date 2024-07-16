@@ -19,31 +19,31 @@ import (
 // section in the configuration file.
 type GeneralFields struct {
 	// Run in debug mode.
-	Debug bool `yaml:"debug"`
+	Debug bool `json:"debug" yaml:"debug"`
 
 	// Run without icon in system tray.
-	DisableTray bool `yaml:"disable_tray"`
+	DisableTray bool `json:"disableTray" yaml:"disable_tray"`
 
 	// Port on which server is started.
-	Port int `yaml:"port"`
+	Port int `json:"port" yaml:"port"`
 
 	// Language of the application interface.
-	Lang string `yaml:"lang"`
+	Lang string `json:"lang" yaml:"lang"`
 }
 
 // Fields represents configuration fields.
 type Fields struct {
 	// General configuration fields.
-	General GeneralFields `yaml:"general"`
+	General GeneralFields `json:"general" yaml:"general"`
 
 	// Result package configuration.
-	Result result.Config `yaml:"result"`
+	Result result.Config `json:"result" yaml:"result"`
 
 	// Test package configuration.
-	Test test.Config `yaml:"test"`
+	Test test.Config `json:"test" yaml:"test"`
 
 	// Security configuration.
-	Security security.Config `yaml:"security"`
+	Security security.Config `json:"security" yaml:"security"`
 }
 
 // Config is a configuration layer for the application.
