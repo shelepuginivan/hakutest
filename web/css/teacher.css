@@ -57,3 +57,7 @@ body {
 .nav__link {
     text-decoration: none;
 }
+
+.nav__link[data-active='true'] * {
+    color: var(--green);
+}
