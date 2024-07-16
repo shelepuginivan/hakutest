@@ -15,59 +15,62 @@
     <script src="/static/js/notify.js"></script>
     <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
     <title>{{ if eq (len .Title) 0 }}{{ i "editor.new_test" }}{{ else }}{{ .Title }}{{ end }} | Hakutest</title>
-</head>
-<body x-data="{
-    title: '{{ .Title }}',
-    target: '{{ .Target }}',
-    description: '{{ .Description }}',
-    subject: '{{ .Subject }}',
-    author: '{{ .Author }}',
-    institution: '{{ .Institution }}',
-    expiresAt: {{ if not .ExpiresAt.IsZero }}
-        '{{ .ExpiresAt.Local.Format "2006-01-02T15:04:05" }}'
-    {{ else }}
-        ''
-    {{ end }},
-    tasks: [
-        {{ range $index, $task := .Tasks }}
-        {{ with $task }}
-        {
-            id: 'task:{{ $index }}',
-            text: `{{ .Text }}`,
-            type: '{{ .Type }}',
-            single: {
-                {{ if eq .Type "single" }}
-                answer: '{{ .Answer }}',
+    <script>
+        document.addEventListener("alpine:init", () => {
+            Alpine.data('editor', () => ({
+                title: '{{ .Title }}',
+                target: '{{ .Target }}',
+                description: '{{ .Description }}',
+                subject: '{{ .Subject }}',
+                author: '{{ .Author }}',
+                institution: '{{ .Institution }}',
+                expiresAt: {{ if not .ExpiresAt.IsZero }}
+                    '{{ .ExpiresAt.Local.Format "2006-01-02T15:04:05" }}'
                 {{ else }}
-                answer: '',
-                {{ end }}
-
-                options: [{{ range .Options }}'{{ . }}',{{ end }}]
-            },
-            multiple: {
-                {{ if eq .Type "multiple" }}
-                answer: [
-                    {{ range (split .Answer ",") }}
-                    '{{ . }}',
+                    ''
+                {{ end }},
+                tasks: [
+                    {{ range $index, $task := .Tasks }}
+                    {{ with $task }}
+                    {
+                        id: 'task:{{ $index }}',
+                        text: '{{ .Text }}',
+                        type: '{{ .Type }}',
+                        single: {
+                            {{ if eq .Type "single" }}
+                            answer: '{{ .Answer }}',
+                            {{ else }}
+                            answer: '',
+                            {{ end }}
+                            options: [{{ range .Options }}'{{ . }}',{{ end }}]
+                        },
+                        multiple: {
+                            {{ if eq .Type "multiple" }}
+                            answer: [
+                                {{ range (split .Answer ",") }}
+                                '{{ . }}',
+                                {{ end }}
+                            ],
+                            {{ else }}
+                            answer: [],
+                            {{ end }}
+                            options: [{{ range .Options }}'{{ . }}',{{ end }}]
+                        },
+                        {{ if eq .Type "open" }}
+                        open: '{{ .Answer }}'
+                        {{ else }}
+                        open: ''
+                        {{ end }}
+                    },
+                    {{ end }}
                     {{ end }}
                 ],
-                {{ else }}
-                answer: [],
-                {{ end }}
-
-                options: [{{ range .Options }}'{{ . }}',{{ end }}]
-            },
-            {{ if eq .Type "open" }}
-            open: `{{ .Answer }}`
-            {{ else }}
-            open: ''
-            {{ end }}
-        },
-        {{ end }}
-        {{ end }}
-    ],
-    ...editor()
-}">
+                ...editor()
+            }))
+        })
+    </script>
+</head>
+<body x-data="editor">
     <header class="header editor__header">
         <h1 class="editor__heading" x-text="title"></h1>
         <button
