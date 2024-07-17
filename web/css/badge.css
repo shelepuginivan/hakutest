@@ -1,0 +1,28 @@
+.badge {
+    background: var(--selection);
+    padding: 2px 4px;
+    display: block;
+    width: fit-content;
+    border-radius: 4px;
+}
+
+.badge__info {
+    color: var(--blue);
+}
+
+.badge__success {
+    color: var(--green);
+}
+
+.badge__warning {
+    color: var(--yellow);
+}
+
+.badge__danger {
+    color: var(--red);
+}
+
+.badge__group {
+    display: flex;
+    gap: 4px;
+}

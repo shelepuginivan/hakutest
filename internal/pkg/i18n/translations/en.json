@@ -85,7 +85,14 @@
     "settings": {
         "title": "Settings",
         "heading": "Settings",
-        "advanced": "For advanced users",
+        "restart": {
+            "text": "Restart is required",
+            "tooltip": "You will need to restart Hakutest for the changes to take effect"
+        },
+        "advanced": {
+            "text": "For advanced users",
+            "tooltip": "This setting or a group of settings is intended for advanced users only and should be modified with care"
+        },
         "button": "Save settings",
         "general": {
             "heading": "General",

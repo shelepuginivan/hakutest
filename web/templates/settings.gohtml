@@ -1,9 +1,22 @@
+{{ define "advanced" }}
+<p class="badge badge__warning" title="{{ i "settings.advanced.tooltip" }}">
+    {{ i "settings.advanced.text" }}
+</p>
+{{ end -}}
+
+{{- define "restart" }}
+<p class="badge badge__info" title="{{ i "settings.restart.tooltip" }}">
+    {{ i "settings.restart.text" }}
+</p>
+{{ end -}}
+
 <!DOCTYPE html>
 <html lang="{{ i "lang" }}" dir="{{ i "dir" }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" href="/static/css/badge.css">
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/form.css">
@@ -82,6 +95,7 @@
                         >
                     </label>
                     <i id="tip-tray">{{ i "settings.general.disable_tray.tip" }}</i>
+                    {{ template "restart" }}
                 </div>
                 <div class="divider" role="separator"></div>
                 <div class="settings__entry">
@@ -109,6 +123,7 @@
                         >
                     </label>
                     <i id="tip-port">{{ i "settings.general.port.tip" }}</i>
+                    {{ template "restart" }}
                 </div>
             </section>
 
@@ -173,7 +188,10 @@
             <section class="settings__group">
                 <hgroup>
                     <h2>{{ i "settings.security.heading" }}</h2>
-                    <p class="text__warning">{{ i "settings.advanced" }}</p>
+                    <div class="badge__group">
+                        {{ template "advanced" }}
+                        {{ template "restart" }}
+                    </div>
                 </hgroup>
                 <div class="settings__entry">
                     <label class="settings__section__label">
