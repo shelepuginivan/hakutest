@@ -22,12 +22,12 @@ func init() {
 
 var testCmd = &cobra.Command{
 	Use:   "test [command] [options]",
-	Short: "Manage test files.",
+	Short: "Manage local test files",
 }
 
 var testDeleteCmd = &cobra.Command{
 	Use:   "delete <test1> [tests2, test3, ...]",
-	Short: "Delete test files.",
+	Short: "Delete test files",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			term.CorrectCommand(
@@ -89,7 +89,7 @@ var testImportCmd = &cobra.Command{
 
 var testListCmd = &cobra.Command{
 	Use:   "list",
-	Short: "List available test files.",
+	Short: "List available test files",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, t := range test.GetList() {
 			fmt.Println(t)
@@ -99,7 +99,7 @@ var testListCmd = &cobra.Command{
 
 var testSearchCmd = &cobra.Command{
 	Use:   "search <query>",
-	Short: "Incremental search among tests.",
+	Short: "Incremental search among tests",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			term.CorrectCommand(

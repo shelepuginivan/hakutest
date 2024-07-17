@@ -18,9 +18,9 @@ func init() {
 }
 
 var rootCmd = &cobra.Command{
-	Use:   "hakuctl [command] [options]",
-	Short: "hakuctl - control utility for Hakutest.",
-	Long:  "A command line interface to control Hakutest and manage its data.",
+	Use:   "hakuctl",
+	Short: "hakuctl - control utility for Hakutest",
+	Long:  "A command line interface to control Hakutest and manage its data",
 	Run: func(cmd *cobra.Command, _ []string) {
 		cmd.Help()
 	},
