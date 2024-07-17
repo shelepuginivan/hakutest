@@ -1,3 +1,20 @@
+CGO_ENABLED := 1
+export CGO_ENABLED
+
+build: build-linux build-windows
+
+build-linux:
+	GOARCH=amd64 \
+	GOOS=linux   \
+	go build -trimpath -o ./target/linux/hakutest ./cmd/hakutest
+
+build-windows:
+	CC=x86_64-w64-mingw32-gcc                             \
+	GOARCH=amd64                                          \
+	GOOS=windows                                          \
+	PKG_CONFIG_PATH=/usr/x86_64-w64-mingw32/lib/pkgconfig \
+	go build -ldflags "-H=windowsgui" -trimpath -o ./target/windows/hakutest.exe ./cmd/hakutest
+
 dev:
 	gowatch
 
