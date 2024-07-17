@@ -26,7 +26,7 @@ func CorrectCommand(message, command string, corrections ...string) {
 	correctCommand := fmt.Sprintf(command, formatted...)
 
 	color.New(color.FgRed, color.Bold).Printf("error: %s\n\n", message)
-	fmt.Printf("    %s\n\n", correctCommand)
+	fmt.Printf("  %s\n\n", correctCommand)
 
 	os.Exit(1)
 }
