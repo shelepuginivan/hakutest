@@ -52,3 +52,20 @@ func ErrorMultiline(messages ...string) {
 
 	os.Exit(1)
 }
+
+// Warn writes provided warning message to STDERR in the following format:
+//
+//	warning: <message 1>
+//	         <message 2>
+//	         ...
+func Warn(messages ...string) {
+	c := color.New(color.FgYellow, color.Bold)
+
+	for i, msg := range messages {
+		if i == 0 {
+			c.Fprintf(os.Stderr, "warning: %s\n", msg)
+		} else {
+			c.Fprintf(os.Stderr, "         %s\n", msg)
+		}
+	}
+}
