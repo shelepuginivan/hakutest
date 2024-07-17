@@ -7,8 +7,8 @@ import (
 	"github.com/fatih/color"
 )
 
-// CorrectCommand displays the error message explaining the command in the
-// following format:
+// CorrectCommand writes the error message to STDERR explaining the command in
+// the following format:
 //
 //	error: <message>
 //
@@ -25,13 +25,14 @@ func CorrectCommand(message, command string, corrections ...string) {
 
 	correctCommand := fmt.Sprintf(command, formatted...)
 
-	color.New(color.FgRed, color.Bold).Printf("error: %s\n\n", message)
-	fmt.Printf("  %s\n\n", correctCommand)
+	color.New(color.FgRed, color.Bold).Fprintf(os.Stderr, "error: %s\n\n", message)
+	fmt.Fprintf(os.Stderr, "  %s\n\n", correctCommand)
 
 	os.Exit(1)
 }
 
-// ErrorMultiline displays provided error messages in the following format:
+// ErrorMultiline writes provided error messages to STDERR in the following
+// format:
 //
 //	error: <message 1>
 //	       <message 2>
@@ -43,9 +44,9 @@ func ErrorMultiline(messages ...string) {
 
 	for i, msg := range messages {
 		if i == 0 {
-			c.Printf("error: %s\n", msg)
+			c.Fprintf(os.Stderr, "error: %s\n", msg)
 		} else {
-			c.Printf("       %s\n", msg)
+			c.Fprintf(os.Stderr, "       %s\n", msg)
 		}
 	}
 
