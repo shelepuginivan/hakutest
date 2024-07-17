@@ -282,15 +282,6 @@ func (co *TeacherController) StatisticsExport(c *gin.Context) {
 	}
 }
 
-// SecurityPage is a handler for the `GET /teacher/security` route.
-//
-// It renders HTML template of a security configuration page.
-func (co *TeacherController) SecurityPage(c *gin.Context) {
-	c.HTML(http.StatusOK, "security.gohtml", gin.H{
-		"Security": co.cfg.Security,
-	})
-}
-
 // SettingsPage is a handler for the `GET /teacher/settings` route.
 //
 // It renders HTML template of a settings page.

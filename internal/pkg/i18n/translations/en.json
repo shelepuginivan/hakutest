@@ -170,8 +170,6 @@
         }
     },
     "security": {
-        "title": "Security",
-        "heading": "Security",
         "policy": {
             "no_verification": "For everyone without verification",
             "credentials": "By username and password",

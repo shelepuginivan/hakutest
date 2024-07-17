@@ -119,7 +119,7 @@ func Login(username, password string) (*Credentials, error) {
 	return u.Credentials(), nil
 }
 
-// DeleteUser deletes user from the database.
-func DeleteUser(username string) error {
-	return db.Delete(&User{}, "username = ?", username).Error
+// DeleteUser deletes users by id from the database.
+func DeleteUser(ids ...int) error {
+	return db.Delete(&User{}, ids).Error
 }
