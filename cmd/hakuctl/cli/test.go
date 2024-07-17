@@ -30,9 +30,11 @@ var testDeleteCmd = &cobra.Command{
 	Short: "Delete test files.",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			color.Red("error: please provide at least one test.\n\n")
-			fmt.Printf("    hakuctl test delete %s\n\n", color.GreenString("\"My test\""))
-			os.Exit(1)
+			term.CorrectCommand(
+				"please provide at least one test.",
+				"hakuctl test delete %s",
+				"\"My Test\"",
+			)
 		}
 
 		fmt.Printf("Tests marked for deletion: %s.\n", color.New(color.Bold).Sprint(len(args)))
@@ -57,24 +59,28 @@ var testImportCmd = &cobra.Command{
 	Short: "Import test from a file",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			color.Red("error: please provide a file to import.\n\n")
-			fmt.Printf("    hakuctl test import %s\n\n", color.GreenString("\"/path/to/my/file.json\""))
-			os.Exit(1)
+			term.CorrectCommand(
+				"please provide a file to import.",
+				"hakuctl test import %s",
+				"\"/path/to/my/file.json\"",
+			)
 		}
 
 		importPath := args[0]
 		data, err := os.ReadFile(importPath)
 
 		if err != nil {
-			color.Red("error: cannot read \"%s\".\n", importPath)
-			color.Red("does it exist?\n")
-			os.Exit(1)
+			term.ErrorMultiline(
+				fmt.Sprintf("cannot read \"%s\".", importPath),
+				"does it exist?",
+			)
 		}
 
 		if test.Import(data) != nil {
-			color.Red("error: cannot import \"%s\".\n", importPath)
-			color.Red("is this a valid test?\n")
-			os.Exit(1)
+			term.ErrorMultiline(
+				fmt.Sprintf("cannot import \"%s\".", importPath),
+				"is this a valid test?",
+			)
 		}
 
 		fmt.Printf("Successfully imported \"%s\".\n", importPath)
@@ -96,9 +102,11 @@ var testSearchCmd = &cobra.Command{
 	Short: "Incremental search among tests.",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			color.Red("error: please provide a search query.\n\n")
-			fmt.Printf("    hakuctl test search %s\n\n", color.GreenString("\"My test\""))
-			os.Exit(1)
+			term.CorrectCommand(
+				"please provide a search query.",
+				"hakuctl test search %s",
+				"\"My test\"",
+			)
 		}
 
 		for _, t := range test.GetList() {
