@@ -12,11 +12,17 @@ import (
 )
 
 func init() {
+	// Flags for `hakuctl test` subcommands.
+	testExportCmd.Flags().StringP("output", "o", "-", "Where to export files, - to export to stdout")
+
+	// Add `hakuctl test` subcommands.
 	testCmd.AddCommand(testDeleteCmd)
+	testCmd.AddCommand(testExportCmd)
 	testCmd.AddCommand(testImportCmd)
 	testCmd.AddCommand(testListCmd)
 	testCmd.AddCommand(testSearchCmd)
 
+	// Add `hakuctl` subcommand.
 	rootCmd.AddCommand(testCmd)
 }
 
@@ -26,7 +32,7 @@ var testCmd = &cobra.Command{
 }
 
 var testDeleteCmd = &cobra.Command{
-	Use:   "delete <test1> [tests2, test3, ...]",
+	Use:   "delete <test1> [test2, test3, ...]",
 	Short: "Delete test files",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
@@ -51,6 +57,59 @@ var testDeleteCmd = &cobra.Command{
 
 		removed := test.DeleteMany(args...)
 		fmt.Printf("Deleted tests: %s.\n", color.New(color.Bold).Sprint(removed))
+	},
+}
+
+var testExportCmd = &cobra.Command{
+	Use:   "export <test1> [test2, test3, ...] -o <output>",
+	Short: "Export test files",
+	Example: `  hakuctl export "My Test.json" -o "Documents/My Test.json"         # Export single test to a JSON file
+  hakuctl export test.json another.json third.json -o tests.zip     # Export multiple tests to a ZIP archive
+  hakuctl export test.json -o -                                     # Export single test and print it to standard out`,
+	Run: func(cmd *cobra.Command, args []string) {
+		if len(args) == 0 {
+			term.CorrectCommand(
+				"please provide a test to export.",
+				"hakuctl test export %s",
+				"\"My test.json\"",
+			)
+		}
+
+		var out *os.File
+
+		output, _ := cmd.Flags().GetString("output")
+
+		if output == "-" {
+			out = os.Stdout
+		} else {
+			file, err := os.Create(output)
+
+			if err != nil {
+				// Fallback to stdout if error occurres.
+				term.Warn(fmt.Sprintf(
+					"cannot write to \"%s\", falling back to STDOUT",
+					output,
+				))
+				out = os.Stdout
+			} else {
+				defer file.Close()
+				out = file
+			}
+		}
+
+		if len(args) == 1 {
+			testName := args[0]
+			err := test.WriteJSON(out, testName)
+			if err != nil {
+				term.ErrorMultiline("an error occurred during export.", err.Error())
+			}
+			return
+		}
+
+		err := test.WriteZip(out, args...)
+		if err != nil {
+			term.ErrorMultiline("an error occurred during export", err.Error())
+		}
 	},
 }
 
