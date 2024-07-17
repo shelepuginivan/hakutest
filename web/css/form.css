@@ -55,10 +55,6 @@ input[type='radio'] {
     color: var(--background);
 }
 
-.form {
-    gap: 36px;
-}
-
 .input {
     background: var(--background);
     padding: 8px 16px;
