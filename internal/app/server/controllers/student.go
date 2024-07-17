@@ -74,10 +74,7 @@ func (co *StudentController) TestIsAvailable(c *gin.Context) {
 // TestPage must be used after [StudentController.TestIsAvailable] middleware.
 func (co *StudentController) TestPage(c *gin.Context) {
 	t, _ := c.Get("test")
-
-	c.HTML(http.StatusOK, "test.gohtml", gin.H{
-		"Test": t,
-	})
+	c.HTML(http.StatusOK, "test.gohtml", t)
 }
 
 // TestSubmission is a handler for the `POST /:test` route.

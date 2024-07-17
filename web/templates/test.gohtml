@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="/static/css/form.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/test.css">
-    <title>{{ .Test.Title }} | Hakutest</title>
+    <title>{{ .Title }} | Hakutest</title>
 </head>
 <body>
     <header class="header test__header">
-        <h1 class="header__title test__title">{{ .Test.Title }}</h1>
+        <h1 class="header__title test__title">{{ .Title }}</h1>
     </header>
     <main>
         <form
@@ -26,7 +26,7 @@
                     <input class="input" name="student" required autofocus>
                 </label>
             </div>
-            {{ range $index, $task := .Test.Tasks }}
+            {{ range $index, $task := .Tasks }}
             <div class="test__task">
                 <div class="test__task__text">{{ markdown .Text }}</div>
                 <div class="test__task__options">
