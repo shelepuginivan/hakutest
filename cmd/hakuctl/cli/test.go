@@ -101,14 +101,14 @@ var testExportCmd = &cobra.Command{
 			testName := args[0]
 			err := test.WriteJSON(out, testName)
 			if err != nil {
-				term.ErrorMultiline("an error occurred during export.", err.Error())
+				term.Error("an error occurred during export.", err.Error())
 			}
 			return
 		}
 
 		err := test.WriteZip(out, args...)
 		if err != nil {
-			term.ErrorMultiline("an error occurred during export", err.Error())
+			term.Error("an error occurred during export", err.Error())
 		}
 	},
 }
@@ -129,14 +129,14 @@ var testImportCmd = &cobra.Command{
 		data, err := os.ReadFile(importPath)
 
 		if err != nil {
-			term.ErrorMultiline(
+			term.Error(
 				fmt.Sprintf("cannot read \"%s\".", importPath),
 				"does it exist?",
 			)
 		}
 
 		if test.Import(data) != nil {
-			term.ErrorMultiline(
+			term.Error(
 				fmt.Sprintf("cannot import \"%s\".", importPath),
 				"is this a valid test?",
 			)

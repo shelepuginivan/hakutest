@@ -31,15 +31,14 @@ func CorrectCommand(message, command string, corrections ...string) {
 	os.Exit(1)
 }
 
-// ErrorMultiline writes provided error messages to STDERR in the following
-// format:
+// Error writes provided error messages to STDERR in the following format:
 //
 //	error: <message 1>
 //	       <message 2>
 //	       ...
 //
 // followed by [os.Exit](1) call.
-func ErrorMultiline(messages ...string) {
+func Error(messages ...string) {
 	c := color.New(color.FgRed, color.Bold)
 
 	for i, msg := range messages {
