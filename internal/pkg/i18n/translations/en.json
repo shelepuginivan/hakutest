@@ -52,10 +52,10 @@
             "delete": "Delete task",
             "type": {
                 "label": "Type of the task:",
-                "single": "Single answer task",
-                "multiple": "Multiple answer task",
-                "open": "Open answer task",
-                "detailed": "Task with detailed answer"
+                "single": "Single answer",
+                "multiple": "Multiple answer",
+                "open": "Open answer",
+                "detailed": "Detailed answer"
             },
             "text": {
                 "label": "Text:",
