@@ -204,12 +204,12 @@ func (co *TeacherController) SubmitTest(c *gin.Context) {
 // Statistics is a handler for the `GET /teacher/statistics` route.
 //
 // If search parameter `q` is present, it renders HTML template of the results
-// statistics, otherwise statistics menu is rendered.
+// statistics, otherwise results menu is rendered.
 func (co *TeacherController) Statistics(c *gin.Context) {
 	resultName, ok := c.GetQuery("q")
 	if !ok {
-		c.HTML(http.StatusOK, "statistics_menu.gohtml", gin.H{
-			"AvailableResults": result.AvailableResults(),
+		c.HTML(http.StatusOK, "results.gohtml", gin.H{
+			"Results": result.AvailableResults(),
 		})
 		return
 	}

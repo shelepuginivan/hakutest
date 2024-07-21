@@ -159,9 +159,18 @@
         "title": "Statistics",
         "heading": "Statistics",
         "export": "Export",
-        "form": {
-            "heading": "Select the test for which statistics will be generated",
-            "button": "Generate statistics"
+        "results": {
+            "delete": {
+                "button": "Delete",
+                "confirm": "Are you sure you want to delete results?"
+            },
+            "delete_selected": {
+                "button": "Delete selected",
+                "confirm": "Are you sure you want to delete selected results?"
+            },
+            "fallback": "You don't have saved results yet",
+            "generate": "Generate statistics",
+            "select_all": "Select all"
         },
         "view": {
             "points": "Points",
