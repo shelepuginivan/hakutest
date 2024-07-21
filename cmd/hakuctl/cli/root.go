@@ -21,9 +21,6 @@ var rootCmd = &cobra.Command{
 	Use:   "hakuctl",
 	Short: "hakuctl - control utility for Hakutest",
 	Long:  "A command line interface to control Hakutest and manage its data",
-	Run: func(cmd *cobra.Command, _ []string) {
-		cmd.Help()
-	},
 }
 
 func Execute() {
