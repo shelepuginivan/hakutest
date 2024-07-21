@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"os"
 
 	"fyne.io/systray"
 	"github.com/pkg/browser"
@@ -18,13 +19,16 @@ import (
 	"github.com/shelepuginivan/hakutest/pkg/result"
 	"github.com/shelepuginivan/hakutest/pkg/security"
 	"github.com/shelepuginivan/hakutest/pkg/test"
+	"github.com/shelepuginivan/hakutest/pkg/version"
 )
 
 var cfg *config.Config
+var displayVersion bool
 
 func init() {
 	cfg = config.New()
 
+	flag.BoolVar(&displayVersion, "version", false, "Display version and exit")
 	flag.BoolVar(&cfg.General.Debug, "debug", cfg.General.Debug, "Run in debug mode")
 	flag.BoolVar(&cfg.General.DisableTray, "disable-tray", cfg.General.DisableTray, "Run without icon in system tray")
 	flag.StringVar(&cfg.General.Lang, "lang", cfg.General.Lang, "Language of the interface")
@@ -47,6 +51,12 @@ func onConfigUpdate(c *config.Config) {
 
 func main() {
 	flag.Parse()
+
+	if displayVersion {
+		fmt.Println(version.Version)
+		os.Exit(0)
+	}
+
 	srv := server.New(cfg)
 
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
