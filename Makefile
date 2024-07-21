@@ -65,4 +65,5 @@ web-minify:
 	done
 
 web-vendor:
+	mkdir -p ./web/vendor
 	wget -qO ./web/vendor/alpine-3.14.1.min.js "https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"
