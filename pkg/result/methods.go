@@ -1,6 +1,8 @@
 package result
 
 import (
+	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/shelepuginivan/hakutest/pkg/test"
@@ -27,4 +29,20 @@ func CheckAnswer(task *test.Task, answer string) *Answer {
 	}
 
 	return &a
+}
+
+// DeleteMany deletes results by names. The returned value is the number of
+// successfully deleted result subdirectories.
+func DeleteMany(names ...string) (deleted int) {
+	for _, name := range names {
+		err := os.RemoveAll(filepath.Join(resultsDirectory, name))
+
+		if err != nil {
+			continue
+		}
+
+		deleted++
+	}
+
+	return deleted
 }
