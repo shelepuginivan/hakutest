@@ -75,27 +75,14 @@ var testExportCmd = &cobra.Command{
 			)
 		}
 
-		var out *os.File
-
-		output, _ := cmd.Flags().GetString("output")
-
-		if output == "-" {
-			out = os.Stdout
-		} else {
-			file, err := os.Create(output)
-
-			if err != nil {
-				// Fallback to stdout if error occurres.
-				term.Warn(fmt.Sprintf(
-					"cannot write to \"%s\", falling back to STDOUT",
-					output,
-				))
-				out = os.Stdout
-			} else {
-				defer file.Close()
-				out = file
-			}
+		out, err := term.ResolveOutput(cmd.Flags().GetString("output"))
+		if err != nil {
+			term.Error(
+				"cannot write to specified output",
+				err.Error(),
+			)
 		}
+		defer out.Close()
 
 		if len(args) == 1 {
 			testName := args[0]
@@ -106,8 +93,7 @@ var testExportCmd = &cobra.Command{
 			return
 		}
 
-		err := test.WriteZip(out, args...)
-		if err != nil {
+		if err := test.WriteZip(out, args...); err != nil {
 			term.Error("an error occurred during export", err.Error())
 		}
 	},
