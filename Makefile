@@ -38,6 +38,18 @@ package-linux-appimage:
 	ARCH=x86_64 appimagetool ./target/hakutest.AppDir
 	mv ./Hakutest-x86_64.AppImage ./target/hakutest.AppImage
 
+package-linux-deb:
+	mkdir -p ./target/hakutest/DEBIAN
+	cp ./build/deb/control ./target/hakutest/DEBIAN
+	mkdir -p ./target/hakutest/usr/bin
+	cp ./target/linux/hakutest ./target/hakutest/usr/bin
+	cp ./target/linux/hakuctl ./target/hakutest/usr/bin
+	mkdir -p ./target/hakutest/usr/share/applications
+	cp ./build/resources/hakutest.desktop ./target/hakutest/usr/share/applications
+	mkdir -p ./target/hakutest/usr/share/icons
+	cp ./build/resources/hakutest.svg ./target/hakutest/usr/share/icons
+	dpkg --build ./target/hakutest
+
 test:
 	go test -cover ./...
 
