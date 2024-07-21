@@ -2,9 +2,9 @@
 Version=1.0
 Name=Hakutest
 Comment=Reliable and efficient educational testing platform
-Exec=/usr/bin/hakutest-gtk
+Exec=/usr/bin/hakutest
 Icon=hakutest
 Terminal=false
 Type=Application
 Categories=Education;
-Keywords=education;gtk;hakutest;
+Keywords=education;hakutest;

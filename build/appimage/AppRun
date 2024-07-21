@@ -1,6 +1,6 @@
 #!/bin/sh
 
 WORKDIR="$(dirname "$(readlink -f "$0")")"
-EXEC="$WORKDIR/usr/bin/hakutest-gtk"
+EXEC="$WORKDIR/usr/bin/hakutest"
 
 exec "$EXEC"
