@@ -33,7 +33,7 @@ func WriteAll(file string, data []byte) error {
 // RemoveAllIfExists is like [os.RemoveAll] except that it returns error if
 // file/directory does not exist.
 func RemoveAllIfExists(path string) error {
-	if !DirExists(path) || !FileExists(path) {
+	if !DirExists(path) && !FileExists(path) {
 		return fmt.Errorf("path %s does not exist", path)
 	}
 
