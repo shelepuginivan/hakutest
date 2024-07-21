@@ -30,8 +30,7 @@
         "invalid": "Invalid username or password"
     },
     "dashboard": {
-        "title": "Dashboard",
-        "heading": "Hakutest Dashboard",
+        "title": "Hakutest Dashboard",
         "address": "Hakutest Address",
         "address_tip": "To ensure that your students can use Hakutest, open this address on their devices.",
         "system_details": "System Details",
@@ -84,7 +83,6 @@
     },
     "settings": {
         "title": "Settings",
-        "heading": "Settings",
         "restart": {
             "text": "Restart is required",
             "tooltip": "You will need to restart Hakutest for the changes to take effect"
@@ -156,8 +154,7 @@
         }
     },
     "statistics": {
-        "title": "Statistics",
-        "heading": "Statistics",
+        "title": "Results and statistics",
         "export": "Export",
         "results": {
             "delete": {
@@ -187,7 +184,6 @@
     },
     "tests": {
         "title": "Tests",
-        "heading": "Tests",
         "select_all": "Select all",
         "selected": {
             "delete": {
