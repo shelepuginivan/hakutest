@@ -63,6 +63,7 @@ func New(cfg *config.Config) *http.Server {
 	teacher.GET("/tests/edit", t.TestEditor)
 	teacher.POST("/tests/edit", t.SubmitTest)
 	teacher.GET("/statistics", t.Statistics)
+	teacher.POST("/statistics", t.DeleteResults)
 	teacher.GET("/statistics/export", t.StatisticsExport)
 	teacher.GET("/settings", t.SettingsPage)
 	teacher.POST("/settings", t.SettingsUpdate)

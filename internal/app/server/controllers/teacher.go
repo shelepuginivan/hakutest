@@ -233,6 +233,18 @@ func (co *TeacherController) Statistics(c *gin.Context) {
 	})
 }
 
+// DeleteResults is a handler for the `POST /teacher/statistics` route.
+//
+// It accepts form (`application/x-www-form-urlencoded`) deletes all results
+// specified under `results` array.
+//
+// The request is redirected to statistics menu page.
+func (co *TeacherController) DeleteResults(c *gin.Context) {
+	selected := c.PostFormArray("results")
+	result.DeleteMany(selected...)
+	c.Redirect(http.StatusSeeOther, "/teacher/statistics")
+}
+
 // StatisticsExport is a handler for the `GET /teacher/statistics/export`
 // route.
 //
