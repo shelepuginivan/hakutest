@@ -1,10 +1,10 @@
 package result
 
 import (
-	"os"
 	"path/filepath"
 	"strings"
 
+	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
 	"github.com/shelepuginivan/hakutest/pkg/test"
 )
 
@@ -35,7 +35,7 @@ func CheckAnswer(task *test.Task, answer string) *Answer {
 // successfully deleted result subdirectories.
 func DeleteMany(names ...string) (deleted int) {
 	for _, name := range names {
-		err := os.RemoveAll(filepath.Join(resultsDirectory, name))
+		err := fsutil.RemoveAllIfExists(filepath.Join(resultsDirectory, name))
 
 		if err != nil {
 			continue

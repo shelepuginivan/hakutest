@@ -1,6 +1,7 @@
 package fsutil
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 )
@@ -27,4 +28,14 @@ func WriteAll(file string, data []byte) error {
 	}
 
 	return os.WriteFile(file, data, os.ModePerm)
+}
+
+// RemoveAllIfExists is like [os.RemoveAll] except that it returns error if
+// file/directory does not exist.
+func RemoveAllIfExists(path string) error {
+	if !DirExists(path) || !FileExists(path) {
+		return fmt.Errorf("path %s does not exist", path)
+	}
+
+	return os.RemoveAll(path)
 }
