@@ -1,0 +1,19 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "Hakutest Website",
+  "main": "index.js",
+  "repository": "https://github.com/shelepuginivan/hakutest",
+  "author": "Ivan Shelepugin",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vitepress": "^1.3.1"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  }
+}

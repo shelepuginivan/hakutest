@@ -14,3 +14,8 @@ build/vendor
 
 # Web interface vendor scripts and styles.
 web/vendor
+
+# Documentation website.
+docs/node_modules
+docs/.vitepress/cache
+docs/.vitepress/dist
