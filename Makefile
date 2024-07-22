@@ -25,6 +25,15 @@ build-windows:
 dev:
 	gowatch
 
+docs-build:
+	yarn --cwd ./docs docs:build
+
+docs-dev:
+	yarn --cwd ./docs docs:dev
+
+docs-preview:
+	yarn --cwd ./docs docs:preview
+
 clean:
 	go clean
 	rm -rf ./target
