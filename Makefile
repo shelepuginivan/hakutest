@@ -50,6 +50,9 @@ package-linux-deb:
 	cp ./build/resources/hakutest.svg ./target/hakutest/usr/share/icons
 	dpkg --build ./target/hakutest
 
+package-linux-tarball:
+	tar -czf ./target/hakutest-linux-x86_64.tar.gz --transform 's/^./hakutest/' -C ./target/linux .
+
 test:
 	go test -cover ./...
 
