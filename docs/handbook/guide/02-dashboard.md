@@ -16,11 +16,12 @@ description: How to control Hakutest via built-in dashboard
 
 The dashboard allows you to control Hakutest directly from your browser. It
 allows you to:
-- View information about Hakutest (see [below](#home-page-of-the-dashboard))
-- Manage tests available for your students (see [Tests](/handbook/guide/03-tests.md));
-- Manage your students' results and export statistics (see [Results and
-  Statistics](/handbook/guide/04-results-and-statistics.md));
-- Manage Hakutest settings (see [Settings](/handbook/guide/05-settings.md)).
+
+-   View information about Hakutest (see [below](#home-page-of-the-dashboard))
+-   Manage tests available for your students (see [Tests](/handbook/guide/03-tests.md));
+-   Manage your students' results and export statistics (see [Results and
+    Statistics](/handbook/guide/04-results-and-statistics.md));
+-   Manage Hakutest settings (see [Settings](/handbook/guide/05-settings.md)).
 
 ## Home page of the dashboard
 
@@ -49,5 +50,6 @@ tests, send solutions, etc.
 ### System Details
 
 In the "System Details" section, you can see information about the system:
-- the Hakutest version (including operating system and CPU architecture);
-- Server uptime.
+
+-   the Hakutest version (including operating system and CPU architecture);
+-   Server uptime.

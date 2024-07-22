@@ -20,7 +20,6 @@ description: Introduction to Hakutest
     instant feedback and accurate grading.</i>
 </details>
 
-
 ## About Hakutest
 
 Hakutest is an educational platform designed for testing in local network. It
@@ -30,16 +29,16 @@ check.
 
 It has a number of advantages over its analogues:
 
-- **Security**: Your data and your students' data are stored locally, ensuring
-  that no one else can access it.
-- **Efficiency**: Hakutest is an efficient system capable of checking students'
-  answers in a matter of milliseconds.
-- **Customizability**: You can customize the system to suit your needs:
-  internationalization, different environments, data export and more.
-- **Cross-platform**: Students can access Hakutest from any device. Server is
-  available for Windows and Linux.
-- **Free**: Hakutest is a free (as in freedom) and open source software.
-- **Just works**: Hakutest is configured to work out-of-the-box.
+-   **Security**: Your data and your students' data are stored locally, ensuring
+    that no one else can access it.
+-   **Efficiency**: Hakutest is an efficient system capable of checking students'
+    answers in a matter of milliseconds.
+-   **Customizability**: You can customize the system to suit your needs:
+    internationalization, different environments, data export and more.
+-   **Cross-platform**: Students can access Hakutest from any device. Server is
+    available for Windows and Linux.
+-   **Free**: Hakutest is a free (as in freedom) and open source software.
+-   **Just works**: Hakutest is configured to work out-of-the-box.
 
 ## Motivation
 
@@ -49,8 +48,8 @@ issues: they compromise answers or allow students to falsify their results.
 Some of them are proprietary, so student data is stored on third-party servers.
 
 Hakutest was created with the intention of mitigating these weaknesses. While it
-is definitely not the most important tool out there (*it is neither a window
-system, nor a driver, etc.*), it attempts to provide a transparent and smooth
+is definitely not the most important tool out there (_it is neither a window
+system, nor a driver, etc._), it attempts to provide a transparent and smooth
 testing experience for both students and teachers. Focus on the educational
 process, not on fighting software.
 
