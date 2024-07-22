@@ -30,8 +30,12 @@ export default defineConfig({
                         text: 'Guide',
                         items: [
                             {
-                                text: 'Lalala',
-                                link: '/handbook/guide/lalala',
+                                text: 'Server',
+                                link: '/handbook/guide/01-server',
+                            },
+                            {
+                                text: 'Dashboard',
+                                link: '/handbook/guide/02-dashboard',
                             },
                         ],
                     },
@@ -81,8 +85,12 @@ export default defineConfig({
                         text: 'Гайд',
                         items: [
                             {
-                                text: 'Lalala',
-                                link: '/handbook/guide/lalala',
+                                text: 'Сервер',
+                                link: '/ru/handbook/guide/01-server',
+                            },
+                            {
+                                text: 'Панель управления',
+                                link: '/ru/handbook/guide/02-dashboard',
                             },
                         ],
                     },
