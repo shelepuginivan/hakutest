@@ -17,6 +17,7 @@ build-windows:
 	GOOS=windows                                          \
 	PKG_CONFIG_PATH=/usr/x86_64-w64-mingw32/lib/pkgconfig \
 	go build -ldflags "-H=windowsgui" -trimpath -o ./target/windows/hakutest.exe ./cmd/hakutest
+	CGO_ENABLED=0                                         \
 	GOARCH=amd64                                          \
 	GOOS=windows                                          \
 	go build -trimpath -o ./target/windows/hakuctl.exe ./cmd/hakuctl
