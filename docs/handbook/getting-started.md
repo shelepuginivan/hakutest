@@ -7,18 +7,19 @@ description: Introduction to Hakutest
 
 ![Hakutest Logo](/logo.svg)
 
-<details>
-    <summary><b>TLDR</b></summary>
-    <i>Hakutest is an educational platform designed for testing, quizzes, and
-    exams with automatic answer checking. It offers advantages such as local
-    data storage for enhanced security, efficient grading in milliseconds,
-    customization options, cross-platform accessibility, and being free and
-    open source. Hakutest was created to address the drawbacks of existing
-    testing systems, ensuring data privacy and reliable testing. It operates by
-    storing test files locally, generating web pages for each test, and
-    automatically checking student responses against expected solutions for
-    instant feedback and accurate grading.</i>
-</details>
+:::details TLDR
+
+_Hakutest is an educational platform designed for testing, quizzes, and exams
+with automatic answer checking. It offers advantages over analogues. Hakutest
+operates by storing test files locally, generating web pages for each test, and
+automatically checking student responses against expected solutions for instant
+feedback and accurate grading._
+
+---
+
+**However, we recommend that you read the entire page.**
+
+:::
 
 ## About Hakutest
 
