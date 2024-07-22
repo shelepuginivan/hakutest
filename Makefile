@@ -50,9 +50,15 @@ package-linux-deb:
 	mkdir -p ./target/hakutest/usr/share/icons
 	cp ./build/resources/hakutest.svg ./target/hakutest/usr/share/icons
 	dpkg --build ./target/hakutest
+	rm -r ./target/hakutest
 
 package-linux-tarball:
 	tar -czf ./target/hakutest-linux-x86_64.tar.gz --transform 's/^./hakutest/' -C ./target/linux .
+
+package-windows-zip:
+	cp -r ./target/windows ./target/hakutest
+	cd ./target && zip hakutest-win-x86_64.zip -r hakutest
+	rm -r ./target/hakutest
 
 test:
 	go test -cover ./...
