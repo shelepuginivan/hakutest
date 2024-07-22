@@ -1,14 +1,15 @@
 import { defineConfig } from 'vitepress'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Hakutest Website",
-  description: "Hakutest website, documentation, and handbook",
+  lang: 'en-US',
+  title: 'Hakutest',
+  description: 'Modern and efficient educational testing',
+
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
+    siteTitle: 'Hakutest',
+    
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
     ],
 
     sidebar: [
@@ -22,7 +23,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/shelepuginivan/hakutest' }
     ]
   }
 })
