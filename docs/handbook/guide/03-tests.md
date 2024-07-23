@@ -91,6 +91,8 @@ examples of task texts:
 ~~strikethrough~~
 
 `monospace`
+
+> Quote
 ```
 <!-- prettier-ignore-end -->
 
@@ -105,6 +107,9 @@ _italic_
 ~~strikethrough~~
 
 `monospace`
+
+> Quote
+
 :::
 
 :::details Headings
@@ -152,6 +157,48 @@ Stay hydrated! Drink more H<sub>2</sub>O!
 [Hakutest](https://hakutest.org)
 
 ![Hakutest Icon](/favicon.ico)
+
+:::
+
+:::details Tables and lists
+
+```markdown
+|  #  | Name                    | Price |
+| :-: | :---------------------- | ----: |
+|  1  | Pencil box x150         |   $20 |
+|  2  | Colored pencil box x150 |  $120 |
+
+Ordered list:
+
+1. Item 1
+2. Item 2
+3. Item 3
+
+Unordered (bullet) list:
+
+-   Item
+-   Another item
+-   Third item
+```
+
+---
+
+|  #  | Name                    | Price |
+| :-: | :---------------------- | ----: |
+|  1  | Pencil box x150         |   $20 |
+|  2  | Colored pencil box x150 |  $120 |
+
+Ordered list:
+
+1. Item 1
+2. Item 2
+3. Item 3
+
+Unordered (bullet) list:
+
+-   Item
+-   Another item
+-   Third item
 
 :::
 
