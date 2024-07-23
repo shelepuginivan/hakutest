@@ -82,11 +82,11 @@
                         <tr>
                             <td>{{ incr $index }}</td>
                             {{ if $answer.Correct }}
-                            <td title="{{ $answer.Value | printf (i "result.table.answer_correct") }}">
+                            <td title="{{ $answer.HumanReadable | printf (i "result.table.answer_correct") }}">
                                 <i class="i checkmark"></i>
                             </td>
                             {{ else }}
-                            <td title="{{ $answer.Value | printf (i "result.table.answer_wrong") }}">
+                            <td title="{{ $answer.HumanReadable | printf (i "result.table.answer_wrong") }}">
                                 <i class="i cross"></i>
                             </td>
                             {{ end }}
