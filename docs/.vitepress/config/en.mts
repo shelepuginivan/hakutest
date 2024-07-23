@@ -47,6 +47,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Tests',
                     link: '/handbook/guide/03-tests',
                 },
+                {
+                    text: 'Results and Statistics',
+                    link: '/handbook/guide/04-results-and-statistics',
+                },
             ],
         },
         {
