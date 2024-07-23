@@ -12,6 +12,13 @@ description: Learn how to manage tests via Hakutest Dashboard
 > -   How to manage your tests using the menu
 > -   How to create and edit tests via Hakutest test editor
 
+## Overview
+
+Test management is a fundamental component of Hakutest. It allows you to
+perform a number of operations on the tests available to your students. The
+integrated editor enables the creation of coherent tests, quizzes, and even
+exam variants.
+
 ## Tests menu
 
 ![Tests menu](./img/tests-menu.png)
