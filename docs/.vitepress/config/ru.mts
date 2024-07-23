@@ -96,6 +96,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Тесты',
                     link: '/ru/handbook/guide/03-tests',
                 },
+                {
+                    text: 'Результаты и статистика',
+                    link: '/ru/handbook/guide/04-results-and-statistics',
+                },
             ],
         },
         {
