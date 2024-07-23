@@ -5,6 +5,15 @@ description: How to control Hakutest via built-in dashboard
 
 # Teacher Dashboard
 
+---
+
+:::tip You will learn:
+
+-   What are the features of the Hakutest Dashboard
+-   How to find out information about the Hakutest server
+
+## :::
+
 ![Dashboard](./img/dashboard.png)
 
 > [!TIP]

@@ -5,9 +5,18 @@ description: Learn how to manage tests via Hakutest Dashboard
 
 # Tests
 
-![Tests menu](./img/tests-menu.png)
+---
+
+:::tip You will learn:
+
+-   How to manage your tests using the menu
+-   How to create and edit tests via Hakutest test editor
+
+:::
 
 ## Tests menu
+
+![Tests menu](./img/tests-menu.png)
 
 Tests menu is a file manager-like interface that allows to manage your tests.
 The following describes the actions you can perform in the menu:
