@@ -23,7 +23,7 @@
             answers: [
                 {{ range .Answers }}
                 {
-                    value: '{{ .Value }}',
+                    value: '{{ .HumanReadable }}',
                     correct: {{ .Correct }}
                 },
                 {{ end }}

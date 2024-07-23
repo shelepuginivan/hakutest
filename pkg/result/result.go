@@ -2,6 +2,8 @@
 package result
 
 import (
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/shelepuginivan/hakutest/pkg/test"
@@ -12,6 +14,25 @@ type Answer struct {
 	Type    string `json:"type"`    // Type of the task.
 	Value   string `json:"value"`   // The answer.
 	Correct bool   `json:"correct"` // Whether answer is correct.
+}
+
+func (a Answer) HumanReadable() string {
+	switch a.Type {
+	case test.TaskOpen, test.TaskDetailed:
+		return a.Value
+	case test.TaskSingle:
+		v, _ := strconv.Atoi(a.Value)
+		return strconv.Itoa(v + 1)
+	case test.TaskMultiple:
+		ans := strings.Split(a.Value, ",")
+		for i, an := range ans {
+			v, _ := strconv.Atoi(an)
+			ans[i] = strconv.Itoa(v + 1)
+		}
+		return strings.Join(ans, ",")
+	}
+
+	return ""
 }
 
 // Result represent result scored by the student.

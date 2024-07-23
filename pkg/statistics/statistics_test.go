@@ -248,7 +248,7 @@ func TestWriteXLSX(t *testing.T) {
 			ansCell, _ := excelize.CoordinatesToCellName(col+5, exRow)
 			exAnswer, _ := file.GetCellValue(sheet, ansCell)
 
-			assert.Equal(t, ans.Value, exAnswer)
+			assert.Equal(t, ans.HumanReadable(), exAnswer)
 		}
 	}
 }

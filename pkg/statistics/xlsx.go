@@ -92,7 +92,7 @@ func (s *Statistics) WriteXLSX(w io.Writer) error {
 				style = detailed
 			}
 
-			if f.SetCellStr(sheet, cell, a.Value) != nil {
+			if f.SetCellStr(sheet, cell, a.HumanReadable()) != nil {
 				continue
 			}
 
