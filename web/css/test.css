@@ -20,6 +20,28 @@
     background-color: var(--selection);
 }
 
+.test__task__text blockquote {
+    margin: 16px 0;
+    padding-left: 8px;
+    border-left: 2px solid var(--secondary);
+}
+
+.test__task__text table {
+    border-collapse: collapse;
+    margin: 16px auto;
+}
+
+.test__task__text th,
+.test__task__text td {
+    border: 1px solid var(--secondary);
+    padding: 4px;
+}
+
+.test__task__text ol,
+.test__task__text ul {
+    padding-left: 24px;
+}
+
 .test__task__options {
     width: 100%;
 }
@@ -49,4 +71,3 @@
     width: 100%;
     gap: 8px;
 }
-
