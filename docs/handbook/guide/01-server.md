@@ -7,11 +7,9 @@ description: Learn how to start Hakutest server
 
 ---
 
-:::tip You will learn:
-
--   How to start and stop the Hakutest server
-
-## :::
+> [!TIP] You will learn:
+>
+> -   How to start and stop the Hakutest server
 
 To start the Hakutest server, run `hakutest.exe` (`hakutest` on Linux). An icon
 will appear in the system tray to indicate that the server is running:

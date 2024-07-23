@@ -7,12 +7,10 @@ description: Learn how to manage tests via Hakutest Dashboard
 
 ---
 
-:::tip You will learn:
-
--   How to manage your tests using the menu
--   How to create and edit tests via Hakutest test editor
-
-:::
+> [!TIP] You will learn:
+>
+> -   How to manage your tests using the menu
+> -   How to create and edit tests via Hakutest test editor
 
 ## Tests menu
 
