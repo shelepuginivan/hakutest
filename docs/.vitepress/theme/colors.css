@@ -2,10 +2,26 @@
     --vp-c-brand-1: #008000;
     --vp-c-brand-2: #008000;
     --vp-c-brand-3: #2c7135;
+    --background: #fffafa;
+    --selection: #f0ecec;
+    --foreground: #232323;
+    --secondary: #a9a9a7;
+    --blue: #4169e1;
+    --green: #008000;
+    --darkgreen: #2c7135;
+    --red: #ff4500;
 }
 
 .dark {
     --vp-c-brand-1: #84cb6b;
     --vp-c-brand-2: #67b458;
     --vp-c-brand-3: #008000;
+    --background: #150d0a;
+    --selection: #221b18;
+    --foreground: #e3e3e3;
+    --secondary: #808080;
+    --blue: #4ca7e3;
+    --green: #84cb6b;
+    --darkgreen: #67b458;
+    --red: #ff4500;
 }

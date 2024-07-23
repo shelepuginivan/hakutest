@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'Iconify Explorer Font';
+    src:
+        url('/fonts/iconfont.ttf') format('truetype'),
+        url('/fonts/iconfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.i {
+    font-family: 'Iconify Explorer Font' !important;
+    font-size: 1em;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.i.add:before {
+    content: '\e001';
+}
+
+.i.analytics:before {
+    content: '\e002';
+}
+
+.i.arrow-down:before {
+    content: '\e003';
+}
+
+.i.arrow-right:before {
+    content: '\e004';
+}
+
+.i.arrow-up:before {
+    content: '\e005';
+}
+
+.i.book:before {
+    content: '\e006';
+}
+
+.i.correctness:before {
+    content: '\e007';
+}
+
+.i.checkmark:before {
+    content: '\e008';
+}
+
+.i.close:before {
+    content: '\e009';
+}
+
+.i.cross:before {
+    content: '\e009';
+}
+
+.i.dashboard:before {
+    content: '\e00a';
+}
+
+.i.view:before {
+    content: '\e00b';
+}
+
+.i.import:before {
+    content: '\e00c';
+}
+
+.i.tests:before {
+    content: '\e00d';
+}
+
+.i.download:before {
+    content: '\e00e';
+}
+
+.i.edit:before {
+    content: '\e00f';
+}
+
+.i.error:before {
+    content: '\e010';
+}
+
+.i.hash:before {
+    content: '\e011';
+}
+
+.i.info:before {
+    content: '\e012';
+}
+
+.i.paint-brush:before {
+    content: '\e013';
+}
+
+.i.password:before {
+    content: '\e014';
+}
+
+.i.result:before {
+    content: '\e015';
+}
+
+.i.search:before {
+    content: '\e016';
+}
+
+.i.security:before {
+    content: '\e017';
+}
+
+.i.settings:before {
+    content: '\e018';
+}
+
+.i.table-split:before {
+    content: '\e019';
+}
+
+.i.trash-can:before {
+    content: '\e01a';
+}
+
+.i.user:before {
+    content: '\e01b';
+}
