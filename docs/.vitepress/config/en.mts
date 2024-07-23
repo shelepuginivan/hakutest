@@ -51,6 +51,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Results and Statistics',
                     link: '/handbook/guide/04-results-and-statistics',
                 },
+                {
+                    text: 'Settings',
+                    link: '/handbook/guide/05-settings',
+                },
             ],
         },
         {
