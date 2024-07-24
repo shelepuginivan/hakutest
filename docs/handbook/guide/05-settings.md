@@ -23,7 +23,7 @@ browser in the teacher dashboard.
 > Basic parameters can be changed at any time and do not require a restart.
 > These are the settings you will change most often.
 
-The following tables describes basic options that can be configured:
+The following table describes basic options that can be configured:
 
 | Option                | Description                                                                     |
 | --------------------- | ------------------------------------------------------------------------------- |
