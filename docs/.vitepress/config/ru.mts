@@ -100,6 +100,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Результаты и статистика',
                     link: '/ru/handbook/guide/04-results-and-statistics',
                 },
+                {
+                    text: 'Настройки',
+                    link: '/ru/handbook/guide/05-settings',
+                },
             ],
         },
         {
