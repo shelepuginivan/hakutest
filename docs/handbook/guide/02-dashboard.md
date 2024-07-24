@@ -47,7 +47,7 @@ tests, send solutions, etc.
 > `/teacher/dashboard` page from another device. For example, if the server is
 > available at `http://192.168.1.34:8000`, open
 > `http://192.168.1.34/teacher/dashboard` on a different device. The [Test
-> Search](/handbook/guide/06-student-interface#test-search) should be opened
+> Search](/handbook/guide/06-student-perspective#test-search) should be opened
 > instead.
 >
 > See Security for more details.

@@ -55,6 +55,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Settings',
                     link: '/handbook/guide/05-settings',
                 },
+                {
+                    text: 'Student Perspective',
+                    link: '/handbook/guide/06-student-perspective',
+                },
             ],
         },
         {
