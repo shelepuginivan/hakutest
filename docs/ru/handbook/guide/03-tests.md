@@ -250,7 +250,7 @@ Lorem ipsum dolor sit amet.
 
 :::details Открытый ответ
 
-> [!NOTE] ОБРАТИТЕ ВНИМАНИЕ
+> [!NOTE] К СВЕДЕНИЮ
 > Регистр не влияет на правильность ответа.
 
 ![Открытый ответ](./img/test-editor-task-open.png)
