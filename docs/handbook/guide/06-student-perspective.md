@@ -8,17 +8,17 @@ description: Learn how students use Hakutest
 ---
 
 > [!TIP] You will learn:
-> 
-> - How students use Hakutest
+>
+> -   How students use Hakutest
 
 At this point we have fully covered the teacher's experience of using Hakutest.
 Let's have a quick recap what you have learned:
 
-- Starting and stoping [Hakutest Server](/handbook/guide/01-server);
-- Monitoring server status using the [Teacher Dashboard](/handbook/guide/02-dashboard);
-- Managing [Tests](/handbook/guide/03-tests);
-- Managing [Results and Statistics](/handbook/guide/04-results-and-statistics);
-- [Configuring Hakutest](/handbook/guide/05-settings).
+-   Starting and stoping [Hakutest Server](/handbook/guide/01-server);
+-   Monitoring server status using the [Teacher Dashboard](/handbook/guide/02-dashboard);
+-   Managing [Tests](/handbook/guide/03-tests);
+-   Managing [Results and Statistics](/handbook/guide/04-results-and-statistics);
+-   [Configuring Hakutest](/handbook/guide/05-settings).
 
 However, it is also worth considering another perspective &mdash; how the
 student uses Hakutest.

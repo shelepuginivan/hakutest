@@ -104,6 +104,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Настройки',
                     link: '/ru/handbook/guide/05-settings',
                 },
+                {
+                    text: 'С точки зрения ученика',
+                    link: '/ru/handbook/guide/06-student-perspective',
+                },
             ],
         },
         {
