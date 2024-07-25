@@ -65,7 +65,8 @@ The following table describes basic options that can be configured:
 >
 > ---
 >
-> For more information on security settings, see [Security](#)
+> For more information on security settings, see
+> [Security](/handbook/advanced/01-security#configuration)
 
 ## Applying the settings
 
@@ -74,5 +75,3 @@ to apply the updated parameters. Note that some options require a restart of
 Hakutest to take effect.
 
 <button class="button button__primary">Save settings</button>
-
-<!-- TODO: Add link to security page -->

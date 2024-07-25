@@ -62,11 +62,11 @@ function sidebar(): DefaultTheme.SidebarItem[] {
             ],
         },
         {
-            text: 'Advanced guide',
+            text: 'Advanced',
             items: [
                 {
-                    text: 'Hakuctl',
-                    link: '/handbook/advanced/hakuctl',
+                    text: 'Security',
+                    link: '/handbook/advanced/01-security',
                 },
             ],
         },
