@@ -4,6 +4,8 @@ import './guide.css'
 import './iconfont.css'
 
 import { h } from 'vue'
+
+//@ts-ignore
 import HomeFeaturesBefore from './components/HomeFeaturesBefore.vue'
 
 export default {
