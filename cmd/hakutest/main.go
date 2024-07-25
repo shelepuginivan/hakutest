@@ -71,6 +71,9 @@ func main() {
 		return cfg.Fields
 	})
 
+	// Update configuration when SIGUSR1 is sent.
+	sigusr(cfg)
+
 	if cfg.General.DisableTray {
 		log.Fatal().Err(srv.ListenAndServe())
 	}

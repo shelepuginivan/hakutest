@@ -83,21 +83,40 @@ func (c *Config) Update(updateFunc func(f Fields) Fields) error {
 	return write(c)
 }
 
+// UpdateFromFile updates configuration fields from the file and calls each
+// registered callback.
+//
+// This method is safe to use by multiple goroutines.
+func (c *Config) UpdateFromFile() error {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	f, err := read()
+	if err != nil {
+		return err
+	}
+
+	c.Fields = f
+	for _, cb := range c.callbacks {
+		cb(c)
+	}
+
+	return nil
+}
+
 // New reads configuration file and returns the configuration. If field is
 // unset, it fallbacks to the default value as defined in [Default].
 func New() *Config {
-	cfg := Default()
-
-	data, err := os.ReadFile(paths.Config)
+	f, err := read()
 	if err != nil {
-		return Default()
+		return &Config{
+			Fields: Default(),
+		}
 	}
 
-	if err = yaml.Unmarshal(data, &cfg.Fields); err != nil {
-		return Default()
+	return &Config{
+		Fields: f,
 	}
-
-	return cfg
 }
 
 // Default returns the default configuration:
@@ -118,29 +137,27 @@ func New() *Config {
 //	  dialect: sqlite
 //	  teacher: hostonly
 //	  student: no_verification
-func Default() *Config {
-	return &Config{
-		Fields: Fields{
-			General: GeneralFields{
-				Debug:       false,
-				DisableTray: false,
-				Lang:        language.English.String(),
-				Port:        8080,
-			},
-			Result: result.Config{
-				Overwrite: false,
-				Path:      paths.Results,
-				Show:      true,
-			},
-			Security: security.Config{
-				DSN:     paths.UserDB,
-				Dialect: isecurity.DialectSQLite,
-				Teacher: security.PolicyHostOnly,
-				Student: security.PolicyNoVerification,
-			},
-			Test: test.Config{
-				Path: paths.Tests,
-			},
+func Default() Fields {
+	return Fields{
+		General: GeneralFields{
+			Debug:       false,
+			DisableTray: false,
+			Lang:        language.English.String(),
+			Port:        8080,
+		},
+		Result: result.Config{
+			Overwrite: false,
+			Path:      paths.Results,
+			Show:      true,
+		},
+		Security: security.Config{
+			DSN:     paths.UserDB,
+			Dialect: isecurity.DialectSQLite,
+			Teacher: security.PolicyHostOnly,
+			Student: security.PolicyNoVerification,
+		},
+		Test: test.Config{
+			Path: paths.Tests,
 		},
 	}
 }
@@ -153,4 +170,18 @@ func write(cfg *Config) error {
 	}
 
 	return fsutil.WriteAll(paths.Config, data)
+}
+
+// read reads configuration from the file.
+func read() (f Fields, err error) {
+	data, err := os.ReadFile(paths.Config)
+	if err != nil {
+		return f, err
+	}
+
+	if err = yaml.Unmarshal(data, &f); err != nil {
+		return f, err
+	}
+
+	return f, nil
 }
