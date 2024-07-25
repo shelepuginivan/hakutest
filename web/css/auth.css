@@ -26,7 +26,7 @@
 
 .auth__input__wrapper {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
     height: 42px;
 }
