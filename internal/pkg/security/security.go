@@ -97,12 +97,10 @@ func (m *User) Credentials() *Credentials {
 }
 
 // CreateUser creates a new [User] entry in the database.
-//
-// Provided password is hashed using HMAC-SHA256 algorithm.
 func CreateUser(username, password string, roles []string) error {
 	u := User{
 		Username: username,
-		Password: HashPassword(password),
+		Password: password,
 		Roles:    strings.Join(roles, ","),
 	}
 
@@ -116,7 +114,7 @@ func CreateUser(username, password string, roles []string) error {
 func Login(username, password string) (*Credentials, error) {
 	var u User
 
-	res := db.First(&u, "username = ? AND password = ?", username, HashPassword(password))
+	res := db.First(&u, "username = ? AND password = ?", username, password)
 	if res.Error != nil {
 		return nil, res.Error
 	}

@@ -6,7 +6,6 @@ require (
 	fyne.io/systray v1.11.0
 	github.com/adrg/xdg v0.4.0
 	github.com/deckarep/golang-set/v2 v2.6.0
-	github.com/denisbrodbeck/machineid v1.0.1
 	github.com/fatih/color v1.17.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/golang-jwt/jwt/v5 v5.2.1
