@@ -82,3 +82,15 @@ student immediately:
 Otherwise, an information message is displayed:
 
 ![Test result message](./img/test-result-message.png)
+
+> [!TIP] Congratulations 🎉
+> You have successfully reached this point, which means that you have mastered
+> Hakutest at the user level! Your current level of knowledge is sufficient for
+> you to work fully with the platform. Of course, you can always return to the
+> handbook to find an answer to a question or to remember a particular
+> instruction.
+>
+> ---
+>
+> _If you wish, you can study Hakutest at a more advanced level. To start,
+> click on the "Next page" button below_.
