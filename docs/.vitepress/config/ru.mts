@@ -114,8 +114,8 @@ function sidebar(): DefaultTheme.SidebarItem[] {
             text: 'Продвинутый гайд',
             items: [
                 {
-                    text: 'Hakuctl',
-                    link: '/handbook/advanced/hakuctl',
+                    text: 'Безопасность',
+                    link: '/ru/handbook/advanced/01-security',
                 },
             ],
         },
