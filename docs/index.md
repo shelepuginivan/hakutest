@@ -16,6 +16,10 @@ hero:
           text: Hakutest handbook
           link: /handbook/getting-started
 
+featuresBefore:
+    title: Features
+    caption: Here are just a few of them
+
 features:
     - title: Peak performance
       details: Hakutest is capable of checking multiple solutions in milliseconds and even microseconds!
@@ -23,6 +27,9 @@ features:
     - title: Easy to use
       details: Clear interface and excellent user experience. Best accessibility. Easy to integrate into your infrastructure.
       icon: 😄
+    - title: Secure and private
+      details: Hakutest offers best security among analogues. Our priority is your privacy and the privacy of your students.
+      icon: 🔑
     - title: Free and open source
       details: Hakutest is a free and open source software. Yours, forever!
       icon: 💛
