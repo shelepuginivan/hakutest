@@ -83,6 +83,11 @@ type User struct {
 	Roles    string // Roles are comma-separated.
 }
 
+// TableName overrides the table name used by User to `hakutest_users`.
+func (User) TableName() string {
+	return "hakutest_users"
+}
+
 // Credentials returns [*Credentials] associated with the user.
 func (m *User) Credentials() *Credentials {
 	return &Credentials{
