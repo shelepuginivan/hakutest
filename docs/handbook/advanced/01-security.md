@@ -89,12 +89,12 @@ page](/handbook/guide/05-settings).
 
 ![Security settings](./img/security-settings.png)
 
-| Option                        | Description                                                      | Note                                                                                                                              |
-| ----------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| **Security policy (student)** | Security policy applied to student interface                     | &ndash;                                                                                                                           |
-| **Security policy (teacher)** | Security policy applied to teacher interface                     | &ndash;                                                                                                                           |
-| **Users DB dialect**          | Dialect of the database containing the user data                 | &ndash;                                                                                                                           |
-| **Users DB DSN**              | DSN (Data Source Name) of the database containing the user data. | For `SQLite` dialect &mdash; path to the database file.<br><br>For `MySQL` and `PostgreSQL` dialects &mdash; a connection string. |
+| Option                        | Description                                                     | Note                                                                                                                              |
+| ----------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Security policy (student)** | Security policy applied to student interface                    | &ndash;                                                                                                                           |
+| **Security policy (teacher)** | Security policy applied to teacher interface                    | &ndash;                                                                                                                           |
+| **Users DB dialect**          | Dialect of the database containing the user data                | &ndash;                                                                                                                           |
+| **Users DB DSN**              | DSN (Data Source Name) of the database containing the user data | For `SQLite` dialect &mdash; path to the database file.<br><br>For `MySQL` and `PostgreSQL` dialects &mdash; a connection string. |
 
 > [!NOTE]
 > All security settings require a restart to take effect.
