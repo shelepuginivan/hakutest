@@ -22,22 +22,25 @@ build-windows:
 	GOOS=windows                                          \
 	go build -trimpath -o ./target/windows/hakuctl.exe ./cmd/hakuctl
 
-dev:
-	gowatch
-
-docs-build:
-	yarn --cwd ./docs docs:build
-
-docs-dev:
-	yarn --cwd ./docs docs:dev
-
-docs-preview:
-	yarn --cwd ./docs docs:preview
-
 clean:
 	go clean
 	rm -rf ./target
 	rm hakutest hakuctl
+
+dev:
+	gowatch
+
+docs-build:
+	yarn --cwd ./docs build
+
+docs-dev:
+	yarn --cwd ./docs dev
+
+docs-format:
+	yarn --cwd ./docs format
+
+docs-preview:
+	yarn --cwd ./docs preview
 
 package-linux-appimage:
 	mkdir -p ./target/hakutest.AppDir/usr/bin
