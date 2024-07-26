@@ -25,13 +25,11 @@ browser in the teacher dashboard.
 
 The following table describes basic options that can be configured:
 
-| Option                | Description                                                                     |
-| --------------------- | ------------------------------------------------------------------------------- |
-| **Language**          | Language of the Hakutest interface                                              |
-| **Overwrite results** | Whether to overwrite the results when a student resubmits answers               |
-| **Show results**      | Whether to show the student the [result page](#) after submitting their answers |
-
-<!-- TODO: Add link to student interace page -->
+| Option                | Description                                                                                                                                  |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Language**          | Language of the Hakutest interface                                                                                                           |
+| **Overwrite results** | Whether to overwrite the results when a student resubmits answers                                                                            |
+| **Show results**      | Whether to show the student the [result page](/handbook/guide/06-student-perspective#whether-to-show-results) after submitting their answers |
 
 ## Intermediate configuration
 

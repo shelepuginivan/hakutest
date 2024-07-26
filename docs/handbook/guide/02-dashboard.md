@@ -50,9 +50,9 @@ tests, send solutions, etc.
 > Search](/handbook/guide/06-student-perspective#test-search) should be opened
 > instead.
 >
-> See Security for more details.
-
-<!-- TODO: link to the security settings page -->
+> ---
+>
+> See [Security](/handbook/advanced/01-security) for more details.
 
 ### System Details
 
