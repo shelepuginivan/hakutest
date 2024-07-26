@@ -121,6 +121,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Конфигурация',
                     link: '/ru/handbook/advanced/02-configuration',
                 },
+                {
+                    text: 'Запуск на сервере',
+                    link: '/ru/handbook/advanced/03-on-server',
+                },
             ],
         },
     ]
