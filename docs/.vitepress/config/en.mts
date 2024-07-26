@@ -72,6 +72,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Configuration',
                     link: '/handbook/advanced/02-configuration',
                 },
+                {
+                    text: 'Running on a server',
+                    link: '/handbook/advanced/03-on-server',
+                },
             ],
         },
     ]
