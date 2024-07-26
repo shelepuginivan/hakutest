@@ -129,6 +129,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'hakuctl',
                     link: '/ru/handbook/advanced/04-hakuctl',
                 },
+                {
+                    text: 'Журнал',
+                    link: '/ru/handbook/advanced/05-log',
+                },
             ],
         },
     ]
