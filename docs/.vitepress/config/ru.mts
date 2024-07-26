@@ -117,6 +117,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Безопасность',
                     link: '/ru/handbook/advanced/01-security',
                 },
+                {
+                    text: 'Конфигурация',
+                    link: '/ru/handbook/advanced/02-configuration',
+                },
             ],
         },
     ]
