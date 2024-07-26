@@ -80,6 +80,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'hakuctl',
                     link: '/handbook/advanced/04-hakuctl',
                 },
+                {
+                    text: 'Log',
+                    link: '/handbook/advanced/05-log',
+                },
             ],
         },
     ]
