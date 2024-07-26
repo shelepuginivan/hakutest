@@ -34,6 +34,7 @@ export const ruThemeConfig = {
     nav: nav(),
     sidebar: {
         '/ru/handbook/': { base: '/ru/handbook/', items: sidebarHandbook() },
+        '/ru/reference/': { base: '/ru/reference/', items: sidebarReference() },
     },
 } satisfies DefaultTheme.Config
 
@@ -66,12 +67,12 @@ export const ruSearchConfig: Partial<
 function nav(): DefaultTheme.NavItem[] {
     return [
         {
-            text: 'Главная',
-            link: '/ru',
-        },
-        {
             text: 'Руководство',
             link: '/ru/handbook/getting-started',
+        },
+        {
+            text: 'Справочник',
+            link: '/ru/reference/test-schema',
         },
     ]
 }
@@ -145,7 +146,26 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
         {
             text: 'Справочная информация',
             base: '/ru/reference/',
-            link: 'index',
+            link: 'test-schema',
+        },
+    ]
+}
+
+function sidebarReference(): DefaultTheme.SidebarItem[] {
+    return [
+        {
+            text: 'Back to Handbook',
+            base: '/ru/handbook/',
+            link: 'getting-started',
+        },
+        {
+            text: 'Reference',
+            items: [
+                {
+                    text: 'JSON-схема теста',
+                    link: 'test-schema',
+                },
+            ],
         },
     ]
 }

@@ -14,13 +14,14 @@ export const enThemeConfig = {
     nav: nav(),
     sidebar: {
         '/handbook/': { base: '/handbook/', items: sidebarHandbook() },
+        '/reference/': { base: '/reference/', items: sidebarReference() },
     },
 } satisfies DefaultTheme.Config
 
 function nav(): DefaultTheme.NavItem[] {
     return [
-        { text: 'Home', link: '/' },
         { text: 'Handbook', link: '/handbook/getting-started' },
+        { text: 'Reference', link: '/reference/test-schema' },
     ]
 }
 
@@ -93,7 +94,26 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
         {
             text: 'Reference',
             base: '/reference/',
-            link: 'index',
+            link: 'test-schema',
+        },
+    ]
+}
+
+function sidebarReference(): DefaultTheme.SidebarItem[] {
+    return [
+        {
+            text: 'Back to Handbook',
+            base: '/handbook/',
+            link: 'getting-started',
+        },
+        {
+            text: 'Reference',
+            items: [
+                {
+                    text: 'Test JSON schema',
+                    link: 'test-schema',
+                },
+            ],
         },
     ]
 }
