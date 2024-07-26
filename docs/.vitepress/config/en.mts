@@ -12,7 +12,9 @@ export const enThemeConfig = {
     },
 
     nav: nav(),
-    sidebar: sidebar(),
+    sidebar: {
+        '/handbook/': { base: '/handbook/', items: sidebarHandbook() },
+    },
 } satisfies DefaultTheme.Config
 
 function nav(): DefaultTheme.NavItem[] {
@@ -22,69 +24,76 @@ function nav(): DefaultTheme.NavItem[] {
     ]
 }
 
-function sidebar(): DefaultTheme.SidebarItem[] {
+function sidebarHandbook(): DefaultTheme.SidebarItem[] {
     return [
         {
             text: 'Getting Started',
-            link: '/handbook/getting-started',
+            link: 'getting-started',
         },
         {
             text: 'Install Hakutest',
-            link: '/handbook/installation',
+            link: 'installation',
         },
         {
             text: 'Guide',
+            base: '/handbook/guide/',
             items: [
                 {
                     text: 'Server',
-                    link: '/handbook/guide/01-server',
+                    link: '01-server',
                 },
                 {
                     text: 'Dashboard',
-                    link: '/handbook/guide/02-dashboard',
+                    link: '02-dashboard',
                 },
                 {
                     text: 'Tests',
-                    link: '/handbook/guide/03-tests',
+                    link: '03-tests',
                 },
                 {
                     text: 'Results and Statistics',
-                    link: '/handbook/guide/04-results-and-statistics',
+                    link: '04-results-and-statistics',
                 },
                 {
                     text: 'Settings',
-                    link: '/handbook/guide/05-settings',
+                    link: '05-settings',
                 },
                 {
                     text: 'Student Perspective',
-                    link: '/handbook/guide/06-student-perspective',
+                    link: '06-student-perspective',
                 },
             ],
         },
         {
             text: 'Advanced',
+            base: '/handbook/advanced/',
             items: [
                 {
                     text: 'Security',
-                    link: '/handbook/advanced/01-security',
+                    link: '01-security',
                 },
                 {
                     text: 'Configuration',
-                    link: '/handbook/advanced/02-configuration',
+                    link: '02-configuration',
                 },
                 {
                     text: 'Running on a server',
-                    link: '/handbook/advanced/03-on-server',
+                    link: '03-on-server',
                 },
                 {
                     text: 'hakuctl',
-                    link: '/handbook/advanced/04-hakuctl',
+                    link: '04-hakuctl',
                 },
                 {
                     text: 'Log',
-                    link: '/handbook/advanced/05-log',
+                    link: '05-log',
                 },
             ],
+        },
+        {
+            text: 'Reference',
+            base: '/reference/',
+            link: 'index',
         },
     ]
 }

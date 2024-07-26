@@ -32,7 +32,9 @@ export const ruThemeConfig = {
     },
 
     nav: nav(),
-    sidebar: sidebar(),
+    sidebar: {
+        '/ru/handbook/': { base: '/ru/handbook/', items: sidebarHandbook() },
+    },
 } satisfies DefaultTheme.Config
 
 export const ruSearchConfig: Partial<
@@ -63,7 +65,10 @@ export const ruSearchConfig: Partial<
 
 function nav(): DefaultTheme.NavItem[] {
     return [
-        { text: 'Главная', link: '/ru' },
+        {
+            text: 'Главная',
+            link: '/ru',
+        },
         {
             text: 'Руководство',
             link: '/ru/handbook/getting-started',
@@ -71,69 +76,76 @@ function nav(): DefaultTheme.NavItem[] {
     ]
 }
 
-function sidebar(): DefaultTheme.SidebarItem[] {
+function sidebarHandbook(): DefaultTheme.SidebarItem[] {
     return [
         {
             text: 'Введение',
-            link: '/ru/handbook/getting-started',
+            link: 'getting-started',
         },
         {
             text: 'Установка',
-            link: '/ru/handbook/installation',
+            link: 'installation',
         },
         {
             text: 'Гайд',
+            base: '/ru/handbook/guide/',
             items: [
                 {
                     text: 'Сервер',
-                    link: '/ru/handbook/guide/01-server',
+                    link: '01-server',
                 },
                 {
                     text: 'Панель управления',
-                    link: '/ru/handbook/guide/02-dashboard',
+                    link: '02-dashboard',
                 },
                 {
                     text: 'Тесты',
-                    link: '/ru/handbook/guide/03-tests',
+                    link: '03-tests',
                 },
                 {
                     text: 'Результаты и статистика',
-                    link: '/ru/handbook/guide/04-results-and-statistics',
+                    link: '04-results-and-statistics',
                 },
                 {
                     text: 'Настройки',
-                    link: '/ru/handbook/guide/05-settings',
+                    link: '05-settings',
                 },
                 {
                     text: 'С точки зрения ученика',
-                    link: '/ru/handbook/guide/06-student-perspective',
+                    link: '06-student-perspective',
                 },
             ],
         },
         {
             text: 'Продвинутый гайд',
+            base: '/ru/handbook/advanced/',
             items: [
                 {
                     text: 'Безопасность',
-                    link: '/ru/handbook/advanced/01-security',
+                    link: '01-security',
                 },
                 {
                     text: 'Конфигурация',
-                    link: '/ru/handbook/advanced/02-configuration',
+                    link: '02-configuration',
                 },
                 {
                     text: 'Запуск на сервере',
-                    link: '/ru/handbook/advanced/03-on-server',
+                    link: '03-on-server',
                 },
                 {
                     text: 'hakuctl',
-                    link: '/ru/handbook/advanced/04-hakuctl',
+                    link: '04-hakuctl',
                 },
                 {
                     text: 'Журнал',
-                    link: '/ru/handbook/advanced/05-log',
+                    link: '05-log',
                 },
             ],
+        },
+        {
+            text: 'Справочная информация',
+            base: '/ru/reference/',
+            link: 'index',
         },
     ]
 }
