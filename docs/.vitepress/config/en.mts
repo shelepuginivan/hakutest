@@ -68,6 +68,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Security',
                     link: '/handbook/advanced/01-security',
                 },
+                {
+                    text: 'Configuration',
+                    link: '/handbook/advanced/02-configuration',
+                },
             ],
         },
     ]
