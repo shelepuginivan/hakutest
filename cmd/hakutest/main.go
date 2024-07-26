@@ -29,24 +29,31 @@ func init() {
 	cfg = config.New()
 
 	flag.BoolVar(&displayVersion, "version", false, "Display version and exit")
-	flag.BoolVar(&cfg.General.Debug, "debug", cfg.General.Debug, "Run in debug mode")
-	flag.BoolVar(&cfg.General.DisableTray, "disable-tray", cfg.General.DisableTray, "Run without icon in system tray")
-	flag.StringVar(&cfg.General.Lang, "lang", cfg.General.Lang, "Language of the interface")
-	flag.IntVar(&cfg.General.Port, "port", cfg.General.Port, "Port on which server is started")
-	flag.StringVar(&cfg.Test.Path, "tests-directory", cfg.Test.Path, "Directory where the test files are stored")
+
+	// General configuration.
+	flag.BoolVar(&cfg.General.Debug, "general.debug", cfg.General.Debug, "Run in debug mode")
+	flag.BoolVar(&cfg.General.DisableTray, "general.disable_tray", cfg.General.DisableTray, "Run without icon in system tray")
+	flag.StringVar(&cfg.General.Lang, "general.lang", cfg.General.Lang, "Language of the interface")
+	flag.IntVar(&cfg.General.Port, "general.port", cfg.General.Port, "Port on which server is started")
+
+	// Result configuration.
+	flag.StringVar(&cfg.Result.Path, "result.path", cfg.Result.Path, "Directory where results are stored")
+
+	// Security configuration.
+	flag.StringVar(&cfg.Security.Student, "security.student", cfg.Security.Student, "Security policy applied to student interface")
+	flag.StringVar(&cfg.Security.Teacher, "security.teacher", cfg.Security.Teacher, "Security policy applied to teacher interface")
+	flag.StringVar(&cfg.Security.Dialect, "security.dialect", cfg.Security.Dialect, "Dialect of the DB containing the user data")
+	flag.StringVar(&cfg.Security.DSN, "security.dsn", cfg.Security.DSN, "DSN of the DB containing the user data")
+
+	// Test configuration.
+	flag.StringVar(&cfg.Test.Path, "test.path", cfg.Test.Path, "Directory where the test files are stored")
 }
 
 func onConfigUpdate(c *config.Config) {
 	i18n.Init(c.General.Lang)
 	result.Init(c.Result)
-	security.Init(c.Security)
 	test.Init(c.Test)
-
-	if c.General.Debug {
-		zerolog.SetGlobalLevel(zerolog.DebugLevel)
-	} else {
-		zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	}
+	initLogger(c.General.Debug)
 }
 
 func main() {
@@ -57,6 +64,11 @@ func main() {
 		os.Exit(0)
 	}
 
+	i18n.Init(cfg.General.Lang)
+	result.Init(cfg.Result)
+	security.Init(cfg.Security)
+	test.Init(cfg.Test)
+	initLogger(cfg.General.Debug)
 	srv := server.New(cfg)
 
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
@@ -67,9 +79,6 @@ func main() {
 	}
 
 	cfg.OnUpdate(onConfigUpdate)
-	cfg.Update(func(_ config.Fields) config.Fields {
-		return cfg.Fields
-	})
 
 	// Update configuration when SIGUSR1 is sent.
 	sigusr(cfg)
