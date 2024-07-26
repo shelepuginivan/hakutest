@@ -125,6 +125,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Запуск на сервере',
                     link: '/ru/handbook/advanced/03-on-server',
                 },
+                {
+                    text: 'hakuctl',
+                    link: '/ru/handbook/advanced/04-hakuctl',
+                },
             ],
         },
     ]
