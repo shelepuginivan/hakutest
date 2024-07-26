@@ -76,6 +76,10 @@ function sidebar(): DefaultTheme.SidebarItem[] {
                     text: 'Running on a server',
                     link: '/handbook/advanced/03-on-server',
                 },
+                {
+                    text: 'hakuctl',
+                    link: '/handbook/advanced/04-hakuctl',
+                },
             ],
         },
     ]
