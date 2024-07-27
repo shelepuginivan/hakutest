@@ -21,7 +21,7 @@ export const enThemeConfig = {
 function nav(): DefaultTheme.NavItem[] {
     return [
         { text: 'Handbook', link: '/handbook/getting-started' },
-        { text: 'Reference', link: '/reference/test-schema' },
+        { text: 'Reference', link: '/reference/standards/test-schema' },
     ]
 }
 
@@ -94,7 +94,7 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
         {
             text: 'Reference',
             base: '/reference/',
-            link: 'test-schema',
+            link: 'standards/test-schema',
         },
     ]
 }
@@ -107,7 +107,8 @@ function sidebarReference(): DefaultTheme.SidebarItem[] {
             link: 'getting-started',
         },
         {
-            text: 'Reference',
+            text: 'Standards',
+            base: '/reference/standards/',
             items: [
                 {
                     text: 'Test JSON schema',

@@ -72,7 +72,7 @@ function nav(): DefaultTheme.NavItem[] {
         },
         {
             text: 'Справочник',
-            link: '/ru/reference/test-schema',
+            link: '/ru/reference/standards/test-schema',
         },
     ]
 }
@@ -146,7 +146,7 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
         {
             text: 'Справочник',
             base: '/ru/reference/',
-            link: 'test-schema',
+            link: 'standards/test-schema',
         },
     ]
 }
@@ -159,7 +159,8 @@ function sidebarReference(): DefaultTheme.SidebarItem[] {
             link: 'getting-started',
         },
         {
-            text: 'Справочник',
+            text: 'Стандарты',
+            base: '/ru/reference/standards/',
             items: [
                 {
                     text: 'JSON-схема теста',

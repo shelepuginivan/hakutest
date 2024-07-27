@@ -11,4 +11,4 @@ description: 'JSON-схема теста Hakutest доступна по адре
 
 > [!WARNING] ПРЕДУПРЕЖДЕНИЕ
 > Эта страница сгенерирована автоматически и доступна только на [английском
-> языке](/reference/test-schema).
+> языке](/reference/standards/test-schema).
