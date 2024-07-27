@@ -188,6 +188,7 @@ func (co *TeacherController) SubmitTest(c *gin.Context) {
 		})
 		return
 	}
+	t.CreatedAt = c.GetTime("timestamp")
 
 	err = test.Save(&t)
 	if err != nil {
