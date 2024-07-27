@@ -113,6 +113,10 @@ function sidebarReference(): DefaultTheme.SidebarItem[] {
                     text: 'Test JSON schema',
                     link: 'test-schema',
                 },
+                {
+                    text: 'Result JSON schema',
+                    link: 'result-schema',
+                },
             ],
         },
     ]

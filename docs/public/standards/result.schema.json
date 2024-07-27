@@ -1,0 +1,61 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://hakutest.org/standards/result.schema.json",
+    "title": "Result",
+    "description": "Hakutest Result JSON file schema.",
+    "type": "object",
+    "properties": {
+        "student": {
+            "description": "The student who submitted the solution.",
+            "type": "string"
+        },
+        "submitted_at": {
+            "description": "Solution submission time",
+            "type": "string",
+            "format": "date-time"
+        },
+        "answers": {
+            "description": "Answer given by the student for each task present in test.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "Type of the task.",
+                        "type": "string",
+                        "enum": ["single", "multiple", "open", "detailed"]
+                    },
+                    "value": {
+                        "description": "The actual answer given by the student. For \"single\" - index of the chosen option (zero-indexed). For \"multiple\" - comma-separated indices of chosen options (zero-indexed, lexically ascending order). For \"open\" and \"detailed\" - answer string.",
+                        "type": "string"
+                    },
+                    "correct": {
+                        "description": "Whether the answer is correct.",
+                        "type": "boolean"
+                    }
+                },
+                "required": ["type", "value", "correct"]
+            }
+        },
+        "points": {
+            "description": "Number of correct answers given by the student.",
+            "type": "integer"
+        },
+        "total": {
+            "description": "Total number of tasks present in the test. Same as the total scorable points.",
+            "type": "integer"
+        },
+        "percentage": {
+            "description": "Percentage scored by student. Defined as (100 * points / total).",
+            "type": "integer"
+        }
+    },
+    "required": [
+        "student",
+        "submitted_at",
+        "answers",
+        "points",
+        "total",
+        "percentage"
+    ]
+}

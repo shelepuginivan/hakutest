@@ -165,6 +165,10 @@ function sidebarReference(): DefaultTheme.SidebarItem[] {
                     text: 'JSON-схема теста',
                     link: 'test-schema',
                 },
+                {
+                    text: 'JSON-схема результата',
+                    link: 'result-schema',
+                },
             ],
         },
     ]
