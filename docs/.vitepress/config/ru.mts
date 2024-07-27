@@ -172,5 +172,21 @@ function sidebarReference(): DefaultTheme.SidebarItem[] {
                 },
             ],
         },
+        {
+            text: 'Логотипы',
+            base: '/',
+            items: [
+                {
+                    text: 'Иконка Hakutest (SVG)',
+                    link: 'logo/icon.svg',
+                    target: '_blank',
+                },
+                {
+                    text: 'Лого Hakutest (SVG)',
+                    link: 'logo/logo.svg',
+                    target: '_blank',
+                },
+            ],
+        },
     ]
 }

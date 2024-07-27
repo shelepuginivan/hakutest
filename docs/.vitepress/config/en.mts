@@ -120,5 +120,21 @@ function sidebarReference(): DefaultTheme.SidebarItem[] {
                 },
             ],
         },
+        {
+            text: 'Logotypes',
+            base: '/',
+            items: [
+                {
+                    text: 'Hakutest Icon (SVG)',
+                    link: 'logo/icon.svg',
+                    target: '_blank',
+                },
+                {
+                    text: 'Hakutest Logo (SVG)',
+                    link: 'logo/logo.svg',
+                    target: '_blank',
+                },
+            ],
+        },
     ]
 }
