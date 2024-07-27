@@ -144,7 +144,7 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
             ],
         },
         {
-            text: 'Справочная информация',
+            text: 'Справочник',
             base: '/ru/reference/',
             link: 'test-schema',
         },
@@ -154,12 +154,12 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
 function sidebarReference(): DefaultTheme.SidebarItem[] {
     return [
         {
-            text: 'Back to Handbook',
+            text: 'Вернуться к руководству',
             base: '/ru/handbook/',
             link: 'getting-started',
         },
         {
-            text: 'Reference',
+            text: 'Справочник',
             items: [
                 {
                     text: 'JSON-схема теста',

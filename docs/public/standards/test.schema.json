@@ -1,0 +1,74 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://hakutest.org/standards/test.schema.json",
+    "title": "Test",
+    "description": "Hakutest Test JSON file schema.",
+    "type": "object",
+    "properties": {
+        "title": {
+            "description": "Title of the test.",
+            "type": "string"
+        },
+        "description": {
+            "description": "Description of the test.",
+            "type": "string"
+        },
+        "subject": {
+            "description": "Subject or topic of the test.",
+            "type": "string"
+        },
+        "author": {
+            "description": "Author (creator) of the test.",
+            "type": "string"
+        },
+        "target": {
+            "description": "Target audience of the test.",
+            "type": "string"
+        },
+        "institution": {
+            "description": "Educational institution where the test is conducted.",
+            "type": "string"
+        },
+        "createdAt": {
+            "description": "Test creation time.",
+            "type": "string",
+            "format": "date-time"
+        },
+        "expiresAt": {
+            "description": "Test expiration time.",
+            "type": "string",
+            "format": "date-time"
+        },
+        "tasks": {
+            "description": "Tasks of the test.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "Type of the task.",
+                        "type": "string",
+                        "enum": ["single", "multiple", "open", "detailed"]
+                    },
+                    "text": {
+                        "description": "Text of the task. Can be multi-line. Markdown is supported.",
+                        "type": "string"
+                    },
+                    "options": {
+                        "description": "Answer options of the task. null for \"open\" and \"detailed\" task.",
+                        "type": ["array", "null"],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "answer": {
+                        "description": "Correct answer of the task. For \"single\" - index of correct option (zero-indexed). For \"multiple\" - comma-separated indices of correct answer options (zero-indexed, lexically ascending order). For \"open\" - correct answer string. For \"detailed\" - empty string.",
+                        "type": "string"
+                    }
+                },
+                "required": ["type", "text", "answer"]
+            }
+        }
+    },
+    "required": ["title", "tasks"]
+}

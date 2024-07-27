@@ -16,6 +16,7 @@
         "build": "vitepress build",
         "dev": "vitepress dev",
         "format": "prettier --write .",
+        "generate-schema-doc": "./scripts/generate-schema-doc.sh",
         "preview": "vitepress preview"
     }
 }
