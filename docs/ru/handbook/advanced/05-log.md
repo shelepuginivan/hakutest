@@ -1,5 +1,6 @@
 ---
 title: Журнал
+titleTemplate: Руководство Hakutest
 description: Узнайте, как просматривать журнал событий Hakutest
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Results and Statistics
-description: "Learn how to manage students' results and export statistics"
+titleTemplate: Hakutest Handbook
+description: Learn how to manage results of your students and export statistics
 ---
 
 # Results and Statistics

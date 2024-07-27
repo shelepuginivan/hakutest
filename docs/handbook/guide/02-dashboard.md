@@ -1,5 +1,6 @@
 ---
 title: Teacher Dashboard
+titleTemplate: Hakutest Handbook
 description: How to control Hakutest via built-in dashboard
 ---
 

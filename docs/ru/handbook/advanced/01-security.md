@@ -1,5 +1,6 @@
 ---
 title: Безопасность
+titleTemplate: Руководство Hakutest
 description: Модель безопасности Hakutest. Узнайте, как настраивать Hakutest с точки зрения безопасности
 ---
 

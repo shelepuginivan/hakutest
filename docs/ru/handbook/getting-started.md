@@ -1,11 +1,12 @@
 ---
 title: Введение
-description: Введение в Hakutest
+titleTemplate: Руководство Hakutest
+description: 'Hakutest — это образовательная платформа, предназначенная для проведения тестирования, викторин и экзаменов с автоматической проверкой ответов'
 ---
 
 # Введение
 
-![Логотип Hakutest](/logo.svg)
+![Логотип Hakutest](/logo/logo.svg)
 
 :::details TLDR
 

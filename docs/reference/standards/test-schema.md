@@ -1,5 +1,6 @@
 ---
 title: Test JSON schema
+titleTemplate: Hakutest Reference
 description: 'Hakutest test JSON schema is available at https://hakutest.org/standards/test.schema.json'
 ---
 

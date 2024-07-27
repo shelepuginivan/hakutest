@@ -1,6 +1,7 @@
 ---
 title: hakuctl
-description: Learn how to use hakuctl &mdash; command line bindings for Hakutest
+titleTemplate: Hakutest Handbook
+description: Learn how to use hakuctl — command line bindings for Hakutest
 ---
 
 # hakuctl

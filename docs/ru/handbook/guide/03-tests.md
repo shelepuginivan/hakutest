@@ -1,5 +1,6 @@
 ---
 title: Тесты
+titleTemplate: Руководство Hakutest
 description: Узнайте, как управлять тестами через панель управления Hakutest
 ---
 

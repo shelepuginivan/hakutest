@@ -1,5 +1,6 @@
 ---
 title: Running on a server
+titleTemplate: Hakutest Handbook
 description: Learn how to run Hakutest in a Wide Area Network (WAN)
 ---
 

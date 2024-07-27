@@ -1,6 +1,7 @@
 ---
 title: Настройки
-description: Узнайте, как настраивать Hakutest
+titleTemplate: Руководство Hakutest
+description: Узнайте, как настраивать Hakutest через встроенный веб-интерфейс
 ---
 
 # Настройки

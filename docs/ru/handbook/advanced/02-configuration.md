@@ -1,5 +1,6 @@
 ---
 title: Конфигурация
+titleTemplate: Руководство Hakutest
 description: Узнайте, как настраивать Hakutest на продвинутом уровне
 ---
 

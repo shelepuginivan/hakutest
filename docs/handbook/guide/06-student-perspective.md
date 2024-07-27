@@ -1,6 +1,7 @@
 ---
 title: Student Perspective
-description: Learn how students use Hakutest
+titleTemplate: Hakutest Handbook
+description: 'Learn how students use Hakutest, solve tests, submit answers, etc.'
 ---
 
 # Student Perspective

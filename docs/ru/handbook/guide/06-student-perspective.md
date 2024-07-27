@@ -1,5 +1,6 @@
 ---
 title: С точки зрения ученика
+titleTemplate: Руководство Hakutest
 description: Узнайте, как ученики используют Hakutest
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Панель управления учителя
+titleTemplate: Руководство Hakutest
 description: "Управление Hakutest'ом через встроенную панель"
 ---
 

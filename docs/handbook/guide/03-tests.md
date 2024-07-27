@@ -1,5 +1,6 @@
 ---
 title: Tests
+titleTemplate: Hakutest Handbook
 description: Learn how to manage tests via Hakutest Dashboard
 ---
 

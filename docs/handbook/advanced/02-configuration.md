@@ -1,5 +1,6 @@
 ---
 title: Configuration
+titleTemplate: Hakutest Handbook
 description: Learn how to configure Hakutest on advanced level
 ---
 

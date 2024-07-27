@@ -1,5 +1,6 @@
 ---
 title: Запуск на сервере
+titleTemplate: Руководство Hakutest
 description: Узнайте, как запускать Hakutest в широкополосной сети на сервере
 ---
 

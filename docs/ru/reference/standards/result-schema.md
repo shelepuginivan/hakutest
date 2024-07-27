@@ -1,5 +1,6 @@
 ---
 title: JSON-схема результата
+titleTemplate: Справочник Hakutest
 description: 'JSON-схема результата Hakutest доступна по адресу https://hakutest.org/standards/result.schema.json'
 ---
 

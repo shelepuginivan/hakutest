@@ -1,6 +1,7 @@
 ---
 title: Settings
-description: Learn how to configure Hakutest
+titleTemplate: Hakutest Handbook
+description: Learn how to configure Hakutest using built-in web interface
 ---
 
 # Settings

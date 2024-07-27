@@ -1,6 +1,7 @@
 ---
 title: hakuctl
-description: Узнайте, как использовать hakuctl &mdash; связки Hakutest для командной строки
+titleTemplate: Руководство Hakutest
+description: Узнайте, как использовать hakuctl — связки Hakutest для командной строки
 ---
 
 # hakuctl

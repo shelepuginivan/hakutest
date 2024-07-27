@@ -1,11 +1,13 @@
 ---
 title: Getting Started
-description: Introduction to Hakutest
+titleTemplate: Hakutest Handbook
+description: 'Hakutest is an educational platform designed for testing, quizzes, and exams
+with automatic answer checking'
 ---
 
 # Getting Started
 
-![Hakutest Logo](/logo.svg)
+![Hakutest Logo](/logo/logo.svg)
 
 :::details TLDR
 

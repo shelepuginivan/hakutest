@@ -1,6 +1,7 @@
 ---
 title: Log
-description: Learn how to view Hakutest logs
+titleTemplate: Hakutest Handbook
+description: Learn how to view Hakutest logs to troubleshoot or debug the server
 ---
 
 # Log

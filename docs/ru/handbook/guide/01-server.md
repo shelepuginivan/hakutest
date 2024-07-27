@@ -1,5 +1,6 @@
 ---
 title: Запуск сервера
+titleTemplate: Руководство Hakutest
 description: Узнайте, как запускать сервер Hakutest
 ---
 
@@ -14,7 +15,7 @@ description: Узнайте, как запускать сервер Hakutest
 Чтобы запустить сервер Hakutest, запустите `hakutest.exe` (`hakutest` на Linux).
 В системном лотке (трее) появится иконка, указывающая на то, что сервер работает:
 
-<img id="systray-icon" src="/hakutest.svg" alt="Иконка Hakutest в системном лотке" width="96">
+<img id="systray-icon" src="/logo/icon.svg" alt="Иконка Hakutest в системном лотке" width="96">
 
 Нажмите на иконку, чтобы открыть контекстное меню. Вы можете остановить сервер,
 нажав "Закрыть Hakutest", или открыть [Панель управления

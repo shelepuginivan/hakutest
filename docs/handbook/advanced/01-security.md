@@ -1,5 +1,6 @@
 ---
 title: Security
+titleTemplate: Hakutest Handbook
 description: Hakutest security model. Learn how to configure Hakutest in terms of security
 ---
 
