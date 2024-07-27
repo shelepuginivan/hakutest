@@ -1,12 +1,15 @@
 ---
 layout: home
 
+title: 'Modern and efficient educational testing'
+description: 'Hakutest is a blazingly fast, privacy-focused, extensible and easy-to-use testing platform for the education sector'
+
 hero:
     name: Hakutest
     text: Modern and efficient educational testing
     tagline: A blazingly fast, privacy-focused, extensible and easy-to-use testing platform for the education sector.
     image:
-        src: assets/hakutest.svg
+        src: /logo/icon.svg
         alt: Hakutest
     actions:
         - theme: brand
