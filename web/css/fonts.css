@@ -62,7 +62,7 @@
 @font-face {
     font-family: 'Iconify Explorer Font';
     src: url('/static/fonts/iconfont.ttf') format('truetype'),
-         url('/static/fonts/iconfont.woff2') format('woff2'),
+         url('/static/fonts/iconfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -87,102 +87,86 @@
     content: "\e003";
 }
 
-.i.arrow-right:before {
+.i.arrow-up:before {
     content: "\e004";
 }
 
-.i.arrow-up:before {
+.i.book:before {
     content: "\e005";
 }
 
-.i.book:before {
+.i.correctness:before {
     content: "\e006";
 }
 
-.i.correctness:before {
+.i.checkmark:before {
     content: "\e007";
 }
 
-.i.checkmark:before {
+.i.close:before {
     content: "\e008";
 }
 
-.i.close:before {
-    content: "\e009";
-}
-
 .i.cross:before {
-    content: "\e009";
+    content: "\e008";
 }
 
 .i.dashboard:before {
-    content: "\e00a";
+    content: "\e009";
 }
 
 .i.view:before {
-    content: "\e00b";
+    content: "\e00a";
 }
 
 .i.import:before {
-    content: "\e00c";
+    content: "\e00b";
 }
 
 .i.tests:before {
-    content: "\e00d";
+    content: "\e00c";
 }
 
 .i.download:before {
-    content: "\e00e";
+    content: "\e00d";
 }
 
 .i.edit:before {
-    content: "\e00f";
+    content: "\e00e";
 }
 
 .i.error:before {
-    content: "\e010";
+    content: "\e00f";
 }
 
 .i.hash:before {
-    content: "\e011";
+    content: "\e010";
 }
 
 .i.info:before {
-    content: "\e012";
-}
-
-.i.paint-brush:before {
-    content: "\e013";
+    content: "\e011";
 }
 
 .i.password:before {
-    content: "\e014";
+    content: "\e012";
 }
 
 .i.result:before {
-    content: "\e015";
+    content: "\e013";
 }
 
 .i.search:before {
-    content: "\e016";
-}
-
-.i.security:before {
-    content: "\e017";
+    content: "\e014";
 }
 
 .i.settings:before {
-    content: "\e018";
-}
-
-.i.table-split:before {
-    content: "\e019";
+    content: "\e015";
 }
 
 .i.trash-can:before {
-    content: "\e01a";
+    content: "\e016";
 }
 
 .i.user:before {
-    content: "\e01b";
+    content: "\e017";
 }
