@@ -2,6 +2,8 @@
     --vp-c-brand-1: #008000;
     --vp-c-brand-2: #008000;
     --vp-c-brand-3: #2c7135;
+    --vp-home-hero-name-color: transparent;
+    --vp-home-hero-name-background: linear-gradient(120deg, #008000, #2c7135);
     --background: #fffafa;
     --selection: #f0ecec;
     --foreground: #232323;
@@ -16,6 +18,7 @@
     --vp-c-brand-1: #84cb6b;
     --vp-c-brand-2: #67b458;
     --vp-c-brand-3: #008000;
+    --vp-home-hero-name-background: linear-gradient(120deg, #67b458, #84cb6b);
     --background: #150d0a;
     --selection: #221b18;
     --foreground: #e3e3e3;

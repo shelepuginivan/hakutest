@@ -13,10 +13,10 @@ hero:
         alt: Hakutest
     actions:
         - theme: brand
-          text: Install Hakutest
+          text: Installation
           link: /handbook/installation
         - theme: alt
-          text: Hakutest handbook
+          text: Handbook
           link: /handbook/getting-started
 
 featuresBefore:
