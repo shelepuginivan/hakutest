@@ -4,6 +4,8 @@ package network
 import (
 	"fmt"
 	"net"
+
+	"github.com/rs/zerolog/log"
 )
 
 // GetLocalIP returns the non loopback local IP of the host.
@@ -27,12 +29,14 @@ func GetLocalIP() (string, error) {
 
 // IsLocalIP reports whether ip is the IP of the host.
 func IsLocalIP(ip string) bool {
-	if ip == "127.0.0.1" {
+	// Check whether ip is one of known local addresses.
+	if ip == "127.0.0.1" || ip == "localhost" || ip == "::1" {
 		return true
 	}
 
 	localIP, err := GetLocalIP()
 	if err != nil {
+		log.Err(err).Msg("failed to get local ip")
 		return false
 	}
 
