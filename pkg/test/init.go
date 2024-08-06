@@ -3,7 +3,7 @@ package test
 import (
 	"sync"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
+	"github.com/shelepuginivan/fsutil"
 	"github.com/shelepuginivan/hakutest/internal/pkg/paths"
 )
 

@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
+	"github.com/shelepuginivan/fsutil"
 )
 
 // NormalizeName appends suffix `.json` to the test name if it is missing.

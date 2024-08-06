@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
+	"github.com/shelepuginivan/fsutil"
 )
 
 // GetForTest returns all results associated with the test.

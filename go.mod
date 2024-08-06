@@ -13,6 +13,7 @@ require (
 	github.com/microcosm-cc/bluemonday v1.0.26
 	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c
 	github.com/rs/zerolog v1.33.0
+	github.com/shelepuginivan/fsutil v0.1.0
 	github.com/spf13/cobra v1.8.1
 	github.com/stretchr/testify v1.9.0
 	github.com/tidwall/gjson v1.17.1

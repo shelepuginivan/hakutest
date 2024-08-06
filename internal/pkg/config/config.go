@@ -5,7 +5,7 @@ import (
 	"os"
 	"sync"
 
-	"github.com/shelepuginivan/hakutest/internal/pkg/fsutil"
+	"github.com/shelepuginivan/fsutil"
 	"github.com/shelepuginivan/hakutest/internal/pkg/paths"
 	isecurity "github.com/shelepuginivan/hakutest/internal/pkg/security"
 	"github.com/shelepuginivan/hakutest/pkg/result"
