@@ -42,6 +42,11 @@ students can use it to access Hakutest. Open this address (in our example,
 `http://192.168.1.34:8000`) on your students' devices so that they can open
 tests, send solutions, etc.
 
+> [!NOTE]
+> If the detected IP address is not valid, e.g. your students cannot access
+> Hakutest at it, follow instructions on [Manual local IP address
+> detection](/handbook/troubleshooting/01-local-ip).
+
 > [!IMPORTANT]
 > By default, you can only open the dashboard from the device running the
 > server. We recommend that you check this by trying to open the

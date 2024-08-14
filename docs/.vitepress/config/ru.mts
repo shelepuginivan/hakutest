@@ -144,6 +144,16 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
             ],
         },
         {
+            text: 'Устранение неполадок',
+            base: '/ru/handbook/troubleshooting/',
+            items: [
+                {
+                    text: 'Определение локального IP',
+                    link: '01-local-ip',
+                },
+            ],
+        },
+        {
             text: 'Справочник',
             base: '/ru/reference/',
             link: 'standards/test-schema',

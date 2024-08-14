@@ -92,6 +92,16 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
             ],
         },
         {
+            text: 'Troubleshooting',
+            base: '/handbook/troubleshooting/',
+            items: [
+                {
+                    text: 'Local IP detection',
+                    link: '01-local-ip',
+                },
+            ],
+        },
+        {
             text: 'Reference',
             base: '/reference/',
             link: 'standards/test-schema',

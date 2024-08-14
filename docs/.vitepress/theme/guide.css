@@ -1,3 +1,11 @@
+kbd {
+    border-radius: 2px;
+    padding: 2px 4px;
+    background-color: var(--selection);
+    border: 1px solid var(--secondary);
+    font-family: monospace;
+}
+
 .button {
     display: flex;
     align-items: center;
