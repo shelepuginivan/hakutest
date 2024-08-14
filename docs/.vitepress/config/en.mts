@@ -100,6 +100,10 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
                     text: 'Manual local IP address detection',
                     link: '01-local-ip',
                 },
+                {
+                    text: 'System tray icon is not displayed',
+                    link: '02-systray',
+                },
             ],
         },
         {

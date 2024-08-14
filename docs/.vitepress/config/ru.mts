@@ -152,6 +152,10 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
                     text: 'Определение локального IP вручную',
                     link: '01-local-ip',
                 },
+                {
+                    text: 'Не отображается иконка в системном лотке ',
+                    link: '02-systray',
+                },
             ],
         },
         {
