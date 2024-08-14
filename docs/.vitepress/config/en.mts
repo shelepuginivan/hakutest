@@ -94,9 +94,10 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
         {
             text: 'Troubleshooting',
             base: '/handbook/troubleshooting/',
+            collapsed: true,
             items: [
                 {
-                    text: 'Local IP detection',
+                    text: 'Manual local IP address detection',
                     link: '01-local-ip',
                 },
             ],
