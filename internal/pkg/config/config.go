@@ -19,31 +19,31 @@ import (
 // section in the configuration file.
 type GeneralFields struct {
 	// Run in debug mode.
-	Debug bool `json:"debug" yaml:"debug"`
+	Debug bool `json:"debug,omitempty" yaml:"debug,omitempty"`
 
 	// Run without icon in system tray.
-	DisableTray bool `json:"disableTray" yaml:"disable_tray"`
+	DisableTray bool `json:"disableTray,omitempty" yaml:"disable_tray,omitempty"`
 
 	// Port on which server is started.
-	Port int `json:"port" yaml:"port"`
+	Port int `json:"port,omitempty" yaml:"port,omitempty"`
 
 	// Language of the application interface.
-	Lang string `json:"lang" yaml:"lang"`
+	Lang string `json:"lang,omitempty" yaml:"lang,omitempty"`
 }
 
 // Fields represents configuration fields.
 type Fields struct {
 	// General configuration fields.
-	General GeneralFields `json:"general" yaml:"general"`
+	General GeneralFields `json:"general,omitempty" yaml:"general,omitempty"`
 
 	// Result package configuration.
-	Result result.Config `json:"result" yaml:"result"`
+	Result result.Config `json:"result,omitempty" yaml:"result,omitempty"`
 
 	// Test package configuration.
-	Test test.Config `json:"test" yaml:"test"`
+	Test test.Config `json:"test,omitempty" yaml:"test,omitempty"`
 
 	// Security configuration.
-	Security security.Config `json:"security" yaml:"security"`
+	Security security.Config `json:"security,omitempty" yaml:"security,omitempty"`
 }
 
 // Config is a configuration layer for the application.
@@ -173,7 +173,9 @@ func write(cfg *Config) error {
 }
 
 // read reads configuration from the file.
-func read() (f Fields, err error) {
+func read() (Fields, error) {
+	f := Default()
+
 	data, err := os.ReadFile(paths.Config)
 	if err != nil {
 		return f, err

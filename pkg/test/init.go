@@ -10,7 +10,7 @@ import (
 // Test configuration section.
 type Config struct {
 	// Directory where tests are stored.
-	Path string `json:"path" yaml:"path"`
+	Path string `json:"path,omitempty" yaml:"path,omitempty"`
 }
 
 var (
