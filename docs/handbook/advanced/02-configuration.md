@@ -62,6 +62,31 @@ The configuration file is in one of the following paths:
 | `security.dialect`     | Dialect of the database containing the user data                           | `sqlite`, `mysql`, or `postgres`                                                                                                                                                                                                                                                                          |
 | `security.dsn`         | DSN (Data Source Name) of the database containing the user data            | For `sqlite` dialect &mdash; path to the database file.<br><br>For `mysql` and `postgres` dialects &mdash; a connection string.                                                                                                                                                                           |
 
+> [!IMPORTANT]
+> If a field is missing from the configuration file (including the case where
+> the entire config is not present), its default value is as follows:
+>
+> ```yaml
+> general:
+>     debug: false
+>     disable_tray: false
+>     port: 8080
+>     lang: en
+> result:
+>     overwrite: true
+>     path: $XDG_DATA_HOME/hakutest/results
+>     show: false
+> test:
+>     path: $XDG_DATA_HOME/hakutest/tests
+> security:
+>     dsn: $XDG_CACHE_HOME/hakutest/users.db
+>     dialect: sqlite
+>     teacher: hostonly
+>     student: no_verification
+> ```
+>
+> Please also note that paths depend on the operating system used.
+
 ### Example
 
 Below is an example of a configuration file:

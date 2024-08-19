@@ -64,6 +64,32 @@ Directory](https://specifications.freedesktop.org/basedir-spec/basedir-spec-late
 | `security.dialect`     | Диалект базы данных, в которой хранится информация о пользователях                | `sqlite`, `mysql` или `postgres`                                                                                                                                                                                                                                                                                     |
 | `security.dsn`         | DSN (Data Source Name) базы данных, в которой хранится информация о пользователях | Для диалекта `sqlite` &mdash; путь до файла базы данных.<br><br>Для диалектов `mysql` и `postgres` &mdash; строка подключения.                                                                                                                                                                                       |
 
+> [!IMPORTANT] ВАЖНО
+> Если каких-либо полей нет в конфигурационном файле (а также если нет самого
+> файла), по умолчанию используются следующие значения:
+>
+> ```yaml
+> general:
+>     debug: false
+>     disable_tray: false
+>     port: 8080
+>     lang: en
+> result:
+>     overwrite: true
+>     path: $XDG_DATA_HOME/hakutest/results
+>     show: false
+> test:
+>     path: $XDG_DATA_HOME/hakutest/tests
+> security:
+>     dsn: $XDG_CACHE_HOME/hakutest/users.db
+>     dialect: sqlite
+>     teacher: hostonly
+>     student: no_verification
+> ```
+>
+> Также обратите внимание, что пути зависят от используемой вами операционной
+> системы.
+
 ### Пример
 
 Ниже приведён пример конфигурационного файла:
