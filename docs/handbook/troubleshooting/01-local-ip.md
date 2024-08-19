@@ -19,7 +19,7 @@ to manually determine the local IP address.
 
 ### Windows
 
-#### Via Settings
+#### Method 1: Via Settings
 
 1. Open **Settings**;
 2. Select **Network & Internet**;
@@ -28,7 +28,7 @@ to manually determine the local IP address.
    connection**);
 4. View your local IP address under the **IPv4 address** field.
 
-#### Via Command Prompt
+#### Method 2: Via Command Prompt
 
 1. Press <kbd>Win+R</kbd>;
 2. Type "cmd" in the prompt and click **OK**;
