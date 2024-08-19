@@ -1,8 +1,7 @@
 ---
 title: Getting Started
 titleTemplate: Hakutest Handbook
-description: 'Hakutest is an educational platform designed for testing, quizzes, and exams
-with automatic answer checking'
+description: 'Hakutest is an educational platform designed for testing, quizzes, and exams with automatic answer checking'
 ---
 
 # Getting Started
