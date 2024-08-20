@@ -27,6 +27,14 @@ allows you to test students, conduct quizzes, and even take exams. In other
 words, you can use Hakutest for every task that requires automatic answer
 check.
 
+## Installation
+
+Please refer to the [Installation](https://hakutest.org/handbook/installation.html) page on the website.
+Alternatively, check out the [Releases](https://github.com/shelepuginivan/hakutest/releases) page.
+
+If you want to compile Hakutest from source, see
+[BUILDING.md](https://github.com/shelepuginivan/hakutest/blob/main/BUILDING.md).
+
 ## How it works
 
 Hakutest runs on the local network (but it can also be run on a global network
