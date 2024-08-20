@@ -1,6 +1,10 @@
 CGO_ENABLED := 1
 export CGO_ENABLED
 
+install: build-linux
+	mv ./target/linux/hakuctl /usr/local/bin
+	mv ./target/linux/hakutest /usr/local/bin
+
 build: build-linux build-windows
 
 build-linux:
