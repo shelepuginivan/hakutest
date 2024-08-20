@@ -1,12 +1,24 @@
 <div align="center">
-  <img src="./assets/logo.svg" alt="Hakutest" width="680">
-  <h3>Modern and efficient educational testing</h3>
-  <hr>
+
+<img src="./assets/logo.svg" alt="Hakutest" width="680">
+<h3>Modern and efficient educational testing</h3>
+
+<br>
+
 <a href="https://hakutest.org" target="_blank"><img src="https://img.shields.io/badge/website-hakutest.org-008000?style=for-the-badge" alt="Website: hakutest.org"></a>
 <a href="https://www.codefactor.io/repository/github/shelepuginivan/hakutest/overview" target="_blank"><img src="https://www.codefactor.io/repository/github/shelepuginivan/hakutest/badge?style=for-the-badge" alt="CodeFactor report"></a>
 <a href="" target="_blank"><img src="https://goreportcard.com/badge/github.com/shelepuginivan/hakutest?style=for-the-badge"></a>
 <a href="https://github.com/shelepuginivan/hakutest/releases/latest"><img src="https://img.shields.io/github/v/release/shelepuginivan/hakutest?style=for-the-badge&color=67B458" alt="Latest Hakutest release"></a>
+
+<br>
+
+**[<kbd> <br> Installation <br> </kbd>](https://hakutest.org/handbook/installation.html)**
+**[<kbd> <br> Handbook <br> </kbd>](https://hakutest.org/handbook/getting-started.html)**
+
+
 </div>
+
+---
 
 ## About
 
