@@ -9,6 +9,13 @@ description: 'Install Hakutest. Educational platform designed for testing, quizz
 Hakutest is available for [Windows](#windows) and [Linux](#linux).
 Follow the instructions for your operating system.
 
+Notice the badge below. It shows the latest version of Hakutest. If your
+version (you can check this in [Dashboard](/handbook/guide/02-dashboard)) is
+lower, you can update it to the latest version by following the installation
+instructions for your operating system.
+
+![Latest Hakutest Release](https://img.shields.io/github/v/release/shelepuginivan/hakutest?style=for-the-badge&color=1b9e14)
+
 ## Windows
 
 1. Download [`hakutest-win-x86_64.zip`](https://github.com/shelepuginivan/hakutest/releases/latest/download/hakutest-win-x86_64.zip);

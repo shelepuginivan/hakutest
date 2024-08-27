@@ -9,6 +9,15 @@ description: 'Установить Hakutest. Образовательная пл
 Hakutest доступен для [Windows](#windows) и [Linux](#linux).
 Следуйте инструкциям для вашей операционной системы.
 
+Обратите внимание на значок ниже. Он показывает последнюю версию (выпуск)
+Hakutest. Если ваша версия ниже (её можно посмотреть в [Панели
+управления](/ru/handbook/guide/02-dashboard)) &mdash; вы можете обновить
+программу до последней версии, следуя инструкциям по установке для вашей
+операционной системы.
+
+![Последняя Версия Hakutest](https://img.shields.io/github/v/release/shelepuginivan/hakutest?style=for-the-badge&color=1b9e14&label=Версия)
+
+
 ## Windows
 
 1. Скачайте [`hakutest-win-x86_64.zip`](https://github.com/shelepuginivan/hakutest/releases/latest/download/hakutest-win-x86_64.zip);
