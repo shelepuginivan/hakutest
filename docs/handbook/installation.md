@@ -48,8 +48,8 @@ On Debian-based distributions (like Ubuntu), you can install Hakutest as a deb p
 Below are the checksums for each file in the `sha256` format:
 
 ```
-eff32d91be32f190afa2e89bdf76557e3601f4e19fdbc1e15de27b3f2620be11  hakutest.AppImage
-03dcd7398b5daf90aa36f848a3c48e9ba805c31df533758424999e786f0d0c37  hakutest.deb
-56fa61a3af9ada164dcf4230b25bfcf40b7ec0a8b6b020dad256a28b2c1007b9  hakutest-linux-x86_64.tar.gz
-aad1ca3c66955ff9d7e5cd3342e6203c640eeedc23f8b5895040c426a4bc9f31  hakutest-win-x86_64.zip
+f6bbb0b95274390f6e859bf6759f12e643929ec1d8fe2512fbe2d620b4524d24  hakutest.AppImage
+28323efe32a520aa75d54301876b3d7cdbe9f9ac33be09b02b27b270a0aa16eb  hakutest.deb
+d6013b9e961beb12afcad3734507371987b69a5ea68611fe5dc87f3f0f25a7d6  hakutest-linux-x86_64.tar.gz
+3ec57e96228a8d5f959b0d78fe25fa7c2a524cd46cf90f09eb14d482f390e800  hakutest-win-x86_64.zip
 ```
