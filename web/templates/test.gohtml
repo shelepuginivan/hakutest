@@ -28,6 +28,7 @@
             </div>
             {{ range $index, $task := .Tasks }}
             <div class="test__task">
+                <h2>{{ i "test.task_heading" }} {{ incr $index }}</h2>
                 <div class="test__task__text">{{ markdown .Text }}</div>
                 <div class="test__task__options">
                     {{ if eq .Type "single" }}
