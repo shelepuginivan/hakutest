@@ -35,6 +35,18 @@ Alternatively, check out the [Releases](https://github.com/shelepuginivan/hakute
 If you want to compile Hakutest from source, see
 [BUILDING.md](https://github.com/shelepuginivan/hakutest/blob/main/BUILDING.md).
 
+## Why Hakutest?
+
+Hakutest offers a fair number of advantages over its analogues:
+
+1. **Efficiency** &mdash; Hakutest is an efficient system capable of checking answers in a matter of milliseconds.
+2. **Customizability** &mdash; You can customize the system to suit your needs: internationalization, data export. etc.
+3. **Easy to use** &mdash; Hakutest has a clean and accessible interface, uses a familiar markup format (Markdown), etc.
+4. **Cross-platform** &mdash; Run Hakutest on Windows, Linux, in a graphical session or on a server.
+5. **Security** &mdash; Hakutest uses a reliable policy-based security model.
+6. **Privacy** &mdash; You own your data, period. Hakutest respects your privacy.
+7. **Freedom** &mdash; Hakutest is a free (as in freedom) and open source software.
+
 ## How it works
 
 Hakutest runs on the local network (but it can also be run on a global network
