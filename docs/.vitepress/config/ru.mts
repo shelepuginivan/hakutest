@@ -159,6 +159,11 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
             ],
         },
         {
+            text: 'Политика несовместимых изменений',
+            base: '/ru/handbook/',
+            link: 'breaking-change-policy',
+        },
+        {
             text: 'Справочник',
             base: '/ru/reference/',
             link: 'standards/test-schema',
