@@ -17,7 +17,6 @@ Hakutest. Если ваша версия ниже (её можно посмот�
 
 ![Последняя Версия Hakutest](https://img.shields.io/github/v/release/shelepuginivan/hakutest?style=for-the-badge&color=1b9e14&label=Версия)
 
-
 ## Windows
 
 1. Скачайте [`hakutest-win-x86_64.zip`](https://github.com/shelepuginivan/hakutest/releases/latest/download/hakutest-win-x86_64.zip);
