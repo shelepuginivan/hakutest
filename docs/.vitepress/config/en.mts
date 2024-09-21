@@ -107,6 +107,10 @@ function sidebarHandbook(): DefaultTheme.SidebarItem[] {
             ],
         },
         {
+            text: 'Breaking Change Policy',
+            link: 'breaking-change-policy',
+        },
+        {
             text: 'Reference',
             base: '/reference/',
             link: 'standards/test-schema',
