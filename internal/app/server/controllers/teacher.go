@@ -174,7 +174,7 @@ func (co *TeacherController) TestEditor(c *gin.Context) {
 //
 // It accepts JSON (`application/json`) and adds test bound to it.
 //
-// If test is valid and added sucessfully, SubmitTest responds with status `201
+// If test is valid and added successfully, SubmitTest responds with status `201
 // Created`, otherwise it returns JSON with field `message` explaining occurred
 // error.
 func (co *TeacherController) SubmitTest(c *gin.Context) {

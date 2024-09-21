@@ -15,7 +15,7 @@ description: 'Learn how students use Hakutest, solve tests, submit answers, etc.
 At this point we have fully covered the teacher's experience of using Hakutest.
 Let's have a quick recap what you have learned:
 
--   Starting and stoping [Hakutest Server](/handbook/guide/01-server);
+-   Starting and stopping [Hakutest Server](/handbook/guide/01-server);
 -   Monitoring server status using the [Teacher Dashboard](/handbook/guide/02-dashboard);
 -   Managing [Tests](/handbook/guide/03-tests);
 -   Managing [Results and Statistics](/handbook/guide/04-results-and-statistics);

@@ -16,7 +16,7 @@ type Config struct {
 	// case user data will be stored in memory.
 	DSN string `json:"dsn,omitempty" yaml:"dsn,omitempty"`
 
-	// Dialect of tge database used to store user data.
+	// Dialect of the database used to store user data.
 	//
 	// List of supported dialects:
 	//   - `postgres` for PostgreSQL,

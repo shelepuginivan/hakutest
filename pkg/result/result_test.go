@@ -443,7 +443,7 @@ func TestSave(t *testing.T) {
 		assert.Error(t, result.Save(res, "\t"))
 	})
 
-	t.Run("should return error if testName contains path delimeter", func(t *testing.T) {
+	t.Run("should return error if testName contains path delimiter", func(t *testing.T) {
 		tmp := t.TempDir()
 		result.Init(result.Config{
 			Path: tmp,

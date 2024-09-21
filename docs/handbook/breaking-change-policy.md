@@ -7,7 +7,7 @@ description: 'Learn about Hakutest Breaking Change Policy.'
 # Breaking Change Policy
 
 Hakutest follows the [Go Module Version
-Numbering](https://go.dev/doc/modules/version-numbers) stardard.
+Numbering](https://go.dev/doc/modules/version-numbers) standard.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
