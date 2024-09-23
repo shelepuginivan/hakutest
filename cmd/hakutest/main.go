@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 
 	"fyne.io/systray"
 	"github.com/rs/zerolog"
@@ -109,6 +110,8 @@ func main() {
 			},
 		},
 	)
+
+	time.AfterFunc(1500*time.Millisecond, browser.OpenDashboardFunc(cfg.General.Port))
 
 	systray.Run(onReady, tray.OnExit)
 }
