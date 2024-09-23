@@ -17,6 +17,8 @@ will appear in the system tray to indicate that the server is running:
 
 <img id="systray-icon" src="/logo/icon.svg" alt="Hakutest Icon in system tray" width="96">
 
-Click on icon to display the context menu. You can stop server by clicking "Quit
-Hakutest", or open the [Teacher Dashboard](/handbook/guide/02-dashboard) by
-clicking "Dashboard".
+After a short timeout (1.5 seconds), Hakutest will open the [Teacher
+Dashboard](/handbook/guide/02-dashboard) page.
+
+Click on icon to display the context menu. You can stop server by clicking
+"Quit Hakutest", or open the Teacher Dashboard by clicking "Dashboard".
