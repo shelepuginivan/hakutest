@@ -7,12 +7,12 @@ import (
 	"os"
 
 	"fyne.io/systray"
-	"github.com/pkg/browser"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/shelepuginivan/fsutil"
 	"github.com/shelepuginivan/hakutest/internal/app/server"
 	"github.com/shelepuginivan/hakutest/internal/app/tray"
+	"github.com/shelepuginivan/hakutest/internal/pkg/browser"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/paths"
@@ -95,14 +95,9 @@ func main() {
 			}
 		},
 		tray.MenuEntry{
-			Label:   i18n.Get("tray.open.label"),
-			Tooltip: i18n.Get("tray.open.tooltip"),
-			Callback: func() {
-				err := browser.OpenURL(fmt.Sprintf("http://localhost:%d/teacher/dashboard", cfg.General.Port))
-				if err != nil {
-					log.Error().Err(err).Msg("Failed to open dashboard")
-				}
-			},
+			Label:    i18n.Get("tray.open.label"),
+			Tooltip:  i18n.Get("tray.open.tooltip"),
+			Callback: browser.OpenDashboardFunc(cfg.General.Port),
 		},
 		tray.MenuEntry{
 			Label:   i18n.Get("tray.quit.label"),
