@@ -9,7 +9,7 @@ import (
 // Version of Hakutest installation.
 var Version = fmt.Sprintf(
 	"%s (%s/%s)",
-	"Hakutest 1.0.1",
+	"Hakutest 1.1.0",
 	runtime.GOARCH,
 	runtime.GOOS,
 )
