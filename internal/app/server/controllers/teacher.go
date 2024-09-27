@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/rs/zerolog/log"
 	"github.com/shelepuginivan/hakutest/internal/pkg/config"
 	"github.com/shelepuginivan/hakutest/internal/pkg/i18n"
 	"github.com/shelepuginivan/hakutest/internal/pkg/network"
@@ -315,6 +316,7 @@ func (co *TeacherController) SettingsPage(c *gin.Context) {
 // error.
 func (co *TeacherController) SettingsUpdate(c *gin.Context) {
 	var fields config.Fields
+
 	err := c.BindJSON(&fields)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{
@@ -322,6 +324,8 @@ func (co *TeacherController) SettingsUpdate(c *gin.Context) {
 		})
 		return
 	}
+
+	log.Info().Any("settings", fields).Msg("settings updated")
 
 	err = co.cfg.Update(func(_ config.Fields) config.Fields {
 		return fields

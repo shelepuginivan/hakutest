@@ -19,10 +19,10 @@ import (
 // section in the configuration file.
 type GeneralFields struct {
 	// Run in debug mode.
-	Debug bool `json:"debug,omitempty" yaml:"debug,omitempty"`
+	Debug bool `json:"debug" yaml:"debug"`
 
 	// Run without icon in system tray.
-	DisableTray bool `json:"disableTray,omitempty" yaml:"disable_tray,omitempty"`
+	DisableTray bool `json:"disableTray" yaml:"disable_tray"`
 
 	// Port on which server is started.
 	Port int `json:"port,omitempty" yaml:"port,omitempty"`
