@@ -2,14 +2,19 @@
 package version
 
 import (
+	_ "embed"
+
 	"fmt"
 	"runtime"
 )
 
+//go:embed VERSION
+var version string
+
 // Version of Hakutest installation.
 var Version = fmt.Sprintf(
-	"%s (%s/%s)",
-	"Hakutest 1.1.0",
+	"Hakutest %s (%s/%s)",
+	version,
 	runtime.GOARCH,
 	runtime.GOOS,
 )
