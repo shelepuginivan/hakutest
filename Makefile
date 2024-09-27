@@ -1,9 +1,22 @@
 CGO_ENABLED := 1
 export CGO_ENABLED
 
-install: build-linux
-	mv ./target/linux/hakuctl /usr/local/bin
-	mv ./target/linux/hakutest /usr/local/bin
+install: build-linux package-linux-prepare
+	cp ./target/linux/usr/bin/{hakuctl,hakutest} /usr/local/bin
+	cp ./target/linux/usr/share/icons/hakutest.svg /usr/local/share/icons
+	mkdir -p /usr/local/share/licenses/hakutest
+	cp ./target/linux/usr/share/licenses/hakutest/LICENSE.md /usr/local/share/licenses/hakutest
+	cp ./target/linux/usr/share/applications/hakutest.desktop /usr/local/share/applications
+
+all: test web build package
+	rm -rf ./target/{hakutest.AppDir,linux,windows}
+	git restore web internal
+
+patch: version-patch all
+
+minor: version-minor all
+
+major: version-major all
 
 build: build-linux build-windows
 
@@ -45,30 +58,40 @@ docs-format:
 docs-preview:
 	yarn --cwd ./docs preview
 
+package: package-linux-prepare package-linux-appimage package-linux-deb package-linux-tarball package-windows-zip
+
+package-linux-prepare:
+	mkdir -p \
+		./target/linux/usr/bin \
+		./target/linux/usr/share/icons \
+		./target/linux/usr/share/applications \
+		./target/linux/usr/share/licenses/hakutest
+	mv ./target/linux/{hakutest,hakuctl} ./target/linux/usr/bin
+	cp ./build/resources/hakutest.desktop ./target/linux/usr/share/applications
+	cp ./build/resources/hakutest.svg ./target/linux/usr/share/icons
+	cp ./LICENSE.md ./target/linux/usr/share/licenses/hakutest
+
 package-linux-appimage:
-	mkdir -p ./target/hakutest.AppDir/usr/bin
+	mkdir -p ./target/hakutest.AppDir/usr
+	cp -r ./target/linux/usr/bin ./target/hakutest.AppDir/usr
 	cp ./build/appimage/AppRun ./target/hakutest.AppDir
 	cp ./build/resources/hakutest.desktop ./target/hakutest.AppDir/hakutest.desktop
 	cp ./build/resources/hakutest.svg ./target/hakutest.AppDir
-	cp ./target/linux/hakutest ./target/hakutest.AppDir/usr/bin
 	ARCH=x86_64 appimagetool ./target/hakutest.AppDir
 	mv ./Hakutest-x86_64.AppImage ./target/hakutest.AppImage
 
 package-linux-deb:
-	mkdir -p ./target/hakutest/DEBIAN
+	cp -r ./target/linux ./target/hakutest
+	mkdir ./target/hakutest/DEBIAN
 	cp ./build/deb/control ./target/hakutest/DEBIAN
-	mkdir -p ./target/hakutest/usr/bin
-	cp ./target/linux/hakutest ./target/hakutest/usr/bin
-	cp ./target/linux/hakuctl ./target/hakutest/usr/bin
-	mkdir -p ./target/hakutest/usr/share/applications
-	cp ./build/resources/hakutest.desktop ./target/hakutest/usr/share/applications
-	mkdir -p ./target/hakutest/usr/share/icons
-	cp ./build/resources/hakutest.svg ./target/hakutest/usr/share/icons
 	dpkg --build ./target/hakutest
 	rm -r ./target/hakutest
 
 package-linux-tarball:
-	tar -czf ./target/hakutest-linux-x86_64.tar.gz --transform 's/^./hakutest/' -C ./target/linux .
+	mkdir ./target/hakutest
+	cp -r ./target/linux/usr/{bin,share} ./target/hakutest
+	tar -czf ./target/hakutest-linux-x86_64.tar.gz --transform 's/^./hakutest/' -C ./target/hakutest .
+	rm -rf ./target/hakutest
 
 package-windows-zip:
 	cp -r ./target/windows ./target/hakutest
