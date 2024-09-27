@@ -28,8 +28,7 @@ build-windows:
 
 clean:
 	go clean
-	rm -rf ./target
-	rm hakutest hakuctl
+	rm -rf target hakutest hakuctl
 
 dev:
 	gowatch
