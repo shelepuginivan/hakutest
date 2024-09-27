@@ -78,6 +78,17 @@ package-windows-zip:
 test:
 	go test -cover ./...
 
+version-patch:
+	semver up release > ./pkg/version/VERSION
+
+version-minor:
+	semver up minor > ./pkg/version/VERSION
+
+version-major:
+	semver up major > ./pkg/version/VERSION
+
+web: web-vendor web-minify
+
 web-minify:
 	for f in web/css/*; do \
 		minify -qo "$$f" "$$f" ; \
