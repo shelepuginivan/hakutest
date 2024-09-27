@@ -11,29 +11,33 @@
     <script src="/static/js/statistics.js"></script>
     <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
     <title>{{ .Stats.Name }} | Hakutest</title>
+    <script>
+        document.addEventListener("alpine:init", () => {
+            Alpine.data("statistics", () => ({
+                results: [
+                    {{ range .Stats.Results }}
+                    {
+                        student: '{{ .Student }}',
+                        points: {{ .Points }},
+                        percentage: {{ .Percentage }},
+                        submittedAt: '{{ .SubmittedAt.Format "2006-01-02 15:04:05" }}',
+                        answers: [
+                            {{ range .Answers }}
+                            {
+                                value: '{{ .HumanReadable }}',
+                                correct: {{ .Correct }}
+                            },
+                            {{ end }}
+                        ]
+                    },
+                    {{ end }}
+                ],
+                ...statistics()
+            }))
+        })
+    </script>
 </head>
-<body x-data="{
-    results: [
-        {{ range .Stats.Results }}
-        {
-            student: '{{ .Student }}',
-            points: {{ .Points }},
-            percentage: {{ .Percentage }},
-            submittedAt: '{{ .SubmittedAt.Format "2006-01-02 15:04:05" }}',
-            answers: [
-                {{ range .Answers }}
-                {
-                    value: '{{ .HumanReadable }}',
-                    correct: {{ .Correct }}
-                },
-                {{ end }}
-            ]
-        },
-        {{ end }}
-    ],
-    ...statistics()
-}"
->
+<body x-data="statistics">
     <header class="header statistics__header">
         <h1 class="statistics__heading">{{ .Stats.Name }}</h1>
         <form class="export__form" action="/teacher/statistics/export">
