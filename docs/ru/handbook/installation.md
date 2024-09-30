@@ -36,8 +36,8 @@ Hakutest. Если ваша версия ниже (её можно посмот�
 ### AppImage
 
 1. Скачайте [`hakutest.AppImage`](https://github.com/shelepuginivan/hakutest/releases/latest/download/hakutest.AppImage);
-3. Предоставьте файлу права на исполнение: `chmod +x ./hakutest.AppImage`
-2. Запустите `./hakutest.AppImage`
+2. Предоставьте файлу права на исполнение: `chmod +x ./hakutest.AppImage`
+3. Запустите `./hakutest.AppImage`
 
 ### Tarball
 
