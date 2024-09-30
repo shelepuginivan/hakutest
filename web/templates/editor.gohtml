@@ -82,7 +82,7 @@
         </button>
     </header>
     <main class="main">
-        <form id="editor-form" class="editor" @submit.prevent="onSubmit">
+        <form id="editor-form" class="editor" autocomplete="off" @submit.prevent="onSubmit">
             <section class="editor__fields">
                 <label class="editor__label">
                     <i>{{ i "editor.field.title" }}</i>
