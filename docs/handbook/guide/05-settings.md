@@ -14,6 +14,14 @@ description: Learn how to configure Hakutest using built-in web interface
 
 ![Settings](./img/settings.png)
 
+> [!TIP]
+> You can use keys <kbd>1</kbd> &ndash; <kbd>4</kbd> to quickly navigate through the teacher interface:
+>
+> -   <kbd>1</kbd> &mdash; navigate to the [Dashboard](/handbook/guide/02-dashboard)
+> -   <kbd>2</kbd> &mdash; navigate to the [Tests menu](/handbook/guide/03-tests#tests-menu)
+> -   <kbd>3</kbd> &mdash; navigate to the [Results menu](/handbook/guide/04-results-and-statistics#results-menu)
+> -   <kbd>4</kbd> &mdash; navigate to the **Settings**
+
 Although Hakutest is designed to work out of the box, you may want to adjust
 some options to suit your needs. You can customise Hakutest directly from your
 browser in the teacher dashboard.
