@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	parserExt = parser.CommonExtensions | parser.MathJax | parser.OrderedListStart | parser.SuperSubscript
+	parserExt = parser.CommonExtensions | parser.OrderedListStart | parser.SuperSubscript
 	htmlFlags = html.CommonFlags | html.HrefTargetBlank
 )
 
