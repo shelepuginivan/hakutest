@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/shelepuginivan/fsutil"
 )
@@ -73,8 +72,16 @@ func AvailableResults() (names []string) {
 //
 // Results are overwritten if and only if the configuration has field
 // `overwrite_results` set to `true`.
+//
+// Forbidden characters in the test and student name are removed.
 func Save(r *Result, testName string) error {
-	if strings.TrimSpace(testName) == "" || strings.Contains(testName, string(os.PathSeparator)) {
+	testName = fsutil.ReplaceForbiddenCharsWith(testName, "")
+	if testName == "" {
+		return fmt.Errorf("testName must be a valid directory name")
+	}
+
+	resultName := fsutil.ReplaceForbiddenCharsWith(r.Student, "")
+	if resultName == "" {
 		return fmt.Errorf("testName must be a valid directory name")
 	}
 
@@ -84,7 +91,7 @@ func Save(r *Result, testName string) error {
 	}
 
 	thisTestDir := filepath.Join(resultsDirectory, testName)
-	resultsFile := filepath.Join(thisTestDir, r.Student) + ".json"
+	resultsFile := filepath.Join(thisTestDir, resultName) + ".json"
 
 	// Check whether result exists and `overwrite_results` is enabled.
 	if !overwriteResults && fsutil.FileExists(resultsFile) {

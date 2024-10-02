@@ -76,11 +76,11 @@ func Import(test []byte) error {
 		return err
 	}
 
-	if strings.TrimSpace(t.Title) == "" {
-		return fmt.Errorf("title must not be empty")
+	testName := fsutil.ReplaceForbiddenCharsWith(t.Title, "")
+	if testName == "" {
+		return fmt.Errorf("title is not valid")
 	}
-
-	testPath := filepath.Join(testsDirectory, NormalizeName(t.Title))
+	testPath := filepath.Join(testsDirectory, NormalizeName(testName))
 
 	if !fsutil.FileExists(testPath) {
 		return fsutil.WriteAll(testPath, test)
@@ -101,10 +101,11 @@ func Import(test []byte) error {
 // Save saves test to the tests directory. Unlike [Import], if test with the
 // same title exists, it is overwritten.
 func Save(t *Test) error {
-	if strings.TrimSpace(t.Title) == "" {
-		return fmt.Errorf("title must not be empty")
+	testName := fsutil.ReplaceForbiddenCharsWith(t.Title, "")
+	if testName == "" {
+		return fmt.Errorf("title is not valid")
 	}
-	testPath := filepath.Join(testsDirectory, NormalizeName(t.Title))
+	testPath := filepath.Join(testsDirectory, NormalizeName(testName))
 
 	data, err := json.Marshal(t)
 	if err != nil {

@@ -443,7 +443,7 @@ func TestSave(t *testing.T) {
 		assert.Error(t, result.Save(res, "\t"))
 	})
 
-	t.Run("should return error if testName contains path delimiter", func(t *testing.T) {
+	t.Run("should return error if testName contains only invalid characters", func(t *testing.T) {
 		tmp := t.TempDir()
 		result.Init(result.Config{
 			Path: tmp,
@@ -454,7 +454,7 @@ func TestSave(t *testing.T) {
 			Points:  100,
 		}
 
-		assert.Error(t, result.Save(res, "some/another"))
+		assert.Error(t, result.Save(res, "*/<>: "))
 	})
 
 	t.Run("should return error if result cannot be saved", func(t *testing.T) {
