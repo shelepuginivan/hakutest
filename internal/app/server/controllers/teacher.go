@@ -168,7 +168,10 @@ func (co *TeacherController) TestEditor(c *gin.Context) {
 		t = &test.Test{}
 	}
 
-	c.HTML(http.StatusOK, "editor.gohtml", t)
+	c.HTML(http.StatusOK, "editor.gohtml", gin.H{
+		"Test":   t,
+		"Config": co.cfg,
+	})
 }
 
 // SubmitTest is a handler for `POST /teacher/tests/edit` route.

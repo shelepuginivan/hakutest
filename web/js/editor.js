@@ -1,20 +1,22 @@
 function editor() {
     return {
-        addTask() {
-            this.tasks.push({
-                id: `task:${Date.now()}`,
-                type: 'single',
-                text: '',
-                single: {
-                    answer: '',
-                    options: []
-                },
-                multiple: {
-                    answer: [],
-                    options: []
-                },
-                open: ''
-            })
+        addTask(type) {
+            return function() {
+                this.tasks.push({
+                    id: `task:${Date.now()}`,
+                    type,
+                    text: '',
+                    single: {
+                        answer: '',
+                        options: []
+                    },
+                    multiple: {
+                        answer: [],
+                        options: []
+                    },
+                    open: ''
+                })
+            }
         },
 
         removeOptionMultiple(task, option) {

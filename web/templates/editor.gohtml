@@ -14,23 +14,23 @@
     <script src="/static/js/markdown.js"></script>
     <script src="/static/js/notify.js"></script>
     <script defer src="/static/vendor/alpine-3.14.1.min.js"></script>
-    <title>{{ if eq (len .Title) 0 }}{{ i "editor.new_test" }}{{ else }}{{ .Title }}{{ end }} | Hakutest</title>
+    <title>{{ if eq (len .Test.Title) 0 }}{{ i "editor.new_test" }}{{ else }}{{ .Test.Title }}{{ end }} | Hakutest</title>
     <script>
         document.addEventListener("alpine:init", () => {
             Alpine.data('editor', () => ({
-                title: '{{ .Title }}',
-                target: '{{ .Target }}',
-                description: '{{ .Description }}',
-                subject: '{{ .Subject }}',
-                author: '{{ .Author }}',
-                institution: '{{ .Institution }}',
+                title: '{{ .Test.Title }}',
+                target: '{{ .Test.Target }}',
+                description: '{{ .Test.Description }}',
+                subject: '{{ .Test.Subject }}',
+                author: '{{ .Test.Author }}',
+                institution: '{{ .Test.Institution }}',
                 expiresAt: {{ if not .ExpiresAt.IsZero }}
-                    '{{ .ExpiresAt.Local.Format "2006-01-02T15:04:05" }}'
+                    '{{ .Test.ExpiresAt.Local.Format "2006-01-02T15:04:05" }}'
                 {{ else }}
                     ''
                 {{ end }},
                 tasks: [
-                    {{ range $index, $task := .Tasks }}
+                    {{ range $index, $task := .Test.Tasks }}
                     {{ with $task }}
                     {
                         id: 'task:{{ $index }}',
@@ -239,7 +239,7 @@
             <button
                 class="button button__primary button__add__task"
                 type="button"
-                @click="addTask"
+                @click="addTask('{{ .Config.Test.DefaultTaskType }}')"
             >
                 <i class="i add"></i> {{ i "editor.add_task" }}
             </button>
