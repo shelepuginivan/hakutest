@@ -111,7 +111,9 @@ func main() {
 		},
 	)
 
-	time.AfterFunc(1500*time.Millisecond, browser.OpenDashboardFunc(cfg.General.Port))
+	if cfg.General.OpenAtStartup {
+		time.AfterFunc(1500*time.Millisecond, browser.OpenDashboardFunc(cfg.General.Port))
+	}
 
 	systray.Run(onReady, tray.OnExit)
 }

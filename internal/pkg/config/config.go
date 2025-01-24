@@ -24,6 +24,9 @@ type GeneralFields struct {
 	// Run without icon in system tray.
 	DisableTray bool `json:"disableTray" yaml:"disable_tray"`
 
+	// Whether to open Hakutest web interface upon startup.
+	OpenAtStartup bool `json:"openAtStartup" yaml:"open_at_startup"`
+
 	// Port on which server is started.
 	Port int `json:"port,omitempty" yaml:"port,omitempty"`
 
@@ -140,10 +143,11 @@ func New() *Config {
 func Default() Fields {
 	return Fields{
 		General: GeneralFields{
-			Debug:       false,
-			DisableTray: false,
-			Lang:        language.English.String(),
-			Port:        8080,
+			Debug:         false,
+			DisableTray:   false,
+			OpenAtStartup: true,
+			Lang:          language.English.String(),
+			Port:          8080,
 		},
 		Result: result.Config{
 			Overwrite: false,
