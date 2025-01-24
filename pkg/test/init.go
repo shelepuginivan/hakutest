@@ -11,6 +11,9 @@ import (
 type Config struct {
 	// Directory where tests are stored.
 	Path string `json:"path,omitempty" yaml:"path,omitempty"`
+
+	// Default type of the new task added in the editor.
+	DefaultTaskType string `json:"defaultTaskType" yaml:"default_task_type"`
 }
 
 var (

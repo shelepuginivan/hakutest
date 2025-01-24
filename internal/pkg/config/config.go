@@ -161,7 +161,8 @@ func Default() Fields {
 			Student: security.PolicyNoVerification,
 		},
 		Test: test.Config{
-			Path: paths.Tests,
+			Path:            paths.Tests,
+			DefaultTaskType: test.TaskSingle,
 		},
 	}
 }
