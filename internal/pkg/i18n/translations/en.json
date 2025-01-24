@@ -154,6 +154,14 @@
             "path": {
                 "label": "Save tests into",
                 "tip": "Directory (folder) in which Hakutest stores tests."
+            },
+            "default_task_type": {
+                "label": "Default task type",
+                "tip": "Default task type when adding task in the editor.",
+                "single": "Single answer",
+                "multiple": "Multiple answer",
+                "open": "Open answer",
+                "detailed": "Detailed answer"
             }
         }
     },

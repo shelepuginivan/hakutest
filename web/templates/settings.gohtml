@@ -50,7 +50,8 @@
                     teacher: '{{ .Config.Security.Teacher }}'
                 },
                 test: {
-                    path: {{ .Config.Test.Path }}
+                    path: {{ .Config.Test.Path }},
+                    defaultTaskType: '{{ .Config.Test.DefaultTaskType }}'
                 },
                 ...settings()
             }))
@@ -196,6 +197,25 @@
                     </label>
                     <i id="tip-test_path">
                         {{ i "settings.test.path.tip" }}
+                    </i>
+                </div>
+                <div class="divider" role="separator"></div>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.test.default_task_type.label" }}</h3>
+                        <select
+                            class="input"
+                            aria-describedby="tip-test_default_task_type"
+                            x-model="test.defaultTaskType"
+                        >
+                            <option value="single">[ · ] {{ i "settings.test.default_task_type.single" }}</option>
+                            <option value="multiple">[ ∴ ] {{ i "settings.test.default_task_type.multiple" }}</option>
+                            <option value="open">[ … ] {{ i "settings.test.default_task_type.open" }}</option>
+                            <option value="detailed">[ @ ] {{ i "settings.test.default_task_type.detailed" }}</option>
+                        </select>
+                    </label>
+                    <i id="tip-test_default_task_type">
+                        {{ i "settings.test.default_task_type.tip" }}
                     </i>
                 </div>
             </section>
