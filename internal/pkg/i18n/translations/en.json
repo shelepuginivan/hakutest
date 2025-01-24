@@ -102,6 +102,10 @@
                 "label": "Hide tray icon",
                 "tip": "Run Hakutest without a system tray icon."
             },
+            "open_at_startup": {
+                "label": "Open at startup",
+                "tip": "Open Hakutest in the browser upon startup."
+            },
             "lang": {
                 "label": "Language",
                 "tip": "Language of the interface. Applied for both student and teacher interface."

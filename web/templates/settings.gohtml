@@ -34,6 +34,7 @@
                 general: {
                     debug: {{ .Config.General.Debug }},
                     disableTray: {{ .Config.General.DisableTray }},
+                    openAtStartup: {{ .Config.General.OpenAtStartup }},
                     lang: '{{ .Config.General.Lang }}',
                     port: {{ .Config.General.Port }}
                 },
@@ -96,6 +97,19 @@
                         >
                     </label>
                     <i id="tip-tray">{{ i "settings.general.disable_tray.tip" }}</i>
+                    {{ template "restart" }}
+                </div>
+                <div class="divider" role="separator"></div>
+                <div class="settings__entry">
+                    <label class="settings__section__label">
+                        <h3>{{ i "settings.general.open_at_startup.label" }}</h3>
+                        <input
+                            type="checkbox"
+                            aria-describedby="tip-startup"
+                            x-model="general.openAtStartup"
+                        >
+                    </label>
+                    <i id="tip-startup">{{ i "settings.general.open_at_startup.tip" }}</i>
                     {{ template "restart" }}
                 </div>
                 <div class="divider" role="separator"></div>
