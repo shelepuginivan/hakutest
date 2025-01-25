@@ -189,6 +189,7 @@
     },
     "security": {
         "policy": {
+            "abort_all": "Abort all requests",
             "no_verification": "For everyone without verification",
             "credentials": "By username and password",
             "hostonly": "Only from this device"
