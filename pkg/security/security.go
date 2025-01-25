@@ -44,10 +44,15 @@ func Init(cfg Config) {
 
 // Security policies.
 const (
-	// PolicyNoVerification does not require any verification. Default for student.
+	// PolicyAbortAll aborts all requests.
+	PolicyAbortAll = "abort_all"
+
+	// PolicyNoVerification does not require any verification. Default for
+	// student.
 	PolicyNoVerification = "no_verification"
 
-	// PolicyCredentials requires unauthorized user to enter their credentials. User data is stored locally.
+	// PolicyCredentials requires unauthorized user to enter their credentials.
+	// User data is stored locally.
 	PolicyCredentials = "credentials"
 
 	// PolicyHostOnly blocks any request from machines other than host.
@@ -58,6 +63,8 @@ const (
 // For `credentials` policy required roles can be specified.
 func Middleware(policy string, roles ...string) gin.HandlerFunc {
 	switch policy {
+	case PolicyAbortAll:
+		return AbortAllMiddleware
 	case PolicyHostOnly:
 		return HostOnlyMiddleware
 	case PolicyCredentials:
