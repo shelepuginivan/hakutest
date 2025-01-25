@@ -11,7 +11,9 @@ import (
 // Protected route can only be accessed from the host machine.
 // Requests from IPs other than the host IP are redirected to the index route.
 func HostOnlyMiddleware(c *gin.Context) {
-	if network.IsLocalIP(c.ClientIP()) {
+	// If request is directly to /, it is allowed. This is required to avoid
+	// infinite redirects.
+	if network.IsLocalIP(c.ClientIP()) || c.Request.URL.Path == "/" {
 		c.Next()
 		return
 	}
