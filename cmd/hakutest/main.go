@@ -48,6 +48,7 @@ func init() {
 
 	// Test configuration.
 	flag.StringVar(&cfg.Test.Path, "test.path", cfg.Test.Path, "Directory where the test files are stored")
+	flag.StringVar(&cfg.Test.DefaultTaskType, "test.default_task_type", cfg.Test.DefaultTaskType, "Default type of the new task added in the editor")
 }
 
 func onConfigUpdate(c *config.Config) {
