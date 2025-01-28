@@ -34,6 +34,7 @@ func init() {
 	// General configuration.
 	flag.BoolVar(&cfg.General.Debug, "general.debug", cfg.General.Debug, "Run in debug mode")
 	flag.BoolVar(&cfg.General.DisableTray, "general.disable_tray", cfg.General.DisableTray, "Run without icon in system tray")
+	flag.BoolVar(&cfg.General.OpenAtStartup, "general.open_at_startup", cfg.General.OpenAtStartup, "Open Hakutest web interface upon startup")
 	flag.StringVar(&cfg.General.Lang, "general.lang", cfg.General.Lang, "Language of the interface")
 	flag.IntVar(&cfg.General.Port, "general.port", cfg.General.Port, "Port on which server is started")
 
