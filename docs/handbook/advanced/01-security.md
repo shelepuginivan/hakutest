@@ -34,11 +34,12 @@ role "teacher".
 Policies determine whether a user fulfils a particular role. Different policies
 can be applied to different roles and one policy can be applied to each role.
 
-Currently, Hakutest implements 3 security policies:
+Currently, Hakutest implements 4 security policies:
 
 -   [No verification](#no-verification)
 -   [Credentials](#credentials)
 -   [Only this device](#hostonly)
+-   [Abort all requests](#abort-all)
 
 ### For everyone without verification {#no-verification}
 
@@ -79,6 +80,18 @@ access, but students will not.
 > [!TIP]
 > By default, this policy is applied for **teacher**.
 
+### Abort all requests {#abort-all}
+
+Route cannot be accessed by anyone from any device. All requests are redirected
+to the [Test Search](/handbook/guide/06-student-perspective#test-search) page
+instead.
+
+> [!NOTE]
+> This policy can be useful if Hakutest is
+> [running on a server](/handbook/advanced/03-on-server) and
+> [`hakuctl`](/handbook/advanced/04-hakuctl) is used for test management,
+> statistics export, etc.
+
 ## Configuration
 
 Although default security settings of Hakutest are robust, you can adjust them
@@ -114,6 +127,10 @@ settings, delete tests and results, etc.
 
 This will make Hakutest unusable as students will not be able to access the
 tests.
+
+### Applying "Abort all requests" policy to student interface
+
+Similar to the previous mistake, this makes Hakutest unusable for students.
 
 ### Changing dialect without changing the DSN
 
