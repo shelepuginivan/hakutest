@@ -39,6 +39,7 @@ The following table describes basic options that can be configured:
 | **Language**          | Language of the Hakutest interface                                                                                                           |
 | **Overwrite results** | Whether to overwrite the results when a student resubmits answers                                                                            |
 | **Show results**      | Whether to show the student the [result page](/handbook/guide/06-student-perspective#whether-to-show-results) after submitting their answers |
+| **Default task type** | The default task type for new tasks in the [editor](/handbook/guide/03-tests#test-editor)                                                    |
 
 ## Intermediate configuration
 
