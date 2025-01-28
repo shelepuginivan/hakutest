@@ -24,7 +24,7 @@
                 subject: '{{ .Test.Subject }}',
                 author: '{{ .Test.Author }}',
                 institution: '{{ .Test.Institution }}',
-                expiresAt: {{ if not .ExpiresAt.IsZero }}
+                expiresAt: {{ if not .Test.ExpiresAt.IsZero }}
                     '{{ .Test.ExpiresAt.Local.Format "2006-01-02T15:04:05" }}'
                 {{ else }}
                     ''
