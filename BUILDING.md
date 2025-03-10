@@ -9,13 +9,9 @@ You can compile Hakutest from source. Follow the instructions below.
 Make sure the following binaries are installed on your system and available in `$PATH`:
 
 - `git`
-- `go` (`>=1.22.1`)
+- `go` (`>=1.24.0`)
 - `make`
 - `wget`
-
-### Optional requirements
-
--   [`minify`](https://github.com/tdewolff/minify) &mdash; recommended for optimizing web assets (step 3)
 
 ### Compilation steps
 
