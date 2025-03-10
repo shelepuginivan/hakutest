@@ -11,7 +11,11 @@ import (
 // NormalizeAnswer returns answer in normal form.
 // It trims leading and trailing whitespaces, and converts it to lowercase.
 func NormalizeAnswer(answer string) string {
-	return strings.ToLower(strings.TrimSpace(answer))
+	s := strings.NewReplacer(
+		"ё", "е",
+	)
+
+	return s.Replace(strings.ToLower(strings.TrimSpace(answer)))
 }
 
 // CheckAnswer checks whether answer is correct and returns Answer struct.
