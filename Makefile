@@ -102,13 +102,13 @@ test:
 	go test -cover ./...
 
 version-patch:
-	semver up release > ./pkg/version/VERSION
+	go tool semver up release > ./pkg/version/VERSION
 
 version-minor:
-	semver up minor > ./pkg/version/VERSION
+	go tool semver up minor > ./pkg/version/VERSION
 
 version-major:
-	semver up major > ./pkg/version/VERSION
+	go tool semver up major > ./pkg/version/VERSION
 
 web: web-vendor web-minify
 

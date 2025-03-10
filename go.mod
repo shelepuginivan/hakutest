@@ -46,6 +46,7 @@ require (
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/gorilla/css v1.0.1 // indirect
+	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
@@ -58,10 +59,13 @@ require (
 	github.com/klauspost/cpuid/v2 v2.2.8 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
+	github.com/magiconair/properties v1.8.6 // indirect
 	github.com/matryer/try v0.0.0-20161228173917-9ac251b645a2 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-sqlite3 v1.14.23 // indirect
+	github.com/maykonlsf/semver-cli v1.1.1 // indirect
+	github.com/mitchellh/mapstructure v1.4.3 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
@@ -70,8 +74,13 @@ require (
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/richardlehane/mscfb v1.0.4 // indirect
 	github.com/richardlehane/msoleps v1.0.4 // indirect
+	github.com/spf13/afero v1.8.2 // indirect
+	github.com/spf13/cast v1.4.1 // indirect
+	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/spf13/viper v1.10.1 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
+	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/tdewolff/argp v0.0.0-20240625173203-87b04d5d3e52 // indirect
 	github.com/tdewolff/minify/v2 v2.21.3 // indirect
 	github.com/tdewolff/parse/v2 v2.7.19 // indirect
@@ -87,6 +96,11 @@ require (
 	golang.org/x/sync v0.8.0 // indirect
 	golang.org/x/sys v0.25.0 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
+	gopkg.in/ini.v1 v1.66.4 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
-tool github.com/tdewolff/minify/v2/cmd/minify
+tool (
+	github.com/maykonlsf/semver-cli/cmd/semver
+	github.com/tdewolff/minify/v2/cmd/minify
+)
