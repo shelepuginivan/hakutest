@@ -97,6 +97,58 @@ func TestTest_Sha256Sum(t *testing.T) {
 	assert.Equal(t, hex.EncodeToString(hasher.Sum(nil)), tst.Sha256Sum())
 }
 
+func TestTest_TaskKeys(t *testing.T) {
+	sortedKeys := []int{
+		0, 1, 2, 3, 4, 5,
+		6, 7, 8, 9, 10, 11,
+		12, 13, 14, 15, 16,
+		17, 18, 19, 20, 21,
+		22, 23, 24,
+	}
+
+	tst := test.Test{
+		Title: "title",
+		Tasks: []*test.Task{
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+			{Type: "single"},
+		},
+	}
+
+	assert.Equal(t, sortedKeys, tst.TaskKeys())
+
+	tst.ShuffleTasks = true
+
+	k1 := tst.TaskKeys()
+	k2 := tst.TaskKeys()
+
+	assert.NotEqual(t, sortedKeys, k1)
+	assert.NotEqual(t, sortedKeys, k2)
+	assert.NotEqual(t, k1, k2)
+}
+
 func TestNormalizeName(t *testing.T) {
 	cases := []TestCase{
 		{

@@ -27,9 +27,10 @@
                     <input class="input" name="student" required autofocus>
                 </label>
             </div>
-            {{ range $index, $task := .Tasks }}
+            {{ range $humanIndex, $index := .TaskKeys }}
+            {{ with index $.Tasks $index }}
             <div class="test__task">
-                <h2>{{ i "test.task_heading" }} {{ incr $index }}</h2>
+                <h2>{{ i "test.task_heading" }} {{ incr $humanIndex }}</h2>
                 <div class="test__task__text">{{ markdown .Text }}</div>
                 <div class="test__task__options">
                     {{ if eq .Type "single" }}
@@ -80,6 +81,7 @@
                     {{ end }}
                 </div>
             </div>
+            {{ end }}
             {{ end }}
             <button class="button button__primary">
                 {{ i "test.submit" }}
