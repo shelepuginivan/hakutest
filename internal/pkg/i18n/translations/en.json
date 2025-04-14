@@ -45,6 +45,7 @@
             "author": "Author:",
             "target": "Target audience:",
             "institution": "Educational institution:",
+            "shuffle_tasks": "Shuffle tasks:",
             "expires_at": "Expires at:"
         },
         "task": {

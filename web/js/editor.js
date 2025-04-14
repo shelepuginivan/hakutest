@@ -38,6 +38,7 @@ function editor() {
                 author: this.author,
                 target: this.target,
                 institution: this.institution,
+                shuffleTasks: this.shuffleTasks,
                 tasks: [],
             }
 

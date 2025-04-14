@@ -29,6 +29,7 @@
                 {{ else }}
                     ''
                 {{ end }},
+                shuffleTasks: {{ .Test.ShuffleTasks }},
                 tasks: [
                     {{ range $index, $task := .Test.Tasks }}
                     {{ with $task }}
@@ -111,6 +112,10 @@
                 <label class="editor__label">
                     <i>{{ i "editor.field.expires_at" }}</i>
                     <input class="input" type="datetime-local" x-model="expiresAt">
+                </label>
+                <label class="editor__label editor__label-checkbox">
+                    <i>{{ i "editor.field.shuffle_tasks" }}</i>
+                    <input  type="checkbox" x-model="shuffleTasks">
                 </label>
             </section>
             <template x-for="(task, index) in tasks" :key="task.id">

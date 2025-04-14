@@ -59,6 +59,10 @@ body {
     gap: 12px 
 }
 
+.editor__label-checkbox {
+    flex-direction: row;
+}
+
 .editor__task__header {
     display: flex;
     align-items: center;
