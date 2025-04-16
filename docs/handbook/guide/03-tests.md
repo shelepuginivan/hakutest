@@ -63,7 +63,8 @@ General fields are described in the table below:
 | **Author**             | Author of the test                                                       | _John Doe_                             |
 | **Target audience**    | Who the test is for                                                      | _9th grade students_                   |
 | **Institution**        | The educational institution where the test is conducted                  | _Hakutest Academy_                     |
-| **Expires At**         | Expiration time of the test. Leave blank for the test to be indefinite   | _06/28/2032 08:00 PM_                  |
+| **Expires at**         | Expiration time of the test. Leave blank for the test to be indefinite   | _06/28/2032 08:00 PM_                  |
+| **Shuffle tasks**      | Whether tasks should be shuffled and displayed in random order           | &ndash;                                |
 
 ### Tasks
 
