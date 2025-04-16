@@ -39,6 +39,10 @@
             "type": "string",
             "format": "date-time"
         },
+        "shuffleTasks": {
+            "description": "Whether tasks should be shuffled and displayed in random order.",
+            "type": "boolean"
+        },
         "tasks": {
             "description": "Tasks of the test.",
             "type": "array",
