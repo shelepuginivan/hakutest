@@ -2,7 +2,7 @@
 # Generate JSON schema documentation using
 # [JSON Schema for Humans](https://github.com/coveooss/json-schema-for-humans).
 
-REFERENCE_DIR="reference"
+REFERENCE_DIR="reference/standards"
 SCHEMA_DIR="public/standards"
 
 generate-schema-doc --config template_name=md "$SCHEMA_DIR/test.schema.json" "$REFERENCE_DIR/test-schema.md"
