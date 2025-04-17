@@ -20,6 +20,11 @@
     background-color: var(--selection);
 }
 
+.test__task__text * {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
 .test__task__text blockquote {
     margin: 16px 0;
     padding-left: 8px;
