@@ -6,6 +6,7 @@ toolchain go1.24.2
 
 require (
 	fyne.io/systray v1.11.0
+	github.com/DATA-DOG/go-sqlmock v1.5.2
 	github.com/adrg/xdg v0.5.3
 	github.com/deckarep/golang-set/v2 v2.8.0
 	github.com/fatih/color v1.18.0
