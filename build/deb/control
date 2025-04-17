@@ -4,4 +4,4 @@ Architecture: amd64
 Priority: optional
 Section: education
 Maintainer: Ivan Shelepugin <shelepuginivanm@gmail.com>
-Description: Reliable and efficient educational testing platform.
+Description:  Modern and efficient automated educational testing platform.
