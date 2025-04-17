@@ -70,5 +70,7 @@ input[type='radio'] {
 
 .textarea {
     resize: vertical;
+    font-family: monospace, monospace;
+    field-sizing: content;
     min-height: 96px;
 }
