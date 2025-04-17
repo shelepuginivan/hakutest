@@ -49,3 +49,15 @@ func TestAbortAllMiddleware(t *testing.T) {
 	})
 }
 
+func TestNoVerificationMiddleware(t *testing.T) {
+	router := gin.Default()
+	router.GET("/well", security.NoVerificationMiddleware, func(c *gin.Context) {
+		c.Data(http.StatusNoContent, gin.MIMEHTML, nil)
+	})
+
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/well", nil)
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, http.StatusNoContent, w.Code)
+}
