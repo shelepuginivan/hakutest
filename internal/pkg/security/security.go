@@ -90,9 +90,15 @@ func (User) TableName() string {
 
 // Credentials returns [*Credentials] associated with the user.
 func (m *User) Credentials() *Credentials {
+	var roles []string
+
+	if strings.TrimSpace(m.Roles) != "" {
+		roles = strings.Split(m.Roles, ",")
+	}
+
 	return &Credentials{
 		Username: m.Username,
-		Roles:    strings.Split(m.Roles, ","),
+		Roles:    roles,
 	}
 }
 
