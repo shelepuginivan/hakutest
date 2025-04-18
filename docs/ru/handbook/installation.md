@@ -50,8 +50,8 @@ Hakutest. Если ваша версия ниже (её можно посмот�
 Ниже предоставлены контрольные суммы в формате `sha256` для каждого файла:
 
 ```
-6814c945fbf935c0a4ab743892e5d3b3c0e392c0074e7911a167983e283bed2b  hakutest.AppImage
-b1c83228a12fc1caf9edc2125719eeecdd42f84176bfa441fabd238d21ed84e7  hakutest.deb
-205270a4006c540fb441ed9331ac45d7d7905fbf879c880536bb8fd520e948a2  hakutest-linux-x86_64.tar.gz
-29b1e1b62782a625d7505e627799e5a8d894827dc56f9caca71e0e185ed36e5a  hakutest-win-x86_64.zip
+66162c7884ea816eeb3e75dd2c6a2a56e460046e2cdd94292cefce4403e8a1e2  hakutest.AppImage
+68cd545c4883d108b4297ee6423b12ce23a9086e5b00910e5a57d19bfaa1f002  hakutest.deb
+a1a435b867c3e7c98615c1df2f7513be25c4eb8981e3d6e6024fe9a152ba223e  hakutest-linux-x86_64.tar.gz
+9a7da46b2f2dec13121b38b38024e9a16d59839bddd52ad820177d1a8adf17e9  hakutest-win-x86_64.zip
 ```
