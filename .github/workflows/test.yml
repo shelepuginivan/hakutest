@@ -17,5 +17,8 @@ jobs:
       with:
         go-version: '1.24'
 
+    - name: Ensure web vendor dependencies are installed
+      run: make web-vendor
+
     - name: Test
       run: go test -v ./...
