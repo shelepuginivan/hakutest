@@ -23,13 +23,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+          cache: yarn
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
-        run: npm ci --prefix docs
+        run: yarn install --cwd docs
       - name: Build with VitePress
-        run: npm run docs:build --prefix docs
+        run: yarn docs:build --cwd docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
