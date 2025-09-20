@@ -1,8 +1,9 @@
-name: Deploy VitePress site to Pages
+name: Deploy Hakutest website to GitHub Pages
 
 on:
   push:
     branches: [ main ]
+    paths: [ 'docs/**' ]
 
 permissions:
   contents: read
