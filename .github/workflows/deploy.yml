@@ -1,4 +1,4 @@
-name: Deploy Hakutest website to GitHub Pages
+name: Deploy Hakutest Website to GitHub Pages
 
 on:
   push:
