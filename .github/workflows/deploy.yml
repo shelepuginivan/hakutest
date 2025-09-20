@@ -28,9 +28,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
-        run: yarn install --cwd docs
+        run: yarn --cwd docs install
       - name: Build with VitePress
-        run: yarn docs:build --cwd docs
+        run: yarn --cwd docs docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
